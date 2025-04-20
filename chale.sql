@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 01, 2025 at 02:08 PM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Host: 127.0.0.1
+-- Tempo de geração: 20/04/2025 às 19:06
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,161 +18,269 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `chale`
+-- Banco de dados: `chale`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `administrador`
+-- Estrutura para tabela `bloqueio_de_dia`
 --
 
-CREATE TABLE `administrador` (
-  `admid` int NOT NULL,
-  `admnome` varchar(50) DEFAULT NULL,
-  `admmail` varchar(30) DEFAULT NULL,
-  `admpass` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB;
+CREATE TABLE `bloqueio_de_dia` (
+  `bloid` int(11) NOT NULL,
+  `blodinicial` date DEFAULT NULL,
+  `blodfinal` date DEFAULT NULL,
+  `blotipo` enum('reserva','manual','airbnb') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clientes`
+-- Estrutura para tabela `carousel`
 --
 
-CREATE TABLE `clientes` (
-  `cliid` int NOT NULL,
-  `cliinome` varchar(50) DEFAULT NULL,
-  `clitel` varchar(15) DEFAULT NULL,
-  `climail` varchar(30) DEFAULT NULL,
-  `clidatnasc` date DEFAULT NULL,
-  `clipass` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB;
+CREATE TABLE `carousel` (
+  `carid` int(11) NOT NULL,
+  `carfoto` longblob DEFAULT NULL,
+  `carordem` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `precos`
+-- Estrutura para tabela `itens_sessoes`
+--
+
+CREATE TABLE `itens_sessoes` (
+  `iteid` int(11) NOT NULL,
+  `itesessao` int(11) DEFAULT NULL,
+  `itefoto` longblob DEFAULT NULL,
+  `iteutilitario` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `precos`
 --
 
 CREATE TABLE `precos` (
-  `preid` int NOT NULL,
-  `prechale` double DEFAULT NULL,
-  `precamping` double DEFAULT NULL,
-  `precolchao` double DEFAULT NULL
-) ENGINE=InnoDB;
+  `preid` int(11) NOT NULL,
+  `prediaria` double DEFAULT NULL,
+  `prediariafds` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `promocoes`
+-- Estrutura para tabela `promocoes`
 --
 
 CREATE TABLE `promocoes` (
-  `promoid` int NOT NULL,
-  `promonome` varchar(50) DEFAULT NULL,
-  `promodataini` date DEFAULT NULL,
-  `promodatafim` date DEFAULT NULL,
-  `promoNpreco` double DEFAULT NULL,
-  `promoativo` tinyint(1) DEFAULT '1'
-) ENGINE=InnoDB;
+  `proid` int(11) NOT NULL,
+  `pronome` varchar(100) DEFAULT NULL,
+  `prodataini` date DEFAULT NULL,
+  `prodatafim` date DEFAULT NULL,
+  `pronpreco` double DEFAULT NULL,
+  `pronprecofds` double DEFAULT NULL,
+  `proativo` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservas`
+-- Estrutura para tabela `reservas`
 --
 
 CREATE TABLE `reservas` (
-  `resid` int NOT NULL,
+  `resid` int(11) NOT NULL,
   `rescheckin` date DEFAULT NULL,
   `rescheckout` date DEFAULT NULL,
-  `rescliid` int DEFAULT NULL,
-  `restip` varchar(15) DEFAULT NULL,
-  `resnumcli` int DEFAULT NULL,
-  `rescolchao` tinyint(1) DEFAULT '0',
+  `resusuid` int(11) DEFAULT NULL,
   `resvtotal` double DEFAULT NULL,
-  `resstatuspag` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB;
+  `resstatuspag` tinyint(1) DEFAULT 0,
+  `resprazopag` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Estrutura para tabela `sessoes`
+--
+
+CREATE TABLE `sessoes` (
+  `sesid` int(11) NOT NULL,
+  `sesnome` varchar(20) DEFAULT NULL,
+  `sesreferencia` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `usuid` int(11) NOT NULL,
+  `usunome` varchar(150) DEFAULT NULL,
+  `usutelefone` varchar(20) DEFAULT NULL,
+  `usuemail` varchar(100) DEFAULT NULL,
+  `usudatanasc` date DEFAULT NULL,
+  `ususenha` varchar(20) DEFAULT NULL,
+  `usufoto` longblob DEFAULT NULL,
+  `usutipo` enum('cliente','admin') DEFAULT 'cliente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `utilitarios`
+--
+
+CREATE TABLE `utilitarios` (
+  `utiid` int(11) NOT NULL,
+  `utinome` varchar(50) DEFAULT NULL,
+  `utifoto` longblob DEFAULT NULL,
+  `utidescricao` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `administrador`
+-- Índices de tabela `bloqueio_de_dia`
 --
-ALTER TABLE `administrador`
-  ADD PRIMARY KEY (`admid`);
+ALTER TABLE `bloqueio_de_dia`
+  ADD PRIMARY KEY (`bloid`);
 
 --
--- Indexes for table `clientes`
+-- Índices de tabela `carousel`
 --
-ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`cliid`);
+ALTER TABLE `carousel`
+  ADD PRIMARY KEY (`carid`);
 
 --
--- Indexes for table `precos`
+-- Índices de tabela `itens_sessoes`
+--
+ALTER TABLE `itens_sessoes`
+  ADD PRIMARY KEY (`iteid`),
+  ADD KEY `fkitesessao` (`itesessao`),
+  ADD KEY `fkiteutilitario` (`iteutilitario`);
+
+--
+-- Índices de tabela `precos`
 --
 ALTER TABLE `precos`
   ADD PRIMARY KEY (`preid`);
 
 --
--- Indexes for table `promocoes`
+-- Índices de tabela `promocoes`
 --
 ALTER TABLE `promocoes`
-  ADD PRIMARY KEY (`promoid`);
+  ADD PRIMARY KEY (`proid`);
 
 --
--- Indexes for table `reservas`
+-- Índices de tabela `reservas`
 --
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`resid`),
-  ADD KEY `fkrescliid` (`rescliid`);
+  ADD KEY `fkresusuid` (`resusuid`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Índices de tabela `sessoes`
+--
+ALTER TABLE `sessoes`
+  ADD PRIMARY KEY (`sesid`);
+
+--
+-- Índices de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuid`);
+
+--
+-- Índices de tabela `utilitarios`
+--
+ALTER TABLE `utilitarios`
+  ADD PRIMARY KEY (`utiid`);
+
+--
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `administrador`
+-- AUTO_INCREMENT de tabela `bloqueio_de_dia`
 --
-ALTER TABLE `administrador`
-  MODIFY `admid` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `bloqueio_de_dia`
+  MODIFY `bloid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `clientes`
+-- AUTO_INCREMENT de tabela `carousel`
 --
-ALTER TABLE `clientes`
-  MODIFY `cliid` int NOT NULL AUTO_INCREMENT;
+ALTER TABLE `carousel`
+  MODIFY `carid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `precos`
+-- AUTO_INCREMENT de tabela `itens_sessoes`
+--
+ALTER TABLE `itens_sessoes`
+  MODIFY `iteid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `precos`
 --
 ALTER TABLE `precos`
-  MODIFY `preid` int NOT NULL AUTO_INCREMENT;
+  MODIFY `preid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `promocoes`
+-- AUTO_INCREMENT de tabela `promocoes`
 --
 ALTER TABLE `promocoes`
-  MODIFY `promoid` int NOT NULL AUTO_INCREMENT;
+  MODIFY `proid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `reservas`
+-- AUTO_INCREMENT de tabela `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `resid` int NOT NULL AUTO_INCREMENT;
+  MODIFY `resid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT de tabela `sessoes`
+--
+ALTER TABLE `sessoes`
+  MODIFY `sesid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `usuid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `utilitarios`
+--
+ALTER TABLE `utilitarios`
+  MODIFY `utiid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restrições para tabelas despejadas
 --
 
 --
--- Constraints for table `reservas`
+-- Restrições para tabelas `itens_sessoes`
+--
+ALTER TABLE `itens_sessoes`
+  ADD CONSTRAINT `fkitesessao` FOREIGN KEY (`itesessao`) REFERENCES `sessoes` (`sesid`),
+  ADD CONSTRAINT `fkiteutilitario` FOREIGN KEY (`iteutilitario`) REFERENCES `utilitarios` (`utiid`);
+
+--
+-- Restrições para tabelas `reservas`
 --
 ALTER TABLE `reservas`
-  ADD CONSTRAINT `fkrescliid` FOREIGN KEY (`rescliid`) REFERENCES `clientes` (`cliid`);
+  ADD CONSTRAINT `fkrescliid` FOREIGN KEY (`resusuid`) REFERENCES `usuarios` (`usuid`),
+  ADD CONSTRAINT `fkresusuid` FOREIGN KEY (`resusuid`) REFERENCES `usuarios` (`usuid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
