@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20/04/2025 às 19:06
+-- Tempo de geração: 22/04/2025 às 00:47
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `chale`
 --
+
+DELIMITER $$
+--
+-- Procedimentos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `email` VARCHAR(100), IN `senha` VARCHAR(100))   BEGIN
+    SELECT * FROM usuarios
+    WHERE usuemail = email AND ususenha = senha;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
