@@ -3,7 +3,11 @@ require 'header.php';
 ?>
 
 <div class="sombra-modal" id="login">
+<<<<<<< HEAD
     <div class="bloco-modal-usuario">
+=======
+    <div class="bloco-modal">
+>>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
         <div class="contorno-modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -14,7 +18,10 @@ require 'header.php';
                 </div>
                 <div class="modal-body">
                     <h2>Não possui uma conta? <p class="link" id="fazer_cadastro">Cadastre-se</p> agora</h2>
+<<<<<<< HEAD
                     <p id="mensagem_erro"></p>
+=======
+>>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
                     <form id="formLogin" action="/chale/app/controller/usuario.php" method="post">
                         <div class="input-wrapper">
                             <label for="email">E-mail:</label>
@@ -25,7 +32,11 @@ require 'header.php';
                                 <label for="senha">Senha:</label>
                                 <input type="password" id="senha" name="senha" required>
                             </div>
+<<<<<<< HEAD
                             <p id="esqueci_senha" class="textinho">Esqueci a senha</p>
+=======
+                            <p id="esqueci_senha">Esqueci a senha</p>
+>>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn" name="btn_entrar">Entrar</button>
@@ -36,9 +47,15 @@ require 'header.php';
         </div>
     </div>
 </div>
+<<<<<<< HEAD
 <!--
 <div class="sombra-modal" id="cadastro">
     <div class="bloco-modal-usuario">
+=======
+
+<div class="sombra-modal" id="cadastro">
+    <div class="bloco-modal">
+>>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
         <div class="contorno-modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -76,10 +93,17 @@ require 'header.php';
                                 <label for="senha">Confirmar senha:</label>
                                 <input type="password" id="conf_senha" name="conf_senha" required>
                             </div>
+<<<<<<< HEAD
                             <p id="esqueci_senha" class="textinho">Esqueci a senha</p>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn" id="avancar">Avançar</button>
+=======
+                            <p id="esqueci_senha">Esqueci a senha</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn" name="btn_cadastrar">Cadastrar</button>
+>>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
                         </div>
                     </form>
                 </div>
@@ -88,6 +112,7 @@ require 'header.php';
     </div>
 </div>
 
+<<<<<<< HEAD
 <div class="sombra-modal" id="confirmar_email">
     <div class="bloco-modal-geral">
         <div class="modal-header">
@@ -104,6 +129,8 @@ require 'header.php';
     </div>
 </div>
 -->
+=======
+>>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
 <?php
 require 'footer.php';
 ?>

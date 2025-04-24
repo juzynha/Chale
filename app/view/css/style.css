@@ -64,10 +64,13 @@ input:focus {
   outline: none;
 }
 
+<<<<<<< HEAD
 .icon{
   width: 30px;
 }
 
+=======
+>>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
 .sombra-modal {
   position: fixed;
   top: 0;
@@ -80,10 +83,16 @@ input:focus {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
+<<<<<<< HEAD
 .bloco-modal-usuario {
   position: fixed;
   background-color: var(--verde-medio);
   color: var(--branco);
+=======
+.bloco-modal {
+  position: fixed;
+  background-color: var(--verde-medio);
+>>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
   width: 500px;
   max-width: 90%;
   max-height: 70%;
@@ -94,6 +103,7 @@ input:focus {
   flex-direction: column;  
 }
 
+<<<<<<< HEAD
 .bloco-modal-geral {
   position: fixed;
   background-color: var(--verde-medio);
@@ -110,6 +120,8 @@ input:focus {
   flex-direction: column;  
 }
 
+=======
+>>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
 .contorno-modal {
   display: flex; 
   flex-direction: column; 
