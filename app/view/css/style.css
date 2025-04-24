@@ -64,6 +64,10 @@ input:focus {
   outline: none;
 }
 
+.icon{
+  width: 30px;
+}
+
 .sombra-modal {
   position: fixed;
   top: 0;

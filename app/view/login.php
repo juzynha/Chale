@@ -1,19 +1,7 @@
 <?php
 require 'header.php';
 ?>
-<?php session_start(); ?>
-<?php if (!empty($_SESSION["erro_login"])): ?>
-  <div class="erro"><?php echo $_SESSION["erro_login"]; unset($_SESSION["erro_login"]); ?></div>
-<?php endif; ?>
 
-<?php if (!empty($_SESSION["erro_cadastro"])): ?>
-  <div class="erro"><?php echo $_SESSION["erro_cadastro"]; unset($_SESSION["erro_cadastro"]); ?></div>
-<?php endif; ?>
-
-<?php if (!empty($_SESSION["mensagem_cadastro"])): ?>
-  <div class="sucesso"><?php echo $_SESSION["mensagem_cadastro"]; unset($_SESSION["mensagem_cadastro"]); ?></div>
-<?php endif; ?>
-<!--
 <div class="sombra-modal" id="login">
     <div class="bloco-modal-usuario">
         <div class="contorno-modal">
@@ -26,6 +14,7 @@ require 'header.php';
                 </div>
                 <div class="modal-body">
                     <h2>Não possui uma conta? <p class="link" id="fazer_cadastro">Cadastre-se</p> agora</h2>
+                    <p id="mensagem_erro"></p>
                     <form id="formLogin" action="/chale/app/controller/usuario.php" method="post">
                         <div class="input-wrapper">
                             <label for="email">E-mail:</label>
@@ -47,7 +36,7 @@ require 'header.php';
         </div>
     </div>
 </div>
-
+<!--
 <div class="sombra-modal" id="cadastro">
     <div class="bloco-modal-usuario">
         <div class="contorno-modal">
@@ -98,7 +87,7 @@ require 'header.php';
         </div>
     </div>
 </div>
--->
+
 <div class="sombra-modal" id="confirmar_email">
     <div class="bloco-modal-geral">
         <div class="modal-header">
@@ -114,7 +103,7 @@ require 'header.php';
         </div>
     </div>
 </div>
-
+-->
 <?php
 require 'footer.php';
 ?>

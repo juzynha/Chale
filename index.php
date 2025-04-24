@@ -15,5 +15,5 @@ require 'app/view/header.php';
 </header>
 
 <?php
-require 'app/view/footer.html';
+require 'app/view/footer.php';
 ?>
