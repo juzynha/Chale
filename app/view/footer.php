@@ -1,4 +1,4 @@
-<script src="js/script.js"></script>
+<script src="/chale/app/view/js/script.js"></script>
 
 </body>
 </html>

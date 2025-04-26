@@ -64,35 +64,26 @@ input:focus {
   outline: none;
 }
 
-<<<<<<< HEAD
 .icon{
   width: 30px;
 }
 
-=======
->>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
 .sombra-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-<<<<<<< HEAD
 .bloco-modal-usuario {
   position: fixed;
   background-color: var(--verde-medio);
   color: var(--branco);
-=======
-.bloco-modal {
-  position: fixed;
-  background-color: var(--verde-medio);
->>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
   width: 500px;
   max-width: 90%;
   max-height: 70%;
@@ -103,12 +94,11 @@ input:focus {
   flex-direction: column;  
 }
 
-<<<<<<< HEAD
 .bloco-modal-geral {
   position: fixed;
   background-color: var(--verde-medio);
   color: var(--branco);
-  width: 500px;
+  width: 400px;
   max-width: 90%;
   max-height: 70%;
   padding: 1rem;
@@ -120,8 +110,6 @@ input:focus {
   flex-direction: column;  
 }
 
-=======
->>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc
 .contorno-modal {
   display: flex; 
   flex-direction: column; 
@@ -158,6 +146,22 @@ input:focus {
   color: var(--branco);
   padding: 1rem 0;
   gap: 0.5rem;
+}
+
+.modal-centralizado{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.foto-user{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: var(--verde);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-body h2, .link {
@@ -201,16 +205,19 @@ input:focus {
 
 .modal-footer {
   display: flex;
-  width: 100%;
-  justify-content: end;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
 }
 
 .textinho{
   text-decoration: underline;
   text-decoration-color: var(--branco);
+  cursor: pointer;
 } 
 
 .btn {
+  width: auto;
   font-family: 'Glacial Indifference';
   font-size: 24px;
   padding: 0.5rem 1.5rem;
@@ -224,7 +231,12 @@ input:focus {
   transition: background-color 0.2s;
 }
 
-.modal-body button:hover {
-  background-color: var(--verde-escuro-hover);
+.btn:hover{
+  box-shadow: -3px -3px var(--verde-escuro),
+  2px 2px var(--verde-azulado);
 }
 
+.mensagem-erro{
+  font-size: 18px;
+  color: red;
+}

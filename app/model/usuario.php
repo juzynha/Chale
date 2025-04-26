@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 require_once __DIR__ . '/../../config/conexao.php';
 
 class Usuario {
@@ -58,21 +57,3 @@ class Usuario {
     }
 }
 ?>
-=======
-require '/chale/app/controller/usuario.php';
-require '/chale/config/conexao.php';
-
-$pdo = Bnc::conectar();
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-class Usuario {
-    public static function login($email,$senha){
-        $sql = "CALL login(?,?)";
-        $prp = $pdo->prepare($sql);
-        $prp->execute(array($email,$senha));
-    }
-
-}
-
-?>
->>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc

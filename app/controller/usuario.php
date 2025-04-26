@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 session_start();
 require_once '../model/usuario.php';
 
@@ -26,15 +25,3 @@ if (isset($_POST["btn_cadastrar"])) {
     }
 }
 ?>
-=======
-
-if(isset($_POST["btn_entrar"])){
-
-}
-
-if(isset($_POST["btn_cadastrar"])){
-    
-}
-
-?>
->>>>>>> 2a071886bee0f14f25301e13b5c2bd9b65d528fc

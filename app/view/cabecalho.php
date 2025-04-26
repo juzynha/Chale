@@ -29,8 +29,12 @@
     <?php
     } else {
     ?>
-        <button class="entrar" id="entrar">Entrar</button>
+        <button onclick="abrirModal('login')" class="entrar">Entrar</button>
     <?php
     }
     ?>
 </nav>
+
+<?php
+require 'login.php';
+?>
