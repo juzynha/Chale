@@ -1,5 +1,5 @@
 <?php
-class Conexao
+class Database
 {
     private static $dbname = "chale";
     private static $host = "localhost";
