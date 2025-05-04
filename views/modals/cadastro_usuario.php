@@ -3,15 +3,15 @@
         <div class="contorno-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <img src="/chale/public/assets/imagens/logo.svg" width="120px">
+                    <img src="/chale/public/assets/logo.svg" width="120px">
                     <button onclick="fecharModal('cadastro')">
-                        <img src="/chale/public/assets/imagens/icons/icon-close.svg" width="20px">
+                        <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
                     </button>
                 </div>
                 <div class="modal-body">
                     <h2>Já possui uma conta? Fazer <p class="link" id="abrir_login">login</p>
                     </h2>
-                    <form id="formLogin" action="/chale/app/controller/usuario.php" method="post">
+                    <form id="formCadastro" action="/chale/app/controller/usuario.php" method="post">
                         <p class="mensagem-erro"></p>
                         <div class="input-wrapper">
                             <label for="nome">Nome:</label>
@@ -74,16 +74,15 @@
         <div class="modal-body">
             <div class="modal-centralizado">
                 <div class="foto-user">
-                    <img src="/chale/public/assets/imagens/icons/icon-user.svg" width="100px">
+                    <img src="/chale/public/assets/icons/icon-user.svg" width="100px">
                 </div>
             </div>
             <label for="foto">Abrir arquivo:</label>
             <input type="file" id="foto" name="foto" required>
-            <p id="reenviar_email" class="textinho">Reenviar</p>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn" id="continuar_email">Continuar</button>
-            <p class="textinho">Pular <img src="/chale/public/assets/imagens/icons/icon-seta-pular.svg" width="12px"></p>
+            <button type="submit" class="btn" id="continuar_email">Salvar</button>
+            <p class="textinho">Pular <img src="/chale/public/assets/icons/icon-seta-pular.svg" width="12px"></p>
         </div>
     </div>
 </div>

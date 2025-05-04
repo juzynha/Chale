@@ -1,4 +1,4 @@
-header {
+.cabecalho-pginicial{
     position: relative;
     width: 100%;
     min-height: 80vh;
@@ -33,14 +33,18 @@ header {
 }
 
 .hero {
+    position: absolute;
     display: flex;
     width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: var(--branco);
 }
 
 .hero h1{
+    width: 300px;
     font-family: 'Roboto';
     font-size: 40px;
     font-weight: 500;
@@ -49,4 +53,16 @@ header {
 .hero h1 p{
     font-family: 'Glacial Indifference';
     text-transform: uppercase;
+}
+
+.element{
+    position: relative;
+    width: 100%;
+}
+
+.wave{
+    position: relative;
+    top: -40%;
+    width: 100%;
+    z-index: -1;
 }

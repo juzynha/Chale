@@ -1,10 +1,10 @@
 <?php
-require_once __DIR__ . '/../../config/conexao.php';
+require_once __DIR__ . '/../../config/Database.php';
 
 class Usuario {
     public static function login($email, $senha) {
         try {
-            $pdo = Conexao::conectar();
+            $pdo = Database::conectar();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $sql = "CALL login(?, ?)";
@@ -13,7 +13,6 @@ class Usuario {
 
             $data = $prp->fetch(PDO::FETCH_ASSOC);
             if ($data) {
-                session_start();
                 $_SESSION["id"] = $data["usuid"];
                 $_SESSION["nome"] = $data["usunome"];
                 $_SESSION["telefone"] = $data["usutelefone"];
@@ -24,17 +23,12 @@ class Usuario {
                 $_SESSION["tipo"] = $data["usutipo"];
                 $_SESSION["logado"] = true;
 
-                header("Location: /chale/index.php");
-                exit();
+                return 'ok';
             } else {
-                session_start();
-                $_SESSION["logado"] = false;
-                $_SESSION["erro_login"] = "E-mail ou senha incorretos.";
-                header("Location: /chale/view/login.php");
-                exit();
+                return 'E-mail ou senha incorretos.';
             }
         } catch (Exception $erro) {
-            die("Erro no login: " . $erro->getMessage());
+            return 'Erro no login: ' . $erro->getMessage();
         }
     }
 

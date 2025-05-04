@@ -1,5 +1,5 @@
 <nav>
-    <img src="public/images/logo.svg" class="logo">
+    <img src="/chale/public/assets/logo.svg" class="logo">
     <ul>
         <li><a href="">O Chalé</a></li>
         <li><a href="">Sobre nós</a></li>
@@ -8,7 +8,7 @@
         session_start();
         if (isset($_SESSION['logado']) && $_SESSION['logado'] === true && isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin') {
         ?>
-            <li><a href="">Admin <img src="public/images/icons/icon-engrenagem.svg" width="18px"></a></li>
+            <li><a href="">Admin <img src="public/assets/icons/icon-engrenagem.svg" width="18px"></a></li>
         <?php
         }
         ?>
@@ -22,7 +22,7 @@
     <?php
         } else {
     ?>
-        <button class="user"><img src="public/images/icons/icon-user.svg" class="icon"></button>
+        <button class="user"><img src="public/assets/icons/icon-user.svg" class="icon"></button>
     <?php
         }
     ?>
@@ -36,5 +36,6 @@
 </nav>
 
 <?php
-require_once '/chale/resources/views/modals/login.php';
-?>
+require_once __DIR__ .'/../modals/login.php';
+require_once __DIR__ .'/../modals/cadastro_usuario.php';
+?> 
