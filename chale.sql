@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/05/2025 às 04:24
+-- Tempo de geração: 06/05/2025 às 16:12
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -125,22 +125,6 @@ CREATE TABLE `itens_sessoes` (
 -- --------------------------------------------------------
 
 --
--- Estrutura stand-in para view `lista_de_reservas`
--- (Veja abaixo para a visão atual)
---
-CREATE TABLE `lista_de_reservas` (
-`resid` int(11)
-,`rescheckin` date
-,`rescheckout` date
-,`resusuid` int(11)
-,`resvtotal` double
-,`resstatuspag` tinyint(1)
-,`resprazopag` datetime
-);
-
--- --------------------------------------------------------
-
---
 -- Estrutura stand-in para view `lista_dias_bloqueados`
 -- (Veja abaixo para a visão atual)
 --
@@ -175,6 +159,26 @@ CREATE TABLE `lista_promocoes` (
 ,`pronpreco` double
 ,`pronprecofds` double
 ,`proativo` tinyint(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para view `lista_reservas`
+-- (Veja abaixo para a visão atual)
+--
+CREATE TABLE `lista_reservas` (
+`resid` int(11)
+,`rescheckin` date
+,`rescheckout` date
+,`resvtotal` double
+,`resstatuspag` tinyint(1)
+,`usuid` int(11)
+,`usunome` varchar(150)
+,`usutelefone` varchar(20)
+,`usuemail` varchar(100)
+,`usudatanasc` date
+,`usufoto` longblob
 );
 
 -- --------------------------------------------------------
@@ -221,6 +225,14 @@ CREATE TABLE `reservas` (
   `resprazopag` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `reservas`
+--
+
+INSERT INTO `reservas` (`resid`, `rescheckin`, `rescheckout`, `resusuid`, `resvtotal`, `resstatuspag`, `resprazopag`) VALUES
+(1, '2025-06-05', '2025-07-05', 1, 500, 1, '2025-05-07 10:30:00'),
+(2, '2025-06-05', '2025-07-05', 1, 500, 1, '2025-05-07 10:30:00');
+
 -- --------------------------------------------------------
 
 --
@@ -255,7 +267,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuid`, `usunome`, `usutelefone`, `usuemail`, `usudatanasc`, `ususenha`, `usufoto`, `usutipo`) VALUES
-(1, 'Juliana Cardoso Araujo', '(14)99646-7035', 'julianacaraujo3103@gmail.com', '2008-03-31', '12345', '', 'admin');
+(1, 'Juliana Cardoso Araujo', '(14)99646-7035', 'julianacaraujo3103@gmail.com', '2008-03-31', '12345', '', 'cliente');
 
 -- --------------------------------------------------------
 
@@ -278,15 +290,6 @@ CREATE TABLE `utilitarios` (
 DROP TABLE IF EXISTS `carrosel`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `carrosel`  AS SELECT `carousel`.`carid` AS `carid`, `carousel`.`carfoto` AS `carfoto`, `carousel`.`carordem` AS `carordem` FROM `carousel` ;
-
--- --------------------------------------------------------
-
---
--- Estrutura para view `lista_de_reservas`
---
-DROP TABLE IF EXISTS `lista_de_reservas`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_de_reservas`  AS SELECT `reservas`.`resid` AS `resid`, `reservas`.`rescheckin` AS `rescheckin`, `reservas`.`rescheckout` AS `rescheckout`, `reservas`.`resusuid` AS `resusuid`, `reservas`.`resvtotal` AS `resvtotal`, `reservas`.`resstatuspag` AS `resstatuspag`, `reservas`.`resprazopag` AS `resprazopag` FROM `reservas` ;
 
 -- --------------------------------------------------------
 
@@ -314,6 +317,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `lista_promocoes`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_promocoes`  AS SELECT `promocoes`.`proid` AS `proid`, `promocoes`.`pronome` AS `pronome`, `promocoes`.`prodataini` AS `prodataini`, `promocoes`.`prodatafim` AS `prodatafim`, `promocoes`.`pronpreco` AS `pronpreco`, `promocoes`.`pronprecofds` AS `pronprecofds`, `promocoes`.`proativo` AS `proativo` FROM `promocoes` ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para view `lista_reservas`
+--
+DROP TABLE IF EXISTS `lista_reservas`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_reservas`  AS SELECT `r`.`resid` AS `resid`, `r`.`rescheckin` AS `rescheckin`, `r`.`rescheckout` AS `rescheckout`, `r`.`resvtotal` AS `resvtotal`, `r`.`resstatuspag` AS `resstatuspag`, `u`.`usuid` AS `usuid`, `u`.`usunome` AS `usunome`, `u`.`usutelefone` AS `usutelefone`, `u`.`usuemail` AS `usuemail`, `u`.`usudatanasc` AS `usudatanasc`, `u`.`usufoto` AS `usufoto` FROM (`reservas` `r` join `usuarios` `u` on(`r`.`resusuid` = `u`.`usuid`)) WHERE `r`.`resstatuspag` = 1 ;
 
 --
 -- Índices para tabelas despejadas
@@ -414,7 +426,7 @@ ALTER TABLE `promocoes`
 -- AUTO_INCREMENT de tabela `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `resid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `resid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `sessoes`
