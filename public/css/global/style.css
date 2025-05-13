@@ -2,6 +2,7 @@
 @import '../modals/modals.css';
 @import '../pages/inicial.css';
 @import '../pages/reservas.css';
+@import '../pages/contadimin.css';
 
 @font-face {
   font-family: 'Glacial Indifference';
