@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     listaReservas();
+    mostrarReservas();
 });
+
 function listaReservas() {
     const caminho = '/chale/app/';
     lista = document.getElementById('lista_reservas');
@@ -52,7 +54,7 @@ function listaReservas() {
                             </div>
                         </div>
                         <div class="excluir-reserva">
-                            <img src="/chale/public/assets/icons/icon-lixeira.svg" width="30px" onclick="abrirModal('excluir_reserva')">
+                            <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('excluir_reserva')">
                         </div>
                     </div>
                     `;
@@ -60,6 +62,25 @@ function listaReservas() {
         });
 }
 
+function mostrarReservas() {
+    let mostrar = document.getElementById('mostrar');
+
+    mostrar.addEventListener("click", function () {
+        let container = document.getElementById('container_reservas');
+
+        if (mostrar.textContent === 'Mostrar tudo') {
+            // Ação: expandir
+            container.classList.remove("limita-tamanho");
+            container.classList.add("container-reservas");
+            mostrar.textContent = 'Mostrar menos';
+        } else {
+            // Ação: recolher
+            container.classList.remove("container-reservas");
+            container.classList.add("limita-tamanho");
+            mostrar.textContent = 'Mostrar tudo';
+        }
+    });
+}
 /*
 document.addEventListener("DOMContentLoaded", function () {
     const formLogin = document.getElementById("formLogin");

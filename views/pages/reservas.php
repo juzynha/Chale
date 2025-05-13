@@ -6,7 +6,8 @@ require_once __DIR__ . '/../layouts/header.php';
     require_once __DIR__ . '/../layouts/menu.php';
     ?>
 </header>
-<section class="limita-tamanho">
+<section class="limita-tamanho" id="container_reservas">
+    <h2 class="titulo">Reservas</h2>
     <div class="filtro">
         <input type="text" id="data_filtro">
         <img src="/chale/public/assets/icons/icon-funil.svg" width="20px">
@@ -15,9 +16,33 @@ require_once __DIR__ . '/../layouts/header.php';
         <!--Aqui vai os cards das reservas -->
     </div>
 </section>
-<div class="mostrar-tudo">
+<div id="mostrar">
     <p>Mostrar tudo</p>
 </div>
+<section class="container-calendario">
+    <h2 class="titulo">Calendário</h2>
+    <div class="sessao-calendario">
+        <div class="atualizar-calendario">
+            <div class="ferramenta-calendario">
+                <p>Atualizar calendário</p>
+                <img src="/chale/public/assets/icons/icon-atualizar.svg" class="icon">
+            </div>
+        </div>
+        <div id="calendario">
+        <!--Aqui vai a montagem do calendário-->
+        </div>
+        <div class="acoes-calendario">
+            <div class="ferramenta-calendario">
+                <p>Criar promoção</p>
+                <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
+            </div>
+            <div class="ferramenta-calendario">
+                <p>Bloquear dias</p>
+                <img src="/chale/public/assets/icons/icon-bloquear.svg" class="icon">
+            </div>
+        </div>
+    </div>
+</section>
 
 <?php
 require_once __DIR__ . '/../layouts/footer.php';
