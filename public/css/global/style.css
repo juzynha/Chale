@@ -71,7 +71,8 @@ input:focus {
 }
 
 .icon{
-  width: 30px;
+  width: 20px;
+  cursor: pointer;
 }
 
 .btn {
@@ -94,6 +95,11 @@ input:focus {
   2px 2px var(--verde-azulado);
 }
 
+.titulo{
+  color: var(--verde-medio);
+  font-size: 24px;
+}
+
 .mensagem-erro{
   font-size: 18px;
   color: red;
@@ -102,4 +108,9 @@ input:focus {
 .cabecalho{
   width: 100%;
   background-color: var(--verde-medio);
+}
+
+.titulo{
+  font-size: 38px;
+  color: var(--verde-medio);
 }
