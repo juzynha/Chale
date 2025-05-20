@@ -31,22 +31,26 @@ require_once __DIR__ . '/../layouts/header.php';
   <li>
     <a href="#">
       Editar dados
-      <img src="assets/icons/icon-editar(verde).svg" alt="Editar" class="icone">
+      <img src="/chale/public/assets/icons/icon-editar(verde).svg" alt="" class="icone">
     </a>
   </li>
   <li>
     <a href="#">
       Excluir conta
-      <img src="assets/icons/icon-lixeira(verde).svg" alt="Excluir" class="icone">
+      <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" alt="Excluir" class="icone">
     </a>
   </li>
   <li>
     <a href="#">
       Sair
-      <img src="assets/icons/icon-logout.svg" alt="Sair" class="icone">
+      <li>
+  <a href="inicial.php"> <img src="/chale/public/assets/icons/icon-logout.svg" alt="Sair" class="icone" /></a>
+</li>
+
     </a>
   </li>
 </ul>
+
 
 
     </ul>
