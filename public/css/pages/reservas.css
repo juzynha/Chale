@@ -1,6 +1,6 @@
 .limita-tamanho{
     width: 100%;
-    max-height: 150vh;
+    max-height: 150%;
     padding: 5rem;
     overflow: hidden;
     position: relative;
@@ -64,9 +64,10 @@
 }
 
 .card-reserva{
+    position: relative;
+    width: auto;
     display: flex;
     padding: 2rem;
-    width: fit-content;
     gap: 5rem;
     background-color: var(--verde-medio);
     box-shadow: 10px 10px 1px var(--verde);
@@ -91,6 +92,7 @@
     display: flex;
     justify-content: end;
     align-items: flex-start;
+    width: 10%;
 }
 
 .nome-cliente{

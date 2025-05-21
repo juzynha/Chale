@@ -43,6 +43,9 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </section>
+<div>
+    
+</div>
 
 <?php
 require_once __DIR__ . '/../layouts/footer.php';

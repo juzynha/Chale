@@ -41,6 +41,7 @@
     align-items: center;
     text-align: center;
     color: var(--branco);
+    z-index: 1;
 }
 
 .hero h1{

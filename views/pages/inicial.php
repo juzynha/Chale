@@ -7,7 +7,7 @@ require_once __DIR__ . '/../layouts/header.php';
         <img src="/chale/public/assets/img-hero.png" alt="">
     </div>
     <?php
-    require_once __DIR__ . '/../layouts/menu.php';
+    require __DIR__ . '/../layouts/menu.php';
     ?>
     <div class="hero">
         <h1>Seja bem vindo ao chalé <p>la vie en rose</p></h1>
