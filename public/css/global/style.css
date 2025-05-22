@@ -3,17 +3,18 @@
 @import '../pages/inicial.css';
 @import '../pages/reservas.css';
 @import '../pages/contadimin.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @font-face {
   font-family: 'Glacial Indifference';
-  src: url('/public/fontes/GlacialIndifference-Regular.woff2') format('woff2');
+  src: url('/Chale/public/fonts/GlacialIndifference-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
   
 @font-face {
   font-family: 'Glacial Indifference';
-  src: url('/public/fontes/GlacialIndifference-Bold.woff2') format('woff2');
+  src: url('/Chale/public/fonts/GlacialIndifference-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
