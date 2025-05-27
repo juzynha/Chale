@@ -1,29 +1,46 @@
 <?php
 session_start();
-require_once __DIR__ . '/../Models/UsuarioModel.php';
+require_once(__DIR__ . '/../Models/UsuarioModel.php');
 
-if (isset($_POST["email"]) && isset($_POST["senha"])) {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
+// Lê os dados JSON do corpo da requisição
+$dados = json_decode(file_get_contents("php://input"), true);
 
-    $resultado = Usuario::login($email, $senha);
-    echo $resultado; // 'ok' ou mensagem de erro
-}
+// Verifica se ação é "login"
+if (isset($dados['acao']) && $dados['acao'] === 'login') {
+    $email = trim($dados['email'] ?? '');
+    $senha = trim($dados['senha'] ?? '');
 
-if (isset($_POST["btn_cadastrar"])) {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $datanasc = $_POST['data_nasc'];
-    $senha = $_POST['senha'];
-    $confsenha = $_POST['conf_senha'];
-
-    if ($senha !== $confsenha) {
-        $_SESSION["erro_cadastro"] = "As senhas não coincidem.";
-        header("Location: /chale/view/login.php");
-        exit();
-    } else {
-        Usuario::cadastrar($nome, $email, $telefone, $datanasc, $senha);
+    if (empty($email) || empty($senha)) {
+        echo json_encode([
+            "sucesso" => false,
+            "mensagem" => "Preencha todos os campos."
+        ]);
+        exit;
     }
+
+    $usuarioModel = new Usuario();
+    $usuario = $usuarioModel->login($email, $senha);
+
+    if ($usuario) {
+        $_SESSION["id"] = $usuario["usuid"];
+        $_SESSION["nome"] = $usuario["usunome"];
+        $_SESSION["telefone"] = $usuario["usutelefone"];
+        $_SESSION["email"] = $usuario["usuemail"];
+        $_SESSION["datanasc"] = $usuario["usudatanasc"];
+        $_SESSION["senha"] = $usuario["ususenha"];
+        $_SESSION["foto"] = $usuario["usufoto"];
+        $_SESSION["tipo"] = $usuario["usutipo"];
+        $_SESSION["logado"] = true;
+    
+        echo json_encode([
+            "sucesso" => true,
+            "mensagem" => "Login realizado com sucesso!"
+        ]);
+    } else {
+        echo json_encode([
+            "sucesso" => false,
+            "mensagem" => "E-mail ou senha inválidos."
+        ]);
+    }
+    exit;
 }
-?>
