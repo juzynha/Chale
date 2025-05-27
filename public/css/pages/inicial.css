@@ -62,8 +62,8 @@
 }
 
 .wave{
-    position: relative;
-    top: -40%;
+    position: top;
+    top: -50%;
     width: 100%;
     z-index: -1;
 }
