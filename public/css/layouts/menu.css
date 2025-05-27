@@ -62,15 +62,16 @@ nav ul li a:hover::after {
     font-size: 22px;
     padding: 8px 15px;
     border: 2px solid var(--branco);
-    border-radius: 10px;
+    border-radius: 50px;
     color: var(--branco);
     transition: ease-in-out 0.2s;
 }
 
 .entrar:hover{
-    background-color: var(--branco);
     font-size: 22px;
     padding: 8px 15px;
-    border: 2px solid var(--branco);
-    border-radius: 10px;
+    border-radius: 50px;
+    background-color: #3F5141;
+    color: #EEF4EE;
+    border: none;
 }

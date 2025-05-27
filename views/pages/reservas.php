@@ -28,7 +28,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 <img src="/chale/public/assets/icons/icon-atualizar.svg" class="icon">
             </div>
         </div>
-        <div id="calendario">
+        <div id="calendar">
         <!--Aqui vai a montagem do calendário-->
         </div>
         <div class="acoes-calendario">
