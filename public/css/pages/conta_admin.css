@@ -34,17 +34,19 @@ font-size: 18px;
 border-bottom: 1px solid #ccc;
 color: #555;
 }
-ul{
+
+.lista{
 list-style: none;
 padding-left: 0;
 color: #555;
 }
-ul li{
+
+.lista li{
 margin: 10px 0;
 color: #555;
 box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
-
 }
-ul li a{
+
+.lista li a{
     color: #555;
 }
