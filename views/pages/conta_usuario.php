@@ -13,7 +13,7 @@ require_once __DIR__ . '/../layouts/header.php';
 <h2> Gabriel cardoso <h2>
 <h3> Email:Gabriel.cardoso@gmail.com <h3>
 <h3> Telefone:(14)9908-9303</h3>    
-<h3> Data de nascimento:04/11/2020</h3>
+<h3> Data de nascimento:08/11/2020</h3>
   </div>
 </div>
 
