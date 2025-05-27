@@ -5,6 +5,7 @@ nav{
     padding: 0.5rem 8rem;
     align-items: center;
     justify-content: space-between;
+    z-index: 2;
 }
 
 nav ul{
@@ -12,7 +13,6 @@ nav ul{
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    list-style: none;
     gap: 2rem;
     
 }
