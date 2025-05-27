@@ -6,8 +6,8 @@ require_once __DIR__ . '/../layouts/header.php';
     require_once __DIR__ . '/../layouts/menu.php';
     ?>
 </header>
-<section class="limita-tamanho" id="container_reservas">
-    <h2 class="titulo">Reservas</h2>
+<section class="limita-tamanho container" id="container_reservas">
+    <h2>Reservas</h2>
     <div class="filtro">
         <input type="text" id="data_filtro">
         <img src="/chale/public/assets/icons/icon-funil.svg" width="20px">
@@ -16,11 +16,11 @@ require_once __DIR__ . '/../layouts/header.php';
         <!--Aqui vai os cards das reservas -->
     </div>
 </section>
-<div id="mostrar">
+<div id="mostrar_lista">
     <p>Mostrar tudo</p>
 </div>
-<section class="container-calendario">
-    <h2 class="titulo">Calendário</h2>
+<section class="container-calendario container">
+    <h2>Calendário</h2>
     <div class="sessao-calendario">
         <div class="atualizar-calendario">
             <div class="ferramenta-calendario">

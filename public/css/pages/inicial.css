@@ -49,6 +49,7 @@
     font-family: 'Roboto';
     font-size: 40px;
     font-weight: 500;
+    color: var(--branco);
 }
 
 .hero h1 p{

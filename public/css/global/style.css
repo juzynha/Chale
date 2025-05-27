@@ -2,8 +2,11 @@
 @import '../modals/modals.css';
 @import '../pages/inicial.css';
 @import '../pages/reservas.css';
-@import '../pages/contadimin.css';
+@import '../pages/conta-usuario.css';
+@import '../pages/conta-admin.css';
+@import '../pages/faca-sua-reserva.css';
 
+/*
 @font-face {
   font-family: 'Glacial Indifference';
   src: url('/public/fontes/GlacialIndifference-Regular.woff2') format('woff2');
@@ -17,7 +20,8 @@
   font-weight: 700;
   font-style: normal;
 }
-
+*/
+@import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
 *{
   margin: 0;
   padding: 0;
@@ -96,11 +100,6 @@ input:focus {
   2px 2px var(--verde-azulado);
 }
 
-.titulo{
-  color: var(--verde-medio);
-  font-size: 24px;
-}
-
 .mensagem-erro{
   font-size: 18px;
   color: red;
@@ -111,7 +110,18 @@ input:focus {
   background-color: var(--verde-medio);
 }
 
-.titulo{
+h1{
   font-size: 38px;
+  color: var(--verde-escuro);
+}
+
+h2{
+  font-size: 34px;
   color: var(--verde-medio);
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    padding: 3rem 5rem;
 }

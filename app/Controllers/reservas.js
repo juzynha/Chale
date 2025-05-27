@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     listaReservas();
-    mostrarReservas();
+    mostrarTudo();
 });
 
 function listaReservas() {
@@ -62,8 +62,8 @@ function listaReservas() {
         });
 }
 
-function mostrarReservas() {
-    let mostrar = document.getElementById('mostrar');
+function mostrarTudo() {
+    let mostrar = document.getElementById('mostrar_lista');
 
     mostrar.addEventListener("click", function () {
         let container = document.getElementById('container_reservas');
@@ -71,7 +71,7 @@ function mostrarReservas() {
         if (mostrar.textContent === 'Mostrar tudo') {
             // Ação: expandir
             container.classList.remove("limita-tamanho");
-            container.classList.add("container-reservas");
+            container.classList.add("container-reservas container");
             mostrar.textContent = 'Mostrar menos';
         } else {
             // Ação: recolher
