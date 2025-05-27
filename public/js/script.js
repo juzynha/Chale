@@ -23,6 +23,8 @@ function fecharModal(idModal) {
     }
 }
 
+
+//aplicando as funções de abrir e fechar modal nos devidos botões
 document.getElementById('abrir_cadastro').addEventListener('click', () => {
     fecharModal('login');
     abrirModal('cadastro');
@@ -41,4 +43,18 @@ document.getElementById('continuar_cadastro').addEventListener('click', () => {
 document.getElementById('continuar_email').addEventListener('click', () => {
     fecharModal('confirmar_email');
     abrirModal('colocar_foto');
+});
+
+//toggle icon olho pra mostrar senha
+const inputSenha = document.getElementById("senha_login");
+const toggleBtn = document.getElementById("toggleSenha");
+
+toggleBtn.addEventListener("click", () => {
+    if (inputSenha.type === "password") {
+        inputSenha.type = "text";
+        toggleBtn.src = "/chale/public/assets/icons/icon-olho-aberto.svg"; // imagem de olho aberto
+    } else {
+        inputSenha.type = "password";
+        toggleBtn.src = "/chale/public/assets/icons/icon-olho-fechado.svg"; // imagem de olho fechado
+    }
 });
