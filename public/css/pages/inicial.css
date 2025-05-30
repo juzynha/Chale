@@ -52,19 +52,58 @@
     color: var(--branco);
 }
 
-.hero h1 p{
+.hero h1 p {
     font-family: 'Glacial Indifference';
     text-transform: uppercase;
 }
 
-.element{
+.element {
     position: relative;
     width: 100%;
+    margin-top: -180px; /* puxa a onda para cima para cobrir a divisão */
+    z-index: 1;
 }
 
-.wave{
-    position: top;
-    top: -50%;
-    width: 100%;
+.wave {
+    position: relative; /* Corrige: "top" não funciona com position: top */
+    top: 0;              /* Define a posição inicial */
+    width: 101%;
+    height: 100%;
+    right: 10px;
     z-index: -1;
+    display: block;
+}
+
+.chale-transparente1 {
+   position: absolute;
+  left: 0;                 /* alinha com a esquerda */
+  bottom: -20px;           /* desce para passar metade da onda */
+  width: 300px;            /* ajuste o tamanho se necessário */
+  z-index: 1;         /* acima da wave, abaixo do texto */
+}
+
+.subtitulo {
+    position: absolute;
+    top: 30%;                   /* centralizado verticalmente */
+    right: 10%;                 /* distância da esquerda (ajuste como quiser) */
+    transform: translateY(-50%);/* só sobe verticalmente agora */
+    font-family: 'Glacial Indifference';
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: #fff;
+    z-index: 2;
+    text-align: left;          /* alinhamento do texto */
+}
+
+.textinho1 {
+    position: absolute;
+    top: 75%;                  /* ajustado para logo abaixo do título */
+    right: 10%;
+    transform: translateY(-50%);
+    font-family: 'Glacial Indifference';
+    font-size: 1.3rem;
+    color: #3F5141;
+    text-align: center;
+    width: 30%;               /* controla a largura para não ocupar demais */
+    z-index: 5;
 }
