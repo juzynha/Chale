@@ -7,7 +7,7 @@ require_once __DIR__ . '/../layouts/header.php';
     ?>
 </header>
 <section class="limita-tamanho container" id="container_reservas">
-    <h2>Reservas</h2>
+    <h2 class="subtitulo">Reservas</h2>
     <div class="filtro">
         <input type="text" id="data_filtro">
         <img src="/chale/public/assets/icons/icon-funil.svg" width="20px">
@@ -20,7 +20,7 @@ require_once __DIR__ . '/../layouts/header.php';
     <p>Mostrar tudo</p>
 </div>
 <section class="container-calendario container">
-    <h2>Calendário</h2>
+    <h2 class="subtitulo">Calendário</h2>
     <div class="sessao-calendario">
         <div class="atualizar-calendario">
             <div class="ferramenta-calendario">

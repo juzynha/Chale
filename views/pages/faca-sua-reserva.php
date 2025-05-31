@@ -9,7 +9,7 @@ require_once __DIR__ . '/../layouts/header.php';
 </header>
 
 <div class="container">
-    <h1>Faça sua reserva no Chalé La Vie en Rose</h1>
+    <h1 class="titulo">Faça sua reserva no Chalé La Vie en Rose</h1>
 </div>
 <div class="carousel-container">
     <div class="button" id="prevBtn"><img src="/chale/public/assets/icons/seta-left"></div>

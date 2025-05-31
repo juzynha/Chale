@@ -23,26 +23,15 @@ function fecharModal(idModal) {
     }
 }
 
-
 //aplicando as funções de abrir e fechar modal nos devidos botões
 document.getElementById('abrir_cadastro').addEventListener('click', () => {
     fecharModal('login');
-    abrirModal('cadastro');
+    abrirModal('cadastro_usuario');
 });
 
 document.getElementById('abrir_login').addEventListener('click', () => {
-    fecharModal('cadastro');
+    fecharModal('cadastro_usuario');
     abrirModal('login');
-});
-
-document.getElementById('continuar_cadastro').addEventListener('click', () => {
-    fecharModal('cadastro');
-    abrirModal('confirmar_email');
-});
-
-document.getElementById('continuar_email').addEventListener('click', () => {
-    fecharModal('confirmar_email');
-    abrirModal('colocar_foto');
 });
 
 //toggle icon olho pra mostrar senha

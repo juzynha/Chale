@@ -10,5 +10,4 @@ Class Carousel{
     }
     
 }
-
 ?>

@@ -1,44 +1,43 @@
-<div class="sombra-modal" id="cadastro">
+<div class="sombra-modal" id="cadastro_usuario">
     <div class="bloco-modal-usuario">
         <div class="contorno-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <img src="/chale/public/assets/logo.svg" width="120px">
-                    <button onclick="fecharModal('cadastro')">
+                    <button onclick="fecharModal('cadastro_usuario')">
                         <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
                     </button>
                 </div>
                 <div class="modal-body">
                     <h2>Já possui uma conta? Fazer <p class="link" id="abrir_login">login</p>
                     </h2>
-                    <form id="formCadastro" action="/chale/app/controller/usuario.php" method="post">
-                        <p class="mensagem-erro"></p>
+                    <form id="formCadastro">
+                        <p class="error" id="erro_cadastro"></p>
                         <div class="input-wrapper">
                             <label for="nome">Nome:</label>
-                            <input type="text" id="nome" name="nome" required>
+                            <input type="text" id="nome" name="nome">
                         </div>
                         <div class="input-wrapper">
                             <label for="email">E-mail:</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email">
                         </div>
                         <div class="input-wrapper">
                             <label for="telefone">Telefone:</label>
-                            <input type="text" id="telefone" name="telefone" required>
+                            <input type="text" id="telefone" name="telefone">
                         </div>
                         <div class="input-wrapper">
                             <label for="data_nasc">Data de nascimento:</label>
-                            <input type="text" id="data_nasc" name="data_nasc" required>
+                            <input type="text" id="data_nasc" name="data_nasc">
                         </div>
                         <div class="input-wrapper">
                             <label for="senha">Senha:</label>
-                            <input type="password" id="senha" name="senha" required>
+                            <input type="password" id="senha" name="senha">
                         </div>
                         <div class="last-input">
                             <div class="input-wrapper">
                                 <label for="senha">Confirmar senha:</label>
-                                <input type="password" id="conf_senha" name="conf_senha" required>
+                                <input type="password" id="conf_senha" name="conf_senha">
                             </div>
-                            <p id="esqueci_senha" class="textinho">Esqueci a senha</p>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn" id="continuar_cadastro">Continuar</button>
@@ -54,6 +53,7 @@
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Enviamos um código ao e-mail <p>gabriel@gmail</p></h2>
+            <p class="error"></p>
         </div>
         <div class="modal-body">
             <label for="conf_email">Digite o código:</label>
@@ -61,12 +61,12 @@
             <p id="reenviar_email" class="textinho">Reenviar</p>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn" id="continuar_email">Continuar</button>
+            <button type="submit" class="btn" id="validar_email">Continuar</button>
         </div>
     </div>
 </div>
 
-<div class="sombra-modal" id="colocar_foto">
+<div class="sombra-modal" id="cadastrar_foto">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Escolha uma foto de perfil</h2>

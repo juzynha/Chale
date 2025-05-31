@@ -103,22 +103,17 @@ input:focus {
   2px 2px var(--verde-azulado);
 }
 
-.mensagem-erro{
-  font-size: 18px;
-  color: red;
-}
-
 .cabecalho{
   width: 100%;
   background-color: var(--verde-medio);
 }
 
-h1{
+.titulo{
   font-size: 38px;
   color: var(--verde-escuro);
 }
 
-h2{
+.subtitulo{
   font-size: 34px;
   color: var(--verde-medio);
 }
