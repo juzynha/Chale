@@ -14,8 +14,10 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
 </header>
 <div class="element">
-    <img src="/chale/public/assets/elementos-graficos/onda-pginicial.svg" class="wave">
-    <h2>Conforto e Qualidade</h2>
+    <img src="/chale/public/assets/elementos-graficos/chale-transparente.png" class="wave">
+    <!--<img src="/chale/public/assets/elementos-graficos/chale-transparente-inicial-pginicial.png" class="chale-transparente1">-->
+    <h2 class="subtitulo">Conforto e Qualidade</h2>
+    <h4 class="textinho1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum. Aliquam nonummy auctor massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla at risus. Quisque purus magna, auctor et, sagittis ac, posuere eu, lectus. Nam mattis, felis ut adipiscing</h4>
 </div>
 
 <?php
