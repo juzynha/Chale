@@ -6,37 +6,64 @@ require_once __DIR__ . '/../layouts/header.php';
     require_once __DIR__ . '/../layouts/menu.php';
     ?>
 </header>
-
-<section class="perfil">
-    <div class="usuario">
-        <img src="/chale/public/assets/img-perfil.png" alt="avatar do usuario" width="100" height="100">
-        <div>
-            <h2>Nome: <?php echo htmlspecialchars($_SESSION['nome'] ?? 'Usuário'); ?></h2>
-            <h3>Email: <?php echo htmlspecialchars($_SESSION['email'] ?? 'usuario@gmail.com'); ?></h3>
-            <h3>Telefone: <?php echo htmlspecialchars($_SESSION['telefone'] ?? '(99)99408-9393'); ?></h3>
-            <h3>Data de nascimento: <?php echo htmlspecialchars($_SESSION['data de nascimento'] ?? '00/00/0000'); ?></h3>
+<div class="container-conta">
+    <section class="perfil">
+        <div class="admin-fotoperfil">
+            <img src="/chale/public/assets/icons/icon-user.svg" alt="avatar do adimin" width="100px">
         </div>
-    </div>
-
-    <div class="Reservas">
-        <h3>Ações</h3>
-        <ul class="lista">
-    <li><a href="#">À pagar</a></li>
-    <li><a href="#">Em andamento</a></li>
-    </ul>
-    <p class="aviso-cancelamento">Caso queira cancelar reserva, entre em contato com o <strong>anfitrião</strong></p>
-
-    </div>
-
-    <div class="confi-conta">
-        <h3>Configurações da conta</h3>
-        <ul class="lista">
-            <li><a href="#">Editar dados</a><img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon"></li>
-            <li><a href="#">Excluir conta</a><img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon"></li>
-            <li><a href="#">Sair</a><img src="/chale/public/assets/icons/icon-logout.svg" class="icon"></li>
+        <ul class="admin-infos">
+            <li class="nome-usuario">Nome: Nome do admin</li>
+            <li>Email: admin@gmail.com</li>
+            <li>Telefone: (99)99999-9999</li>
+            <li>Data de nascimento: 00/00/0000</li>
         </ul>
-    </div>
-</section>
+    </section>
+    <section class="conteudo-conta">
+        <section class="sessao-conta">
+            <div class="titulo-sessao-conta">
+                <h2>Reservas</h2>
+                <hr>
+            </div>
+            <ul class="titulo-sessao-conta">
+                <li class="itens-sessao-conta">
+                    <a href="#">À pagar</a>
+                    <img src="/chale/public/assets/icons/icon-seta-baixo.svg" class="icon">
+                </li>
+                <li class="itens-sessao-conta">
+                    <a href="#">Em andamento</a>
+                    <img src="/chale/public/assets/icons/icon-seta-baixo.svg" class="icon">
+                </li>
+            </ul>
+        </section>
+        <section class="sessao-conta">
+            <div class="titulo-sessao-conta">
+                <h2>Configurações da conta</h2>
+                <hr>
+            </div>
+            <ul class="titulo-sessao-conta">
+                <li class="itens-sessao-conta">
+                    <div>
+                        <a href="#">Editar dados</a>
+                        <img src="/chale/public/assets/icons/icon-editar(verde-escuro).svg" class="icon">
+                    </div>
+                    <img src="/chale/public/assets/icons/icon-seta-baixo.svg" class="icon">
+                </li>
+                <li class="itens-sessao-conta">
+                    <div>
+                        <a href="#">Excluir conta</a>
+                        <img src="/chale/public/assets/icons/icon-lixeira(verde-escuro).svg" class="icon">
+                    </div>
+                </li>
+                <li class="itens-sessao-conta">
+                    <div>
+                        <a href="#">Sair</a>
+                        <img src="/chale/public/assets/icons/icon-logout.svg" class="icon">
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </section>
+</div>
 
 <?php
 require_once __DIR__ . '/../layouts/footer.php';

@@ -14,13 +14,42 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
   const confSenha = document.getElementById('conf_senha').value;
   const erroEl = document.getElementById('erro_cadastro');
   erroEl.innerText = '';
-  console.log('clicou');
-  // Validações
-  const erros = [];
-  if (!nome || !email || !telefone || !dataNasc || !senha || !confSenha) {
-    erros.push('Preencha todos os campos');
 
+  if (!nome || !email || !telefone || !dataNasc || !senha || !confSenha) {
+    erroEl.innerText = 'Preencha todos os campos';
+    document.querySelector(".contorno-modal").scrollTop = 0;
+    return;
   }
+
+  const idade = calcularIdade(dataNasc);
+  if (idade < 18) {
+    erroEl.innerText = 'Você deve ter 18 anos ou mais para se cadastrar.';
+    document.querySelector(".contorno-modal").scrollTop = 0;
+    return;
+  }
+
+  if (senha !== confSenha) {
+    erroEl.innerText = 'As senhas não coincidem.';
+    document.querySelector(".contorno-modal").scrollTop = 0;
+    return;
+  }
+
+/*
+ fetch('/chale/app/Models/UsuarioModel.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ acao: 'verificar_email', email })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.existe) {
+      erros.push('Esse e-mail já está cadastrado!');
+    } 
+  })
+  .catch(error => {
+    console.error('Erro:', error);
+  });
+  
   // Verifica se email existe
   const res = await fetch('/chale/app/Models/UsuarioModel.php', {
     method: 'POST',
@@ -33,22 +62,7 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
     erroEl.innerText = 'Este e-mail já está cadastrado.';
     return;
   }
-  if (senha !== confSenha) {
-    erros.push('As senhas não coincidem.');
-  }
-  // Verifica se é maior de idade
-  const idade = calcularIdade(dataNasc);
-  if (idade < 18) {
-    erros.push('Você deve ter 18 anos ou mais para se cadastrar.');
-  }
-  if (erros.length > 0) {
-    erroEl.innerText = erros.join('\n');
-    document.querySelector(".contorno-modal").scrollTop = 0;
-    return;
-  }
-
-  
-
+*/
   // Se tudo ok, armazena dados e solicita envio do código
   dadosUsuario = { nome, email, telefone, data_nasc: dataNasc, senha };
 

@@ -71,7 +71,6 @@ nav ul li a:hover::after {
     font-size: 22px;
     padding: 8px 15px;
     border-radius: 50px;
-    background-color: #3F5141;
-    color: #EEF4EE;
-    border: none;
+    background-color: var(--branco);
+    color: var(--verde-medio);
 }

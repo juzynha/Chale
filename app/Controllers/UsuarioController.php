@@ -1,4 +1,5 @@
 <?php
+/*
 session_start();
 require_once(__DIR__ . '/../Models/UsuarioModel.php');
 
@@ -44,3 +45,5 @@ if (isset($dados['acao']) && $dados['acao'] === 'login') {
     }
     exit;
 }
+*/
+?>

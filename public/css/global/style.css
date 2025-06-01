@@ -2,7 +2,6 @@
 @import '../modals/modals.css';
 @import '../pages/inicial.css';
 @import '../pages/reservas.css';
-@import '../pages/conta_admin.css';
 @import '../pages/conta_usuario.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
@@ -120,7 +119,14 @@ input:focus {
 }
 
 .container{
-    width: 100%;
-    display: flex;
-    padding: 3rem 5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 3rem 5rem;
+  gap: 1rem;
+}
+
+hr{
+  width: 100%;
+  border: 1px solid var(--verde-medio);
 }

@@ -82,7 +82,7 @@
   z-index: 1;         /* acima da wave, abaixo do texto */
 }
 
-.subtitulo {
+.texto-de-entrada {
     position: absolute;
     top: 30%;                   /* centralizado verticalmente */
     right: 10%;                 /* distância da esquerda (ajuste como quiser) */

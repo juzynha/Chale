@@ -1,69 +1,81 @@
-.perfil{
- margin: 30px auto;
- padding: 20px;
- border-radius: 10px;
-
-
-}
-.usuario{
-    display: flex;
-    text-align: center;
-    gap: 20px;
-padding:  10px;
-}
-.usuario img{
-border-radius: 50%;
-object-fit: cover;
-}
-.usuario h2{
-margin: 0;
-font-size: 22px;
-}
-.usuario h3{
-    margin: 5px 0 0px;
-    color: #555;
-  font-size: 14px;  
-}
-.reservas, .confi-conta{
-margin-top: 30px;
-box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
-.reservas h3, .confi-conta h3 {
-font-size: 18px;
-border-bottom: 1px solid #ccc;
-color: #555;
-}
-/*
-ul{
-list-style: none;
-padding-left: 0;
-color: #555;
-}
-ul li{
-margin: 10px 0;
-color: #555;
-box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
-
-}
-ul li a{
-    color: #555;
-}
-*/
-.icone {
-  width: 18px;
-  height: 18px;
-  margin-left: 8px;
-  vertical-align: middle;
+.container-conta{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 3rem 5rem;
+  gap: 2rem;
 }
 
-.aviso-cancelamento {
-    margin-top: 8px;
-    font-size: 0.9rem;
-    color: #1f1f1f;
-    font-weight: 400;
+.perfil {
+  display: flex;
+  gap: 2rem;
+}
+  
+.admin-fotoperfil {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--verde-medio);
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
 }
 
-.aviso-cancelamento strong {
-    font-weight: 600;
+.admin-infos{
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  color: var(--verde-medio);
+  font-size: 24px;
 }
 
+.nome-usuario{
+  color: var(--verde-escuro);
+  font-size: 28px;
+}
+
+.conteudo-conta{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sessao-conta{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.titulo-sessao-conta{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.titulo-sessao-conta h2{
+  margin-left: 1rem;
+  font-size: 34px;
+  color: var(--verde-escuro);
+  font-weight: 400;
+}
+  
+.itens-sessao-conta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(42, 50, 43, 0.3);
+}
+
+.itens-sessao-conta div{
+  display: flex;
+  gap: 1rem;
+}
+  
+.itens-sessao-conta a{
+  color: var(--verde-escuro);
+  font-size: 22px;
+}

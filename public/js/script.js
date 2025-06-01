@@ -6,12 +6,13 @@ function abrirModal(idModal) {
         modal.querySelectorAll('.btn-fechar-modal').forEach(botao => {
             botao.addEventListener('click', () => fecharModal(idModal));
         });
-        // Fechar clicando fora do conteúdo
+        /* Fechar clicando fora do conteúdo
         modal.addEventListener('click', function (event) {
             if (event.target === modal) {
                 fecharModal(idModal);
             }
         });
+        */
     }
 }
 

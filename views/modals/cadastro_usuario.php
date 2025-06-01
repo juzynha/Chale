@@ -27,7 +27,7 @@
                         </div>
                         <div class="input-wrapper">
                             <label for="data_nasc">Data de nascimento:</label>
-                            <input type="text" id="data_nasc" name="data_nasc">
+                            <input type="date" id="data_nasc" name="data_nasc">
                         </div>
                         <div class="input-wrapper">
                             <label for="senha">Senha:</label>

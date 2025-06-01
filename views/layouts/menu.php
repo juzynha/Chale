@@ -29,9 +29,7 @@
     <?php
     } else {
     ?>
-     <button onclick="abrirModal('login')" class="entrar">
-  <span class="button_top">Entrar</span>
-</button>
+     <button onclick="abrirModal('login')" class="entrar">Entrar</button>
 
     <?php
     }

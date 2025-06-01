@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../../config/Database.php';
 
-$pdo = Bnc::conectar();
+$pdo = Database::conectar();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $input = json_decode(file_get_contents("php://input"), true);
@@ -26,9 +26,11 @@ switch ($input['acao']) {
 }
 
 function verificarEmail($email, $pdo) {
-    $stmt = $pdo->prepare("SELECT id FROM usuarios WHERE email = ?");
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE usuemail = ?");
     $stmt->execute([$email]);
-    echo json_encode(['status' => 'ok', 'existe' => $stmt->rowCount() > 0]);
+    $existe = $stmt->fetchColumn() > 0;
+    // Retorna JSON para o JS
+    echo json_encode(['existe' => $existe]);
 }
 
 function enviarCodigo($email) {
