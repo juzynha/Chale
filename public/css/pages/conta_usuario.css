@@ -33,6 +33,7 @@ font-size: 18px;
 border-bottom: 1px solid #ccc;
 color: #555;
 }
+/*
 ul{
 list-style: none;
 padding-left: 0;
@@ -47,7 +48,7 @@ box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 ul li a{
     color: #555;
 }
-
+*/
 .icone {
   width: 18px;
   height: 18px;
