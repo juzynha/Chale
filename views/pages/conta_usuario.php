@@ -46,7 +46,6 @@ require_once __DIR__ . '/../layouts/header.php';
                         <a href="#">Editar dados</a>
                         <img src="/chale/public/assets/icons/icon-editar(verde-escuro).svg" class="icon">
                     </div>
-                    <img src="/chale/public/assets/icons/icon-seta-baixo.svg" class="icon">
                 </li>
                 <li class="itens-sessao-conta">
                     <div>
