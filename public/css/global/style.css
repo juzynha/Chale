@@ -120,7 +120,6 @@ input:focus {
 
 .container{
   display: flex;
-  flex-direction: column;
   width: 100%;
   padding: 3rem 5rem;
   gap: 1rem;
