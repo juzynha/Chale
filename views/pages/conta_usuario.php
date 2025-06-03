@@ -15,7 +15,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <li class="nome-usuario">Nome: Nome do admin</li>
             <li>Email: admin@gmail.com</li>
             <li>Telefone: (99)99999-9999</li>
-            <li>Data de nascimento: 00/00/0000</li>
+            <li>Data de nascimento: 13/12/1989</li>
         </ul>
     </section>
     <section class="conteudo-conta">
@@ -24,42 +24,69 @@ require_once __DIR__ . '/../layouts/header.php';
                 <h2>Reservas</h2>
                 <hr>
             </div>
-            <ul class="titulo-sessao-conta">
-                <li class="itens-sessao-conta">
-                    <a href="#">À pagar</a>
-                    <img src="/chale/public/assets/icons/icon-seta-baixo.svg" class="icon">
-                </li>
-                <li class="itens-sessao-conta">
-                    <a href="#">Em andamento</a>
-                    <img src="/chale/public/assets/icons/icon-seta-baixo.svg" class="icon">
-                </li>
-            </ul>
+            <div class="titulo-sessao-conta">
+                <div class="itens-sessao-conta">
+                    <div class="item-descricao">
+                        <p>À pagar</p>
+                        <img src="/chale/public/assets/icons/icon-seta-baixo.svg" class="icon">
+                    </div>
+                    <div class="sessao-reservas-a-pagar">
+                        <p>Você pode editar sua reserva enquanto ela não tiver sido paga!</p>
+                        <div class="reservas-a-pagar">
+                            <div class="reserva-a-pagar">
+                                <!-- aqui é o bloquinho de reserva -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="itens-sessao-conta">
+                    <div class="item-descricao">
+                        <p>Em andamento</p>
+                        <img src="/chale/public/assets/icons/icon-seta-baixo.svg" class="icon">
+                    </div>
+                    <div class="sessao-reservas-a-pagar">
+                        <p>Você pode editar sua reserva enquanto ela não tiver sido paga!</p>
+                        <div class="reservas-a-pagar">
+                            <div class="reserva-a-pagar">
+                                <!-- aqui é o bloquinho de reserva -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="aviso-cancelamento">Caso queira cancelar a reserva, entre em contato com o <strong>anfitrião.</strong></p> 
+            </div>
         </section>
         <section class="sessao-conta">
             <div class="titulo-sessao-conta">
                 <h2>Configurações da conta</h2>
                 <hr>
             </div>
-            <ul class="titulo-sessao-conta">
-                <li class="itens-sessao-conta">
-                    <div>
-                        <a href="#">Editar dados</a>
-                        <img src="/chale/public/assets/icons/icon-editar(verde-escuro).svg" class="icon">
+            <div class="titulo-sessao-conta">
+                <div class="itens-sessao-conta">
+                    <div class="item-descricao">
+                        <div class="escrita-item-sessao">
+                            <p>Editar dados</p>
+                            <img src="/chale/public/assets/icons/icon-editar(verde-escuro).svg" class="icon">
+                        </div>
                     </div>
-                </li>
-                <li class="itens-sessao-conta">
-                    <div>
-                        <a href="#">Excluir conta</a>
-                        <img src="/chale/public/assets/icons/icon-lixeira(verde-escuro).svg" class="icon">
+                </div>
+                <div class="itens-sessao-conta">
+                    <div class="item-descricao">
+                        <div class="escrita-item-sessao">
+                            <p>Excluir conta</p>
+                            <img src="/chale/public/assets/icons/icon-lixeira(verde-escuro).svg" class="icon">
+                        </div>
                     </div>
-                </li>
-                <li class="itens-sessao-conta">
-                    <div>
-                        <a href="#">Sair</a>
-                        <img src="/chale/public/assets/icons/icon-logout.svg" class="icon">
+                </div>
+                <div class="itens-sessao-conta">
+                    <div class="item-descricao">
+                        <div class="escrita-item-sessao">
+                            <p>Sair</p>
+                            <img src="/chale/public/assets/icons/icon-logout.svg" class="icon">
+                        </div>
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
         </section>
     </section>
 </div>

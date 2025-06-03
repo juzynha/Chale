@@ -61,8 +61,7 @@
   
 .itens-sessao-conta {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   gap: 1rem;
   width: 100%;
   padding: 0.5rem;
@@ -70,12 +69,51 @@
   box-shadow: 2px 2px 2px 1px rgba(42, 50, 43, 0.3);
 }
 
-.itens-sessao-conta div{
+.item-descricao{
   display: flex;
-  gap: 1rem;
-}
-  
-.itens-sessao-conta a{
+  justify-content: space-between;
   color: var(--verde-escuro);
+}
+
+.item-descricao p{
   font-size: 22px;
 }
+
+.sessao-reservas-a-pagar{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--verde-medio);
+}
+
+.reservas-a-pagar{
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.reserva-a-pagar{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--verde-medio);
+  width: auto;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 10px 10px 2px rgba(124, 154, 120, 0.5);
+  color: var(--branco);
+  padding: 1rem;
+}
+
+.aviso-cancelamento {
+  margin-top: 8px;
+  font-size: 20px;
+  color: var(--verde-escuro);
+  font-weight: 400;
+}
+
+.escrita-item-sessao{
+  display: flex;
+  gap: 0.5rem;
+}
+
