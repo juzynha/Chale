@@ -96,14 +96,53 @@
 }
 
 .textinho1 {
-    position: absolute;
-    top: 75%;                  /* ajustado para logo abaixo do título */
+    position: absolute;                 /* ajustado para logo abaixo do título */
     right: 10%;
-    transform: translateY(-50%);
+    margin-top: -25%;
     font-family: 'Glacial Indifference';
     font-size: 1.3rem;
     color: #3F5141;
     text-align: center;
     width: 30%;               /* controla a largura para não ocupar demais */
-    z-index: 5;
 }
+
+.chale-right {
+  position: absolute;
+  right: 0;       
+  width: 30%;
+}
+
+.textinho2 {
+    position: relative;                 /* ajustado para logo abaixo do título */
+    left: 15%;
+    margin-top: 10%;
+    font-family: 'Glacial Indifference';
+    font-size: 1.3rem;
+    color: #3F5141;
+    text-align: center;
+    width: 30%;               /* controla a largura para não ocupar demais */
+}
+
+.chale-left {
+  position: absolute;
+  left: 0;       
+  width: 30%;
+}
+
+.textinho3 {
+    position: absolute;     
+    font-weight: 400;            /* ajustado para logo abaixo do título */
+    right: 20%;
+    margin-top: 20%;
+    font-family: 'Glacial Indifference';
+    font-size: 1.3rem;
+    color: var(--branco);
+    text-align: center;
+    width: 30%; 
+    background-color: var(--verde-medio);  
+    border-radius: 10px;
+    letter-spacing: 0.1rem;
+    font-style: bold;   
+    padding: 2px;         /* controla a largura para não ocupar demais */
+}
+
