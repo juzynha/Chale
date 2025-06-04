@@ -110,39 +110,101 @@
   position: absolute;
   right: 0;       
   width: 30%;
+  margin-top: 10%;
 }
 
 .textinho2 {
-    position: relative;                 /* ajustado para logo abaixo do título */
-    left: 15%;
-    margin-top: 10%;
-    font-family: 'Glacial Indifference';
+    position: absolute;
+    font-weight: 400;
+    right: 17%; /* Ajustado para posicionar melhor na tela */
+    margin-top: -3%; /* Posiciona verticalmente no lugar desejado */
+    font-family: 'Glacial Indifference', sans-serif;
     font-size: 1.3rem;
-    color: #3F5141;
-    text-align: center;
-    width: 30%;               /* controla a largura para não ocupar demais */
+    color: white;
+    text-align: left; /* Alinhamento à esquerda como na imagem */
+    width: 20%; /* Largura um pouco maior para o texto */
+    background-color: var(--verde-medio); /* Verde médio com transparência */
+    border-radius: 10px;
+    letter-spacing: 0.1rem;
+    font-weight: 400; /* Corrigido - 'font-style: bold' está errado */
+    padding: 1rem 1.5rem; /* Padding simplificado e ajustado */
+    line-height: 1.5; /* Espaçamento entre linhas para melhor legibilidade */
+    box-shadow: -7px 7px 0 #7C9A78;
+}
+
+.plaquinha {
+ margin-left: 10%;       
+  width: 20%;
+  margin-top: 10%;
 }
 
 .chale-left {
   position: absolute;
   left: 0;       
   width: 30%;
+  margin-top: 20%;
 }
 
 .textinho3 {
-    position: absolute;     
-    font-weight: 400;            /* ajustado para logo abaixo do título */
-    right: 20%;
-    margin-top: 20%;
-    font-family: 'Glacial Indifference';
+    position: absolute;
+    font-weight: 400;
+    left: 6%; /* Ajustado para posicionar melhor na tela */
+    margin-top: 13%; /* Posiciona verticalmente no lugar desejado */
+    font-family: 'Glacial Indifference', sans-serif;
     font-size: 1.3rem;
-    color: var(--branco);
-    text-align: center;
-    width: 30%; 
-    background-color: var(--verde-medio);  
+    color: white;
+    text-align: right; /* Alinhamento à esquerda como na imagem */
+    width: 20%; /* Largura um pouco maior para o texto */
+    background-color: var(--verde-medio); /* Verde médio com transparência */
     border-radius: 10px;
     letter-spacing: 0.1rem;
-    font-style: bold;   
-    padding: 2px;         /* controla a largura para não ocupar demais */
+    font-weight: 400; /* Corrigido - 'font-style: bold' está errado */
+    padding: 1rem 1.5rem; /* Padding simplificado e ajustado */
+    line-height: 1.5; /* Espaçamento entre linhas para melhor legibilidade */
+    box-shadow: 7px 7px 0 #7C9A78;
 }
 
+.fogueirinha {
+  margin-left: 65%;      
+  width: 14%;
+  margin-top: 20%;
+}
+
+.chale-espuma {
+  position: absolute;
+  right: 0;       
+  width: 40%;
+  margin-top: 7%;
+}
+
+.textinho4 {
+    position: absolute;
+    font-weight: 400;
+    right: 19%; /* Ajustado para posicionar melhor na tela */
+    margin-top: 13%; /* Posiciona verticalmente no lugar desejado */
+    font-family: 'Glacial Indifference', sans-serif;
+    font-size: 1.3rem;
+    color: white;
+    text-align: left; /* Alinhamento à esquerda como na imagem */
+    width: 20%; /* Largura um pouco maior para o texto */
+    background-color: var(--verde-medio); /* Verde médio com transparência */
+    border-radius: 10px;
+    letter-spacing: 0.1rem;
+    font-weight: 400; /* Corrigido - 'font-style: bold' está errado */
+    padding: 1rem 1.5rem; /* Padding simplificado e ajustado */
+    line-height: 1.5; /* Espaçamento entre linhas para melhor legibilidade */
+    box-shadow: -7px 7px 0 #7C9A78;
+}
+
+.patinhas {
+  margin-left: 15%;      
+  width: 23%;
+  margin-top: 20%;
+}
+
+.generico {
+    position: absolute;
+    width: 100%; /* Ocupa 100% da largura */
+    background-color: #3F5141;
+    bottom:0;
+}
