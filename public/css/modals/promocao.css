@@ -1,0 +1,64 @@
+.input-preco{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 18px;
+}
+
+.periodo-data-promocao{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid #A0B1A1;
+    color: white;
+}
+
+.data-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.data-box:first-child {
+    border-left: none;
+}
+
+.data-box label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-data-box {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    border: none;
+    background-color: none;
+}
+
+.input-data-box::before,
+.input-data-box::after {
+    content: '';
+    background: none;
+    
+}
+
+
+.divisor-databox{
+    width: 100%;
+    border: 1px solid var(--branco);
+}
+/* Linhas horizontais como na imagem 
+.periodo-data-promocao::before,
+.periodo-data-promocao::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background-color: #A0B1A1;
+    grid-column: span 2;
+}
+
+*/

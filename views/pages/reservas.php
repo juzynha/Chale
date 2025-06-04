@@ -32,7 +32,7 @@ require_once __DIR__ . '/../layouts/header.php';
         <!--Aqui vai a montagem do calendário-->
         </div>
         <div class="acoes-calendario">
-            <div class="ferramenta-calendario" onclick="abrirModal('criar_promocao')">
+            <div class="ferramenta-calendario" onclick="abrirModal('modal_criar_promocao')">
                 <p>Criar promoção</p>
                 <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
             </div>

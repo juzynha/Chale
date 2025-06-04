@@ -1,11 +1,11 @@
 
-<div class="sombra-modal" id="login">
+<div class="sombra-modal" id="modal_login">
     <div class="bloco-modal-usuario">
         <div class="contorno-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <img src="/chale/public/assets/logo.svg" width="120px">
-                    <button onclick="fecharModal('login')">
+                    <button onclick="fecharModal('modal_login')">
                         <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
                     </button>
                 </div>

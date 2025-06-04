@@ -1,17 +1,16 @@
-<div class="sombra-modal" id="cadastro_usuario">
+<div class="sombra-modal" id="modal_cadastro_usuario">
     <div class="bloco-modal-usuario">
         <div class="contorno-modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <img src="/chale/public/assets/logo.svg" width="120px">
-                    <button onclick="fecharModal('cadastro_usuario')">
+                    <button onclick="fecharModal('modal_cadastro_usuario')">
                         <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h2>Já possui uma conta? Fazer <p class="link" id="abrir_login">login</p>
-                    </h2>
-                    <form id="formCadastro">
+                    <h2>Já possui uma conta? Fazer <p class="link" id="abrir_login">login</p></h2>
+                    <form id="formCadastroUsuario">
                         <p class="error" id="erro_cadastro"></p>
                         <div class="input-wrapper">
                             <label for="nome">Nome:</label>
@@ -49,7 +48,7 @@
     </div>
 </div>
 
-<div class="sombra-modal" id="confirmar_email">
+<div class="sombra-modal" id="modal_confirmar_email">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Enviamos um código ao e-mail <p>gabriel@gmail</p></h2>
@@ -66,7 +65,7 @@
     </div>
 </div>
 
-<div class="sombra-modal" id="cadastrar_foto">
+<div class="sombra-modal" id="modal_cadastrar_foto">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Escolha uma foto de perfil</h2>

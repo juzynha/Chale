@@ -4,7 +4,7 @@
 let dadosUsuario = {};
 
 // Evento do formulário de cadastro
-document.getElementById('formCadastro').addEventListener('submit', async function(e) {
+document.getElementById('formCadastroUsuario').addEventListener('submit', async function(e) {
   e.preventDefault();
   const nome = document.getElementById('nome').value.trim();
   const email = document.getElementById('email').value.trim();
@@ -14,8 +14,9 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
   const confSenha = document.getElementById('conf_senha').value;
   const erroEl = document.getElementById('erro_cadastro');
   erroEl.innerText = '';
-
+  console.log('clicou');
   if (!nome || !email || !telefone || !dataNasc || !senha || !confSenha) {
+    erroEl.style.display = 'flex';
     erroEl.innerText = 'Preencha todos os campos';
     document.querySelector(".contorno-modal").scrollTop = 0;
     return;
@@ -23,12 +24,14 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
 
   const idade = calcularIdade(dataNasc);
   if (idade < 18) {
+    erroEl.style.display = 'flex';
     erroEl.innerText = 'Você deve ter 18 anos ou mais para se cadastrar.';
     document.querySelector(".contorno-modal").scrollTop = 0;
     return;
   }
 
   if (senha !== confSenha) {
+    erroEl.style.display = 'flex';
     erroEl.innerText = 'As senhas não coincidem.';
     document.querySelector(".contorno-modal").scrollTop = 0;
     return;
