@@ -29,7 +29,7 @@
     <?php
     } else {
     ?>
-     <button onclick="abrirModal('login')" class="entrar">Entrar</button>
+     <button onclick="abrirModal('modal_login')" class="entrar">Entrar</button>
 
     <?php
     }

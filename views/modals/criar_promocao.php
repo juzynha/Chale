@@ -12,16 +12,17 @@
                     <label for="conf_email" class="">Nome da promoção:</label>
                     <input type="text" id="criar_nome_promocao" name="criar_nome_promocao">
                 </div>
-                <div class="periodo-data-promocao">
-                    <div class="data-box">
-                        <label for="inicio">Início</label>
-                        <hr class="divisor-databox">
-                        <input type="date" id="inicio" name="inicio" value="2025-01-27" class="input-data-box">
+                <div class="date-container">
+                    <div class="date-group">
+                        <span class="date-label">Início</span>
+                        <div class="divider-horizontal"></div>
+                        <input type="date" class="date-input" id="start-date" >
                     </div>
-                    <div class="data-box">
-                        <label for="fim">Fim</label>
-                        <hr class="divisor-databox">
-                        <input type="date" id="fim" name="fim" value="2025-01-28" class="input-data-box">
+                    <div class="divider-vertical"></div>
+                    <div class="date-group">
+                        <span class="date-label">Fim</span>
+                        <div class="divider-horizontal"></div>
+                        <input type="date" class="date-input" id="end-date">
                     </div>
                 </div>
                 <div class="campos-padrao">

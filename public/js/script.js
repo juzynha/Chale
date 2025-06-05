@@ -26,13 +26,13 @@ function fecharModal(idModal) {
 
 //aplicando as funções de abrir e fechar modal nos devidos botões
 document.getElementById('abrir_cadastro').addEventListener('click', () => {
-    fecharModal('login');
-    abrirModal('cadastro_usuario');
+    fecharModal('modal_login');
+    abrirModal('modal_cadastro_usuario');
 });
 
 document.getElementById('abrir_login').addEventListener('click', () => {
-    fecharModal('cadastro_usuario');
-    abrirModal('login');
+    fecharModal('modal_cadastro_usuario');
+    abrirModal('modal_login');
 });
 
 //toggle icon olho pra mostrar senha
@@ -48,3 +48,37 @@ toggleBtn.addEventListener("click", () => {
         toggleBtn.src = "/chale/public/assets/icons/icon-olho-fechado.svg"; // imagem de olho fechado
     }
 });
+
+//máscara para input type="date"
+document.querySelectorAll('input[type="date"]').forEach(function(input) {
+    // Troca para type="text" para poder aplicar máscara
+    input.type = 'text';
+    input.placeholder = '  /  /    ';
+    input.classList.add("calendario_input");
+    
+    input.addEventListener('input', function (e) {
+      let v = e.target.value.replace(/\D/g, "");
+      if (v.length >= 2) v = v.slice(0, 2) + "/" + v.slice(2);
+      if (v.length >= 5) v = v.slice(0, 5) + "/" + v.slice(5, 9);
+      e.target.value = v.slice(0, 10);
+    });
+  });
+
+  // Flatpickr com formato brasileiro
+  flatpickr(".calendario_input", {
+    dateFormat: "d/m/Y",
+    locale: {
+      firstDayOfWeek: 0,
+      weekdays: {
+        shorthand: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+        longhand: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+      },
+      months: {
+        shorthand: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        longhand: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+      },
+    }
+  });
+
+
+  

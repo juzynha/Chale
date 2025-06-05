@@ -79,6 +79,16 @@ input:focus {
   outline: none;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator{
+  display: none;
+  -webkit-appearance: none;
+}
+
+input[type="date"]::placeholder{
+  color: var(--branco);
+  opacity: 1;
+}
+
 .icon{
   width: 20px;
   cursor: pointer;

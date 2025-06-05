@@ -5,60 +5,36 @@
     font-size: 18px;
 }
 
-.periodo-data-promocao{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid #A0B1A1;
-    color: white;
+.date-container {
+    display: flex; 
+    padding: 1rem 0;
 }
 
-.data-box {
+.date-group {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--verde-azulado);
 }
 
-.data-box:first-child {
-    border-left: none;
-}
-
-.data-box label {
+.date-label {
     font-weight: bold;
-    margin-bottom: 5px;
+    color: var(--branco);
+    font-size: 20px;
 }
 
-.input-data-box {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 16px;
-    text-align: center;
-    outline: none;
-    border: none;
-    background-color: none;
-}
-
-.input-data-box::before,
-.input-data-box::after {
-    content: '';
+.date-input {
     background: none;
-    
+    box-shadow: none;
+    font-family: 'Glacial Indifference';
 }
 
+.divider-vertical {
+    border: 1px solid var(--verde-azulado);
+}
 
-.divisor-databox{
+.divider-horizontal{
+    border: 1px solid var(--verde-azulado);
     width: 100%;
-    border: 1px solid var(--branco);
 }
-/* Linhas horizontais como na imagem 
-.periodo-data-promocao::before,
-.periodo-data-promocao::after {
-    content: "";
-    display: block;
-    height: 1px;
-    background-color: #A0B1A1;
-    grid-column: span 2;
-}
-
-*/
