@@ -4,8 +4,12 @@
 let dadosUsuario = {};
 
 // Evento do formulário de cadastro
+
 document.getElementById('formCadastroUsuario').addEventListener('submit', async function(e) {
   e.preventDefault();
+  fecharModal('modal_cadastro_usuario');
+  abrirModal('modal_confirmar_email');
+  /*
   const nome = document.getElementById('nome').value.trim();
   const email = document.getElementById('email').value.trim();
   const telefone = document.getElementById('telefone').value.trim();
@@ -65,7 +69,7 @@ document.getElementById('formCadastroUsuario').addEventListener('submit', async 
     erroEl.innerText = 'Este e-mail já está cadastrado.';
     return;
   }
-*/
+
   // Se tudo ok, armazena dados e solicita envio do código
   dadosUsuario = { nome, email, telefone, data_nasc: dataNasc, senha };
 
@@ -83,6 +87,7 @@ document.getElementById('formCadastroUsuario').addEventListener('submit', async 
   } else {
     erroEl.innerText = 'Erro ao enviar código de verificação.';
   }
+    */
 });
 
 // Função para calcular idade
@@ -98,7 +103,11 @@ function calcularIdade(data) {
 }
 
 // === Parte 2: Verificação do código ===
+
 document.getElementById('validar_email').addEventListener('click', async function () {
+  fecharModal('modal_confirmar_email');
+  abrirModal('modal_cadastrar_foto');
+  /*
   const codigo = document.getElementById('conf_email').value.trim();
   const email = dadosUsuario.email;
   const erroEl = document.querySelector('.mensagem-erro');
@@ -129,4 +138,5 @@ document.getElementById('validar_email').addEventListener('click', async functio
   } else {
     erroEl.innerText = 'Código incorreto. Verifique seu e-mail.';
   }
+    */
 });

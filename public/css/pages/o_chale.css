@@ -1,0 +1,92 @@
+.sessao-cards-utilitarios{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 1rem;
+}
+
+.cards-utilitarios{
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 1rem;
+}
+
+.card-utilitario{
+    background-color: var(--verde-medio);
+    width: 300px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 1rem;
+    box-shadow: 10px 10px 0 var(--verde-escuro);
+    color: var(--branco);
+}
+
+.card-utilitario-add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--verde-medio);
+    border-radius: 10px;
+    box-shadow: 10px 10px 0 var(--verde-escuro);
+    min-width: 300px;
+    min-height: 400px;
+    cursor: pointer;
+}
+
+.nome-utilitario{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.imagem-utilitario{
+    border-radius: 10px;
+    box-shadow: 5px 5px 1px var(--verde-escuro), -5px -5px 1px var(--verde);
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.imagem-utilitario img{
+    width: 100%;
+}
+
+.icon-add-imagem{
+    width: 50px;
+    cursor: pointer;
+}
+
+.descricao-utilitario{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 5px 5px 1px var(--verde), -5px -5px 1px var(--verde-escuro);
+    padding: 1rem;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.opcao-editar-sessao{
+    display: flex;
+    align-self: flex-end;
+    gap: 0.5rem;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.opcao-criar-sessao{
+    display: flex;
+    align-self: flex-start;
+    gap: 0.5rem;
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+}

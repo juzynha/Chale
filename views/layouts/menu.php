@@ -1,9 +1,9 @@
 <nav>
-    <img src="/chale/public/assets/logo.svg" class="logo">
+    <a href="/chale/index.php"><img src="/chale/public/assets/logo.svg" class="logo"></a>
     <ul>
-        <li><a href="">O Chalé</a></li>
+        <li><a href="/chale/views/pages/o_chale.php">O Chalé</a></li>
         <li><a href="">Sobre nós</a></li>
-        <li><a href="">Faça sua Reserva</a></li>
+        <li><a href="/chale/views/pages/faca_sua_reserva.php">Faça sua Reserva</a></li>
         <?php
         session_start();
         if (isset($_SESSION['logado']) && $_SESSION['logado'] === true && isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin') {

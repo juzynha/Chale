@@ -3,6 +3,7 @@
 @import '../pages/inicial.css';
 @import '../pages/reservas.css';
 @import '../pages/conta_usuario.css';
+@import '../pages/o_chale.css';
 @import '../modals/promocao.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
@@ -99,6 +100,22 @@ input[type="date"]::placeholder{
   2px 2px var(--verde-azulado);
 }
 
+.branco{
+  color: var(--branco);
+}
+
+.verde-medio{
+  color: var(--verde-medio);
+}
+
+.verde-escuro{
+  color: var(--verde-escuro);
+}
+
+.verde{
+  color: var(--verde);
+}
+
 .cabecalho{
   width: 100%;
   background-color: var(--verde-medio);
@@ -116,6 +133,7 @@ input[type="date"]::placeholder{
 
 .container{
   display: flex;
+  flex-direction: column;
   width: 100%;
   padding: 3rem 5rem;
   gap: 1rem;
@@ -124,4 +142,9 @@ input[type="date"]::placeholder{
 hr{
   width: 100%;
   border: 1px solid var(--verde-medio);
+}
+
+.titulo-sessao{
+  width: 100%;
+  padding: 1rem;
 }

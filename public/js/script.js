@@ -42,16 +42,16 @@ const toggleBtn = document.getElementById("toggleSenha");
 toggleBtn.addEventListener("click", () => {
     if (inputSenha.type === "password") {
         inputSenha.type = "text";
-        toggleBtn.src = "/chale/public/assets/icons/icon-olho-aberto.svg"; // imagem de olho aberto
+        toggleBtn.src = "/chale/public/assets/icons/icon-olho-fechado.svg"; // imagem de olho fechado
     } else {
         inputSenha.type = "password";
-        toggleBtn.src = "/chale/public/assets/icons/icon-olho-fechado.svg"; // imagem de olho fechado
+        toggleBtn.src = "/chale/public/assets/icons/icon-olho-aberto.svg"; // imagem de olho aberto
     }
 });
 
 //máscara para input type="date"
-document.querySelectorAll('input[type="date"]').forEach(function(input) {
-    // Troca para type="text" para poder aplicar máscara
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('input[type="date"]').forEach(function(input) {
     input.type = 'text';
     input.placeholder = '  /  /    ';
     input.classList.add("calendario_input");
@@ -63,6 +63,7 @@ document.querySelectorAll('input[type="date"]').forEach(function(input) {
       e.target.value = v.slice(0, 10);
     });
   });
+});
 
   // Flatpickr com formato brasileiro
   flatpickr(".calendario_input", {

@@ -5,7 +5,7 @@
                 <div class="modal-header">
                     <img src="/chale/public/assets/logo.svg" width="120px">
                     <button onclick="fecharModal('modal_cadastro_usuario')">
-                        <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
+                        <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                     </button>
                 </div>
                 <div class="modal-body">
@@ -81,7 +81,7 @@
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn" id="continuar_email">Salvar</button>
-            <p class="textinho">Pular <img src="/chale/public/assets/icons/icon-seta-pular.svg" width="12px"></p>
+            <p class="textinho" onclick="fecharModal('modal_cadastrar_foto')">Pular <img src="/chale/public/assets/icons/icon-seta-pular.svg" width="12px"></p>
         </div>
     </div>
 </div>

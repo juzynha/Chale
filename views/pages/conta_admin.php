@@ -54,7 +54,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <div class="titulo-sessao-conta">
                 <div class="itens-sessao-conta">
                     <div class="item-descricao">
-                        <div class="escrita-item-sessao">
+                        <div class="escrita-item-sessao" onclick="abrirModal('modal_cadastro_admin')">
                             <p>Criar outra conta administradora</p>
                             <img src="/chale/public/assets/icons/icon-adicionar(verde-escuro).svg" class="icon">
                         </div>
@@ -95,6 +95,47 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
         </section>
     </section>
+</div>
+
+<div class="sombra-modal" id="modal_cadastro_admin">
+    <div class="bloco-modal-usuario">
+        <div class="contorno-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                     <h2>Criar conta de administrador</h2>
+                    <button onclick="fecharModal('modal_cadastro_admin')">
+                        <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCadastroAdmin">
+                        <p class="error" id="erro_cadastro"></p>
+                        <div class="input-wrapper">
+                            <label for="nome">Nome:</label>
+                            <input type="text" id="nome" name="nome">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="input-wrapper">
+                            <label for="senha">Senha:</label>
+                            <input type="password" id="senha" name="senha">
+                        </div>
+                        <div class="last-input">
+                            <div class="input-wrapper">
+                                <label for="senha">Confirmar senha:</label>
+                                <input type="password" id="conf_senha" name="conf_senha">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn" id="continuar_cadastro">Continuar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php

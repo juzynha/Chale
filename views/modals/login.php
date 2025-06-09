@@ -6,7 +6,7 @@
                 <div class="modal-header">
                     <img src="/chale/public/assets/logo.svg" width="120px">
                     <button onclick="fecharModal('modal_login')">
-                        <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
+                        <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                     </button>
                 </div>
                 <div class="modal-body">
