@@ -14,19 +14,21 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="container"> 
         <h1 class="titulo">Faça sua reserva no chalé La Vie En Rose!</h1>
     </div>
+       <div class="container">
+       <div class="card-reserva">
+                <p><strong>R$ 200</strong> diária</p>
+                <p><strong>R$ 250</strong> fim de semana</p>
+                <p><strong>CHECK-IN</strong> 27/01/2025</p>
+                <p><strong>CHECK-OUT</strong> 28/01/2025</p>
+                <p><strong>TOTAL</strong><br>R$ 300</p>
 
-       <link rel="stylesheet" href="chale/public/css/pages/facasuareserva.css">
+                <div class="modal-footer">
+                    <button type="submit" class="btn" id="fazer-reserva">Reservar</button>
+                </div>
+            </div>
+     </div>
+                    
         
-        <div class="reserva-box">
-            <p><strong>R$ 200</strong> diária</p>
-            <p><strong>R$ 250</strong> fim de semana</p>
-
-            <p><strong>CHECK-IN</strong> 27/01/2025</p>
-            <p><strong>CHECK-OUT</strong> 28/01/2025</p>
-
-            <p><strong>TOTAL</strong><br>R$ 300</p>
-            <button class="reserva-btn">RESERVAR</button>
-        </div>
     <section class="container">
         <div class="infos-para-reserva">
 

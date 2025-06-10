@@ -1,0 +1,19 @@
+.card-reserva{
+    background-color: var(--verde-medio);
+    width: 300px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 1rem;
+    box-shadow: 10px 10px 0 var(--verde-escuro);
+    color: var(--branco);
+}
+.fazer-reserva{
+    display: flex;
+    align-self: flex-start;
+    gap: 0.5rem;
+    font-size: 26px;
+    font-weight: 700;
+    cursor: pointer;
+}
