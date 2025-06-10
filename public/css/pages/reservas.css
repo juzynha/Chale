@@ -155,7 +155,8 @@
 
 .ferramenta-calendario{
     color: var(--verde-medio);
-    font-size: 20px;
+    font-size: 24px;
+    font-weight: 700;
     display: flex;
     gap: 0.5rem;
     cursor: pointer;
