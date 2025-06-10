@@ -211,3 +211,10 @@
     border: 1px solid var(--verde-azulado);
     width: 100%;
 }
+
+.botoes-logout{
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    gap: 2rem;
+}

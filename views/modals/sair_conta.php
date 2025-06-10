@@ -1,14 +1,17 @@
-
 <div class="sombra-modal" id="modal_logout">
-    <div class="bloco-modal-usuario">
-        <div class="contorno-modal">
-            <div class="modal-content">   
-                <div class="modal-content-sair">
-                    <p>Tem certeza que deseja sair?</p>
-                    <button class="btn" id="btn_logout">Sim</button>
-                    <button class="btn" id="btn_cancelar"onclick="fecharModal('modal_logout')">Não</button>
+    <div class="bloco-modal-geral">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Deseja sair da conta?</h2>
+                    <button onclick="fecharModal('modal_logout')">
+                        <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+                    </button>
+                </div>
+                <hr>
+                <div class="botoes-logout">
+                    <button class="btn">Sim</button>
+                    <button class="btn">Não</button>
                 </div>
             </div>
-        </div>
     </div>
 </div>
