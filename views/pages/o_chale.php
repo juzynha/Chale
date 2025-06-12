@@ -52,7 +52,7 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </div>
-
+<!-- Modais -->
 <div class="sombra-modal" id="modal_criar_sessao">
     <div class="bloco-modal-geral">
         <div class="modal-header">
@@ -62,7 +62,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCriarSessao">
+            <form id="formCriarSessao" class="form-inputcomum">
                 <div class="input-padrao">
                     <label for="conf_email" class="">Nome da sessão:</label>
                     <input type="text" id="criar_nome_sessao" name="criar_nome_sessao">
@@ -84,7 +84,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCriarSessao">
+            <form id="formCriarSessao" class="form-inputcomum">
                 <div class="input-padrao">
                     <label for="conf_email" class="">Nome do utilitario:</label>
                     <input type="text" id="criar_nome_sessao" name="criar_nome_sessao">

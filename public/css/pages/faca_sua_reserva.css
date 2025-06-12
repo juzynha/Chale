@@ -1,6 +1,18 @@
+.container-fr{
+    display: flex;
+    width: 100%;
+    padding: 2rem 5rem;
+}
+
+.container-bloco-reserva{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .card-infos-fr{
     background-color: var(--verde-medio);
-    width: 350px;
+    width: 400px;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -30,13 +42,45 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    justify-self: flex-end;
+    color: var(--verde-medio);
+    align-items: center;
+    width: 100%;
 }
 
 .item-fr{
     display: flex;
-    font-size: 26px;
-    width: 600px;
-    gap: 1rem;
+    font-size: 27px;
+    gap: 3rem;
+    width: 80%;
+}
+
+
+.item-fr p {
+    display: flex;
+    align-self: center;
+}
+
+.infos-fr{
+    display: flex;
+    flex-direction: column;
     color: var(--verde-medio);
+    width: 50%;
+    gap: 1rem;
+}
+
+.lista-infos-fr{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.lista-infos-fr li{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 24px;
+}
+
+.lista-infos-fr li img{
+    width: 35px;
 }
