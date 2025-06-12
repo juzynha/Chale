@@ -8,11 +8,16 @@
             <p class="error"></p>
         </div>
         <div class="modal-body">
-            <label for="conf_email">Senha:</label>
-            <input type="text" id="senha_editar_dados" name="senha_editar_dados">
+            <form id="formDigiteSuaSenha" class="form-inputcomum">
+                <div class="input-padrao">
+                    <label for="conf_email">Senha:</label>
+                    <input type="text" id="senha_editar_dados" name="senha_editar_dados">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" id="editar_dados">Continuar</button>
+                </div>
+            </form>
         </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn" id="editar_dados">Continuar</button>
-        </div>
+
     </div>
 </div>

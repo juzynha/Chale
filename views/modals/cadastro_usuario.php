@@ -9,8 +9,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h2>Já possui uma conta? Fazer <p class="link" id="abrir_login">login</p></h2>
-                    <form id="formCadastroUsuario">
+                    <h2>Já possui uma conta? Fazer <p class="link" id="abrir_login">login</p>
+                    </h2>
+                    <form id="formCadastroUsuario" class="form-inputwrapper">
                         <p class="error" id="erro_cadastro"></p>
                         <div class="input-wrapper">
                             <label for="nome">Nome:</label>
@@ -26,7 +27,7 @@
                         </div>
                         <div class="input-wrapper">
                             <label for="data_nasc">Data de nascimento:</label>
-                            <input type="date" id="data_nasc" name="data_nasc"> 
+                            <input type="date" id="data_nasc" name="data_nasc">
                         </div>
                         <div class="input-wrapper">
                             <label for="senha">Senha:</label>
@@ -51,16 +52,21 @@
 <div class="sombra-modal" id="modal_confirmar_email">
     <div class="bloco-modal-geral">
         <div class="modal-header">
-            <h2>Enviamos um código ao e-mail <p>gabriel@gmail</p></h2>
+            <h2>Enviamos um código ao e-mail <p>gabriel@gmail</p>
+            </h2>
             <p class="error"></p>
         </div>
         <div class="modal-body">
-            <label for="conf_email">Digite o código:</label>
-            <input type="text" id="conf_email" name="conf_email" required>
-            <p id="reenviar_email" class="textinho">Reenviar</p>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn" id="validar_email">Continuar</button>
+            <form id="formValidacaoEmail" class="form-inputcomum">
+                <div class="input-padrao">
+                    <label for="conf_email">Digite o código:</label>
+                    <input type="text" id="conf_email" name="conf_email" required>
+                    <p id="reenviar_email" class="textinho">Reenviar</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" id="validar_email">Continuar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -81,7 +87,8 @@
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn" id="continuar_email">Salvar</button>
-            <p class="textinho" onclick="fecharModal('modal_cadastrar_foto')">Pular <img src="/chale/public/assets/icons/icon-seta-pular.svg" width="12px"></p>
+            <p class="textinho" onclick="fecharModal('modal_cadastrar_foto')">Pular <img
+                    src="/chale/public/assets/icons/icon-seta-pular.svg" width="12px"></p>
         </div>
     </div>
 </div>

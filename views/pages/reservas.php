@@ -53,7 +53,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </button>
         </div>
         <div class="modal-body">
-            <form id="formBloquearDias">
+            <form id="formBloquearDias" class="form-inputcomum">
                 <div class="date-container">
                     <div class="date-group">
                         <span class="date-label">Início</span>

@@ -140,6 +140,13 @@ input[type="date"]::placeholder{
   gap: 1rem;
 }
 
+.container-flex{
+  display: flex;
+  width: 100%;
+  padding: 3rem 5rem;
+  gap: 1rem;
+}
+
 hr{
   width: 100%;
   border: 1px solid var(--verde-medio);
@@ -148,4 +155,38 @@ hr{
 .titulo-sessao{
   width: 100%;
   padding: 1rem;
+}
+/*Estilização da data*/
+.date-container {
+  display: flex; 
+  justify-content: center;
+}
+.date-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 2px solid var(--verde-azulado);
+}
+
+.date-label {
+  font-weight: bold;
+  color: var(--branco);
+  font-size: 20px;
+}
+
+.date-input {
+  background: none;
+  box-shadow: none;
+  font-family: 'Glacial Indifference';
+  font-size: 18px;
+}
+
+.divider-vertical {
+  border: 1px solid var(--verde-azulado);
+}
+
+.divider-horizontal{
+  border: 1px solid var(--verde-azulado);
+  width: 100%;
 }

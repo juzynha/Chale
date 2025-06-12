@@ -95,7 +95,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <div class="titulo-sessao-conta">
                 <div class="itens-sessao-conta">
                     <div class="item-descricao">
-                        <div class="escrita-item-sessao">
+                        <div class="escrita-item-sessao" onclick="abrirModal('modal_digite_sua_senha')">
                             <p>Editar dados</p>
                             <img src="/chale/public/assets/icons/icon-editar(verde-escuro).svg" class="icon">
                         </div>
@@ -103,7 +103,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <div class="itens-sessao-conta">
                     <div class="item-descricao">
-                        <div class="escrita-item-sessao">
+                        <div class="escrita-item-sessao" onclick="abriModal('modal_excluir_conta')">
                             <p>Excluir conta</p>
                             <img src="/chale/public/assets/icons/icon-lixeira(verde-escuro).svg" class="icon">
                         </div>

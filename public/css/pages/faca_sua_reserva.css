@@ -1,19 +1,42 @@
-.card-reserva{
+.card-infos-fr{
     background-color: var(--verde-medio);
-    width: 300px;
-    padding: 1rem 1.5rem;
+    width: 350px;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    gap: 1rem;
+    gap: 2rem;
     box-shadow: 10px 10px 0 var(--verde-escuro);
     color: var(--branco);
 }
-.fazer-reserva{
+
+.infos-card-fr{
     display: flex;
-    align-self: flex-start;
-    gap: 0.5rem;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 10px;
+    box-shadow: 5px 5px 0 var(--verde), -5px -5px 0 var(--verde-escuro);
+    font-size: 20px;
+}
+
+.footer-card-fr{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+.elementos-fr{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-self: flex-end;
+}
+
+.item-fr{
+    display: flex;
     font-size: 26px;
-    font-weight: 700;
-    cursor: pointer;
+    width: 600px;
+    gap: 1rem;
+    color: var(--verde-medio);
 }

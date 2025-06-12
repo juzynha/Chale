@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-body">
                     <h2>Não possui uma conta? <p class="link" id="abrir_cadastro">Cadastre-se</p> agora</h2>
-                    <form id="formLogin">
+                    <form id="formLogin" class="form-inputwrapper" >
                         <p class="error" id="login_error"></p>
                         <div class="input-wrapper">
                             <label for="email">E-mail:</label>

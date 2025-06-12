@@ -78,7 +78,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <div class="itens-sessao-conta">
                     <div class="item-descricao">
-                        <div class="escrita-item-sessao" onclick="abrirModal('modal_excluir_admin')">
+                        <div class="escrita-item-sessao" onclick="abrirModal('modal_excluir_conta')">
                             <p>Excluir conta</p>
                             <img src="/chale/public/assets/icons/icon-lixeira(verde-escuro).svg" class="icon">
                         </div>
@@ -96,7 +96,7 @@ require_once __DIR__ . '/../layouts/header.php';
         </section>
     </section>
 </div>
-
+<!-- Modais -->
 <div class="sombra-modal" id="modal_cadastro_admin">
     <div class="bloco-modal-usuario">
         <div class="contorno-modal">
@@ -108,7 +108,7 @@ require_once __DIR__ . '/../layouts/header.php';
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="formCadastroAdmin">
+                    <form id="formCadastroAdmin" class="form-inputwrapper">
                         <p class="error" id="erro_cadastro"></p>
                         <div class="input-wrapper">
                             <label for="nome">Nome:</label>

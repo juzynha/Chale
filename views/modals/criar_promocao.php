@@ -7,7 +7,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCadastroPromocao">
+            <form id="formCadastroPromocao" class="form-inputcomum">
                 <div class="input-padrao">
                     <label for="conf_email" class="">Nome da promoção:</label>
                     <input type="text" id="criar_nome_promocao" name="criar_nome_promocao">
