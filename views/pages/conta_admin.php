@@ -102,30 +102,32 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="contorno-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                     <h2>Criar conta de administrador</h2>
+                    <h2>Criar conta de administrador</h2>
                     <button onclick="fecharModal('modal_cadastro_admin')">
                         <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="formCadastroAdmin" class="form-inputwrapper">
-                        <p class="error" id="erro_cadastro"></p>
-                        <div class="input-wrapper">
-                            <label for="nome">Nome:</label>
-                            <input type="text" id="nome" name="nome">
-                        </div>
-                        <div class="input-wrapper">
-                            <label for="email">E-mail:</label>
-                            <input type="email" id="email" name="email">
-                        </div>
-                        <div class="input-wrapper">
-                            <label for="senha">Senha:</label>
-                            <input type="password" id="senha" name="senha">
-                        </div>
-                        <div class="last-input">
+                    <form id="formCadastroAdmin">
+                        <div class="campos-form-inputwrapper">
+                            <p class="error" id="erro_cadastro"></p>
                             <div class="input-wrapper">
-                                <label for="senha">Confirmar senha:</label>
-                                <input type="password" id="conf_senha" name="conf_senha">
+                                <label for="nome">Nome:</label>
+                                <input type="text" id="nome" name="nome">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="email">E-mail:</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="senha">Senha:</label>
+                                <input type="password" id="senha" name="senha">
+                            </div>
+                            <div class="last-input">
+                                <div class="input-wrapper">
+                                    <label for="senha">Confirmar senha:</label>
+                                    <input type="password" id="conf_senha" name="conf_senha">
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -139,20 +141,20 @@ require_once __DIR__ . '/../layouts/header.php';
 </div>
 <div class="sombra-modal" id="modal_nao_pode_excluir">
     <div class="bloco-modal-geral">
-      <div class="modal-header">
-        <h2>Aviso</h2>
-        <button onclick="fecharModal('modal_nao_pode_excluir')">
-          <img src="/chale/public/assets/icons/icon-close.svg" class="icon" alt="Fechar">
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Você não pode excluir sua conta pois é a única existente!</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn" onclick="fecharModal('modal_nao_pode_excluir')">OK</button>
-      </div>
+        <div class="modal-header">
+            <h2>Aviso</h2>
+            <button onclick="fecharModal('modal_nao_pode_excluir')">
+                <img src="/chale/public/assets/icons/icon-close.svg" class="icon" alt="Fechar">
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Você não pode excluir sua conta pois é a única existente!</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" onclick="fecharModal('modal_nao_pode_excluir')">OK</button>
+        </div>
     </div>
-  </div>
+</div>
 
 
 

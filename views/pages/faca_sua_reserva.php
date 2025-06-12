@@ -95,7 +95,7 @@ require_once __DIR__ . '/../layouts/header.php';
 <div class="sombra-modal" id="modal_fazer_reserva">
     <div class="bloco-modal-geral">
         <div class="modal-header">
-            <h2>Para editar seus dados digite sua senha</h2>
+            <h2>Fazer reserva</h2>
             <button onclick="fecharModal('modal_fazer_reserva')">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
@@ -103,7 +103,25 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
         <div class="modal-body">
             <form id="formFazerReserva" class="form-inputcomum">
-            
+                <div class="infos-datas-fr">
+                    <div class="date-container">
+                        <div class="date-group">
+                            <span class="date-label">Check-in</span>
+                            <div class="divider-horizontal"></div>
+                            <input type="date" class="date-input" id="start-date">
+                        </div>
+                        <div class="divider-vertical"></div>
+                        <div class="date-group">
+                            <span class="date-label">Check-out</span>
+                            <div class="divider-horizontal"></div>
+                            <input type="date" class="date-input" id="end-date">
+                        </div>
+                    </div>
+                </div>
+                <p class="valortotal-fr"><strong>Valor Total: </strong>R$400</p>
+                <div class="modal-footer">
+                    <button class="btn">Reservar</button>
+                </div>
             </form>
         </div>
     </div>

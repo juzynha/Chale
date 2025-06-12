@@ -18,7 +18,8 @@ require_once __DIR__ . '/../layouts/header.php';
                         <img src="" alt="">
                     </div>
                     <div class="descricao-utilitario">
-                        <p>Texto descritivo do utilitario aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd basdh uawhd abjshdhawudh jakjhwduhasjnjwbdb nasda</p>
+                        <p>Texto descritivo do utilitario aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd
+                            basdh uawhd abjshdhawudh jakjhwduhasjnjwbdb nasda</p>
                     </div>
                 </div>
                 <div class="card-utilitario">
@@ -27,7 +28,8 @@ require_once __DIR__ . '/../layouts/header.php';
                         <img src="" alt="">
                     </div>
                     <div class="descricao-utilitario">
-                        <p>Texto descritivo do utilitario aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd basdh uawhd abjshdhawudh jakjhwduhasjnjwbdb nasda</p>
+                        <p>Texto descritivo do utilitario aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd
+                            basdh uawhd abjshdhawudh jakjhwduhasjnjwbdb nasda</p>
                     </div>
                 </div>
             </div>
@@ -47,7 +49,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <hr>
         </div>
         <div class="opcao-criar-sessao verde-medio" onclick="abrirModal('modal_criar_sessao')">
-             <p>Criar sessão</p>
+            <p>Criar sessão</p>
             <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
         </div>
     </div>
@@ -62,7 +64,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCriarSessao" class="form-inputcomum">
+            <form id="formCriarSessao">
                 <div class="input-padrao">
                     <label for="conf_email" class="">Nome da sessão:</label>
                     <input type="text" id="criar_nome_sessao" name="criar_nome_sessao">
@@ -84,20 +86,22 @@ require_once __DIR__ . '/../layouts/header.php';
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCriarSessao" class="form-inputcomum">
-                <div class="input-padrao">
-                    <label for="conf_email" class="">Nome do utilitario:</label>
-                    <input type="text" id="criar_nome_sessao" name="criar_nome_sessao">
-                </div>
-                <div class="imagem-utilitario">
-                    <div class="icon-add-imagem">
-                        <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="30px">
-                    </div>
-                </div>
-                <div class="descricao-utilitario">
+            <form id="formCriarSessao">
+                <div class="campos-form-inputpadrao">
                     <div class="input-padrao">
-                        <label for="conf_email" class="">Descrição:</label>
+                        <label for="conf_email" class="">Nome do utilitario:</label>
                         <input type="text" id="criar_nome_sessao" name="criar_nome_sessao">
+                    </div>
+                    <div class="imagem-utilitario">
+                        <div class="icon-add-imagem">
+                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="30px">
+                        </div>
+                    </div>
+                    <div class="descricao-utilitario">
+                        <div class="input-padrao">
+                            <label for="conf_email" class="">Descrição:</label>
+                            <input type="text" id="criar_nome_sessao" name="criar_nome_sessao">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

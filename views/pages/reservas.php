@@ -43,7 +43,7 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </section>
-
+<!-- Modais -->
 <div class="sombra-modal" id="modal_bloquear_dias">
     <div class="bloco-modal-geral">
          <div class="modal-header">
@@ -53,7 +53,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </button>
         </div>
         <div class="modal-body">
-            <form id="formBloquearDias" class="form-inputcomum">
+            <form id="formBloquearDias">
                 <div class="date-container">
                     <div class="date-group">
                         <span class="date-label">Início</span>

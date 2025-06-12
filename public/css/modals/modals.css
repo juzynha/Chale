@@ -112,14 +112,20 @@
     cursor: pointer;
 }
   
-.form-inputwrapper {
+.modal-body form{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.campos-form-inputwrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     padding: 0 1rem;
 }
 
-.form-inputcomum {
+.campos-form-inputpadrao {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -189,4 +195,14 @@
     padding: 1rem;
     justify-content: center;
     gap: 2rem;
+}
+/*Modal de fazer reserva*/
+.infos-datas-fr {
+    padding: 1rem;
+    border: 2px solid var(--branco);
+    border-radius: 10px;
+}
+
+.valortotal-fr{
+    font-size: 24px;
 }

@@ -7,7 +7,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <form id="formExcluirConta" class="form-inputcomum">
+            <form id="formExcluirConta">
                 <div class="input-padrao">
                     <label for="senha_excluir_admin">Senha:</label>
                     <input type="password" id="senha_excluir_admin" name="senha_excluir_admin">

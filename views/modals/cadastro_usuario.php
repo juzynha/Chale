@@ -9,34 +9,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h2>Já possui uma conta? Fazer <p class="link" id="abrir_login">login</p>
-                    </h2>
-                    <form id="formCadastroUsuario" class="form-inputwrapper">
-                        <p class="error" id="erro_cadastro"></p>
-                        <div class="input-wrapper">
-                            <label for="nome">Nome:</label>
-                            <input type="text" id="nome" name="nome">
-                        </div>
-                        <div class="input-wrapper">
-                            <label for="email">E-mail:</label>
-                            <input type="email" id="email" name="email">
-                        </div>
-                        <div class="input-wrapper">
-                            <label for="telefone">Telefone:</label>
-                            <input type="text" id="telefone" name="telefone">
-                        </div>
-                        <div class="input-wrapper">
-                            <label for="data_nasc">Data de nascimento:</label>
-                            <input type="date" id="data_nasc" name="data_nasc">
-                        </div>
-                        <div class="input-wrapper">
-                            <label for="senha">Senha:</label>
-                            <input type="password" id="senha" name="senha">
-                        </div>
-                        <div class="last-input">
+                    <h2>Já possui uma conta? Fazer <p class="link" id="abrir_login">login</p></h2>
+                    <form id="formCadastroUsuario">
+                        <div class="campos-form-inputwrapper">
+                            <p class="error" id="erro_cadastro"></p>
                             <div class="input-wrapper">
-                                <label for="senha">Confirmar senha:</label>
-                                <input type="password" id="conf_senha" name="conf_senha">
+                                <label for="nome">Nome:</label>
+                                <input type="text" id="nome" name="nome">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="email">E-mail:</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="telefone">Telefone:</label>
+                                <input type="text" id="telefone" name="telefone">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="data_nasc">Data de nascimento:</label>
+                                <input type="date" id="data_nasc" name="data_nasc">
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="senha">Senha:</label>
+                                <input type="password" id="senha" name="senha">
+                            </div>
+                            <div class="last-input">
+                                <div class="input-wrapper">
+                                    <label for="senha">Confirmar senha:</label>
+                                    <input type="password" id="conf_senha" name="conf_senha">
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">

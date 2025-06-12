@@ -7,36 +7,38 @@
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCadastroPromocao" class="form-inputcomum">
-                <div class="input-padrao">
-                    <label for="conf_email" class="">Nome da promoção:</label>
-                    <input type="text" id="criar_nome_promocao" name="criar_nome_promocao">
-                </div>
-                <div class="date-container">
-                    <div class="date-group">
-                        <span class="date-label">Início</span>
-                        <div class="divider-horizontal"></div>
-                        <input type="date" class="date-input" id="start-date" >
+            <form id="formCadastroPromocao">
+                <div class="campos-form-inputpadrao">
+                    <div class="input-padrao">
+                        <label for="conf_email" class="">Nome da promoção:</label>
+                        <input type="text" id="criar_nome_promocao" name="criar_nome_promocao">
                     </div>
-                    <div class="divider-vertical"></div>
-                    <div class="date-group">
-                        <span class="date-label">Fim</span>
-                        <div class="divider-horizontal"></div>
-                        <input type="date" class="date-input" id="end-date">
+                    <div class="date-container">
+                        <div class="date-group">
+                            <span class="date-label">Início</span>
+                            <div class="divider-horizontal"></div>
+                            <input type="date" class="date-input" id="start-date">
+                        </div>
+                        <div class="divider-vertical"></div>
+                        <div class="date-group">
+                            <span class="date-label">Fim</span>
+                            <div class="divider-horizontal"></div>
+                            <input type="date" class="date-input" id="end-date">
+                        </div>
                     </div>
-                </div>
-                <div class="input-padrao">
-                    <label for="conf_email">Diária:</label>
-                    <div class="input-preco">
-                        <p>R$</p>
-                        <input type="text" id="diaria_promocao" name="diaria_promocao">
+                    <div class="input-padrao">
+                        <label for="conf_email">Diária:</label>
+                        <div class="input-preco">
+                            <p>R$</p>
+                            <input type="text" id="diaria_promocao" name="diaria_promocao">
+                        </div>
                     </div>
-                </div>
-                <div class="input-padrao">
-                    <label for="conf_email">Diária fim de semana:</label>
-                    <div class="input-preco">
-                        <p>R$</p>
-                        <input type="text" id="diaria_promocao" name="diaria_promocao">
+                    <div class="input-padrao">
+                        <label for="conf_email">Diária fim de semana:</label>
+                        <div class="input-preco">
+                            <p>R$</p>
+                            <input type="text" id="diaria_promocao" name="diaria_promocao">
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -8,7 +8,7 @@
             <p class="error"></p>
         </div>
         <div class="modal-body">
-            <form id="formDigiteSuaSenha" class="form-inputcomum">
+            <form id="formDigiteSuaSenha">
                 <div class="input-padrao">
                     <label for="conf_email">Senha:</label>
                     <input type="text" id="senha_editar_dados" name="senha_editar_dados">
