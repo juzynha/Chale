@@ -4,6 +4,12 @@
     padding: 2rem 5rem;
 }
 
+.option-editar-carrossel{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 5rem;
+}
+
 .container-bloco-reserva{
     display: flex;
     flex-direction: column;

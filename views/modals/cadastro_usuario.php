@@ -9,7 +9,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h2>Já possui uma conta? Fazer <p class="link" id="abrir_login">login</p></h2>
+                    <h2>Já possui uma conta? Fazer <p class="link" onclick="fecharModal('modal_cadastro_usuario'), abrirModal('modal_login')">login</p></h2>
                     <form id="formCadastroUsuario">
                         <div class="campos-form-inputwrapper">
                             <p class="error" id="erro_cadastro"></p>

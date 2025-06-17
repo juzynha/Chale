@@ -206,3 +206,43 @@
 .valortotal-fr{
     font-size: 24px;
 }
+/*Modal de editar carrossel*/
+.carrossel-itens{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.item-carrossel{
+    display: flex;
+}
+
+.titulo-item-carrossel{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.foto-item-carrossel{
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.foto-carrossel{
+    width: 100px;
+    border-radius: 10px;
+}
+
+.add-imagem-carrossel{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.campo-add-foto{
+    width: 50%;
+}

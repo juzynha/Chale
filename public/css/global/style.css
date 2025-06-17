@@ -5,7 +5,6 @@
 @import '../pages/conta_usuario.css';
 @import '../pages/o_chale.css';
 @import '../pages/faca_sua_reserva.css';
-@import '../modals/promocao.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
 
@@ -155,6 +154,24 @@ hr{
 .titulo-sessao{
   width: 100%;
   padding: 1rem;
+}
+
+.ferramenta{
+    color: var(--verde-medio);
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.ferramenta-branco{
+    color: var(--branco);
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
 }
 /*Estilização da data*/
 .date-container {

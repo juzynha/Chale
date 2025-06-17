@@ -23,7 +23,7 @@ require_once __DIR__ . '/../layouts/header.php';
     <h2 class="subtitulo">Calendário</h2>
     <div class="sessao-calendario">
         <div class="atualizar-calendario">
-            <div class="ferramenta-calendario">
+            <div class="ferramenta">
                 <p>Atualizar calendário</p>
                 <img src="/chale/public/assets/icons/icon-atualizar.svg" class="icon">
             </div>
@@ -32,11 +32,11 @@ require_once __DIR__ . '/../layouts/header.php';
         <!--Aqui vai a montagem do calendário-->
         </div>
         <div class="acoes-calendario">
-            <div class="ferramenta-calendario" onclick="abrirModal('modal_criar_promocao')">
+            <div class="ferramenta" onclick="abrirModal('modal_criar_promocao')">
                 <p>Criar promoção</p>
                 <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
             </div>
-            <div class="ferramenta-calendario" onclick="abrirModal('modal_bloquear_dias')">
+            <div class="ferramenta" onclick="abrirModal('modal_bloquear_dias')">
                 <p>Bloquear dias</p>
                 <img src="/chale/public/assets/icons/icon-bloquear.svg" class="icon">
             </div>

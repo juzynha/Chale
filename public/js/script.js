@@ -24,17 +24,6 @@ function fecharModal(idModal) {
     }
 }
 
-//aplicando as funções de abrir e fechar modal nos devidos botões
-document.getElementById('abrir_cadastro').addEventListener('click', () => {
-    fecharModal('modal_login');
-    abrirModal('modal_cadastro_usuario');
-});
-
-document.getElementById('abrir_login').addEventListener('click', () => {
-    fecharModal('modal_cadastro_usuario');
-    abrirModal('modal_login');
-});
-
 //toggle icon olho pra mostrar senha
 const inputSenha = document.getElementById("senha_login");
 const toggleBtn = document.getElementById("toggleSenha");
@@ -65,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-  // Flatpickr com formato brasileiro
+  /* Flatpickr com formato brasileiro
   flatpickr(".calendario_input", {
     dateFormat: "d/m/Y",
     locale: {
@@ -80,6 +69,4 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     }
   });
-
-
-  
+*/
