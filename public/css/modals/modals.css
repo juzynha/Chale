@@ -246,3 +246,7 @@
 .campo-add-foto{
     width: 50%;
 }
+
+input.erro {
+  border: 2px solid red;
+}

@@ -112,19 +112,19 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="date-group">
                             <span class="date-label">Check-in</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input">
+                            <input type="date" class="date-input" name="check-in">
                         </div>
                         <div class="divider-vertical"></div>
                         <div class="date-group">
                             <span class="date-label">Check-out</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input">
+                            <input type="date" class="date-input" name="check-out">
                         </div>
                     </div>
                 </div>
                 <p class="valortotal-fr"><strong>Valor Total: </strong>R$400</p>
                 <div class="modal-footer">
-                    <button class="btn">Reservar</button>
+                    <button type="submit" class="btn">Reservar</button>
                 </div>
             </form>
         </div>

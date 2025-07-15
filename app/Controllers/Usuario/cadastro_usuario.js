@@ -1,3 +1,42 @@
+import { validarCampos, validarNome, validarEmail, validarSenha, validarData } from '../validacoes.js';
+
+// Cadastro de administrador
+document.getElementById('modal_cadastro_admin').addEventListener('submit', function (e) {
+  e.preventDefault(); // Impede envio
+  console.log('clicou');
+  
+  const regras = {
+    nome: validarNome,
+    email: validarEmail,
+    senha: validarSenha,
+    data: validarData
+  };
+
+  const erros = validarCampos(regras, this); // `this` = o próprio formulário
+
+  if (erros.length > 0) {
+    document.getElementById('erro_cadastro_admin').textContent = erros.join(', ');
+    return;
+  }
+
+  // Se passou nas validações, envia pro PHP (exemplo com fetch)
+  fetch('backend/cadastrar.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nome: campos.nome.value,
+      email: campos.email.value,
+      senha: campos.senha.value,
+      data: campos.data.value
+    })
+  })
+  .then(res => res.json())
+  .then(res => {
+    document.getElementById('mensagem').textContent = res.mensagem;
+  });
+});
+
+
 // === Parte 1: Validação e envio dos dados ===
 
 // Armazenar dados temporariamente

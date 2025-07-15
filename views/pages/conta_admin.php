@@ -110,28 +110,28 @@ require_once __DIR__ . '/../layouts/header.php';
                 <div class="modal-body">
                     <form id="formCadastroAdmin">
                         <div class="campos-form-inputwrapper">
-                            <p class="error" id="erro_cadastro"></p>
+                            <p class="error" id="erro_cadastro_admin"></p>
                             <div class="input-wrapper">
-                                <label for="nome">Nome:</label>
-                                <input type="text" id="nome" name="nome">
+                                <label for="">Nome:</label>
+                                <input type="text" name="nome">
                             </div>
                             <div class="input-wrapper">
-                                <label for="email">E-mail:</label>
-                                <input type="email" id="email" name="email">
+                                <label for="">E-mail:</label>
+                                <input type="email" name="email">
                             </div>
                             <div class="input-wrapper">
-                                <label for="senha">Senha:</label>
-                                <input type="password" id="senha" name="senha">
+                                <label for="">Senha:</label>
+                                <input type="password" name="senha">
                             </div>
                             <div class="last-input">
                                 <div class="input-wrapper">
-                                    <label for="senha">Confirmar senha:</label>
-                                    <input type="password" id="conf_senha" name="conf_senha">
+                                    <label for="">Confirmar senha:</label>
+                                    <input type="password" name="conf_senha">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn" id="continuar_cadastro">Continuar</button>
+                            <button type="submit" class="btn">Continuar</button>
                         </div>
                     </form>
                 </div>

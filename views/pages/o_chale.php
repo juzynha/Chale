@@ -66,11 +66,11 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="modal-body">
             <form id="formCriarSessao">
                 <div class="input-padrao">
-                    <label for="conf_email" class="">Nome da sessão:</label>
-                    <input type="text" id="criar_nome_sessao" name="criar_nome_sessao">
+                    <label for="">Nome da sessão:</label>
+                    <input type="text" name="nome-comum">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn" id="criar_sessao">Criar</button>
+                    <button type="submit" class="btn">Criar</button>
                 </div>
             </form>
         </div>
@@ -89,8 +89,8 @@ require_once __DIR__ . '/../layouts/header.php';
             <form id="formCriarSessao">
                 <div class="campos-form-inputpadrao">
                     <div class="input-padrao">
-                        <label for="conf_email" class="">Nome do utilitario:</label>
-                        <input type="text" id="criar_nome_sessao" name="criar_nome_sessao">
+                        <label for="">Nome do utilitario:</label>
+                        <input type="text" name="nome-comum">
                     </div>
                     <div class="imagem-utilitario">
                         <div class="icon-add-imagem">
@@ -99,13 +99,13 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                     <div class="descricao-utilitario">
                         <div class="input-padrao">
-                            <label for="conf_email" class="">Descrição:</label>
-                            <input type="text" id="criar_nome_sessao" name="criar_nome_sessao">
+                            <label for="">Descrição:</label>
+                            <input type="text" name="descricao">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn" id="criar_utilitario">Criar</button>
+                    <button type="submit" class="btn">Criar</button>
                 </div>
             </form>
         </div>

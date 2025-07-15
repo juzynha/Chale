@@ -22,6 +22,16 @@ function fecharModal(idModal) {
     if (modal) {
         modal.style.display = 'none';
     }
+    // Limpar todos os inputs, textareas e selects dentro do modal
+    const campos = modal.querySelectorAll('input, textarea, select');
+
+    campos.forEach(campo => {
+      if (campo.type === 'checkbox' || campo.type === 'radio') {
+        campo.checked = false;
+      } else {
+        campo.value = '';
+      }
+    });
 }
 
 //toggle icon olho pra mostrar senha
@@ -40,6 +50,7 @@ toggleBtn.addEventListener("click", () => {
 
 //máscara para input type="date"
 document.addEventListener("DOMContentLoaded", function () {
+  // Máscara de data dd/mm/yyyy
   document.querySelectorAll('input[type="date"]').forEach(function(input) {
     input.type = 'text';
     input.placeholder = '  /  /    ';
@@ -52,7 +63,26 @@ document.addEventListener("DOMContentLoaded", function () {
       e.target.value = v.slice(0, 10);
     });
   });
+
+  // Máscara de nome (primeira letra de cada palavra maiúscula)
+  document.querySelectorAll('[name="nome"]').forEach(function(input) {
+    input.addEventListener('input', function () {
+      const cursor = input.selectionStart; // salva posição do cursor
+
+      let formatado = input.value
+        .toLowerCase()
+        .replace(/\s+/g, ' ') // evita múltiplos espaços seguidos
+        .split(' ')
+        .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1))
+        .join(' ');
+
+      input.value = formatado;
+
+      input.setSelectionRange(cursor, cursor); // restaura o cursor
+    });
+  });
 });
+
 
   /* Flatpickr com formato brasileiro
   flatpickr(".calendario_input", {
