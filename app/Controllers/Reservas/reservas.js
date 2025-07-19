@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     listaReservas();
-    mostrarTudo();
 });
 
 function listaReservas() {
@@ -21,7 +20,7 @@ function listaReservas() {
                 }
                 lista.innerHTML += `
                     <div class="card-reserva">
-                        <div class="infos-cliente">
+                        <div class="infos-reserva">
                             <div class="nome-cliente">
                                 <div class="foto-cliente">${fotoHTML}</div>
                                 <p>${reserva.usunome}</p>
@@ -38,11 +37,10 @@ function listaReservas() {
                                 <h3>Idade: </h3>
                                 <p>${reserva.idade}</p>
                             </div>
-                        </div>
-                        <div class="infos-reserva">
+                            <hr class="divider-horizontal">
                             <div class="info">
                                 <h3>Valor pago: </h3>
-                                <p>${reserva.resvtotal}</p>
+                                <p>R$ ${reserva.resvtotal}</p>
                             </div>
                             <div class="info">
                                 <h3>Check-in: </h3>
@@ -62,50 +60,3 @@ function listaReservas() {
         });
 }
 
-function mostrarTudo() {
-    let mostrar = document.getElementById('mostrar_lista');
-
-    mostrar.addEventListener("click", function () {
-        let container = document.getElementById('container_reservas');
-
-        if (mostrar.textContent === 'Mostrar tudo') {
-            // Ação: expandir
-            container.classList.remove("limita-tamanho");
-            container.classList.add("container-reservas container");
-            mostrar.textContent = 'Mostrar menos';
-        } else {
-            // Ação: recolher
-            container.classList.remove("container-reservas");
-            container.classList.add("limita-tamanho");
-            mostrar.textContent = 'Mostrar tudo';
-        }
-    });
-}
-/*
-document.addEventListener("DOMContentLoaded", function () {
-    const formLogin = document.getElementById("formLogin");
-    const errorElement = formLogin.querySelector(".error");
-
-    formLogin.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const formData = new FormData(formLogin);
-
-        fetch("/chale/app/Controllers/UsuarioController.php", {
-            method: "POST",
-            body: formData
-        })
-        .then(response => response.text())
-        .then(result => {
-            if (result.trim() === "ok") {
-                window.location.href = "/chale/index.php";
-            } else {
-                errorElement.textContent = result;
-            }
-        })
-        .catch(() => {
-            errorElement.textContent = "Erro ao tentar logar. Tente novamente.";
-        });
-    });
-});
-*/

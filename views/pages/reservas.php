@@ -6,39 +6,73 @@ require_once __DIR__ . '/../layouts/header.php';
     require_once __DIR__ . '/../layouts/menu.php';
     ?>
 </header>
-<section class="limita-tamanho container" id="container_reservas">
+<section class="container-reservas" id="container_reservas">
     <h2 class="subtitulo">Reservas</h2>
     <div class="filtro">
         <input type="text" id="data_filtro">
         <img src="/chale/public/assets/icons/icon-funil.svg" width="20px">
     </div>
-    <div id="lista_reservas"> 
+    <div id="lista_reservas">
         <!--Aqui vai os cards das reservas -->
     </div>
 </section>
 <div id="mostrar_lista">
     <p>Mostrar tudo</p>
 </div>
-<section class="container-calendario container">
+<section class="container-calendario">
     <h2 class="subtitulo">Calendário</h2>
-    <div class="sessao-calendario">
-        <div class="atualizar-calendario">
-            <div class="ferramenta">
-                <p>Atualizar calendário</p>
-                <img src="/chale/public/assets/icons/icon-atualizar.svg" class="icon">
+    <div class="container-elementos">
+        <img src="/chale/public/assets/elementos-graficos/onda-calendario-left.svg" class="element-planta-left">
+        <img src="/chale/public/assets/elementos-graficos/onda-calendario-right.svg" class="element-planta-right">
+        <div class="sessao-calendario">
+            <div class="atualizar-calendario">
+                <div class="ferramenta">
+                    <p>Atualizar calendário</p>
+                    <img src="/chale/public/assets/icons/icon-atualizar.svg" class="icon">
+                </div>
             </div>
-        </div>
-        <div id="calendar">
-        <!--Aqui vai a montagem do calendário-->
-        </div>
-        <div class="acoes-calendario">
-            <div class="ferramenta" onclick="abrirModal('modal_criar_promocao')">
-                <p>Criar promoção</p>
-                <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
+            <div class="calendario-box">
+                <header class="header-calendario">
+                    <span id="prev">
+                        <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon">
+                    </span>
+                    <p class="mes-atual"></p>
+                    <span id="next">
+                        <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon">
+                    </span>
+                </header>
+                <div class="calendar">
+                    <hr class="divider-horizontal-cal">
+                    <ul class="weeks">
+                        <li>Dom</li>
+                        <hr class="divider-vertical-cal">
+                        <li>Seg</li>
+                        <hr class="divider-vertical-cal">
+                        <li>Ter</li>
+                        <hr class="divider-vertical-cal">
+                        <li>Qua</li>
+                        <hr class="divider-vertical-cal">
+                        <li>Qui</li>
+                        <hr class="divider-vertical-cal">
+                        <li>Sex</li>
+                        <hr class="divider-vertical-cal">
+                        <li>Sab</li>
+                    </ul>
+                    <hr class="divider-horizontal-cal">
+                    <ul class="days">
+
+                    </ul>
+                </div>
             </div>
-            <div class="ferramenta" onclick="abrirModal('modal_bloquear_dias')">
-                <p>Bloquear dias</p>
-                <img src="/chale/public/assets/icons/icon-bloquear.svg" class="icon">
+            <div class="acoes-calendario">
+                <div class="ferramenta" onclick="abrirModal('modal_criar_promocao')">
+                    <p>Criar promoção</p>
+                    <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
+                </div>
+                <div class="ferramenta" onclick="abrirModal('modal_bloquear_dias')">
+                    <p>Bloquear dias</p>
+                    <img src="/chale/public/assets/icons/icon-bloquear.svg" class="icon">
+                </div>
             </div>
         </div>
     </div>
@@ -46,7 +80,7 @@ require_once __DIR__ . '/../layouts/header.php';
 <!-- Modais -->
 <div class="sombra-modal" id="modal_bloquear_dias">
     <div class="bloco-modal-geral">
-         <div class="modal-header">
+        <div class="modal-header">
             <h2>Bloquear dias</h2>
             <button onclick="fecharModal('modal_bloquear_dias')">
                 <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
@@ -58,17 +92,17 @@ require_once __DIR__ . '/../layouts/header.php';
                     <div class="date-group">
                         <span class="date-label">Início</span>
                         <div class="divider-horizontal"></div>
-                        <input type="date" class="date-input" id="start-date" >
+                        <input type="date" class="date-input">
                     </div>
                     <div class="divider-vertical"></div>
                     <div class="date-group">
                         <span class="date-label">Fim</span>
                         <div class="divider-horizontal"></div>
-                        <input type="date" class="date-input" id="end-date">
+                        <input type="date" class="date-input">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn" id="criar_promocao">Bloquear</button>
+                    <button type="submit" class="btn" id="bloquear">Bloquear</button>
                 </div>
             </form>
         </div>

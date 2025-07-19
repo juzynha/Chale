@@ -1,12 +1,16 @@
-.limita-tamanho{
-    width: 100%;
-    max-height: 150%;
-    overflow: hidden;
-    position: relative;
-    transition: max-height 0.3s ease;
+.container-reservas{
     display: flex;
+    transition: max-height 0.3s ease;
     flex-direction: column;
     gap: 1rem;
+    padding: 3rem 5rem;
+}
+
+.limita-tamanho{
+    max-height: 70vh;
+    overflow-y: hidden;
+    position: relative;
+    transition: max-height 0.3s ease;
 }
 
 .limita-tamanho::after {
@@ -19,21 +23,6 @@
     background: linear-gradient(to bottom, transparent, rgba(63,81,65,0.5));
     pointer-events: none;
     transition: opacity 0.3s;
-}
-  
-.limita-tamanho.expandido {
-    max-height: none;
-}
-  
-.limita-tamanho.expandido::after {
-    opacity: 0;
-}
-
-.container-reservas{
-    position: relative;
-    transition: max-height 0.3s ease;
-    flex-direction: column;
-    gap: 1rem;
 }
 
 .filtro{
@@ -55,40 +44,28 @@
 
 #lista_reservas{
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 2rem;
 }
 
 .card-reserva{
-    position: relative;
-    width: auto;
     display: flex;
     padding: 2rem;
-    gap: 5rem;
+    gap: 2rem;
     background-color: var(--verde-medio);
     box-shadow: 10px 10px 1px var(--verde);
     border-radius: 10px;
     color: var(--branco);
 }
 
-.infos-cliente{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
 .infos-reserva{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 0.5rem;
 }
 
 .excluir-reserva{
     display: flex;
-    justify-content: end;
-    align-items: flex-start;
-    width: 10%;
 }
 
 .nome-cliente{
@@ -128,7 +105,7 @@
 #mostrar_lista{
     padding: 0.5rem;
     width: 100%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     color: var(--verde-medio);
@@ -140,12 +117,16 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding: 3rem;
+    gap: 2rem;
 }
 
 .sessao-calendario{
+    width: 800px;
+    max-width: 90%;
     display: flex;
     flex-direction: column;
-    width: auto;
+    gap: 2rem;
 }
 
 .atualizar-calendario{
@@ -153,11 +134,148 @@
     justify-content: flex-end;
 }
 
-#calendario{
-    height: 400px;
-}
-
 .acoes-calendario{
     display: flex;
     justify-content: space-between;
+}
+
+.container-elementos{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.element-planta-left{
+    position: absolute;
+    left: -3rem;
+    top: 0;
+    width: 250px;
+}
+
+.element-planta-right{
+    position: absolute;
+    right: -3rem;
+    top: 0;
+    width: 250px;
+}
+
+/*Estilizando o calendário*/
+.calendario-box{
+    background-color: var(--verde-medio);
+    border-radius: 10px;
+    box-shadow: 10px 10px 0 rgba(42,50,43),
+    -10px -10px 0 rgba(124,154,120);
+}
+
+.header-calendario{
+    display: flex;
+    padding: 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--branco);
+}
+
+.mes-atual{
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.calendar ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+    color: var(--branco);
+}
+
+.weeks{
+    display: flex;
+}
+
+.calendar .weeks li{
+    align-self: center;
+    width: calc(100% / 7 - 2px);
+    aspect-ratio: 1 / 0.5; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.days-line{
+    display: flex;
+    width: 100%;
+}
+
+.day{
+    display: flex;
+    padding: 0.5rem 1rem;
+    width: calc(100% / 7 - 2px);
+    aspect-ratio: 1 / 0.8; 
+}
+
+.calendar .day li{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 7px;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: var(--verde);
+    box-shadow: 5px 5px 0 rgba(42,50,43);
+}
+
+.calendar .day li .bloq{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: var(--verde-escuro);
+}
+
+.day li.inactive{
+    color: var(--branco);
+    background-color: var(--verde-medio);
+    box-shadow: none;
+}
+
+.day li.active{
+    color: var(--branco);
+}
+
+.day li::before{
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.day li.active::before{
+  background: #9B59B6;
+}
+
+.day li:not(.active):hover::before{
+  background: #f2f2f2;
+}
+
+.divider-vertical-cal{
+    border: 1px solid var(--branco);
+}
+
+.divider-horizontal-cal{
+    border: 1px solid var(--branco);
+    width: 100%;
 }

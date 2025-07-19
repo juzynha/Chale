@@ -33,14 +33,14 @@ require_once __DIR__ . '/../layouts/header.php';
                 <div class="itens-sessao-conta">
                     <div class="item-descricao">
                         <div class="escrita-item-sessao">
-                            <a href="">Consultar reservas</a>
+                            <a href="/chale/views/pages/reservas.php">Consultar reservas</a>
                         </div>
                     </div>
                 </div>
                 <div class="itens-sessao-conta">
                     <div class="item-descricao">
                         <div class="escrita-item-sessao">
-                            <a href="">Editar calendário</a>
+                            <a href="/chale/views/pages/reservas.php">Editar calendário</a>
                         </div>
                     </div>
                 </div>
@@ -113,15 +113,15 @@ require_once __DIR__ . '/../layouts/header.php';
                             <p class="error" id="erro_cadastro_admin"></p>
                             <div class="input-wrapper">
                                 <label for="">Nome:</label>
-                                <input type="text" name="nome">
+                                <input type="text" name="nome" id="nome1">
                             </div>
                             <div class="input-wrapper">
                                 <label for="">E-mail:</label>
-                                <input type="email" name="email">
+                                <input type="email" name="email" id="email1">
                             </div>
                             <div class="input-wrapper">
                                 <label for="">Senha:</label>
-                                <input type="password" name="senha">
+                                <input type="password" name="senha" id="senha1">
                             </div>
                             <div class="last-input">
                                 <div class="input-wrapper">
@@ -131,7 +131,7 @@ require_once __DIR__ . '/../layouts/header.php';
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn">Continuar</button>
+                            <button type="submit" class="btn">Criar</button>
                         </div>
                     </form>
                 </div>
@@ -139,6 +139,7 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </div>
+
 <div class="sombra-modal" id="modal_nao_pode_excluir">
     <div class="bloco-modal-geral">
         <div class="modal-header">
@@ -156,11 +157,9 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
 </div>
 
-
-
 <?php
-require_once __DIR__ . '/../layouts/footer.php';
 require_once __DIR__ .'/../modals/sair_conta.php';
 require_once __DIR__ .'/../modals/digite_sua_senha.php';
 require_once __DIR__ .'/../modals/excluir_conta.php';
+require_once __DIR__ . '/../layouts/footer.php';
 ?>

@@ -17,27 +17,27 @@
                         <div class="date-group">
                             <span class="date-label">Início</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input" id="start-date">
+                            <input type="date" class="date-input">
                         </div>
                         <div class="divider-vertical"></div>
                         <div class="date-group">
                             <span class="date-label">Fim</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input" id="end-date">
+                            <input type="date" class="date-input">
                         </div>
                     </div>
                     <div class="input-padrao">
                         <label for="conf_email">Diária:</label>
                         <div class="input-preco">
                             <p>R$</p>
-                            <input type="text" id="diaria_promocao" name="diaria_promocao">
+                            <input type="text">
                         </div>
                     </div>
                     <div class="input-padrao">
                         <label for="conf_email">Diária fim de semana:</label>
                         <div class="input-preco">
                             <p>R$</p>
-                            <input type="text" id="diaria_promocao" name="diaria_promocao">
+                            <input type="text">
                         </div>
                     </div>
                 </div>

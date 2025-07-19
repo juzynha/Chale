@@ -147,7 +147,6 @@ input[type="date"]::placeholder{
 }
 
 hr{
-  width: 100%;
   border: 1px solid var(--verde-medio);
 }
 

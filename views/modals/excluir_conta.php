@@ -13,7 +13,7 @@
                     <input type="password" id="senha_excluir_admin" name="senha_excluir_admin">
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" id="editar_dados">Excluir conta</button>
+                    <button class="btn">Excluir conta</button>
                 </div>
             </form>
         </div>

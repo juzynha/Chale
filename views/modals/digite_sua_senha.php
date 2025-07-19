@@ -14,7 +14,7 @@
                     <input type="text" id="senha_editar_dados" name="senha_editar_dados">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn" id="editar_dados">Continuar</button>
+                    <button type="submit" class="btn">Continuar</button>
                 </div>
             </form>
         </div>
