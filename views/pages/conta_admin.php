@@ -110,23 +110,26 @@ require_once __DIR__ . '/../layouts/header.php';
                 <div class="modal-body">
                     <form id="formCadastroAdmin">
                         <div class="campos-form-inputwrapper">
-                            <p class="error" id="erro_cadastro_admin"></p>
+                            <p class="error" id="cadAdmin_error"></p>
                             <div class="input-wrapper">
-                                <label for="">Nome:</label>
-                                <input type="text" name="nome" id="nome1">
+                                <span>Nome:</span>
+                                <input type="text" name="nome">
                             </div>
                             <div class="input-wrapper">
-                                <label for="">E-mail:</label>
-                                <input type="email" name="email" id="email1">
+                                <span>E-mail:</span>
+                                <input type="email" name="email">
                             </div>
+                            <p>A senha deve conter no mínimo 8 caracteres, pelo menos uma letra, um número e um símbolo</p>
                             <div class="input-wrapper">
-                                <label for="">Senha:</label>
-                                <input type="password" name="senha" id="senha1">
+                                <span>Senha:</span>
+                                <input type="password" name="senha">
+                                <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho toggleSenha">
                             </div>
                             <div class="last-input">
                                 <div class="input-wrapper">
-                                    <label for="">Confirmar senha:</label>
+                                    <span>Confirmar senha:</span>
                                     <input type="password" name="conf_senha">
+                                    <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho toggleSenha">
                                 </div>
                             </div>
                         </div>

@@ -18,7 +18,7 @@ switch ($input['acao']) {
     case 'enviar_codigo':
         enviarCodigo($input['email']);
         break;
-    case 'cadastrar':
+    case 'cadastrar_usuario':
         cadastrarUsuario($input['dadosUsuario'], $pdo);
         break;
     case 'cadastrar_admin':
@@ -29,11 +29,13 @@ switch ($input['acao']) {
 }
 
 function verificarEmail($email, $pdo) {
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE usuemail = ?");
-    $stmt->execute([$email]);
-    $existe = $stmt->fetchColumn() > 0;
-    // Retorna JSON para o JS
-    echo json_encode(['existe' => $existe]);
+    $sql = "SELECT COUNT(*) FROM usuarios WHERE usuemail = :email";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+
+    echo json_encode(['existe' => $count > 0]);
 }
 
 function enviarCodigo($email) {

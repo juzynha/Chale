@@ -14,29 +14,32 @@
                         <div class="campos-form-inputwrapper">
                             <p class="error" id="erro_cadastro"></p>
                             <div class="input-wrapper">
-                                <label for="nome">Nome:</label>
-                                <input type="text" id="nome" name="nome">
+                                <span>Nome:</span>
+                                <input type="text" name="nome">
                             </div>
                             <div class="input-wrapper">
-                                <label for="email">E-mail:</label>
-                                <input type="email" id="email" name="email">
+                                <span>E-mail:</span>
+                                <input type="email" name="email">
                             </div>
                             <div class="input-wrapper">
-                                <label for="telefone">Telefone:</label>
-                                <input type="text" id="telefone" name="telefone">
+                                <span>Telefone:</span>
+                                <input type="text" name="telefone">
                             </div>
                             <div class="input-wrapper">
-                                <label for="data_nasc">Data de nascimento:</label>
-                                <input type="date" id="data_nasc" name="data_nasc">
+                                <span>Data de nascimento:</span>
+                                <input type="date" name="data_nasc">
                             </div>
+                            <p>A senha deve conter no mínimo 8 caracteres, pelo menos uma letra, um número e um símbolo</p>
                             <div class="input-wrapper">
-                                <label for="senha">Senha:</label>
-                                <input type="password" id="senha" name="senha">
+                                <span>Senha:</span>
+                                <input type="password" name="senha">
+                                <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho toggleSenha">
                             </div>
                             <div class="last-input">
                                 <div class="input-wrapper">
-                                    <label for="senha">Confirmar senha:</label>
-                                    <input type="password" id="conf_senha" name="conf_senha">
+                                    <span>Confirmar senha:</span>
+                                    <input type="password" name="conf_senha">
+                                    <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho toggleSenha">
                                 </div>
                             </div>
                         </div>

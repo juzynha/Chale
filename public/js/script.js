@@ -1,5 +1,5 @@
 // Função para abrir o modal
-function abrirModal(idModal) {
+export function abrirModal(idModal) {
     const modal = document.getElementById(idModal);
     if (modal) {
         modal.style.display = 'flex'; 
@@ -15,37 +15,33 @@ function abrirModal(idModal) {
         */
     }
 }
-
+window.abrirModal = abrirModal;
 // Função para fechar o modal
-function fecharModal(idModal) {
+export function fecharModal(idModal) {
     const modal = document.getElementById(idModal);
     if (modal) {
         modal.style.display = 'none';
+        modal.querySelector('form').reset(); // limpa campos do form
+        const error = modal.querySelector('.error'); // ou pelo id
+        if (error) {
+            error.textContent = '';
+            error.style.display = 'none';
+        }
     }
-    // Limpar todos os inputs, textareas e selects dentro do modal
-    const campos = modal.querySelectorAll('input, textarea, select');
-
-    campos.forEach(campo => {
-      if (campo.type === 'checkbox' || campo.type === 'radio') {
-        campo.checked = false;
-      } else {
-        campo.value = '';
-      }
-    });
 }
-
+window.fecharModal = fecharModal;
 //toggle icon olho pra mostrar senha
-const inputSenha = document.getElementById("senha_login");
-const toggleBtn = document.getElementById("toggleSenha");
-
-toggleBtn.addEventListener("click", () => {
-    if (inputSenha.type === "password") {
-        inputSenha.type = "text";
-        toggleBtn.src = "/chale/public/assets/icons/icon-olho-fechado.svg"; // imagem de olho fechado
-    } else {
-        inputSenha.type = "password";
-        toggleBtn.src = "/chale/public/assets/icons/icon-olho-aberto.svg"; // imagem de olho aberto
-    }
+document.querySelectorAll('.toggleSenha').forEach(btn => {
+    btn.addEventListener("click", () => {
+        const input = btn.previousElementSibling; // pega o input anterior ao botão
+        if (input.type === "password") {
+            input.type = "text";
+            btn.src = "/chale/public/assets/icons/icon-olho-fechado.svg"; // imagem de olho fechado
+        } else {
+            input.type = "password";
+            btn.src = "/chale/public/assets/icons/icon-olho.svg"; // imagem de olho aberto
+        }
+    });
 });
 
 //máscaras para inputs
@@ -83,6 +79,7 @@ function mascaras(){
   });
 }
 
+//tirar o limite de tamanho para mostrar a lista completa de reservas
 function mostrarTudo() {
     let mostrar = document.getElementById('mostrar_lista');
     let container = document.getElementById('container_reservas');

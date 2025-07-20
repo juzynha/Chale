@@ -21,8 +21,7 @@
                                 <div class="input-wrapper">
                                     <label for="senha">Senha:</label>
                                     <input type="password" id="senha_login" name="senha" required>
-                                    <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho"
-                                        id="toggleSenha">
+                                    <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho toggleSenha">
                                 </div>
                                 <p id="esqueci_senha" class="textinho">Esqueci a senha</p>
                             </div>

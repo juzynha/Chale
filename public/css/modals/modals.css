@@ -11,6 +11,7 @@
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 1000;
 }
+
 /*Bloco sem sombra colorida e com contorno interno decorativo*/  
 .bloco-modal-usuario {
     position: fixed;
@@ -25,6 +26,7 @@
     display: flex;
     flex-direction: column;  
 }
+
 /*Bloco com sombra colorida e sem contorno interno decorativo*/  
 .bloco-modal-geral {
     position: fixed;
@@ -42,6 +44,7 @@
     display: flex;
     flex-direction: column;  
 }
+
 /*Contorno interno decorativo*/  
 .contorno-modal {
     display: flex; 
@@ -57,6 +60,7 @@
     overflow-y: auto;
     scrollbar-width: none;
 }
+
 /*Estilizações gerais*/  
 .modal-content {
     flex: 1; 
@@ -85,13 +89,14 @@
     display: inline;
     font-size: 20px;
 }
+
 /*Campo com a label sobre a borda do input*/
 .input-wrapper {
     position: relative;
     width: 100%;
 }
 
-.input-wrapper label {
+.input-wrapper span {
     font-weight: bold;
     font-size: 18px;
     position: relative;
@@ -145,11 +150,6 @@
     cursor: pointer;
 } 
 
-.error{
-    display: none;
-    text-decoration: underline;
-}
-
 /*Modal para colocar foto de usuário*/  
 .modal-centralizado{
     display: flex;
@@ -175,6 +175,7 @@
     cursor: pointer;
     opacity: 0.7;
 }
+
 /*Campo com a label comum acima do input*/
 .input-padrao{
     display: flex;
@@ -182,6 +183,7 @@
     gap: 0.8rem;
     font-size: 20px;
 }
+
 /*Campo com sinal de R$ antes*/
 .input-preco{
     display: flex;
@@ -196,6 +198,7 @@
     justify-content: center;
     gap: 2rem;
 }
+
 /*Modal de fazer reserva*/
 .infos-datas-fr {
     padding: 1rem;
@@ -206,6 +209,7 @@
 .valortotal-fr{
     font-size: 24px;
 }
+
 /*Modal de editar carrossel*/
 .carrossel-itens{
     display: flex;
@@ -247,6 +251,7 @@
     width: 50%;
 }
 
-input.erro {
-  border: 2px solid red;
+.error{
+    display: none;
+    text-decoration: underline;
 }
