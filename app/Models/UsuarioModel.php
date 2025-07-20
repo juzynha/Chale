@@ -15,14 +15,14 @@ switch ($input['acao']) {
     case 'verificar_email':
         verificarEmail($input['email'], $pdo);
         break;
+    case 'cadastrar_admin':
+        cadastrarAdmin($input['dados'], $pdo);
+        break;
     case 'enviar_codigo':
         enviarCodigo($input['email']);
         break;
     case 'cadastrar_usuario':
         cadastrarUsuario($input['dadosUsuario'], $pdo);
-        break;
-    case 'cadastrar_admin':
-        cadastrarAdmin($input['dados'], $pdo);
         break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
@@ -36,6 +36,20 @@ function verificarEmail($email, $pdo) {
     $count = $stmt->fetchColumn();
 
     echo json_encode(['existe' => $count > 0]);
+}
+
+function cadastrarAdmin($dados, $pdo) {
+    $sql = "CALL cadastrar_admin(:nome, :email, :senha)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':nome', $dados['nome']);
+    $stmt->bindParam(':email', $dados['email']);
+    $stmt->bindParam(':senha', $dados['senha']);
+
+    if ($stmt->execute()) {
+        echo json_encode(['erro' => false, 'mensagem' => 'Usuario cadastrado com sucesso!']);
+    } else {
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
+    }
 }
 
 function enviarCodigo($email) {
@@ -59,18 +73,4 @@ function cadastrarUsuario($dados, $pdo) {
     $success = $stmt->execute([$nome, $email, $telefone, $data_nasc, $senha]);
 
     echo json_encode(['status' => $success ? 'ok' : 'erro']);
-}
-
-function cadastrarAdmin($dados, $pdo) {
-    $sql = "CALL cadastrar_admin(:nome, :email, :senha)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':nome', $dados['nome']);
-    $stmt->bindParam(':email', $dados['email']);
-    $stmt->bindParam(':senha', $dados['senha']);
-
-    if ($stmt->execute()) {
-        echo json_encode(['erro' => false, 'mensagem' => 'Usuario cadastrado com sucesso!']);
-    } else {
-        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
-    }
 }

@@ -1,11 +1,11 @@
-.sessao-cards-utilitarios{
+.sessao-utilitarios{
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
     gap: 1rem;
 }
 
-.cards-utilitarios{
+.sessao-cards{
     display: flex;
     gap: 2rem;
     overflow-x: auto;
@@ -87,4 +87,24 @@
     font-size: 26px;
     font-weight: 700;
     cursor: pointer;
+}
+
+.galeria-container{
+    position: relative;
+}
+
+.element-gal-fotos{
+    width: 100%;
+}
+
+.galeria-de-fotos {
+    padding: 0 5rem;
+    background-color: var(--verde-medio);
+    width: 100%;
+    height: 100%;
+}
+
+.sessao-fotos{
+    display: flex;
+    flex-direction: column;
 }

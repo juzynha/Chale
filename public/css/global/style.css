@@ -123,12 +123,10 @@ input[type="date"]::placeholder{
 
 .titulo{
   font-size: 38px;
-  color: var(--verde-escuro);
 }
 
 .subtitulo{
   font-size: 34px;
-  color: var(--verde-medio);
 }
 
 .container{
@@ -137,6 +135,7 @@ input[type="date"]::placeholder{
   width: 100%;
   padding: 3rem 5rem;
   gap: 1rem;
+  position: relative;
 }
 
 .container-flex{
@@ -148,6 +147,10 @@ input[type="date"]::placeholder{
 
 hr{
   border: 1px solid var(--verde-medio);
+}
+
+.hr-branco{
+  border: 1px solid var(--branco);
 }
 
 .titulo-sessao{

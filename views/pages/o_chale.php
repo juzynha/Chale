@@ -7,11 +7,11 @@ require_once __DIR__ . '/../layouts/header.php';
     ?>
 </header>
 <div class="container">
-    <h2 class="titulo">Utilitários</h2>
+    <h2 class="titulo verde-escuro">Utilitários</h2>
     <div class="utilitarios">
-        <div class="sessao-cards-utilitarios">
-            <h2 class="subtitulo">Título da sessão</h2>
-            <div class="cards-utilitarios">
+        <div class="sessao-utilitarios">
+            <h3 class="subtitulo verde-medio">Título da sessão</h3>
+            <div class="sessao-cards">
                 <div class="card-utilitario">
                     <p class="nome-utilitario">Nome do utilitario</p>
                     <div class="imagem-utilitario">
@@ -39,9 +39,9 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <hr>
         </div>
-        <div class="sessao-cards-utilitarios">
-            <h2 class="subtitulo">Título da sessão</h2>
-            <div class="cards-utilitarios">
+        <div class="sessao-utilitarios">
+            <h2 class="subtitulo verde-medio">Título da sessão</h2>
+            <div class="sessao-cards">
                 <div class="card-utilitario-add" onclick="abrirModal('modal_criar_utilitario')">
                     <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
                 </div>
@@ -53,6 +53,47 @@ require_once __DIR__ . '/../layouts/header.php';
             <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
         </div>
     </div>
+</div>
+<div class="galeria-container">
+    <img src="/chale/public/assets/elementos-graficos/onda-superior-sessao.svg" class="element-gal-fotos">
+    <div class="galeria-de-fotos">
+        <h2 class="titulo branco">Galeria de fotos</h2>
+        <div class="galeria-content">
+            <div class="sessao-fotos">
+                <h3 class="subtitulo branco">Sessão 1</h3>
+                <div class="sessao-cards">
+                    <div class="item-foto">
+                        <img src="" alt="">
+                    </div>
+                    <div class="item-foto">
+                        <img src="" alt="">
+                    </div>
+                    <div class="item-foto">
+                        <img src="" alt="">
+                    </div>
+                </div>
+                <div class="opcao-editar-sessao branco">
+                    <p>Editar sessão</p>
+                    <img src="/chale/public/assets/icons/icon-editar.svg" class="icon">
+                </div>
+                <hr class="hr-branco">
+            </div>
+            <div class="sessao-fotos">
+                <h3 class="subtitulo branco">Sessão 1</h3>
+                <div class="sessao-cards">
+                    <div class="item-foto">
+                        <img src="" alt="">
+                    </div>
+                </div>
+                <div class="opcao-editar-sessao branco">
+                    <p>Editar sessão</p>
+                    <img src="/chale/public/assets/icons/icon-editar.svg" class="icon">
+                </div>
+                <hr class="hr-branco">
+            </div>
+        </div>
+    </div>
+    <img src="/chale/public/assets/elementos-graficos/onda-inferior-sessao.svg" class="element-gal-fotos">
 </div>
 <!-- Modais -->
 <div class="sombra-modal" id="modal_criar_sessao">
