@@ -96,6 +96,7 @@ require_once __DIR__ . '/../layouts/header.php';
         </section>
     </section>
 </div>
+
 <!-- Modais -->
 <div class="sombra-modal" id="modal_cadastro_admin">
     <div class="bloco-modal-usuario">
@@ -103,7 +104,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>Criar conta de administrador</h2>
-                    <button onclick="fecharModal('modal_cadastro_admin')">
+                    <button class="btn-fechar-modal">
                         <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                     </button>
                 </div>
@@ -147,7 +148,7 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Aviso</h2>
-            <button onclick="fecharModal('modal_nao_pode_excluir')">
+            <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon" alt="Fechar">
             </button>
         </div>

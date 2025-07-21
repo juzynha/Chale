@@ -2,7 +2,7 @@
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Para editar seus dados digite sua senha</h2>
-            <button onclick="fecharModal('modal_digite_sua_senha')">
+            <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
             <p class="error"></p>

@@ -1,5 +1,5 @@
-import {validarCamposPreenchidos, validarNome, validarEmail, validarSenha} from '../validacoes.js';
-import {fecharModal} from '../../../public/js/script.js';
+import {validarCamposPreenchidos, validarNome, validarEmail, validarSenha} from './validacoes.js';
+import {fecharModal} from '../../public/js/script.js';
 
 //-------CADASTRO DE ADMIN-------
 document.getElementById('formCadastroAdmin').addEventListener('submit', async function (e) {
@@ -12,33 +12,37 @@ document.getElementById('formCadastroAdmin').addEventListener('submit', async fu
     const conf_senha = form.querySelector('[name="conf_senha"]').value;
 
     const error = document.getElementById('cadAdmin_error');
-    error.style.display = 'block';
 
     //---Validações local---
     //Verificar se todos os campos estão preenchidos
     const errosPreenchimento = validarCamposPreenchidos(['nome', 'email', 'senha', 'conf_senha'], form);
     if (errosPreenchimento.length > 0) {
         error.textContent = errosPreenchimento[0];
+        error.style.display = 'block';
         return;
     }
     //Validar estrutura do nome
     if (!validarNome(nome)) {
         error.textContent = 'Nome inválido.';
+        error.style.display = 'block';
         return;
     }
     //Validar estrutura do email
     if (!validarEmail(email)) {
         error.textContent = 'Email inválido.';
+        error.style.display = 'block';
         return;
     }
     //Validar estrutura da senha
     if (!validarSenha(senha)) {
         error.textContent = 'Senha fraca.';
+        error.style.display = 'block';
         return;
     }
     //Verificar se as senhas coincidem
     if (senha !== conf_senha) {
         error.textContent = 'As senhas não coincidem.';
+        error.style.display = 'block';
         return;
     }
 
@@ -52,7 +56,8 @@ document.getElementById('formCadastroAdmin').addEventListener('submit', async fu
     const emailCheckJson = await emailCheck.json();
 
     if (emailCheckJson.existe) {
-        document.getElementById('cadAdmin_error').textContent = 'Este email já está cadastrado.';
+        error.textContent = 'Este email já está cadastrado.';
+        error.style.display = 'block';
         return;
     } 
 

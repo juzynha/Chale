@@ -33,7 +33,7 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                 </div>
             </div>
-            <div class="opcao-editar-sessao verde-medio">
+            <div class="ferramenta">
                 <p>Editar sessão</p>
                 <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
             </div>
@@ -48,7 +48,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <hr>
         </div>
-        <div class="opcao-criar-sessao verde-medio" onclick="abrirModal('modal_criar_sessao')">
+        <div class="ferramenta" id="criar_sessao_utilitarios">
             <p>Criar sessão</p>
             <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
         </div>
@@ -72,7 +72,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <img src="" alt="">
                     </div>
                 </div>
-                <div class="opcao-editar-sessao branco">
+                <div class="ferramenta-branco">
                     <p>Editar sessão</p>
                     <img src="/chale/public/assets/icons/icon-editar.svg" class="icon">
                 </div>
@@ -85,30 +85,32 @@ require_once __DIR__ . '/../layouts/header.php';
                         <img src="" alt="">
                     </div>
                 </div>
-                <div class="opcao-editar-sessao branco">
-                    <p>Editar sessão</p>
-                    <img src="/chale/public/assets/icons/icon-editar.svg" class="icon">
-                </div>
                 <hr class="hr-branco">
+            </div>
+            <div class="ferramenta-branco" id="criar_sessao_fotos">
+                <p>Criar sessão</p>
+                <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
             </div>
         </div>
     </div>
     <img src="/chale/public/assets/elementos-graficos/onda-inferior-sessao.svg" class="element-gal-fotos">
 </div>
+
 <!-- Modais -->
 <div class="sombra-modal" id="modal_criar_sessao">
     <div class="bloco-modal-geral">
         <div class="modal-header">
-            <h2>Criar sessão para: Utilitários</h2>
-            <button onclick="fecharModal('modal_criar_sessao')">
+            <h2>Criar sessão para: <span id="nome_referencia"></span></h2>
+            <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
             </button>
         </div>
         <div class="modal-body">
             <form id="formCriarSessao">
+                <p class="error" id="cadSessao_error"></p>
                 <div class="input-padrao">
-                    <label for="">Nome da sessão:</label>
-                    <input type="text" name="nome-comum">
+                    <span>Nome da sessão:</span>
+                    <input type="text" name="nome-sessao">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn">Criar</button>
@@ -122,12 +124,12 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Criar utilitário</h2>
-            <button onclick="fecharModal('modal_criar_utilitario')">
+            <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCriarSessao">
+            <form id="formCriarUtilitario">
                 <div class="campos-form-inputpadrao">
                     <div class="input-padrao">
                         <label for="">Nome do utilitario:</label>

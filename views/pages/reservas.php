@@ -7,7 +7,7 @@ require_once __DIR__ . '/../layouts/header.php';
     ?>
 </header>
 <section class="container-reservas" id="container_reservas">
-    <h2 class="subtitulo">Reservas</h2>
+    <h2 class="subtitulo verde-escuro">Reservas</h2>
     <div class="filtro">
         <input type="text" id="data_filtro">
         <img src="/chale/public/assets/icons/icon-funil.svg" width="20px">
@@ -20,7 +20,7 @@ require_once __DIR__ . '/../layouts/header.php';
     <p>Mostrar tudo</p>
 </div>
 <section class="container-calendario">
-    <h2 class="subtitulo">Calendário</h2>
+    <h2 class="subtitulo verde-escuro">Calendário</h2>
     <div class="container-elementos">
         <img src="/chale/public/assets/elementos-graficos/onda-calendario-left.svg" class="element-planta-left">
         <img src="/chale/public/assets/elementos-graficos/onda-calendario-right.svg" class="element-planta-right">
@@ -77,12 +77,13 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </section>
+
 <!-- Modais -->
 <div class="sombra-modal" id="modal_bloquear_dias">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Bloquear dias</h2>
-            <button onclick="fecharModal('modal_bloquear_dias')">
+            <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
             </button>
         </div>
@@ -110,6 +111,6 @@ require_once __DIR__ . '/../layouts/header.php';
 </div>
 
 <?php
-require_once __DIR__ . '/../layouts/footer.php';
 require_once __DIR__ . '/../modals/criar_promocao.php';
+require_once __DIR__ . '/../layouts/footer.php';
 ?>

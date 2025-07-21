@@ -95,12 +95,13 @@ require_once __DIR__ . '/../layouts/header.php';
         </ul>
     </div>
 </section>
+
 <!-- Modais -->
 <div class="sombra-modal" id="modal_fazer_reserva">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Fazer reserva</h2>
-            <button onclick="fecharModal('modal_fazer_reserva')">
+            <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
             <p class="error"></p>
@@ -135,7 +136,7 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Editar carrossel</h2>
-            <button onclick="fecharModal('modal_editar_carrossel')">
+            <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
         </div>

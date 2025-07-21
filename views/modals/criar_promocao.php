@@ -2,7 +2,7 @@
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Criar Promoção</h2>
-            <button onclick="fecharModal('modal_criar_promocao')">
+            <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
         </div>
@@ -10,7 +10,7 @@
             <form id="formCadastroPromocao">
                 <div class="campos-form-inputpadrao">
                     <div class="input-padrao">
-                        <label for="conf_email" class="">Nome da promoção:</label>
+                        <span>Nome da promoção:</span>
                         <input type="text" id="criar_nome_promocao" name="criar_nome_promocao">
                     </div>
                     <div class="date-container">
@@ -27,14 +27,14 @@
                         </div>
                     </div>
                     <div class="input-padrao">
-                        <label for="conf_email">Diária:</label>
+                        <span>Diária:</span>
                         <div class="input-preco">
                             <p>R$</p>
                             <input type="text">
                         </div>
                     </div>
                     <div class="input-padrao">
-                        <label for="conf_email">Diária fim de semana:</label>
+                        <span>Diária fim de semana:</span>
                         <div class="input-preco">
                             <p>R$</p>
                             <input type="text">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn" id="criar_promocao">Criar</button>
+                    <button type="submit" class="btn">Criar</button>
                 </div>
             </form>
         </div>

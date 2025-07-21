@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <img src="/chale/public/assets/logo.svg" width="120px">
-                    <button onclick="fecharModal('modal_cadastro_usuario')">
+                    <button class="btn-fechar-modal">
                         <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                     </button>
                 </div>

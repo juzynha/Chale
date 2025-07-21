@@ -45,21 +45,7 @@ document.querySelectorAll('.toggleSenha').forEach(btn => {
 });
 
 //máscaras para inputs
-function mascaras(){
-  // Máscara de data dd/mm/yyyy
-  document.querySelectorAll('input[type="date"]').forEach(function(input) {
-    input.type = 'text';
-    input.placeholder = '  /  /    ';
-    input.classList.add("calendario_input");
-    
-    input.addEventListener('input', function (e) {
-      let v = e.target.value.replace(/\D/g, "");
-      if (v.length >= 2) v = v.slice(0, 2) + "/" + v.slice(2);
-      if (v.length >= 5) v = v.slice(0, 5) + "/" + v.slice(5, 9);
-      e.target.value = v.slice(0, 10);
-    });
-  });
-
+function mascarasInputs(){
   // Máscara de nome (primeira letra de cada palavra maiúscula)
   document.querySelectorAll('[name="nome"]').forEach(function(input) {
     input.addEventListener('input', function () {
@@ -75,6 +61,66 @@ function mascaras(){
       input.value = formatado;
 
       input.setSelectionRange(cursor, cursor); // restaura o cursor
+    });
+  });
+
+  // Máscara de data dd/mm/yyyy
+  document.querySelectorAll('input[type="date"]').forEach(function(input) {
+    input.type = 'text';
+    input.placeholder = '  /  /    ';
+    input.classList.add('placeholder-date');
+
+    // Aplica Flatpickr
+    flatpickr(input, {
+        dateFormat: "d/m/Y",
+        locale: {
+            firstDayOfWeek: 0,
+            weekdays: {
+                shorthand: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                longhand: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+            },
+            months: {
+                shorthand: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                longhand: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            },
+        }
+    });
+
+      const hoje = new Date();
+      const dia = String(hoje.getDate()).padStart(2, '0');
+      const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // meses começam em 0
+      const ano = hoje.getFullYear();
+      input.value = `${dia}/${mes}/${ano}`;
+
+      input.addEventListener('input', function (e) {
+      let v = e.target.value.replace(/\D/g, ""); // remove não dígitos
+
+      // Limita ao máximo 8 dígitos (ddmmYYYY)
+      if (v.length > 8) v = v.slice(0, 8);
+
+      let day = v.slice(0, 2);
+      let month = v.slice(2, 4);
+      let year = v.slice(4, 8);
+
+      // Validação de dia
+      if (day.length === 2) {
+        let d = parseInt(day, 10);
+        if (d > 31) d = 31;
+        day = d.toString().padStart(2, '0');
+      }
+
+      // Validação de mês
+      if (month.length === 2) {
+        let m = parseInt(month, 10);
+        if (m > 12) m = 12;
+        month = m.toString().padStart(2, '0');
+      }
+
+      let formatted = day;
+      if (month.length) formatted += '/' + month;
+      if (year.length) formatted += '/' + year;
+
+      e.target.value = formatted;
     });
   });
 }
@@ -114,23 +160,6 @@ function mostrarTudo() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  mascaras();
+  mascarasInputs();
   mostrarTudo();
 });
-
-  /* Flatpickr com formato brasileiro
-  flatpickr(".calendario_input", {
-    dateFormat: "d/m/Y",
-    locale: {
-      firstDayOfWeek: 0,
-      weekdays: {
-        shorthand: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-        longhand: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
-      },
-      months: {
-        shorthand: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-        longhand: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-      },
-    }
-  });
-*/

@@ -3,7 +3,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>Deseja sair da conta?</h2>
-                    <button onclick="fecharModal('modal_logout')">
+                    <button class="btn-fechar-modal">
                         <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                     </button>
                 </div>

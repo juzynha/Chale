@@ -33,9 +33,6 @@ require_once __DIR__ . '/../layouts/header.php';
 <div><img src="/chale/public/assets/elementos-graficos/patinhas.svg" class="patinhas"></div>
 <div class="generico">aaaaaaaaaaaaa</div>
 
-
-
-
 <?php
 require_once __DIR__ . '/../layouts/footer.php';
 ?> 

@@ -2,7 +2,7 @@
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Deseja excluir sua conta?</h2>
-            <button onclick="fecharModal('modal_excluir_conta')">
+            <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon" alt="Fechar">
             </button>
         </div>
