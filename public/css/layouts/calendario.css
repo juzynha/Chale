@@ -1,0 +1,82 @@
+.calendario-box{
+    background-color: var(--verde-medio);
+    border-radius: 10px;
+    box-shadow: 10px 10px 0 rgba(42,50,43),
+    -10px -10px 0 rgba(124,154,120);
+    font-family: 'Glacial Indifference';
+}
+
+.calendario-box header{
+    padding: 1rem;
+    display: flex;
+    color: var(--branco);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calendario-box header span{
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.divider-horizontal-cal{
+    border: 1px solid var(--branco);
+    width: 100%;
+}
+
+.divider-vertical-cal{
+    border: 1px solid var(--branco);
+}
+
+.calendario-content .weeks{
+    display: flex;
+    text-align: center;
+    color: var(--branco);
+}
+
+.calendario-content .weeks li{
+    align-self: center;
+    width: calc(100% / 7 - 2px);
+    aspect-ratio: 1 / 0.5; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.calendario-content .days-line{
+    display: flex;
+    width: 100%;
+}
+
+.calendario-content .day{
+    display: flex;
+    padding: 0.5rem 1rem;
+    width: calc(100% / 7 - 2px);
+    aspect-ratio: 1 / 0.8; 
+}
+
+.calendario-content .day li{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 7px;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: var(--verde);
+    box-shadow: 5px 5px 0 rgba(42,50,43);
+    color: var(--branco);
+}
+
+.day li.inactive{
+    color: var(--verde-medio);
+}
+
+.day li.active{
+    color: var(--verde-escuro);
+}

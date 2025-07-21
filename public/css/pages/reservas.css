@@ -160,77 +160,7 @@
     width: 250px;
 }
 
-/*Estilizando o calendário*/
-.calendario-box{
-    background-color: var(--verde-medio);
-    border-radius: 10px;
-    box-shadow: 10px 10px 0 rgba(42,50,43),
-    -10px -10px 0 rgba(124,154,120);
-}
-
-.header-calendario{
-    display: flex;
-    padding: 1.5rem;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--branco);
-}
-
-.mes-atual{
-    text-transform: uppercase;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.calendar ul{
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    text-align: center;
-    color: var(--branco);
-}
-
-.weeks{
-    display: flex;
-}
-
-.calendar .weeks li{
-    align-self: center;
-    width: calc(100% / 7 - 2px);
-    aspect-ratio: 1 / 0.5; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.days-line{
-    display: flex;
-    width: 100%;
-}
-
-.day{
-    display: flex;
-    padding: 0.5rem 1rem;
-    width: calc(100% / 7 - 2px);
-    aspect-ratio: 1 / 0.8; 
-}
-
-.calendar .day li{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 7px;
-    font-size: 28px;
-    font-weight: bold;
-    background-color: var(--verde);
-    box-shadow: 5px 5px 0 rgba(42,50,43);
-}
-
+/*Estilizando o calendário
 .calendar .day li .bloq{
     display: flex;
     width: 100%;
@@ -240,42 +170,4 @@
     cursor: pointer;
     color: var(--verde-escuro);
 }
-
-.day li.inactive{
-    color: var(--branco);
-    background-color: var(--verde-medio);
-    box-shadow: none;
-}
-
-.day li.active{
-    color: var(--branco);
-}
-
-.day li::before{
-  position: absolute;
-  content: "";
-  left: 50%;
-  top: 50%;
-  height: 40px;
-  width: 40px;
-  z-index: -1;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.day li.active::before{
-  background: #9B59B6;
-}
-
-.day li:not(.active):hover::before{
-  background: #f2f2f2;
-}
-
-.divider-vertical-cal{
-    border: 1px solid var(--branco);
-}
-
-.divider-horizontal-cal{
-    border: 1px solid var(--branco);
-    width: 100%;
-}
+*/

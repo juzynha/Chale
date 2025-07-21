@@ -110,7 +110,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 <p class="error" id="cadSessao_error"></p>
                 <div class="input-padrao">
                     <span>Nome da sessão:</span>
-                    <input type="text" name="nome-sessao">
+                    <input type="text" name="nome_sessao">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn">Criar</button>

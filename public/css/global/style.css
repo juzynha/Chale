@@ -1,4 +1,5 @@
 @import '../layouts/menu.css';
+@import '../layouts/calendario.css';
 @import '../modals/modals.css';
 @import '../pages/inicial.css';
 @import '../pages/reservas.css';
@@ -66,7 +67,7 @@ input:focus {
   outline: none;
 }
 
-.placeholder-date::placeholder{
+.placeholder::placeholder{
   color: var(--branco);
   opacity: 1;
 }

@@ -32,16 +32,12 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
             </div>
             <div class="calendario-box">
-                <header class="header-calendario">
-                    <span id="prev">
-                        <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon">
-                    </span>
-                    <p class="mes-atual"></p>
-                    <span id="next">
-                        <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon">
-                    </span>
+                <header>
+                    <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon">
+                    <span id="currentMonth">Abril</span>
+                    <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon">
                 </header>
-                <div class="calendar">
+                <div class="calendario-content">
                     <hr class="divider-horizontal-cal">
                     <ul class="weeks">
                         <li>Dom</li>
@@ -59,9 +55,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <li>Sab</li>
                     </ul>
                     <hr class="divider-horizontal-cal">
-                    <ul class="days">
-
-                    </ul>
+                    <ul id="days"></ul>
                 </div>
             </div>
             <div class="acoes-calendario">

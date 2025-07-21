@@ -20,6 +20,7 @@ switch ($input['acao']){
 }
 
 function cadastrarSessao($dados, $pdo) {
+    $nome = $dados['nomeSessao']
     if ($dados['referencia'] === 'Galeria de fotos'){
         $sql = "CALL cadastrar_sessao(:nome, 'fotos')";
     } else {
@@ -27,7 +28,7 @@ function cadastrarSessao($dados, $pdo) {
     }
 
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':nome', $dados['nomeSessao']);
+    $stmt->bindParam(':nome', $nome);
 
     if ($stmt->execute()) {
         echo json_encode(['erro' => false, 'mensagem' => 'Sessão criada com sucesso!']);

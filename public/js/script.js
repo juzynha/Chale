@@ -2,20 +2,15 @@
 export function abrirModal(idModal) {
     const modal = document.getElementById(idModal);
     if (modal) {
-        modal.style.display = 'flex'; 
+        modal.style.display = 'flex';
         modal.querySelectorAll('.btn-fechar-modal').forEach(botao => {
             botao.addEventListener('click', () => fecharModal(idModal));
         });
-        /* Fechar clicando fora do conteúdo
-        modal.addEventListener('click', function (event) {
-            if (event.target === modal) {
-                fecharModal(idModal);
-            }
-        });
-        */
+        inputMaskDate(); 
     }
 }
 window.abrirModal = abrirModal;
+
 // Função para fechar o modal
 export function fecharModal(idModal) {
     const modal = document.getElementById(idModal);
@@ -30,6 +25,7 @@ export function fecharModal(idModal) {
     }
 }
 window.fecharModal = fecharModal;
+
 //toggle icon olho pra mostrar senha
 document.querySelectorAll('.toggleSenha').forEach(btn => {
     btn.addEventListener("click", () => {
@@ -45,52 +41,30 @@ document.querySelectorAll('.toggleSenha').forEach(btn => {
 });
 
 //máscaras para inputs
-function mascarasInputs(){
-  // Máscara de nome (primeira letra de cada palavra maiúscula)
-  document.querySelectorAll('[name="nome"]').forEach(function(input) {
-    input.addEventListener('input', function () {
-      const cursor = input.selectionStart; // salva posição do cursor
+function inputMaks() {
+  inputMaskName();
+  inputMaskDate();
+  inputMaskDouble();
+}
 
-      let formatado = input.value
-        .toLowerCase()
-        .replace(/\s+/g, ' ') // evita múltiplos espaços seguidos
-        .split(' ')
-        .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1))
-        .join(' ');
-
-      input.value = formatado;
-
-      input.setSelectionRange(cursor, cursor); // restaura o cursor
-    });
-  });
-
-  // Máscara de data dd/mm/yyyy
-  document.querySelectorAll('input[type="date"]').forEach(function(input) {
+function inputMaskDate() {
+// Máscara de data dd/mm/yyyy
+  document.querySelectorAll('input[type="date"], .input-date').forEach(function(input) {
     input.type = 'text';
     input.placeholder = '  /  /    ';
-    input.classList.add('placeholder-date');
+    input.classList.add('placeholder');
+    
+    if (!input.classList.contains('input-date')) {
+      input.classList.add('input-date');
+    }
 
-    // Aplica Flatpickr
-    flatpickr(input, {
-        dateFormat: "d/m/Y",
-        locale: {
-            firstDayOfWeek: 0,
-            weekdays: {
-                shorthand: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-                longhand: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
-            },
-            months: {
-                shorthand: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                longhand: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-            },
-        }
-    });
-
+    if (!input.value) {
       const hoje = new Date();
-      const dia = String(hoje.getDate()).padStart(2, '0');
-      const mes = String(hoje.getMonth() + 1).padStart(2, '0'); // meses começam em 0
       const ano = hoje.getFullYear();
-      input.value = `${dia}/${mes}/${ano}`;
+      const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+      const dia = String(hoje.getDate()).padStart(2, '0');
+      input.value = `${dia}/${mes}/${ano}`; 
+    }
 
       input.addEventListener('input', function (e) {
       let v = e.target.value.replace(/\D/g, ""); // remove não dígitos
@@ -123,6 +97,49 @@ function mascarasInputs(){
       e.target.value = formatted;
     });
   });
+}
+
+function inputMaskName() {
+// Máscara de nome (primeira letra de cada palavra maiúscula)
+  document.querySelectorAll('[name="nome"]').forEach(function(input) {
+    input.addEventListener('input', function () {
+      const cursor = input.selectionStart; // salva posição do cursor
+
+      let formatado = input.value
+        .toLowerCase()
+        .replace(/\s+/g, ' ') // evita múltiplos espaços seguidos
+        .split(' ')
+        .map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1))
+        .join(' ');
+
+      input.value = formatado;
+
+      input.setSelectionRange(cursor, cursor); // restaura o cursor
+    });
+  });
+}
+
+function inputMaskDouble() {
+//Máscara de inputs de valores (reais R$)
+  document.querySelectorAll('.input-double').forEach(input => {
+    input.placeholder = '000,00';
+    input.classList.add('placeholder');
+
+    input.addEventListener('input', function (e) {
+        let valor = e.target.value;
+
+        // Permitir apenas números e vírgula
+        valor = valor.replace(/[^0-9,]/g, '');
+
+        // Garante que haja apenas uma vírgula
+        const partes = valor.split(',');
+        if (partes.length > 2) {
+            valor = partes[0] + ',' + partes[1];
+        }
+
+        e.target.value = valor;
+    });
+});
 }
 
 //tirar o limite de tamanho para mostrar a lista completa de reservas
@@ -160,6 +177,6 @@ function mostrarTudo() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  mascarasInputs();
+  inputMaks();
   mostrarTudo();
 });

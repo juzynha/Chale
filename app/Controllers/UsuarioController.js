@@ -1,4 +1,4 @@
-import {validarCamposPreenchidos, validarNome, validarEmail, validarSenha} from './validacoes.js';
+import {validarCamposPreenchidos, validarNomeProprio, validarEmail, validarSenha} from './validacoes.js';
 import {fecharModal} from '../../public/js/script.js';
 
 //-------CADASTRO DE ADMIN-------
@@ -9,7 +9,7 @@ document.getElementById('formCadastroAdmin').addEventListener('submit', async fu
     const nome = form.querySelector('[name="nome"]').value.trim();
     const email = form.querySelector('[name="email"]').value.trim();
     const senha = form.querySelector('[name="senha"]').value;
-    const conf_senha = form.querySelector('[name="conf_senha"]').value;
+    const confSenha = form.querySelector('[name="conf_senha"]').value;
 
     const error = document.getElementById('cadAdmin_error');
 
@@ -22,7 +22,7 @@ document.getElementById('formCadastroAdmin').addEventListener('submit', async fu
         return;
     }
     //Validar estrutura do nome
-    if (!validarNome(nome)) {
+    if (!validarNomeProprio(nome)) {
         error.textContent = 'Nome inválido.';
         error.style.display = 'block';
         return;
@@ -40,7 +40,7 @@ document.getElementById('formCadastroAdmin').addEventListener('submit', async fu
         return;
     }
     //Verificar se as senhas coincidem
-    if (senha !== conf_senha) {
+    if (senha !== confSenha) {
         error.textContent = 'As senhas não coincidem.';
         error.style.display = 'block';
         return;

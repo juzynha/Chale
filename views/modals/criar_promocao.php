@@ -8,36 +8,37 @@
         </div>
         <div class="modal-body">
             <form id="formCadastroPromocao">
+                <p class="error" id="cadPromocao_error"></p>
                 <div class="campos-form-inputpadrao">
                     <div class="input-padrao">
                         <span>Nome da promoção:</span>
-                        <input type="text" id="criar_nome_promocao" name="criar_nome_promocao">
+                        <input type="text" name="nome_promocao">
                     </div>
                     <div class="date-container">
                         <div class="date-group">
                             <span class="date-label">Início</span>
-                            <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input">
+                            <hr class="divider-horizontal"></hr>
+                            <input type="date" class="date-input" name="data_inicial">
                         </div>
-                        <div class="divider-vertical"></div>
+                        <hr class="divider-vertical"></hr>
                         <div class="date-group">
                             <span class="date-label">Fim</span>
-                            <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input">
+                            <hr class="divider-horizontal"></hr>
+                            <input type="date" class="date-input" name="data_final">
                         </div>
                     </div>
                     <div class="input-padrao">
                         <span>Diária:</span>
                         <div class="input-preco">
                             <p>R$</p>
-                            <input type="text">
+                            <input type="text" name="valor_diaria" class="input-double">
                         </div>
                     </div>
                     <div class="input-padrao">
                         <span>Diária fim de semana:</span>
                         <div class="input-preco">
                             <p>R$</p>
-                            <input type="text">
+                            <input type="text" name="valor_diariafds" class="input-double">
                         </div>
                     </div>
                 </div>

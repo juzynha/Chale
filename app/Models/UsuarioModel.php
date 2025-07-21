@@ -39,11 +39,15 @@ function verificarEmail($email, $pdo) {
 }
 
 function cadastrarAdmin($dados, $pdo) {
+    $nome = $dados['nome'];
+    $email = $dados['email'];
+    $senha = $dados['senha'];
+
     $sql = "CALL cadastrar_admin(:nome, :email, :senha)";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':nome', $dados['nome']);
-    $stmt->bindParam(':email', $dados['email']);
-    $stmt->bindParam(':senha', $dados['senha']);
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':senha', $senha);
 
     if ($stmt->execute()) {
         echo json_encode(['erro' => false, 'mensagem' => 'Usuario cadastrado com sucesso!']);

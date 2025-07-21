@@ -1,4 +1,4 @@
-import {validarCamposPreenchidos, validarNome} from './validacoes.js';
+import {validarCamposPreenchidos, validarString} from './validacoes.js';
 import {abrirModal, fecharModal} from '../../public/js/script.js';
 
 //--Colocar o nome de referência da sessão no modal--
@@ -17,20 +17,20 @@ document.getElementById('criar_sessao_utilitarios').addEventListener('click', fu
 document.getElementById('formCriarSessao').addEventListener('submit', async function (e) {
     e.preventDefault();
     const form = this; 
-    const nomeSessao = form.querySelector('[name="nome-sessao"]').value.trim();
+    const nomeSessao = form.querySelector('[name="nome_sessao"]').value.trim();
     let referencia = document.getElementById('nome_referencia').textContent;
     const error = document.getElementById('cadSessao_error');
 
     //---Validações---
     //Verificar se todos os campos estão preenchidos
-    const errosPreenchimento = validarCamposPreenchidos(['nome-sessao'], form);
+    const errosPreenchimento = validarCamposPreenchidos(['nome_sessao'], form);
     if (errosPreenchimento.length > 0) {
         error.textContent = errosPreenchimento[0];
         error.style.display = 'block';
         return;
     }
     //Validar estrutura do nome
-    if (!validarNome(nomeSessao)) {
+    if (!validarString(nomeSessao)) {
         error.textContent = 'Nome inválido.';
         error.style.display = 'block';
         return;
