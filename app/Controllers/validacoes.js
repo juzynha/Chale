@@ -15,6 +15,7 @@ export function validarCamposPreenchidos(names, container = document) {
     return [];
 }
 
+//-------Validar estruturas-------
 export function validarNomeProprio(nome) {
   const regex = /^[A-Za-zÀ-ÿ][a-zà-ÿ]+(?: [A-Za-zÀ-ÿ][a-zà-ÿ]+)+$/;
   return regex.test(nome.trim());
@@ -36,6 +37,12 @@ export function validarSenha(senha) {
   return regex.test(senha);
 }
 
+export function validarTelefone(numero) {
+    const regex = /^(\(?\d{2}\)?\s?)?\d{5}-?\d{4}$/;
+    return regex.test(numero);
+}   
+
+//-------Validar datas-------
 export function validarData(data) {
   // yyyy-mm-dd ou yyyy/mm/dd
   const regex = /^\d{4}[-/]\d{2}[-/]\d{2}$/;
@@ -46,8 +53,6 @@ export function validarDataPassada(dataString) {
     // Converte dd/mm/yyyy para Date
     const [dia, mes, ano] = dataString.split('/').map(Number);
     const dataInformada = new Date(ano, mes - 1, dia);
-
-    // Zera a hora do dia atual para comparar só a data
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
@@ -97,16 +102,4 @@ export function converterDataParaISO(data) {
         return `${partes[2]}-${partes[1]}-${partes[0]}`;
     }
     return data; 
-}
-
-
-export function validarCampos(regras, container = document) {
-  const erros = [];
-  for (let name in regras) {
-    const campo = container.querySelector(`[name="${name}"]`);
-    if (campo && !regras[name](campo.value)) {
-      erros.push(`Campo ${name} inválido`);
-    }
-  }
-  return erros;
 }

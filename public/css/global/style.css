@@ -67,6 +67,10 @@ input:focus {
   outline: none;
 }
 
+input::placeholder{
+  color: var(--verde-azulado);
+}
+
 .placeholder::placeholder{
   color: var(--branco);
   opacity: 1;

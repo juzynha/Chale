@@ -1,4 +1,4 @@
-import {validarCamposPreenchidos, validarString} from './validacoes.js';
+import {validarCamposPreenchidos, validarString} from './Validacoes.js';
 import {abrirModal, fecharModal} from '../../public/js/script.js';
 
 //--Colocar o nome de referência da sessão no modal--
@@ -16,25 +16,31 @@ document.getElementById('criar_sessao_utilitarios').addEventListener('click', fu
 //-------CADASTRO DE SESSÃO-------
 document.getElementById('formCriarSessao').addEventListener('submit', async function (e) {
     e.preventDefault();
+    
     const form = this; 
     const nomeSessao = form.querySelector('[name="nome_sessao"]').value.trim();
     let referencia = document.getElementById('nome_referencia').textContent;
+
     const error = document.getElementById('cadSessao_error');
+    let mensagemErro = '';
 
     //---Validações---
-    //Verificar se todos os campos estão preenchidos
+    //Verificar campos preenchidos
     const errosPreenchimento = validarCamposPreenchidos(['nome_sessao'], form);
     if (errosPreenchimento.length > 0) {
-        error.textContent = errosPreenchimento[0];
+        mensagemErro = errosPreenchimento[0];
+    }
+    //Validar nome
+    else if (!validarString(nomeSessao)) {
+        mensagemErro = 'Nome inválido.';
+    }
+    // Se houve erro, mostra de forma centralizada
+    if (mensagemErro !== '') {
+        error.textContent = mensagemErro;
         error.style.display = 'block';
         return;
     }
-    //Validar estrutura do nome
-    if (!validarString(nomeSessao)) {
-        error.textContent = 'Nome inválido.';
-        error.style.display = 'block';
-        return;
-    }
+
     //---Passando das validações---
     const dados = {nomeSessao, referencia};
     const resposta = await fetch('../../app/Models/SessoesModel.php', {

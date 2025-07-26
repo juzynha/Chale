@@ -12,6 +12,9 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="sessao-utilitarios">
             <h3 class="subtitulo verde-medio">Título da sessão</h3>
             <div class="sessao-cards">
+                <div class="card-utilitario-add" onclick="abrirModal('modal_criar_utilitario')">
+                    <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
+                </div>
                 <div class="card-utilitario">
                     <p class="nome-utilitario">Nome do utilitario</p>
                     <div class="imagem-utilitario">
@@ -130,19 +133,19 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
         <div class="modal-body">
             <form id="formCriarUtilitario">
+                <p class="error" id="cadUtilitario_error"></p>
                 <div class="campos-form-inputpadrao">
                     <div class="input-padrao">
-                        <label for="">Nome do utilitario:</label>
-                        <input type="text" name="nome-comum">
+                        <span>Nome do utilitario:</span>
+                        <input type="text" name="nome_utilitario">
                     </div>
                     <div class="imagem-utilitario">
-                        <div class="icon-add-imagem">
-                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="30px">
-                        </div>
+                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg">
+                            <input type="file" name="imagem_utilitario">
                     </div>
                     <div class="descricao-utilitario">
                         <div class="input-padrao">
-                            <label for="">Descrição:</label>
+                            <span>Descrição:</span>
                             <input type="text" name="descricao">
                         </div>
                     </div>

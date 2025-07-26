@@ -14,12 +14,12 @@
                         <div class="campos-form-inputwrapper">
                             <p class="error" id="login_error"></p>
                             <div class="input-wrapper">
-                                <label for="email">E-mail:</label>
+                                <span>E-mail:</span>
                                 <input type="email" id="email_login" name="email" required>
                             </div>
                             <div class="last-input">
                                 <div class="input-wrapper">
-                                    <label for="senha">Senha:</label>
+                                    <span>Senha:</span>
                                     <input type="password" id="senha_login" name="senha" required>
                                     <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho toggleSenha">
                                 </div>

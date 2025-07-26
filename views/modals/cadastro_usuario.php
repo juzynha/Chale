@@ -12,7 +12,7 @@
                     <h2>Já possui uma conta? Fazer <p class="link" onclick="fecharModal('modal_cadastro_usuario'), abrirModal('modal_login')">login</p></h2>
                     <form id="formCadastroUsuario">
                         <div class="campos-form-inputwrapper">
-                            <p class="error" id="erro_cadastro"></p>
+                            <p class="error" id="cadUsuario_error"></p>
                             <div class="input-wrapper">
                                 <span>Nome:</span>
                                 <input type="text" name="nome">
@@ -23,7 +23,7 @@
                             </div>
                             <div class="input-wrapper">
                                 <span>Telefone:</span>
-                                <input type="text" name="telefone">
+                                <input type="text" placeholder="(99) 999999999" name="telefone">
                             </div>
                             <div class="input-wrapper">
                                 <span>Data de nascimento:</span>
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn" id="continuar_cadastro">Continuar</button>
+                            <button type="submit" class="btn">Continuar</button>
                         </div>
                     </form>
                 </div>
@@ -53,22 +53,23 @@
     </div>
 </div>
 
-<div class="sombra-modal" id="modal_confirmar_email">
+<div class="sombra-modal" id="modal_validar_email">
     <div class="bloco-modal-geral">
         <div class="modal-header">
-            <h2>Enviamos um código ao e-mail <p>gabriel@gmail</p>
+            <h2>Enviamos um código ao e-mail <p id="validacao_email"></p>
             </h2>
             <p class="error"></p>
         </div>
         <div class="modal-body">
             <form id="formValidacaoEmail" class="form-inputcomum">
+                <p class="error" id="validarEmail_error"></p>
                 <div class="input-padrao">
-                    <label for="conf_email">Digite o código:</label>
-                    <input type="text" id="conf_email" name="conf_email" required>
-                    <p id="reenviar_email" class="textinho">Reenviar</p>
+                    <span>Digite o código:</span>
+                    <input type="text" name="codigo">
+                    <p id="reenviar_codigo" class="textinho">Reenviar</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn" id="validar_email">Continuar</button>
+                    <button type="submit" class="btn">Continuar</button>
                 </div>
             </form>
         </div>

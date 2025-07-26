@@ -26,6 +26,30 @@ export function fecharModal(idModal) {
 }
 window.fecharModal = fecharModal;
 
+// Renderiza imagens carregadas de inputs (file)
+export function inputRenderImg(input,img){
+    input.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+export function scrollModalToTop(idModal) {
+    const modal = document.querySelector(idModal);
+    if (modal) {
+        modal.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+}
+
 //toggle icon olho pra mostrar senha
 document.querySelectorAll('.toggleSenha').forEach(btn => {
     btn.addEventListener("click", () => {

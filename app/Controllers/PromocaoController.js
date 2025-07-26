@@ -1,5 +1,5 @@
-import {validarCamposPreenchidos, validarString, validarDataPassada, validarDataFutura, validarDistanciaData, converterDataParaISO} from './validacoes.js';
-import {fecharModal} from '../../public/js/script.js';
+import {validarCamposPreenchidos, validarString, validarDataPassada, validarDataFutura, validarDistanciaData, converterDataParaISO} from './Validacoes.js';
+import {fecharModal, scrollModalToTop} from '../../public/js/script.js';
 
 document.getElementById('formCadastroPromocao').addEventListener('submit', async function(e){
     e.preventDefault();
@@ -12,37 +12,35 @@ document.getElementById('formCadastroPromocao').addEventListener('submit', async
     const valorDiariaFds = form.querySelector('[name="valor_diariafds"]').value.trim();
 
     const error = document.getElementById('cadPromocao_error');
+    let mensagemErro = '';
 
     //---Validações local---
-    //Verificar se todos os campos estão preenchidos
+    // Verificar campos preenchidos
     const errosPreenchimento = validarCamposPreenchidos(['nome_promocao','data_inicial','data_final','valor_diaria','valor_diariafds'], form);
     if (errosPreenchimento.length > 0) {
-        error.textContent = errosPreenchimento[0];
-        error.style.display = 'block';
-        return;
+        mensagemErro = errosPreenchimento[0];
     }
-    //Validar estrutura do nome
-    if (!validarString(nomePromocao)) {
-        error.textContent = 'Nome inválido.';
-        error.style.display = 'block';
-        return;
+    //Validar nome
+    else if (!validarString(nomePromocao)) {
+        mensagemErro = 'Nome inválido.';
     }    
     //Validar se a data não está no passado
-    if (!validarDataPassada(dataInicial)){
-        error.textContent = 'Você não pode usar uma data no passado';
-        error.style.display = 'block';
-        return;
+    else if (!validarDataPassada(dataInicial)){
+        mensagemErro = 'Você não pode usar uma data no passado';
     }
     //Validar se a data não está mais distante que 10 anos
-    if (!validarDataFutura(dataFinal)){
-        error.textContent = 'Você não pode usar uma data tão distante';
-        error.style.display = 'block';
-        return;
+    else if (!validarDataFutura(dataFinal)){
+        mensagemErro = 'Você não pode usar uma data tão distante';
     }
     //Validar se a data final está pelo menos 1 dia a frente da data inicial
-    if (!validarDistanciaData(dataInicial, dataFinal)){
-        error.textContent = 'O período precisa ter uma duração de pelo menos um dia';
+    else if (!validarDistanciaData(dataInicial, dataFinal)){
+        mensagemErro = 'O período precisa ter uma duração de pelo menos um dia';
+    }
+    // Se houve erro, mostra de forma centralizada
+    if (mensagemErro !== '') {
+        error.textContent = mensagemErro;
         error.style.display = 'block';
+        scrollModalToTop('#modal_criar_promocao .bloco-modal-geral');
         return;
     }
     //Converter as datas dd/mm/yyyy para yyyy/mm/dd
@@ -62,6 +60,7 @@ document.getElementById('formCadastroPromocao').addEventListener('submit', async
     if (dateCheckJson.existe) {
         error.textContent = 'Já existe uma promoção nesse período';
         error.style.display = 'block';
+        scrollModalToTop('#modal_criar_promocao .bloco-modal-geral');
         return;
     } 
 

@@ -20,7 +20,7 @@ switch ($input['acao']){
 }
 
 function cadastrarSessao($dados, $pdo) {
-    $nome = $dados['nomeSessao']
+    $nome = $dados['nomeSessao'];
     if ($dados['referencia'] === 'Galeria de fotos'){
         $sql = "CALL cadastrar_sessao(:nome, 'fotos')";
     } else {

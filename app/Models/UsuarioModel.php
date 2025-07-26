@@ -22,7 +22,7 @@ switch ($input['acao']) {
         enviarCodigo($input['email']);
         break;
     case 'cadastrar_usuario':
-        cadastrarUsuario($input['dadosUsuario'], $pdo);
+        cadastrarUsuario($input['dados'], $pdo);
         break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
@@ -60,21 +60,30 @@ function enviarCodigo($email) {
     $codigo = rand(100000, 999999);
 
     // Enviar código por email (exemplo com função mail)
-    mail($email, "Código de verificação", "Seu código é: $codigo");
+   // mail($email, "Código de verificação", "Seu código é: $codigo");
 
     // Para testes, retorna o código
     echo json_encode(['status' => 'ok', 'codigo' => $codigo]);
 }
 
 function cadastrarUsuario($dados, $pdo) {
-    $nome = trim($dados['nome']);
-    $email = trim($dados['email']);
-    $telefone = trim($dados['telefone']);
-    $data_nasc = trim($dados['data_nasc']);
-    $senha = password_hash($dados['senha'], PASSWORD_DEFAULT);
+    $nome = $dados['nome'];
+    $email = $dados['email'];
+    $telefone = $dados['telefone'];
+    $dataNasc = $dados['dataNasc'];
+    $senha = $dados['senha'];
 
-    $stmt = $pdo->prepare("CALL cadastrar_usuario(?, ?, ?, ?, ?)");
-    $success = $stmt->execute([$nome, $email, $telefone, $data_nasc, $senha]);
+    $sql = "CALL cadastrar_usuario(:nome, :email, :telefone, :datanasc, :senha)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':telefone', $telefone);
+    $stmt->bindParam(':datanasc', $dataNasc);
+    $stmt->bindParam(':senha', $senha);
 
-    echo json_encode(['status' => $success ? 'ok' : 'erro']);
+    if ($stmt->execute()) {
+        echo json_encode(['erro' => false, 'mensagem' => 'Usuario cadastrado com sucesso!']);
+    } else {
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
+    }
 }

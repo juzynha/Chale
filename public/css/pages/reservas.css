@@ -150,14 +150,14 @@
     position: absolute;
     left: -3rem;
     top: 0;
-    width: 250px;
+    height: 100%;
 }
 
 .element-planta-right{
     position: absolute;
     right: -3rem;
     top: 0;
-    width: 250px;
+    height: 100%;
 }
 
 /*Estilizando o calendário
