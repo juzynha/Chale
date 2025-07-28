@@ -28,14 +28,18 @@ window.fecharModal = fecharModal;
 
 // Renderiza imagens carregadas de inputs (file)
 export function inputRenderImg(input,img){
-    input.addEventListener('change', function(event) {
-        const file = event.target.files[0];
+    input.addEventListener('change', function() {
+        const file = this.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
                 img.src = e.target.result;
+                img.style.display = 'block';
             }
             reader.readAsDataURL(file);
+        } else {
+            previewImagem.src = '';
+            previewImagem.style.display = 'none';
         }
     });
 }

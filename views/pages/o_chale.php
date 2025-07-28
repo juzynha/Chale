@@ -140,7 +140,8 @@ require_once __DIR__ . '/../layouts/header.php';
                         <input type="text" name="nome_utilitario">
                     </div>
                     <div class="imagem-utilitario">
-                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg">
+                            <img src="" class="img" name="img">
+                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
                             <input type="file" name="imagem_utilitario">
                     </div>
                     <div class="descricao-utilitario">

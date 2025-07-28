@@ -215,3 +215,10 @@ hr{
   border: 1px solid var(--verde-azulado);
   width: 100%;
 }
+
+/* Imagens selecionadas por inputs de arquivo*/
+.img {
+    display: none;
+    width: 100%;
+    height: 100%;
+}

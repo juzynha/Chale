@@ -8,8 +8,16 @@
 export function validarCamposPreenchidos(names, container = document) {
     for (let name of names) {
         const campo = container.querySelector(`[name="${name}"]`);
-        if (campo && campo.value.trim() === '') {
-            return ['Todos os campos devem ser preenchidos.'];
+        if (campo) {
+            if (campo.type === 'file') {
+                if (campo.files.length === 0) {
+                    return [`Selecione uma imagem`];
+                }
+            } else {
+                if (campo.value.trim() === '') {
+                    return [`Todos os campos devem ser preenchidos`];
+                }
+            }
         }
     }
     return [];
@@ -21,9 +29,45 @@ export function validarNomeProprio(nome) {
   return regex.test(nome.trim());
 }
 
-export function validarString(nome) {
+export function validarString(string) {
   const regex = /^([A-Za-zÀ-ÿ][a-zà-ÿ]*)( [A-Za-zÀ-ÿ][a-zà-ÿ]*)*$/;
-  return regex.test(nome.trim());
+  return regex.test(string.trim());
+}
+
+export function validarTexto(texto) {
+  const regex = /^([A-Za-zÀ-ÿ0-9]+)( [A-Za-zÀ-ÿ0-9]+)*$/;
+  return regex.test(texto.trim());
+}
+
+export function validarImagem(inputFile, tamanhoMaxMB = 2) {
+    const error = {
+        status: false,
+        message: ''
+    };
+
+    if (!inputFile || !inputFile.files || inputFile.files.length === 0) {
+        error.status = true;
+        error.message = 'Nenhuma imagem selecionada.';
+        return error;
+    }
+
+    const imagem = inputFile.files[0];
+    const tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
+    if (!tiposPermitidos.includes(imagem.type)) {
+        error.status = true;
+        error.message = 'Tipo de imagem inválido. Use JPEG, PNG, GIF ou WEBP.';
+        return error;
+    }
+
+    const tamanhoEmMB = imagem.size / (1024 * 1024);
+    if (tamanhoEmMB > tamanhoMaxMB) {
+        error.status = true;
+        error.message = `Imagem muito grande. Tamanho máximo permitido: ${tamanhoMaxMB}MB.`;
+        return error;
+    }
+
+    return error; 
 }
 
 export function validarEmail(email) {
