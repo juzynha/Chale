@@ -27,21 +27,84 @@ export function fecharModal(idModal) {
 window.fecharModal = fecharModal;
 
 // Renderiza imagens carregadas de inputs (file)
-export function inputRenderImg(input,img){
-    input.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                img.src = e.target.result;
-                img.style.display = 'block';
-            }
-            reader.readAsDataURL(file);
-        } else {
-            previewImagem.src = '';
-            previewImagem.style.display = 'none';
-        }
+export function renderizarEditorImagem(div, input) {
+  const arquivo = input.files[0];
+  if (!arquivo) return;
+
+  // Limpa a div
+  div.innerHTML = '';
+
+  // Cria a imagem
+  const img = document.createElement('img');
+  img.classList.add('img');
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    img.src = e.target.result;
+    div.appendChild(img);
+
+    // Centraliza a imagem inicialmente
+    img.onload = function () {
+      // Centraliza a imagem dentro da div
+      const divRect = div.getBoundingClientRect();
+      img.style.left = `${(div.clientWidth - img.width) / 2}px`;
+      img.style.top = `${(div.clientHeight - img.height) / 2}px`;
+    }
+
+    // Habilita o "mover"
+    let isDragging = false;
+    let startX, startY, initialLeft, initialTop;
+
+    img.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      initialLeft = parseInt(img.style.left || 0);
+      initialTop = parseInt(img.style.top || 0);
+      img.style.cursor = 'grabbing';
+      e.preventDefault();
     });
+
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        img.style.left = `${initialLeft + dx}px`;
+        img.style.top = `${initialTop + dy}px`;
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      img.style.cursor = 'grab';
+    });
+
+    // Suporte a toque (mobile)
+    img.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      const touch = e.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+      initialLeft = parseInt(img.style.left || 0);
+      initialTop = parseInt(img.style.top || 0);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+      if (isDragging) {
+        const touch = e.touches[0];
+        const dx = touch.clientX - startX;
+        const dy = touch.clientY - startY;
+        img.style.left = `${initialLeft + dx}px`;
+        img.style.top = `${initialTop + dy}px`;
+      }
+    });
+
+    document.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+  };
+
+  reader.readAsDataURL(arquivo);
 }
 
 export function scrollModalToTop(idModal) {

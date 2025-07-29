@@ -1,6 +1,8 @@
 import {validarCamposPreenchidos, validarString, validarImagem, validarTexto} from './Validacoes.js';
 import {fecharModal, inputRenderImg, scrollModalToTop} from '../../public/js/script.js';
 
+
+
 document.getElementById('formCriarUtilitario').addEventListener('submit', async function (e) {
     e.preventDefault();
     console.log('clicou');
@@ -12,8 +14,6 @@ document.getElementById('formCriarUtilitario').addEventListener('submit', async 
 
     const error = document.getElementById('cadUtilitario_error');
     let mensagemErro = '';
-    // Renderizar imagem selecionada
-    inputRenderImg(imagemUtilitario,img);
 
     //---Validações local---
     const erroImagem = validarImagem(imagemUtilitario);
