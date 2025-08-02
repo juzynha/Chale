@@ -1,7 +1,11 @@
 import {validarCamposPreenchidos, validarString, validarImagem, validarTexto} from './Validacoes.js';
-import {fecharModal, inputRenderImg, scrollModalToTop} from '../../public/js/script.js';
+import {fecharModal, renderizarEditorImagem, scrollModalToTop} from '../../public/js/script.js';
 
+const form = document.getElementById('formCriarUtilitario');
+const div = form.querySelector('.imagem-utilitario');
+const input = form.querySelector('[name="imagem_utilitario"]');
 
+renderizarEditorImagem(div,input);
 
 document.getElementById('formCriarUtilitario').addEventListener('submit', async function (e) {
     e.preventDefault();

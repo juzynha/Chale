@@ -7,7 +7,7 @@ require_once __DIR__ . '/../layouts/header.php';
     ?>
 </header>
 <div class="container">
-    <h1 class="titulo">Faça sua reserva no chalé La Vie En Rose!</h1>
+    <h1 class="titulo verde-escuro">Faça sua reserva no chalé La Vie En Rose!</h1>
 </div>
 <section class="carrossel-container">
     <div class="carrossel"></div>

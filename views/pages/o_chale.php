@@ -139,9 +139,9 @@ require_once __DIR__ . '/../layouts/header.php';
                         <span>Nome do utilitario:</span>
                         <input type="text" name="nome_utilitario">
                     </div>
-                    <div class="imagem-utilitario">
-                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
-                            <input type="file" name="imagem_utilitario">
+                    <div class="imagem-utilitario img-box">
+                        <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
+                        <input type="file" name="imagem_utilitario">
                     </div>
                     <div class="descricao-utilitario">
                         <div class="input-padrao">
