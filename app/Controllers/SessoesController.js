@@ -7,7 +7,7 @@ document.getElementById('criar_sessao_fotos').addEventListener('click', function
     abrirModal('modal_criar_sessao');
     tag.textContent = 'Galeria de fotos';
 });
-document.getElementById('criar_sessao_utilitarios').addEventListener('click', function () {
+document.getElementById('criar_sessao_servicos').addEventListener('click', function () {
     const tag = document.getElementById('nome_referencia');
     abrirModal('modal_criar_sessao');
     tag.textContent = 'Utilitários';

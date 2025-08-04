@@ -7,9 +7,9 @@ require_once __DIR__ . '/../layouts/header.php';
     ?>
 </header>
 <div class="container">
-    <h2 class="titulo verde-escuro">Utilitários</h2>
-    <div class="utilitarios">
-        <div class="sessao-utilitarios">
+    <h2 class="titulo verde-escuro">Serviços</h2>
+    <div class="servicos">
+        <div class="sessao-servicos">
             <h3 class="subtitulo verde-medio">Título da sessão</h3>
             <div class="sessao-cards">
                 <div class="card-utilitario-add" onclick="abrirModal('modal_criar_utilitario')">
@@ -42,7 +42,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <hr>
         </div>
-        <div class="sessao-utilitarios">
+        <div class="sessao-servicos">
             <h2 class="subtitulo verde-medio">Título da sessão</h2>
             <div class="sessao-cards">
                 <div class="card-utilitario-add" onclick="abrirModal('modal_criar_utilitario')">
@@ -51,7 +51,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <hr>
         </div>
-        <div class="ferramenta" id="criar_sessao_utilitarios">
+        <div class="ferramenta" id="criar_sessao_servicos">
             <p>Criar sessão</p>
             <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
         </div>

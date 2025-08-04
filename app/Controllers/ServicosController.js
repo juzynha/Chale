@@ -1,11 +1,5 @@
 import {validarCamposPreenchidos, validarString, validarImagem, validarTexto} from './Validacoes.js';
-import {fecharModal, renderizarEditorImagem, scrollModalToTop} from '../../public/js/script.js';
-
-const form = document.getElementById('formCriarUtilitario');
-const div = form.querySelector('.imagem-utilitario');
-const input = form.querySelector('[name="imagem_utilitario"]');
-
-renderizarEditorImagem(div,input);
+import {fecharModal, scrollModalToTop} from '../../public/js/script.js';
 
 document.getElementById('formCriarUtilitario').addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -14,7 +8,6 @@ document.getElementById('formCriarUtilitario').addEventListener('submit', async 
     const nomeUtilitario = form.querySelector('[name="nome_utilitario"]').value.trim();
     const imagemUtilitario = form.querySelector('[name="imagem_utilitario"]');
     const descricao = form.querySelector('[name="descricao"]').value.trim();
-    const img = form.querySelector('[name="img"]');
 
     const error = document.getElementById('cadUtilitario_error');
     let mensagemErro = '';
@@ -26,12 +19,8 @@ document.getElementById('formCriarUtilitario').addEventListener('submit', async 
     if (errosPreenchimento.length > 0) {
         mensagemErro = errosPreenchimento[0];
     }
-    // Validar nome
-    else if (!validarString(nomeUtilitario)) {
-        mensagemErro = 'Nome inválido.';
-    }
     // Validar imagem
-    else if (erroImagem.error.length > 0) {
+    else if (erroImagem.error) {
         mensagemErro = erroImagem.error;
     }
     // Validar descrição

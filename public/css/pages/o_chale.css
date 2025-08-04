@@ -1,9 +1,9 @@
-.utilitarios{
+.servicos{
     display: flex;
     flex-direction: column;
 }
 
-.sessao-utilitarios{
+.sessao-servicos{
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
