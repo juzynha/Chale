@@ -1,9 +1,9 @@
 import {validarCamposPreenchidos, validarImagem, validarTexto} from './Validacoes.js';
-import {scrollModalToTop} from '../../public/js/script.js';
+import {fecharModal, scrollModalToTop} from '../../public/js/script.js';
 
 document.getElementById('formCriarServico').addEventListener('submit', async function (e) {
     e.preventDefault();
-    console.log('clicou');
+
     const form = this; 
     const nomeServico = form.querySelector('[name="nome_servico"]').value.trim();
     const imagemServico = form.querySelector('[name="imagem_servico"]');
@@ -33,4 +33,25 @@ document.getElementById('formCriarServico').addEventListener('submit', async fun
         scrollModalToTop('#modal_criar_servico .bloco-modal-geral');
         return;
     }
+    //---Passando das validações---
+    const formData = new FormData();
+    formData.append('acao', 'cadastrar_servico');
+    formData.append('nomeServico', nomeServico);
+    formData.append('imagemServico', imagemServico.files[0]);
+    formData.append('descricao', descricao);
+
+    const resposta = await fetch('../../app/Models/ServicosModel.php', {
+        method: 'POST',
+        body: formData
+    });
+    const json = await resposta.json();
+        
+    //Limpa os campos após sucesso e mostra um alert com a mensagem de erro ou sucesso
+    if (!json.erro) {
+        fecharModal('modal_criar_servico');
+        alert(json.mensagem);
+    } else {
+        error.textContent= json.mensagem;
+    }
+    
 });
