@@ -1,20 +1,20 @@
-import {validarCamposPreenchidos, validarString, validarImagem, validarTexto} from './Validacoes.js';
-import {fecharModal, scrollModalToTop} from '../../public/js/script.js';
+import {validarCamposPreenchidos, validarImagem, validarTexto} from './Validacoes.js';
+import {scrollModalToTop} from '../../public/js/script.js';
 
-document.getElementById('formCriarUtilitario').addEventListener('submit', async function (e) {
+document.getElementById('formCriarServico').addEventListener('submit', async function (e) {
     e.preventDefault();
     console.log('clicou');
     const form = this; 
-    const nomeUtilitario = form.querySelector('[name="nome_utilitario"]').value.trim();
-    const imagemUtilitario = form.querySelector('[name="imagem_utilitario"]');
+    const nomeServico = form.querySelector('[name="nome_servico"]').value.trim();
+    const imagemServico = form.querySelector('[name="imagem_servico"]');
     const descricao = form.querySelector('[name="descricao"]').value.trim();
 
-    const error = document.getElementById('cadUtilitario_error');
+    const error = document.getElementById('cadServicos_error');
     let mensagemErro = '';
 
     //---Validações local---
-    const erroImagem = validarImagem(imagemUtilitario);
-    const errosPreenchimento = validarCamposPreenchidos(['nome_utilitario', 'imagem_utilitario', 'descricao'], form);
+    const erroImagem = validarImagem(imagemServico);
+    const errosPreenchimento = validarCamposPreenchidos(['nome_servico', 'imagem_servico', 'descricao'], form);
     // Verificar campos preenchidos
     if (errosPreenchimento.length > 0) {
         mensagemErro = errosPreenchimento[0];
@@ -30,7 +30,7 @@ document.getElementById('formCriarUtilitario').addEventListener('submit', async 
     if (mensagemErro !== '') {
         error.textContent = mensagemErro;
         error.style.display = 'block';
-        scrollModalToTop('#modal_criar_utilitario .bloco-modal-geral');
+        scrollModalToTop('#modal_criar_servico .bloco-modal-geral');
         return;
     }
 });

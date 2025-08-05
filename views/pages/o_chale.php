@@ -12,26 +12,26 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="sessao-servicos">
             <h3 class="subtitulo verde-medio">Título da sessão</h3>
             <div class="sessao-cards">
-                <div class="card-utilitario-add" onclick="abrirModal('modal_criar_utilitario')">
+                <div class="card-servico-add" onclick="abrirModal('modal_criar_servico')">
                     <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
                 </div>
-                <div class="card-utilitario">
-                    <p class="nome-utilitario">Nome do utilitario</p>
-                    <div class="imagem-utilitario">
+                <div class="card-servico">
+                    <p class="nome-servico">Nome do servico</p>
+                    <div class="imagem-servico">
                         <img src="" alt="">
                     </div>
-                    <div class="descricao-utilitario">
-                        <p>Texto descritivo do utilitario aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd
+                    <div class="descricao-servico">
+                        <p>Texto descritivo do servico aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd
                             basdh uawhd abjshdhawudh jakjhwduhasjnjwbdb nasda</p>
                     </div>
                 </div>
-                <div class="card-utilitario">
-                    <p class="nome-utilitario">Nome do utilitario</p>
-                    <div class="imagem-utilitario">
+                <div class="card-servico">
+                    <p class="nome-servico">Nome do servico</p>
+                    <div class="imagem-servico">
                         <img src="" alt="">
                     </div>
-                    <div class="descricao-utilitario">
-                        <p>Texto descritivo do utilitario aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd
+                    <div class="descricao-servico">
+                        <p>Texto descritivo do servico aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd
                             basdh uawhd abjshdhawudh jakjhwduhasjnjwbdb nasda</p>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="sessao-servicos">
             <h2 class="subtitulo verde-medio">Título da sessão</h2>
             <div class="sessao-cards">
-                <div class="card-utilitario-add" onclick="abrirModal('modal_criar_utilitario')">
+                <div class="card-servico-add" onclick="abrirModal('modal_criar_servico')">
                     <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
                 </div>
             </div>
@@ -123,27 +123,27 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
 </div>
 
-<div class="sombra-modal" id="modal_criar_utilitario">
+<div class="sombra-modal" id="modal_criar_servico">
     <div class="bloco-modal-geral">
         <div class="modal-header">
-            <h2>Criar utilitário</h2>
+            <h2>Criar serviço</h2>
             <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCriarUtilitario">
-                <p class="error" id="cadUtilitario_error"></p>
+            <form id="formCriarServico">
+                <p class="error" id="cadServicos_error"></p>
                 <div class="campos-form-inputpadrao">
                     <div class="input-padrao">
-                        <span>Nome do utilitario:</span>
-                        <input type="text" name="nome_utilitario">
+                        <span>Nome do serviço:</span>
+                        <input type="text" name="nome_servico">
                     </div>
-                    <div class="imagem-utilitario img-box">
+                    <div class="imagem-servico img-box">
                         <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
-                        <input type="file" name="imagem_utilitario">
+                        <input type="file" name="imagem_servico">
                     </div>
-                    <div class="descricao-utilitario">
+                    <div class="descricao-servico">
                         <div class="input-padrao">
                             <span>Descrição:</span>
                             <input type="text" name="descricao">

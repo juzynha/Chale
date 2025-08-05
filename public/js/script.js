@@ -49,7 +49,7 @@ document.querySelectorAll('.img-box input[type="file"]').forEach(input => {
         reader.onload = function (e) {
             img.src = e.target.result;
             container.appendChild(img);
-
+            /*
             img.onload = function () {
             // Posição inicial centralizada
             let offsetX = 0;
@@ -112,6 +112,7 @@ document.querySelectorAll('.img-box input[type="file"]').forEach(input => {
                 document.addEventListener('mouseup', onMouseUp);
             });
             };
+            */
         };
 
         reader.readAsDataURL(file);
