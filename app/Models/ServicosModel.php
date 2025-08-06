@@ -19,20 +19,29 @@ switch ($input['acao']) {
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
 }
 
-function cadastrarServico($dados, $pdo) {
-    $nomeServico = $post['nomeServico'];
-    $descricao = $post['descricao'];
-    $sesid = 9;
+function cadastrarServico($dados, $arquivos, $pdo) {
+    $nomeServico = $dados['nomeServico'] ?? '';
+    $descricao = $dados['descricao'] ?? '';
+    $sesid = 9; // valor fixo por enquanto
 
-    $imagem = $files['imagemServico'];
-    $caminhoFinal = 'caminho/para/uploads/' . uniqid() . '_' . $imagem['name'];
+    // Valida imagem enviada
+    if (!isset($arquivos['imagemServico']) || $arquivos['imagemServico']['error'] !== 0) {
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro no upload da imagem.']);
+        return;
+    }
 
-    move_uploaded_file($imagem['tmp_name'], $caminhoFinal);
+    $imagem = $arquivos['imagemServico'];
+    $nomeFinalImagem = uniqid() . '_' . basename($imagem['name']);
+    $caminhoFinal = '../../public/uploads/' . $nomeFinalImagem;
 
-    $sql = "CALL cadastrar_servico(:nomeServico,:imagemServico,:descricao,:sesid)";
+    $imagem = $_FILES['imagemServico'];
+
+    $dadosImagem = file_get_contents($imagem['tmp_name']); // lê o conteúdo binário
+
+    $sql = "CALL cadastrar_servico(:nomeServico, :imagemServico, :descricao, :sesid)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nomeServico', $nomeServico);
-    $stmt->bindParam(':imagemServico', $imagemServico);
+    $stmt->bindParam(':imagemServico', $dadosImagem, PDO::PARAM_LOB); 
     $stmt->bindParam(':descricao', $descricao);
     $stmt->bindParam(':sesid', $sesid);
 

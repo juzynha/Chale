@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/08/2025 às 00:26
+-- Tempo de geração: 06/08/2025 às 23:19
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -160,17 +160,6 @@ CREATE TABLE `lista_promocoes` (
 -- (Veja abaixo para a visão atual)
 --
 CREATE TABLE `lista_reservas` (
-`resid` int(11)
-,`rescheckin` date
-,`rescheckout` date
-,`resvtotal` double
-,`resstatuspag` tinyint(1)
-,`usuid` int(11)
-,`usunome` varchar(150)
-,`usutelefone` varchar(20)
-,`usuemail` varchar(100)
-,`usudatanasc` date
-,`usufoto` longblob
 );
 
 -- --------------------------------------------------------
@@ -303,7 +292,7 @@ CREATE TABLE `usuarios` (
   `usuemail` varchar(100) DEFAULT NULL,
   `usudatanasc` date DEFAULT NULL,
   `ususenha` varchar(20) DEFAULT NULL,
-  `usufoto` longblob DEFAULT NULL,
+  `usufotcaminho` varchar(100) DEFAULT NULL,
   `usutipo` enum('cliente','admin') DEFAULT 'cliente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -311,7 +300,7 @@ CREATE TABLE `usuarios` (
 -- Despejando dados para a tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuid`, `usunome`, `usutelefone`, `usuemail`, `usudatanasc`, `ususenha`, `usufoto`, `usutipo`) VALUES
+INSERT INTO `usuarios` (`usuid`, `usunome`, `usutelefone`, `usuemail`, `usudatanasc`, `ususenha`, `usufotcaminho`, `usutipo`) VALUES
 (1, 'Juliana Cardoso Araujo', '(14)99646-7035', 'ju@gmail.com', '2008-03-31', '12345', '', 'cliente'),
 (2, 'Gabriel Cardoso', '111929389', 'gabriel@gmail.com', '1999-11-04', '123', NULL, 'cliente'),
 (23, 'Juliana Cardoso Araujo', NULL, 'julianacaraujo3103@gmail.com', NULL, '9bcb90ee5bc9411bdc7d', NULL, 'admin');
