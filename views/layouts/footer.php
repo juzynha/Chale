@@ -6,7 +6,7 @@
 <script src="/chale/app/Controllers/ReservasController.js"></script>
 <script type="module" src="/chale/app/Controllers/SessoesController.js"></script>
 <script type="module" src="/chale/app/Controllers/UsuarioController.js"></script>
-<script type="module" src="/chale/app/Controllers/UtilitariosController.js"></script>
+<script type="module" src="/chale/app/Controllers/ServicosController.js"></script>
 <script type="module" src="/app/Controlers/BloqueioController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </body>

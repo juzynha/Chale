@@ -27,85 +27,97 @@ export function fecharModal(idModal) {
 window.fecharModal = fecharModal;
 
 // Renderiza imagens carregadas de inputs (file)
-export function renderizarEditorImagem(div, input) {
-  const arquivo = input.files[0];
-  if (!arquivo) return;
+document.querySelectorAll('.img-box input[type="file"]').forEach(input => {
+    input.addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
 
-  // Limpa a div
-  div.innerHTML = '';
+        const container = this.closest('.img-box');
+        const icon = container.querySelector('.icon');
 
-  // Cria a imagem
-  const img = document.createElement('img');
-  img.classList.add('img');
+        // Remove o ícone de "+"
+        if (icon) icon.remove();
 
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    img.src = e.target.result;
-    div.appendChild(img);
+        // Desativa o input
+        this.style.pointerEvents = 'none';
 
-    // Centraliza a imagem inicialmente
-    img.onload = function () {
-      // Centraliza a imagem dentro da div
-      const divRect = div.getBoundingClientRect();
-      img.style.left = `${(div.clientWidth - img.width) / 2}px`;
-      img.style.top = `${(div.clientHeight - img.height) / 2}px`;
-    }
+        // Cria e insere a imagem
+        const img = document.createElement('img');
+        img.classList.add('img');
 
-    // Habilita o "mover"
-    let isDragging = false;
-    let startX, startY, initialLeft, initialTop;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            img.src = e.target.result;
+            container.appendChild(img);
+            /*
+            img.onload = function () {
+            // Posição inicial centralizada
+            let offsetX = 0;
+            let offsetY = 0;
+            let startX, startY;
 
-    img.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      initialLeft = parseInt(img.style.left || 0);
-      initialTop = parseInt(img.style.top || 0);
-      img.style.cursor = 'grabbing';
-      e.preventDefault();
+            // Limites
+            const updateLimits = () => {
+                const containerRect = container.getBoundingClientRect();
+                const imgRect = img.getBoundingClientRect();
+
+                const maxX = Math.max(0, img.width - container.clientWidth);
+                const maxY = Math.max(0, img.height - container.clientHeight);
+
+                return {
+                minX: -maxX / 2,
+                maxX: maxX / 2,
+                minY: -maxY / 2,
+                maxY: maxY / 2
+                };
+            };
+
+            // Centralizar a imagem inicialmente
+            offsetX = (container.clientWidth - img.width) / 2;
+            offsetY = (container.clientHeight - img.height) / 2;
+            img.style.left = `${offsetX}px`;
+            img.style.top = `${offsetY}px`;
+
+            // Drag funcional
+            img.addEventListener('mousedown', function (e) {
+                e.preventDefault();
+                startX = e.clientX;
+                startY = e.clientY;
+
+                const onMouseMove = (eMove) => {
+                const deltaX = eMove.clientX - startX;
+                const deltaY = eMove.clientY - startY;
+
+                const limits = updateLimits();
+
+                let newX = offsetX + deltaX;
+                let newY = offsetY + deltaY;
+
+                // Limitar movimento
+                newX = Math.min(limits.maxX, Math.max(limits.minX, newX));
+                newY = Math.min(limits.maxY, Math.max(limits.minY, newY));
+
+                img.style.left = `${newX}px`;
+                img.style.top = `${newY}px`;
+                };
+
+                const onMouseUp = (eUp) => {
+                offsetX = parseInt(img.style.left);
+                offsetY = parseInt(img.style.top);
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+                };
+
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            });
+            };
+            */
+        };
+
+        reader.readAsDataURL(file);
     });
-
-    document.addEventListener('mousemove', (e) => {
-      if (isDragging) {
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
-        img.style.left = `${initialLeft + dx}px`;
-        img.style.top = `${initialTop + dy}px`;
-      }
-    });
-
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      img.style.cursor = 'grab';
-    });
-
-    // Suporte a toque (mobile)
-    img.addEventListener('touchstart', (e) => {
-      isDragging = true;
-      const touch = e.touches[0];
-      startX = touch.clientX;
-      startY = touch.clientY;
-      initialLeft = parseInt(img.style.left || 0);
-      initialTop = parseInt(img.style.top || 0);
-    });
-
-    document.addEventListener('touchmove', (e) => {
-      if (isDragging) {
-        const touch = e.touches[0];
-        const dx = touch.clientX - startX;
-        const dy = touch.clientY - startY;
-        img.style.left = `${initialLeft + dx}px`;
-        img.style.top = `${initialTop + dy}px`;
-      }
-    });
-
-    document.addEventListener('touchend', () => {
-      isDragging = false;
-    });
-  };
-
-  reader.readAsDataURL(arquivo);
-}
+});
 
 export function scrollModalToTop(idModal) {
     const modal = document.querySelector(idModal);
@@ -270,4 +282,5 @@ function mostrarTudo() {
 document.addEventListener("DOMContentLoaded", function () {
   inputMaks();
   mostrarTudo();
+  renderizarImagens();
 });

@@ -1,9 +1,9 @@
-.utilitarios{
+.servicos{
     display: flex;
     flex-direction: column;
 }
 
-.sessao-utilitarios{
+.sessao-servicos{
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
@@ -18,7 +18,7 @@
     padding: 1rem;
 }
 
-.card-utilitario{
+.card-servico{
     background-color: var(--verde-medio);
     width: 300px;
     padding: 1rem 1.5rem;
@@ -30,7 +30,7 @@
     color: var(--branco);
 }
 
-.card-utilitario-add{
+.card-servico-add{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,12 +42,12 @@
     cursor: pointer;
 }
 
-.nome-utilitario{
+.nome-servico{
     font-size: 20px;
     font-weight: 700;
 }
 
-.imagem-utilitario{
+.imagem-servico{
     border-radius: 10px;
     box-shadow: 5px 5px 1px var(--verde-escuro), -5px -5px 1px var(--verde);
     width: 100%;
@@ -59,7 +59,7 @@
     overflow: hidden;
 }
 
-.imagem-utilitario .icon{
+.imagem-servico .icon{
     width: 50px;
     cursor: pointer;
     display: flex;
@@ -67,7 +67,7 @@
     position: absolute;
 }
 
-.imagem-utilitario input{
+.imagem-servico input{
     background: transparent;
     box-shadow: none;
     border: none;
@@ -75,7 +75,7 @@
     cursor: pointer;
 }
 
-.descricao-utilitario{
+.descricao-servico{
     display: flex;
     flex-direction: column;
     border-radius: 10px;
