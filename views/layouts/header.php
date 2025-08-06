@@ -7,5 +7,4 @@
     <link rel="stylesheet" href="/chale/public/css/global/style.css">
     <title>Chalé La Vie en Rose</title>
 </head>
-<body>
     

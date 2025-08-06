@@ -1,35 +1,35 @@
 <?php
 require_once __DIR__ . '/../../config/Database.php';
 
-Class Reservas{
-    private $pdo;
+$pdo = Database::conectar();
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    public function __construct() {
-        $this->pdo = Database::conectar();
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
+$input = json_decode(file_get_contents("php://input"), true);
 
-    public function listaReservas() {
-        $sql = "SELECT *, TIMESTAMPDIFF(YEAR, usudatanasc, CURDATE()) AS idade FROM lista_reservas";
-        $prp = $this->pdo->prepare($sql);
-        $prp->execute();
-        $data = $prp->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($data);
-    }
+if (!isset($input['acao'])) {
+    echo json_encode(['status' => 'erro', 'mensagem' => 'Ação não definida']);
+    exit;
 }
 
-if (isset($_GET['action'])) {
-    $reservas = new Reservas();
+switch ($input['acao']) {
+    case 'listar_reservas':
+        listarReservas($pdo);
+        break;
+    default:
+        echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
+}
 
-    if ($_GET['action'] == 'listaReservas') {
-        $reservas->listaReservas();
-    } elseif ($_GET['action'] == 'outraFuncao') {
-        $reservas->outraFuncao();
+function listarReservas($pdo) {
+    $sql = "SELECT *, TIMESTAMPDIFF(YEAR, usudatanasc, CURDATE()) AS idade FROM lista_reservas";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute()) {
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($data);
     } else {
-        echo json_encode(['erro' => 'Ação inválida']);
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
     }
-} else {
-    echo json_encode(['erro' => 'Nenhuma ação especificada']);
+
 }
 
 ?>

@@ -147,3 +147,11 @@ export function converterDataParaISO(data) {
     }
     return data; 
 }
+
+export function converterDataParaBR(dataISO) {
+    const partes = dataISO.split('-');
+    if (partes.length === 3) {
+        return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+    return dataISO;
+}

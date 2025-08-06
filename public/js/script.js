@@ -245,42 +245,8 @@ function inputMaskDouble() {
 });
 }
 
-//tirar o limite de tamanho para mostrar a lista completa de reservas
-function mostrarTudo() {
-    let mostrar = document.getElementById('mostrar_lista');
-    let container = document.getElementById('container_reservas');
 
-    // Calcula 150% da altura da tela
-    let alturaLimite = window.innerHeight * 0.1;
-
-    // Verifica se o conteúdo ultrapassa 150% da tela
-    if (container.scrollHeight > alturaLimite) {
-        // Conteúdo é maior -> ativa limite e mostra o botão
-        container.classList.add("limita-tamanho");
-        mostrar.style.display = "flex"; // garante que o botão apareça
-
-        // Configura o botão para alternar mostrar tudo/mostrar menos
-        mostrar.addEventListener("click", function () {
-            if (mostrar.textContent === 'Mostrar tudo') {
-                // Expandir
-                container.classList.remove("limita-tamanho");
-                mostrar.textContent = 'Mostrar menos';
-            } else {
-                // Recolher
-                container.classList.add("limita-tamanho");
-                mostrar.textContent = 'Mostrar tudo';
-            }
-        });
-    } else {
-        // Conteúdo não é grande -> sem limite, esconde botão ou desativa
-        container.classList.remove("limita-tamanho");
-        container.classList.add("sem-limite");
-        mostrar.style.display = "none"; // esconde o botão
-    }
-}
 
 document.addEventListener("DOMContentLoaded", function () {
   inputMaks();
-  mostrarTudo();
-  renderizarImagens();
 });
