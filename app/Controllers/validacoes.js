@@ -47,7 +47,7 @@ export function validarImagem(inputFile, tamanhoMaxMB = 2) {
 
     if (!inputFile || !inputFile.files || inputFile.files.length === 0) {
         error.status = true;
-        error.message = 'Nenhuma imagem selecionada.';
+        error.message = 'Selecione uma imagem';
         return error;
     }
 

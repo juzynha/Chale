@@ -12,11 +12,26 @@ if (!isset($input['acao'])) {
 }
 
 switch ($input['acao']){
+    case 'listar_sessoes':
+        listarSessoes($pdo);
+        break;
     case 'cadastrar_sessao':
         cadastrarSessao($input['dados'], $pdo);
         break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
+}
+
+function listarSessoes($pdo) {
+    $sql = "SELECT * FROM sessoes ORDER BY sesid DESC";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute()){
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($data);
+    } else {
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
+    }
 }
 
 function cadastrarSessao($dados, $pdo) {

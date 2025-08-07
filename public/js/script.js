@@ -16,11 +16,30 @@ export function fecharModal(idModal) {
     const modal = document.getElementById(idModal);
     if (modal) {
         modal.style.display = 'none';
-        modal.querySelector('form').reset(); // limpa campos do form
-        const error = modal.querySelector('.error'); // ou pelo id
+        modal.querySelector('form').reset(); 
+        const error = modal.querySelector('.error'); 
+        const imgBox = modal.querySelector('.img-box');
         if (error) {
             error.textContent = '';
             error.style.display = 'none';
+        }
+        if (imgBox) {
+            // Remove imagem renderizada
+            const img = imgBox.querySelector('img');
+            if (img) img.remove();
+
+            // Reativa o input
+            const input = imgBox.querySelector('input[type="file"]');
+            if (input) input.style.pointerEvents = 'auto';
+
+            // Reinsere o ícone, se necessário
+            const existingIcon = imgBox.querySelector('.icon');
+            if (!existingIcon) {
+                const icon = document.createElement('img');
+                icon.classList.add('icon');
+                icon.src = '/chale/public/assets/icons/icon-adicionar(branco).svg';
+                imgBox.appendChild(icon);
+            }   
         }
     }
 }

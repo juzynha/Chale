@@ -3,7 +3,7 @@
     flex-direction: column;
 }
 
-.sessao-servicos{
+.sessao{
     display: flex;
     flex-direction: column;
     padding: 1rem 0;
@@ -85,7 +85,7 @@
     width: 100%;
 }
 
-.opcao-editar-sessao{
+.opcao-excluir-sessao{
     display: flex;
     align-self: flex-end;
     gap: 0.5rem;
@@ -114,7 +114,13 @@
     flex-direction: column;
 }
 
-.sessao-fotos{
+.card-foto-add{
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--verde-azulado);
+    border-radius: 10px;
+    min-width: 300px;
+    min-height: 300px;
+    cursor: pointer;
 }

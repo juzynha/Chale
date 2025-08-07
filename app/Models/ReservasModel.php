@@ -20,14 +20,14 @@ switch ($input['acao']) {
 }
 
 function listarReservas($pdo) {
-    $sql = "SELECT *, TIMESTAMPDIFF(YEAR, usudatanasc, CURDATE()) AS idade FROM lista_reservas";
+    $sql = "SELECT * FROM lista_reservas;";
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute()) {
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($data);
     } else {
-        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao comunicar com o banco']);
     }
 
 }

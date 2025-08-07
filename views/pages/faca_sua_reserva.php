@@ -233,29 +233,28 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="sombra-modal" id="modal_add_foto_carrossel">
         <div class="bloco-modal-geral">
             <div class="modal-header">
-                <h2>Selecione uma imagem</h2>
-                <button onclick="fecharModal('modal_add_foto_carrossel'), abrirModal('modal_editar_carrossel')">
+                <h2>Adicionar Foto</h2>
+                <button class="btn-fechar-modal">
                     <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                 </button>
-                <p class="error"></p>
             </div>
             <div class="modal-body">
-                <form id="formAddFotoCarrossel" class="form-inputcomum">
-                    <div class="add-imagem-carrossel">
-                        <div class="campo-add-foto">
-                            <div class="input-padrao">
-                                <label for="add-foto">Abrir arquivo:</label>
-                                <input type="file" id="add-foto">
-                            </div>
+                <form id="formAddFotoCarrossel">
+                    <p class="error" id="cadFotoCarrossel_error"></p>
+                    <div class="campos-form-inputpadrao">
+                        <div class="imagem-servico img-box">
+                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
+                            <input type="file" name="foto">
                         </div>
-                        <div class="modal-footer">
-                            <button class="btn">Salvar</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn">Adicionar</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
 </body>
 <?php
 require_once __DIR__ . '/../layouts/footer.php';

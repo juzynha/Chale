@@ -66,9 +66,9 @@ if (pagina === 'conta_admin') {
         //---Passando das validações---
         const dados = {nome, email, senha};
         const resposta = await fetch('../../app/Models/UsuarioModel.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({acao: 'cadastrar_admin', dados})
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({acao: 'cadastrar_admin', dados})
         });
         const json = await resposta.json();
         

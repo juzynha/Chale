@@ -71,9 +71,9 @@ if (pagina === 'reservas') {
         //---Passando das validações---
         dados = {nomePromocao,dataInicial,dataFinal,valorDiaria,valorDiariaFds};
         const resposta = await fetch('../../app/Models/PromocaoModel.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({acao: 'cadastrar_promocao', dados})
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({acao: 'cadastrar_promocao', dados})
         });
         const json = await resposta.json();
         

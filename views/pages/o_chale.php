@@ -11,7 +11,8 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="container">
         <h2 class="titulo verde-escuro">Serviços</h2>
         <div class="servicos" id="sessaoServicos">
-            <div class="sessao-servicos">
+            <!--
+            <div class="sessao">
                 <h3 class="subtitulo verde-medio">Título da sessão</h3>
                 <div class="sessao-cards">
                     <div class="card-servico-add" onclick="abrirModal('modal_criar_servico')">
@@ -38,17 +39,26 @@ require_once __DIR__ . '/../layouts/header.php';
                         </div>
                     </div>
                 </div>
-                <div class="ferramenta">
-                    <p>Editar sessão</p>
-                    <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
+                <div class="opcao-excluir-sessao">
+                    <div class="ferramenta">
+                        <p>Excluir sessão</p>
+                        <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
+                    </div>
                 </div>
                 <hr>
             </div>
-            <div class="sessao-servicos">
+            -->
+            <div class="sessao">
                 <h2 class="subtitulo verde-medio">Título da sessão</h2>
                 <div class="sessao-cards">
                     <div class="card-servico-add" onclick="abrirModal('modal_criar_servico')">
                         <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
+                    </div>
+                </div>
+                <div class="opcao-excluir-sessao">
+                    <div class="ferramenta">
+                        <p>Excluir sessão</p>
+                        <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
                     </div>
                 </div>
                 <hr>
@@ -64,9 +74,12 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="galeria-de-fotos">
             <h2 class="titulo branco">Galeria de fotos</h2>
             <div class="galeria-content">
-                <div class="sessao-fotos">
+                <div class="sessao">
                     <h3 class="subtitulo branco">Sessão 1</h3>
                     <div class="sessao-cards">
+                        <div class="card-foto-add" onclick="abrirModal('modal_add_foto_galeria')">
+                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
+                        </div>
                         <div class="item-foto">
                             <img src="" alt="">
                         </div>
@@ -77,17 +90,28 @@ require_once __DIR__ . '/../layouts/header.php';
                             <img src="" alt="">
                         </div>
                     </div>
-                    <div class="ferramenta-branco">
-                        <p>Editar sessão</p>
-                        <img src="/chale/public/assets/icons/icon-editar.svg" class="icon">
+                    <div class="opcao-excluir-sessao">
+                        <div class="ferramenta-branco">
+                            <p>Excluir sessão</p>
+                            <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
+                        </div>
                     </div>
                     <hr class="hr-branco">
                 </div>
-                <div class="sessao-fotos">
+                <div class="sessao">
                     <h3 class="subtitulo branco">Sessão 1</h3>
                     <div class="sessao-cards">
+                        <div class="card-foto-add" onclick="abrirModal('modal_add_foto_galeria')">
+                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
+                        </div>
                         <div class="item-foto">
                             <img src="" alt="">
+                        </div>
+                    </div>
+                    <div class="opcao-excluir-sessao">
+                        <div class="ferramenta-branco">
+                            <p>Excluir sessão</p>
+                            <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
                         </div>
                     </div>
                     <hr class="hr-branco">
@@ -154,6 +178,31 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn">Criar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="sombra-modal" id="modal_add_foto_galeria">
+        <div class="bloco-modal-geral">
+            <div class="modal-header">
+                <h2>Adicionar Foto</h2>
+                <button class="btn-fechar-modal">
+                    <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formAddFotoGaleria">
+                    <p class="error" id="cadFotoGaleria_error"></p>
+                    <div class="campos-form-inputpadrao">
+                        <div class="imagem-servico img-box">
+                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
+                            <input type="file" name="foto">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn">Adicionar</button>
                     </div>
                 </form>
             </div>

@@ -4,6 +4,20 @@ import {abrirModal, fecharModal} from '../../public/js/script.js';
 const pagina = document.body.dataset.page;
 
 if (pagina === 'o_chale') {
+    document.addEventListener('DOMContentLoaded', function () {
+        const servicos = document.getElementById('sessaoServicos');
+        const fotos = '';
+        fetch(`../../app/Models/SessoesModel.php`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json",},
+            body: JSON.stringify({ acao: "listar_sessoes" }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+
+        });
+    });
+
     //--Colocar o nome de referência da sessão no modal--
     document.getElementById('criar_sessao_fotos').addEventListener('click', function () {
         const tag = document.getElementById('nome_referencia');
@@ -47,9 +61,9 @@ if (pagina === 'o_chale') {
         //---Passando das validações---
         const dados = {nomeSessao, referencia};
         const resposta = await fetch('../../app/Models/SessoesModel.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({acao: 'cadastrar_sessao', dados})
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({acao: 'cadastrar_sessao', dados})
         });
         const json = await resposta.json();
         //Limpa os campos após sucesso e mostra um alert com a mensagem de erro ou sucesso
