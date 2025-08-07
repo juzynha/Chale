@@ -1,4 +1,4 @@
-<div class="sombra-modal" id="modal_cadastro_usuario">
+<div class="sombra-modal" id="modal_cadalt_usuario">
     <div class="bloco-modal-usuario">
         <div class="contorno-modal">
             <div class="modal-content">
@@ -9,7 +9,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h2>Já possui uma conta? Fazer <p class="link" onclick="fecharModal('modal_cadastro_usuario'), abrirModal('modal_login')">login</p></h2>
+                    <h2 id="cad_usu">Já possui uma conta? Fazer <p class="link" onclick="fecharModal('modal_cadastro_usuario'), abrirModal('modal_login')">login</p></h2>
+                    <h2 id="alt_usu">Editar Conta</h2>
                     <form id="formCadastroUsuario">
                         <div class="campos-form-inputwrapper">
                             <p class="error" id="cadUsuario_error"></p>

@@ -34,11 +34,11 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                 </div>
                 <div class="calendario-box">
-                    <header>
-                        <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon">
-                        <span id="currentMonth">Abril</span>
-                        <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon">
-                    </header>
+                <header>
+                 <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon" id="prev">
+                  <span id="currentMonth">Abril</span>
+                 <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon" id="next">
+               </header>
                     <div class="calendario-content">
                         <hr class="divider-horizontal-cal">
                         <ul class="weeks">
@@ -61,7 +61,7 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                 </div>
                 <div class="acoes-calendario">
-                    <div class="ferramenta" onclick="abrirModal('modal_criar_promocao')">
+                    <div class="ferramenta" onclick="abrirModal('modal_cadalt_promocao')">
                         <p>Criar promoção</p>
                         <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
                     </div>
@@ -108,6 +108,6 @@ require_once __DIR__ . '/../layouts/header.php';
 </body>
 
 <?php
-require_once __DIR__ . '/../modals/criar_promocao.php';
+require_once __DIR__ . '/../modals/promocao.php';
 require_once __DIR__ . '/../layouts/footer.php';
 ?>
