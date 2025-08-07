@@ -38,5 +38,5 @@
 
 <?php
 require_once __DIR__ .'/../modals/login.php';
-require_once __DIR__ .'/../modals/cadastro_usuario.php';
+require_once __DIR__ .'/../modals/cadalt_usuario.php';
 ?> 

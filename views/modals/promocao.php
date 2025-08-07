@@ -1,7 +1,8 @@
-<div class="sombra-modal" id="modal_criar_promocao">
+<div class="sombra-modal" id="modal_cadalt_promocao">
     <div class="bloco-modal-geral">
         <div class="modal-header">
-            <h2>Criar Promoção</h2>
+            <h2 id="cad_promo">Criar Promoção</h2>
+            <h2 id="alt_promo">Editar Promoção</h2>
             <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
