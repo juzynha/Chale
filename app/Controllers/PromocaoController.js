@@ -44,7 +44,7 @@ if (pagina === 'reservas') {
         if (mensagemErro !== '') {
             error.textContent = mensagemErro;
             error.style.display = 'block';
-            scrollModalToTop('#modal_criar_promocao .bloco-modal-geral');
+            scrollModalToTop('#modal_cadalt_promocao .bloco-modal-geral');
             return;
         }
         //Converter as datas dd/mm/yyyy para yyyy/mm/dd
@@ -64,7 +64,7 @@ if (pagina === 'reservas') {
         if (dateCheckJson.existe) {
             error.textContent = 'Já existe uma promoção nesse período';
             error.style.display = 'block';
-            scrollModalToTop('#modal_criar_promocao .bloco-modal-geral');
+            scrollModalToTop('#modal_cadalt_promocao .bloco-modal-geral');
             return;
         } 
 
@@ -79,7 +79,7 @@ if (pagina === 'reservas') {
         
         //Limpa os campos após sucesso e mostra um alert com a mensagem de erro ou sucesso
         if (!json.erro) {
-            fecharModal('modal_criar_promocao');
+            fecharModal('modal_cadalt_promocao');
             alert(json.mensagem);
         } else {
             error.textContent= json.mensagem;

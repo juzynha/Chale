@@ -34,11 +34,11 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                 </div>
                 <div class="calendario-box">
-                <header>
-                 <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon" id="prev">
-                  <span id="currentMonth">Abril</span>
-                 <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon" id="next">
-               </header>
+                    <header>
+                        <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon" id="prev">
+                        <span id="currentMonth">Abril</span>
+                        <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon" id="next">
+                    </header>
                     <div class="calendario-content">
                         <hr class="divider-horizontal-cal">
                         <ul class="weeks">
