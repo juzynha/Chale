@@ -15,12 +15,12 @@
                             <p class="error" id="login_error"></p>
                             <div class="input-wrapper">
                                 <span>E-mail:</span>
-                                <input type="email" id="email_login" name="email" required>
+                                <input type="email" name="email">
                             </div>
                             <div class="last-input">
                                 <div class="input-wrapper">
                                     <span>Senha:</span>
-                                    <input type="password" id="senha_login" name="senha" required>
+                                    <input type="password" name="senha">
                                     <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho toggleSenha">
                                 </div>
                                 <p id="esqueci_senha" class="textinho">Esqueci a senha</p>

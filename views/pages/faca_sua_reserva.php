@@ -40,7 +40,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="date-group">
                             <span class="date-label">Check-out</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input">
+                            <input type="date" class="date-input" name="data_final">
                         </div>
                     </div>
                 </div>
@@ -97,6 +97,47 @@ require_once __DIR__ . '/../layouts/header.php';
             </ul>
         </div>
     </section>
+    <section class="container-calendario">
+        <div class="container-elementos">
+            <img src="/chale/public/assets/elementos-graficos/onda-calendario-left.svg" class="element-planta-left">
+            <img src="/chale/public/assets/elementos-graficos/onda-calendario-right.svg" class="element-planta-right">
+            <div class="sessao-calendario">
+                <div class="atualizar-calendario">
+                    <div class="ferramenta">
+                        <p>Atualizar calendário</p>
+                        <img src="/chale/public/assets/icons/icon-atualizar.svg" class="icon">
+                    </div>
+                </div>
+                <div class="calendario-box">
+                    <header>
+                        <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon" id="prev">
+                        <span id="currentMonth">Abril</span>
+                        <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon" id="next">
+                    </header>
+                    <div class="calendario-content">
+                        <hr class="divider-horizontal-cal">
+                        <ul class="weeks">
+                            <li>Dom</li>
+                            <hr class="divider-vertical-cal">
+                            <li>Seg</li>
+                            <hr class="divider-vertical-cal">
+                            <li>Ter</li>
+                            <hr class="divider-vertical-cal">
+                            <li>Qua</li>
+                            <hr class="divider-vertical-cal">
+                            <li>Qui</li>
+                            <hr class="divider-vertical-cal">
+                            <li>Sex</li>
+                            <hr class="divider-vertical-cal">
+                            <li>Sab</li>
+                        </ul>
+                        <hr class="divider-horizontal-cal">
+                        <ul id="days"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Modais -->
     <div class="sombra-modal" id="modal_fazer_reserva">
@@ -115,13 +156,13 @@ require_once __DIR__ . '/../layouts/header.php';
                             <div class="date-group">
                                 <span class="date-label">Check-in</span>
                                 <div class="divider-horizontal"></div>
-                                <input type="date" class="date-input" name="check-in">
+                                <input type="date" class="date-input" name="data_inicial">
                             </div>
                             <div class="divider-vertical"></div>
                             <div class="date-group">
                                 <span class="date-label">Check-out</span>
                                 <div class="divider-horizontal"></div>
-                                <input type="date" class="date-input" name="check-out">
+                                <input type="date" class="date-input" name="data_final">
                             </div>
                         </div>
                     </div>

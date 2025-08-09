@@ -41,20 +41,27 @@ function verificarEmail($email, $pdo) {
 function cadastrarAdmin($dados, $pdo) {
     $nome = $dados['nome'];
     $email = $dados['email'];
-    $senha = $dados['senha'];
+    $senha = password_hash($dados['senha'], PASSWORD_DEFAULT);
 
     $sql = "CALL cadastrar_admin(:nome, :email, :senha)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':senha', $senha);
+    $stmt->bindParam(':senha', $senha); 
 
     if ($stmt->execute()) {
-        echo json_encode(['erro' => false, 'mensagem' => 'Usuario cadastrado com sucesso!']);
+        echo json_encode([
+            'erro' => false,
+            'mensagem' => 'Usuário cadastrado com sucesso!'
+        ]);
     } else {
-        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
+        echo json_encode([
+            'erro' => true,
+            'mensagem' => 'Erro ao salvar no banco'
+        ]);
     }
 }
+
 
 function enviarCodigo($email) {
     $codigo = rand(100000, 999999);

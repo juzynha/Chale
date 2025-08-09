@@ -6,28 +6,19 @@
         <li><a href="/chale/views/pages/faca_sua_reserva.php">Faça sua Reserva</a></li>
         <?php
         session_start();
-        if (isset($_SESSION['logado']) && $_SESSION['logado'] === true && isset($_SESSION['tipo']) && $_SESSION['tipo'] === 'admin') {
+        if (isset($_SESSION['usuario']) && $_SESSION['usuario']['tipo'] === 'admin') {
         ?>
-            <li><a href="">Admin <img src="public/assets/icons/icon-engrenagem.svg" width="18px"></a></li>
+            <li><a href="">Admin <img src="/chale/public/assets/icons/icon-engrenagem.svg" width="18px"></a></li>
         <?php
         }
         ?>
     </ul>
-
     <?php
-    if (isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
-        if (!empty($_SESSION['foto'])) {
+        if (isset($_SESSION['usuario'])) {
     ?>
-        <button class="user"><img src="<?= $_SESSION['foto'] ?>" alt=""></button>
+        <button class="user"><img src="/chale/public/assets/icons/icon-user.svg" class="icon"></button>
     <?php
         } else {
-    ?>
-        <button class="user"><img src="public/assets/icons/icon-user.svg" class="icon"></button>
-    <?php
-        }
-    ?>
-    <?php
-    } else {
     ?>
      <button onclick="abrirModal('modal_login')" class="entrar">Entrar</button>
 

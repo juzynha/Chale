@@ -182,6 +182,10 @@ function inputMaskDate() {
 
     if (!input.value) {
       const hoje = new Date();
+      // Se o name for "data_final", soma 1 dia
+      if (input.name === 'data_final') {
+        hoje.setDate(hoje.getDate() + 1);
+      }
       const ano = hoje.getFullYear();
       const mes = String(hoje.getMonth() + 1).padStart(2, '0');
       const dia = String(hoje.getDate()).padStart(2, '0');
@@ -263,8 +267,6 @@ function inputMaskDouble() {
     });
 });
 }
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   inputMaks();
