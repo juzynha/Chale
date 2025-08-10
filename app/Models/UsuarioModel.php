@@ -19,7 +19,7 @@ switch ($input['acao']) {
         cadastrarAdmin($input['dados'], $pdo);
         break;
     case 'enviar_codigo':
-        enviarCodigo($input['email']);
+        enviarCodigo();
         break;
     case 'cadastrar_usuario':
         cadastrarUsuario($input['dados'], $pdo);
@@ -62,8 +62,7 @@ function cadastrarAdmin($dados, $pdo) {
     }
 }
 
-
-function enviarCodigo($email) {
+function enviarCodigo() {
     $codigo = rand(100000, 999999);
 
     // Enviar código por email (exemplo com função mail)

@@ -10,8 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <h2 id="cad_usu">Já possui uma conta? Fazer <p class="link" onclick="fecharModal('modal_cadalt_usuario'), abrirModal('modal_login')">login</p></h2>
-                    <h2 id="alt_usu">Editar Conta</h2>
-                    <form id="formCadastroUsuario">
+                    <form id="formCadAltUsuario">
                         <div class="campos-form-inputwrapper">
                             <p class="error" id="cadUsuario_error"></p>
                             <div class="input-wrapper">

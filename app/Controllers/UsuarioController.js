@@ -2,9 +2,10 @@ import {validarCamposPreenchidos, validarNomeProprio, validarEmail, validarTelef
 import {abrirModal, fecharModal, scrollModalToTop} from '../../public/js/script.js';
 
 //-------CADASTRO DE USUÁRIO-------
-let listenerValidacaoAtivado = false; // FLAG GLOBAL
-
-document.getElementById('formCadastroUsuario').addEventListener('submit', async function (e) {
+//let listenerValidacaoAtivado = false; // FLAG GLOBAL
+const codigoCriado = '';
+const dados = { };
+document.getElementById('formCadAltUsuario').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const form = this;
@@ -47,7 +48,7 @@ document.getElementById('formCadastroUsuario').addEventListener('submit', async 
     if (mensagemErro !== '') {
         error.textContent = mensagemErro;
         error.style.display = 'block';
-        scrollModalToTop('#modal_cadastro_usuario .contorno-modal');
+        scrollModalToTop('#modal_cadalt_usuario .contorno-modal');
         return;
     }
 
@@ -63,14 +64,14 @@ document.getElementById('formCadastroUsuario').addEventListener('submit', async 
     if (emailCheckJson.existe) {
         error.textContent = 'Este email já está cadastrado.';
         error.style.display = 'block';
-        scrollModalToTop('#modal_cadastro_usuario .contorno-modal');
+        scrollModalToTop('#modal_cadalt_usuario .contorno-modal');
         return;
     }
 
     //--- Preparar dados e abrir modal de validação ---
-    const dados = { nome, email, telefone, dataNasc, senha };
+    dados = { nome, email, telefone, dataNasc, senha };
 
-    fecharModal('modal_cadastro_usuario');
+    fecharModal('modal_cadalt_usuario');
     abrirModal('modal_validar_email');
     document.getElementById('validacao_email').textContent = email;
 
@@ -78,15 +79,14 @@ document.getElementById('formCadastroUsuario').addEventListener('submit', async 
     const resposta = await fetch('app/Models/UsuarioModel.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ acao: 'enviar_codigo', email })
+        body: JSON.stringify({ acao: 'enviar_codigo' })
     });
 
     const json = await resposta.json();
-    const codigoCriado = json.codigo;
+    codigoCriado = json.codigo;
     console.log('Código gerado:', codigoCriado); 
-
-    // Adiciona o listener apenas uma vez
-    if (!listenerValidacaoAtivado) {
+});
+   // if (!listenerValidacaoAtivado) {
         document.getElementById('formValidacaoEmail').addEventListener('submit', async function (e) {
             e.preventDefault();
 
@@ -127,8 +127,7 @@ document.getElementById('formCadastroUsuario').addEventListener('submit', async 
             }
         });
         listenerValidacaoAtivado = true;
-    }
-});
+   // }
 
 
 // Função para calcular idade
