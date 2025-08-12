@@ -11,7 +11,7 @@
             <li><a href="">Admin <img src="/chale/public/assets/icons/icon-engrenagem.svg" width="18px"></a></li>
         <?php
         }
-        ?>
+        ?> 
     </ul>
     <?php
         if (isset($_SESSION['usuario'])) {

@@ -1,3 +1,29 @@
+<footer class="foot">
+    <div class="footer-container">
+        <!-- Logo e nome -->
+        <div class="footer-logo">
+            <img src="logo.svg" alt="La Vie En Rose" class="logo">
+            <p>© 2020-2025 Chale La Vie En Rose. CHALE LA VIE EN ROSE e todos os logotipos associados são marcas comerciais, marcas de serviço e/ou marcas registradas de Chale La Vie En Rose.</p>
+        </div>
+
+        <!-- Links -->
+        <div class="footer-links">
+            <a href="#">POLÍTICAS DE PRIVACIDADE</a>
+            <a href="#">TERMOS DE USO</a>
+            <a href="#">TERMOS DE CONTRATO</a>
+        </div>
+
+        <!-- Ícones -->
+        <div class="footer-icons">
+            <a href="#"><img src="email.svg" alt="E-mail"></a>
+            <a href="#"><img src="facebook.svg" alt="Facebook"></a>
+            <a href="#"><img src="tiktok.svg" alt="TikTok"></a>
+            <a href="#"><img src="whatsapp.svg" alt="WhatsApp"></a>
+            <a href="#"><img src="instagram.svg" alt="Instagram"></a>
+        </div>
+    </div>
+</footer>
+
 <script src="/chale/public/js/script.js"></script>
 <script src="/chale/app/Controllers/CalendarioController.js"></script>
 <script type="module" src="/chale/app/Controllers/LoginController.js"></script>

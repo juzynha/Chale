@@ -35,7 +35,6 @@ require_once __DIR__ . '/../layouts/header.php';
     <h3 class="textinho4">Hidromassagem ao ar livre com barreira anti-vento para banhos confortaveis mesmo a noite.</h3>
     <div><img src="/chale/public/assets/elementos-graficos/chale-espuma.png" class="chale-espuma"></div>
     <div><img src="/chale/public/assets/elementos-graficos/patinhas.svg" class="patinhas"></div>
-    <div class="generico">aaaaaaaaaaaaa</div>
 </body>
 <?php
 require_once __DIR__ . '/../layouts/footer.php';

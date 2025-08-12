@@ -202,9 +202,3 @@
   margin-top: 20%;
 }
 
-.generico {
-    position: absolute;
-    width: 100%; /* Ocupa 100% da largura */
-    background-color: #3F5141;
-    bottom:0;
-}
