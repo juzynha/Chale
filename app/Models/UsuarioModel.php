@@ -1,4 +1,10 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require __DIR__ . '/../../vendor/autoload.php'; // PHPMailer via Composer
+
+session_start();
 require_once __DIR__ . '/../../config/Database.php';
 
 $pdo = Database::conectar();
@@ -19,7 +25,7 @@ switch ($input['acao']) {
         cadastrarAdmin($input['dados'], $pdo);
         break;
     case 'enviar_codigo':
-        enviarCodigo();
+        enviarCodigo($input['email']);
         break;
     case 'cadastrar_usuario':
         cadastrarUsuario($input['dados'], $pdo);
@@ -62,14 +68,36 @@ function cadastrarAdmin($dados, $pdo) {
     }
 }
 
-function enviarCodigo() {
+function enviarCodigo($email) {
     $codigo = rand(100000, 999999);
 
-    // Enviar código por email (exemplo com função mail)
-   // mail($email, "Código de verificação", "Seu código é: $codigo");
+    // Enviar por e-mail
+    $mail = new PHPMailer(true);
 
-    // Para testes, retorna o código
-    echo json_encode(['status' => 'ok', 'codigo' => $codigo]);
+    try {
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'chalelavieenrose@gmail.com'; // seu Gmail
+        $mail->Password   = '000'; // senha de aplicativo
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+
+        $mail->setFrom('chalelavieenrose@gmail.com', 'Chalé');
+        $mail->addAddress($email);
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Código de verificação';
+        $mail->Body    = "Seu código de verificação é: <b>{$codigo}</b>";
+        $mail->AltBody = "Seu código de verificação é: {$codigo}";
+
+        $mail->send();
+
+        echo json_encode(['status' => 'ok', 'codigo' => $codigo]);
+    } catch (Exception $e) {
+        echo json_encode(['status' => 'erro', 'mensagem' => 'Falha ao enviar e-mail: ' . $mail->ErrorInfo]);
+    }
+    exit;
 }
 
 function cadastrarUsuario($dados, $pdo) {
@@ -77,9 +105,9 @@ function cadastrarUsuario($dados, $pdo) {
     $email = $dados['email'];
     $telefone = $dados['telefone'];
     $dataNasc = $dados['dataNasc'];
-    $senha = $dados['senha'];
+    $senha = password_hash($dados['senha'], PASSWORD_DEFAULT);
 
-    $sql = "CALL cadastrar_usuario(:nome, :email, :telefone, :datanasc, :senha)";
+    $sql = "CALL cadastrar_usuario(:nome, :telefone, :email, :datanasc, :senha)";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':email', $email);

@@ -9,6 +9,10 @@ if (pagina === 'reservas') {
     });
 }
 
+if (pagina === 'faca_sua_reserva') {
+    
+}
+
 
 function listaReservas() {
     let lista = document.getElementById("lista_reservas");
@@ -16,9 +20,7 @@ function listaReservas() {
         method: "POST",
         headers: {"Content-Type": "application/json",},
         body: JSON.stringify({ acao: "listar_reservas" }),
-    })
-    .then((response) => response.json())
-    .then((data) => {
+    }).then((response) => response.json()).then((data) => {
         lista.innerHTML = "";
         data.forEach((reserva) => {
             let fotoHTML = "";

@@ -25,9 +25,9 @@ DELIMITER $$
 --
 -- Procedimentos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_admin` (IN `nome` VARCHAR(150), IN `email` VARCHAR(100), IN `senha` VARCHAR(20))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_admin` (IN `nome` VARCHAR(150), IN `email` VARCHAR(100), IN `senha` VARCHAR(255))   BEGIN
     INSERT INTO usuarios (usunome, usuemail, ususenha, usutipo)
-    values (nome, email, MD5(senha), 'admin');
+    values (nome, email, senha, 'admin');
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_foto_galeria` (IN `foto` VARCHAR(100), IN `sessao` INT)   BEGIN
@@ -50,9 +50,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_sessao` (IN `nome` VARCHA
     VALUES (nome, referencia);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_usuario` (IN `nome` VARCHAR(150), IN `telefone` VARCHAR(20), IN `email` VARCHAR(100), IN `datanasc` DATE, IN `senha` VARCHAR(20))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_usuario` (IN `nome` VARCHAR(150), IN `telefone` VARCHAR(20), IN `email` VARCHAR(100), IN `datanasc` DATE, IN `senha` VARCHAR(255))   BEGIN
     INSERT INTO usuarios (usunome, usutelefone, usuemail, usudatanasc, ususenha, usutipo)
-    values (nome, telefone, email, datanasc, MD5(senha), 'cliente');
+    values (nome, telefone, email, datanasc, senha, 'cliente');
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deletar_conta` (IN `id` INT)   BEGIN
@@ -69,11 +69,6 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `editar_promocao` (IN `nome` VARCHAR(100), IN `datainicio` DATE, IN `datafim` DATE, IN `preco` DOUBLE, IN `precofds` DOUBLE, IN `ativo` BOOLEAN, IN `id` INT)   BEGIN
     UPDATE promocoes SET pronome = nome, prodataini = datainicio, prodatafim = datafim, pronpreco = preco, pronprecofds = precofds, proativo = ativo where proid = id;
-END$$
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `email` VARCHAR(100), IN `senha` VARCHAR(100))   BEGIN
-    SELECT * FROM usuarios
-    WHERE usuemail = email AND ususenha = senha;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `reservas_em_andamento` (IN `id` INT)   BEGIN
@@ -325,7 +320,7 @@ CREATE TABLE `usuarios` (
   `usutelefone` varchar(20) DEFAULT NULL,
   `usuemail` varchar(100) DEFAULT NULL,
   `usudatanasc` date DEFAULT NULL,
-  `ususenha` varchar(20) DEFAULT NULL,
+  `ususenha` varchar(255) DEFAULT NULL,
   `usufotcaminho` varchar(100) DEFAULT NULL,
   `usutipo` enum('cliente','admin') DEFAULT 'cliente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

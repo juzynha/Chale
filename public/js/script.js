@@ -16,7 +16,10 @@ export function fecharModal(idModal) {
     const modal = document.getElementById(idModal);
     if (modal) {
         modal.style.display = 'none';
-        modal.querySelector('form').reset(); 
+        let form = modal.querySelector('form');
+        if (form){
+            form.reset();
+        } 
         const error = modal.querySelector('.error'); 
         const imgBox = modal.querySelector('.img-box');
         if (error) {
@@ -179,7 +182,7 @@ function inputMaskDate() {
     if (!input.classList.contains('input-date')) {
       input.classList.add('input-date');
     }
-
+    //preenche o input com o dia atual
     if (!input.value) {
       const hoje = new Date();
       // Se o name for "data_final", soma 1 dia
@@ -205,6 +208,7 @@ function inputMaskDate() {
       // Validação de dia
       if (day.length === 2) {
         let d = parseInt(day, 10);
+        if (d < 1) d = 1; // não permite 00
         if (d > 31) d = 31;
         day = d.toString().padStart(2, '0');
       }
@@ -212,8 +216,18 @@ function inputMaskDate() {
       // Validação de mês
       if (month.length === 2) {
         let m = parseInt(month, 10);
+        if (m < 1) m = 1; // não permite 00
         if (m > 12) m = 12;
         month = m.toString().padStart(2, '0');
+      }
+      
+      // Validação de ano
+      if (year.length === 4) {
+        let y = parseInt(year, 10);
+        if (y < 1) {
+          y = new Date().getFullYear(); // substitui 0000 pelo ano atual
+        }
+        year = y.toString().padStart(4, '0');
       }
 
       let formatted = day;
