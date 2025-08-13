@@ -10,25 +10,69 @@ if (pagina === 'reservas') {
 }
 
 if (pagina === 'faca_sua_reserva') {
-    const diaria = document.getElementById('diaria_preco');
-    const diariaFds = document.getElementById('diariafds_preco');
-    const precoDiaria = '';
-    const precoDiariaFds = '';
+    carregarPrecos();
+    const diaria_preco = document.getElementById('diaria_preco');
+    const diariafds_preco = document.getElementById('diariafds_preco');
+    diaria_preco.textContent = `R$ ${precoDiaria} diária`;
+    diariafds_preco.textContent = `R$ ${precoDiariaFds} fim de semana`;
 
-    fetch(`../../app/Models/PrecosModel.php`, {
-        method: "POST",
-        headers: {"Content-Type": "application/json",},
-        body: JSON.stringify({ acao: "listar_precos" }),
-    }).then((response) => response.json()).then((data) => { 
-        data.forEach((precos) => {
-            precoDiaria = precos.prediaria;
-            precoDiariaFds = precos.prediariafds;
-            diaria.textContent = precoDiaria;
-            diariaFds.textContent = precoDiariaFds;
-        });
-    });
+    calcularPreco();
 }
 
+let precoDiaria = '';
+let precoDiariaFds = '';
+
+async function carregarPrecos() {
+    try {
+        const response = await fetch(`../../app/Models/PrecosModel.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ acao: "listar_precos" }),
+        });
+
+        const data = await response.json();
+
+        if (data.length > 0) {
+            precoDiaria = data[0].prediaria;
+            precoDiariaFds = data[0].prediariafds;
+        }
+    } catch (error) {
+        console.error("Erro ao carregar preços:", error);
+    }
+}
+
+function calcularPreco(diaInicial, diaFinal, precoDiaria, precoDiariaFds) {
+    // Converter strings dd/mm/yyyy para objetos Date
+    const [diaI, mesI, anoI] = diaInicial.split('/').map(Number);
+    const [diaF, mesF, anoF] = diaFinal.split('/').map(Number);
+
+    let dataInicio = new Date(anoI, mesI - 1, diaI);
+    let dataFim = new Date(anoF, mesF - 1, diaF);
+
+    // Garantir que a data final seja depois da inicial
+    if (dataFim <= dataInicio) {
+        return 0; // ou lançar erro
+    }
+
+    let total = 0;
+
+    // Loop de cada noite
+    while (dataInicio < dataFim) {
+        const diaSemana = dataInicio.getDay(); // 0=Dom, 5=Sex, 6=Sáb
+        
+        // Se for sexta (5) ou sábado (6) → preço de fim de semana
+        if (diaSemana === 5 || diaSemana === 6) {
+            total += precoDiariaFds;
+        } else {
+            total += precoDiaria;
+        }
+
+        // Avança 1 dia
+        dataInicio.setDate(dataInicio.getDate() + 1);
+    }
+
+    return total;
+}
 
 function listaReservas() {
     let lista = document.getElementById("lista_reservas");
