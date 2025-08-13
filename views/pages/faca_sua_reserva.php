@@ -28,8 +28,8 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <div class="card-infos-fr">
                 <div class="infos-card-fr">
-                    <p><strong id="diaria_preco"></strong> diária</p>
-                    <p><strong id="diariafds_preco"></strong> fim de semana</p>
+                    <p><strong id="diaria_preco"></strong></p>
+                    <p><strong id="diariafds_preco"></strong></p>
                     <div class="date-container">
                         <div class="date-group">
                             <span class="date-label">Check-in</span>
@@ -45,7 +45,7 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                 </div>
                 <div class="footer-card-fr">
-                    <p><strong>Total: </strong>R$300</p>
+                    <p><strong id="preco_total">Total: </strong></p>
                     <button class="btn" onclick="abrirModal('modal_fazer_reserva')">Reservar</button>
                 </div>
             </div>
