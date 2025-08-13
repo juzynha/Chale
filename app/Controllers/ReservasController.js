@@ -1,4 +1,5 @@
 import {converterDataParaBR} from './Validacoes.js';
+import {abrirModal, fecharModal} from '../../public/js/script.js';
 
 const pagina = document.body.dataset.page;
 
@@ -10,36 +11,67 @@ if (pagina === 'reservas') {
 }
 
 if (pagina === 'faca_sua_reserva') {
-    carregarPrecos();
-    const diaria_preco = document.getElementById('diaria_preco');
-    const diariafds_preco = document.getElementById('diariafds_preco');
-    diaria_preco.textContent = `R$ ${precoDiaria} diária`;
-    diariafds_preco.textContent = `R$ ${precoDiariaFds} fim de semana`;
+    // cria variáveis numéricas para cálculos
+    let precoDiariaNum = 0;
+    let precoDiariaFdsNum = 0;
 
-    calcularPreco();
-}
+    // cria variáveis formatadas para exibir
+    let precoDiariaFmt = '';
+    let precoDiariaFdsFmt = '';
 
-let precoDiaria = '';
-let precoDiariaFds = '';
+    // busca preços do banco
+    const response = await fetch(`../../app/Models/PrecosModel.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ acao: "listar_precos" }),
+    });
 
-async function carregarPrecos() {
-    try {
-        const response = await fetch(`../../app/Models/PrecosModel.php`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ acao: "listar_precos" }),
-        });
+    const data = await response.json();
 
-        const data = await response.json();
-
-        if (data.length > 0) {
-            precoDiaria = data[0].prediaria;
-            precoDiariaFds = data[0].prediariafds;
-        }
-    } catch (error) {
-        console.error("Erro ao carregar preços:", error);
+    if (data.length > 0) {
+        //atribui os preços em valor numérico
+        precoDiariaNum = Number(data[0].prediaria);
+        precoDiariaFdsNum = Number(data[0].prediariafds);
+        //formata os preços em valores numéricos para exibição
+        precoDiariaFmt = precoDiariaNum.toFixed(2).replace('.', ',');
+        precoDiariaFdsFmt = precoDiariaFdsNum.toFixed(2).replace('.', ',');
     }
+
+    // exibe preços na tela
+    const preForm = document.getElementById('preFormReserva');
+    preForm.querySelector('[name="preco_diaria"]').textContent = 'R$ ' + precoDiariaFmt + ' diária';
+    preForm.querySelector('[name="preco_diaria_fds"]').textContent = 'R$ ' + precoDiariaFdsFmt + ' fim de semana';
+
+    // função para atualizar cálculo sempre que mudar a data
+    function atualizarPreco() {
+        let dataInicial = preForm.querySelector('[name="data_inicial"]').value;
+        let dataFinal = preForm.querySelector('[name="data_final"]').value;
+
+        let precoTotal = calcularPreco(dataInicial, dataFinal, precoDiariaNum, precoDiariaFdsNum);
+        let precoTotalFmt = precoTotal.toFixed(2).replace('.', ',');
+
+        preForm.querySelector('[name="preco_total"]').textContent = 'Total: R$ ' + precoTotalFmt;
+    }
+
+    // adiciona evento para recalcular automaticamente
+    preForm.querySelector('[name="data_inicial"]').addEventListener('input', atualizarPreco);
+    preForm.querySelector('[name="data_final"]').addEventListener('input', atualizarPreco);
+
+    // calcula inicialmente com valores já carregados
+    atualizarPreco();
+    //ao abrir o modal, preenche os inputs dele com os valores que estavam na caixinha de infos 
+    preForm.querySelector('[name="reservar"]').addEventListener('click', async function (e) { 
+        e.preventDefault();
+        
+        abrirModal('modal_fazer_reserva');
+        const form = document.getElementById('formFazerReserva');
+        form.querySelector('[name="data_inicial"]').value = preForm.querySelector('[name="data_inicial"]').value;
+        form.querySelector('[name="data_final"]').value = preForm.querySelector('[name="data_final"]').value;
+    });
+    
+    
 }
+
 
 function calcularPreco(diaInicial, diaFinal, precoDiaria, precoDiariaFds) {
     // Converter strings dd/mm/yyyy para objetos Date
