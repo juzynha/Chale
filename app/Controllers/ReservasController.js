@@ -10,7 +10,23 @@ if (pagina === 'reservas') {
 }
 
 if (pagina === 'faca_sua_reserva') {
-    
+    const diaria = document.getElementById('diaria_preco');
+    const diariaFds = document.getElementById('diariafds_preco');
+    const precoDiaria = '';
+    const precoDiariaFds = '';
+
+    fetch(`../../app/Models/PrecosModel.php`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json",},
+        body: JSON.stringify({ acao: "listar_precos" }),
+    }).then((response) => response.json()).then((data) => { 
+        data.forEach((precos) => {
+            precoDiaria = precos.prediaria;
+            precoDiariaFds = precos.prediariafds;
+            diaria.textContent = precoDiaria;
+            diariaFds.textContent = precoDiariaFds;
+        });
+    });
 }
 
 
