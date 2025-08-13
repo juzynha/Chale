@@ -15,11 +15,11 @@
 
         <!-- Ícones -->
         <div class="footer-icons">
-            <a href="#"><img src="email.svg" alt="E-mail"></a>
-            <a href="#"><img src="facebook.svg" alt="Facebook"></a>
-            <a href="#"><img src="tiktok.svg" alt="TikTok"></a>
-            <a href="#"><img src="whatsapp.svg" alt="WhatsApp"></a>
-            <a href="#"><img src="instagram.svg" alt="Instagram"></a>
+            <a href="#"><img src="/chale/public/assets/icons/icon-email.svg" alt="E-mail" class="icon"></a>
+            <a href="#"><img src="/chale/public/assets/icons/icon-facebook.svg" alt="Facebook"></a>
+            <a href="#"><img src="/chale/public/assets/icons/icon-tiktok.svg" alt="TikTok"></a>
+            <a href="https://wa.me/5514998897308"><img src="/chale/public/assets/icons/icon-whatsapp.svg" alt="WhatsApp"></a>
+            <a href="https://www.instagram.com/chalelavieenrose"><img src="/chale/public/assets/icons/icon-instagram.svg" alt="Instagram"></a>
         </div>
     </div>
 </footer>
