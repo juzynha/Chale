@@ -2,7 +2,7 @@
     <div class="footer-container">
         <!-- Logo e nome -->
         <div class="footer-logo">
-            <img src="logo.svg" alt="La Vie En Rose" class="logo">
+            <img src="/chale/public/assets/logo.svg" alt="La Vie En Rose" class="logo">
             <p>© 2020-2025 Chale La Vie En Rose. CHALE LA VIE EN ROSE e todos os logotipos associados são marcas comerciais, marcas de serviço e/ou marcas registradas de Chale La Vie En Rose.</p>
         </div>
 
