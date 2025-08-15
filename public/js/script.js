@@ -285,3 +285,5 @@ function inputMaskDouble() {
 document.addEventListener("DOMContentLoaded", function () {
   inputMaks();
 });
+
+window.abrirModal = abrirModal;
