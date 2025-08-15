@@ -105,8 +105,10 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </div>
+<script src="/chale/public/js/script.js"></script>
+<script src="/chale/app/Controllers/ReservasController.js"></script>
 </body>
-    <script type="module" src="/chale/public/js/script.js"></script>
+ 
 <?php
 require_once __DIR__ . '/../modals/promocao.php';
 require_once __DIR__ . '/../layouts/footer.php';
