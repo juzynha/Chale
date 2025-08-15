@@ -38,4 +38,5 @@
 <script type="module" src="/chale/app/Controllers/BloqueioController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script type="module" src="../../public/js/script.js"></script>
+ <script type="module" src="/chale/public/js/script.js"></script>
 </html>
