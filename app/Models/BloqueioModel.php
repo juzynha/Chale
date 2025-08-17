@@ -69,5 +69,28 @@ function bloquearDias($dados, $pdo) {
 }
 
 function verificarData($dados, $pdo) {
-    // Se você usar essa função, implemente aqui
+    $dataInicial = $dados['dataInicial'] ?? null;
+    $dataFinal = $dados['dataFinal'] ?? null;
+
+    if (!$dataInicial || !$dataFinal) {
+        echo json_encode(['erro' => true, 'mensagem' => 'Datas não informadas.']);
+        return;
+    }
+
+    try {
+        // Verifica se já existe algum bloqueio que conflita com o período informado
+        $sql = "SELECT COUNT(*) FROM bloqueio_dia 
+                WHERE (blodinicial <= :dataFinal) AND (blodfinal >= :dataInicial)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':dataInicial' => $dataInicial,
+            ':dataFinal' => $dataFinal
+        ]);
+
+        $temBloqueio = $stmt->fetchColumn() > 0;
+
+        echo json_encode(['temBloqueio' => $temBloqueio]);
+    } catch (PDOException $ex) {
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro no banco: ' . $ex->getMessage()]);
+    }
 }
