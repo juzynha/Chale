@@ -4,6 +4,7 @@ import {abrirModal, fecharModal} from '../../public/js/script.js';
 const pagina = document.body.dataset.page;
 
 if (pagina === 'o_chale') {
+    //Listar sessões
     document.addEventListener('DOMContentLoaded', function () {
         const servicos = document.getElementById('sessaoServicos');
         const fotos = '';
