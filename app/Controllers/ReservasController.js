@@ -10,133 +10,130 @@ if (pagina === 'reservas') {
     });
 }
 
-if (pagina === 'faca_sua_reserva') {
-    let data = await retornarPrecos();
-    // atribui os preços (em valor numérico) a variáveis
-    let precoDiaria = Number(data[0].prediaria);
-    let precoDiariaFds = Number(data[0].prediariafds);
-
-    const preForm = document.getElementById('preFormReserva');
-    // exibe preços na caixa de reserva 
-    preForm.querySelector('[name="preco_diaria"]').textContent = 'R$ ' + precoDiaria.toFixed(2).replace('.', ',') + ' diária';
-    preForm.querySelector('[name="preco_diaria_fds"]').textContent = 'R$ ' + precoDiariaFds.toFixed(2).replace('.', ',') + ' fim de semana';
-
-    // exibe o preço
-    let dataInicial = preForm.querySelector('[name="data_inicial"]').value;
-    let dataFinal = preForm.querySelector('[name="data_final"]').value;
-
-    let precoTotal = calcularPreco(dataInicial, dataFinal, precoDiariaNum, precoDiariaFdsNum);
-    let precoTotalFmt = precoTotal.toFixed(2).replace('.', ',');
-    let preco = preForm.querySelector('[name="preco_total"]');
-    console.log(preco);
-    preForm.querySelector('[name="preco_total"]').textContent = 'Total: R$ ' + precoTotalFmt;
-
-    //ao abrir o modal, preenche os inputs dele com os valores que estavam na caixinha de infos 
-    preForm.querySelector('[name="reservar"]').addEventListener('click', async function (e) { 
-        e.preventDefault();
-        
-        abrirModal('modal_fazer_reserva');
-        const form = document.getElementById('formFazerReserva');
-        //exibe as datas selecionadas na caixa
-        form.querySelector('[name="data_inicial"]').value = dataInicial;
-        form.querySelector('[name="data_final"]').value = dataFinal;
-    });
-    
-    //-------CADASTRO DE RESERVA-------
-    document.getElementById('formFazerReserva').addEventListener('submit', async function (e) {
-        e.preventDefault();
-        
-        const form = this; 
-        const dataInicial = form.querySelector('[name="data_inicial"]').value;
-        const dataFinal = form.querySelector('[name="data_final"]').value;
-        let data = await retornarPrecos();
-        // cria variáveis formatadas para exibir
-        let precoDiaria = Number(data[0].prediaria).toFixed(2).replace('.', ',');
-        let precoDiariaFds = Number(data[0].prediariafds).toFixed(2).replace('.', ',');
-        const valorTotal = calcularPreco(dataInicial,dataFinal,precoDiaria,precoDiariaFds);
-        const error = document.getElementById('cadSessao_error');
-        let mensagemErro = '';
-
-        //---Validações---
-        //Verificar campos preenchidos
-        const errosPreenchimento = validarCamposPreenchidos(['nome_sessao'], form);
-        if (errosPreenchimento.length > 0) {
-            mensagemErro = errosPreenchimento[0];
-        }
-        //Validar nome
-        else if (!validarString(nomeSessao)) {
-            mensagemErro = 'Nome inválido.';
-        }
-        // Se houve erro, mostra de forma centralizada
-        if (mensagemErro !== '') {
-            error.textContent = mensagemErro;
-            error.style.display = 'block';
-            return;
-        }
-
-        //---Passando das validações---
-        const dados = {nomeSessao, referencia};
-        const resposta = await fetch('../../app/Models/SessoesModel.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({acao: 'cadastrar_sessao', dados})
-        });
-        const json = await resposta.json();
-        //Limpa os campos após sucesso e mostra um alert com a mensagem de erro ou sucesso
-        if (!json.erro) {
-            fecharModal('modal_criar_sessao');
-            alert(json.mensagem);
-        } else {
-            error.textContent= json.mensagem;
-        }
-
-    });
+// ------- util -------
+async function retornarPrecos() {
+  const response = await fetch(`../../app/Models/PrecosModel.php`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ acao: "listar_precos" }),
+  });
+  return await response.json(); // esperado: [{prediaria: "150", prediariafds: "180"}]
 }
 
-// busca preços do banco
-async function retornarPrecos() {
-    const response = await fetch(`../../app/Models/PrecosModel.php`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ acao: "listar_precos" }),
-    });
-
-    const data = await response.json();
-    return data;
+function parseDateFlexible(str) {
+  if (!str) return null;
+  if (str.includes("/")) {
+    const [d, m, y] = str.split("/").map(Number);
+    return new Date(y, m - 1, d);
+  }
+  if (str.includes("-")) {
+    const [y, m, d] = str.split("-").map(Number);
+    return new Date(y, m - 1, d);
+  }
+  return null;
 }
 
 function calcularPreco(diaInicial, diaFinal, precoDiaria, precoDiariaFds) {
-    // Converter strings dd/mm/yyyy para objetos Date
-    const [diaI, mesI, anoI] = diaInicial.split('/').map(Number);
-    const [diaF, mesF, anoF] = diaFinal.split('/').map(Number);
+  const ini = parseDateFlexible(diaInicial);
+  const fim = parseDateFlexible(diaFinal);
+  if (!ini || !fim || fim <= ini) return 0;
 
-    let dataInicio = new Date(anoI, mesI - 1, diaI);
-    let dataFim = new Date(anoF, mesF - 1, diaF);
+  // normaliza para meia-noite pra evitar problemas de fuso/DST
+  ini.setHours(0, 0, 0, 0);
+  fim.setHours(0, 0, 0, 0);
 
-    // Garantir que a data final seja depois da inicial
-    if (dataFim <= dataInicio) {
-        return 0; // ou lançar erro
-    }
-
-    let total = 0;
-
-    // Loop de cada noite
-    while (dataInicio < dataFim) {
-        const diaSemana = dataInicio.getDay(); // 0=Dom, 5=Sex, 6=Sáb
-        
-        // Se for sexta (5) ou sábado (6) → preço de fim de semana
-        if (diaSemana === 5 || diaSemana === 6) {
-            total += precoDiariaFds;
-        } else {
-            total += precoDiaria;
-        }
-
-        // Avança 1 dia
-        dataInicio.setDate(dataInicio.getDate() + 1);
-    }
-
-    return total;
+  let total = 0;
+  const cursor = new Date(ini);
+  while (cursor < fim) {
+    const dow = cursor.getDay(); // 0=Dom ... 5=Sex 6=Sáb
+    total += (dow === 5 || dow === 6) ? Number(precoDiariaFds) : Number(precoDiaria);
+    cursor.setDate(cursor.getDate() + 1);
+  }
+  return total;
 }
+
+// ------- página "faça sua reserva" -------
+if (pagina === 'faca_sua_reserva') {
+  const preForm = document.getElementById('preFormReserva');
+  const elPrecoDiaria = preForm.querySelector('[name="preco_diaria"]');
+  const elPrecoDiariaFds = preForm.querySelector('[name="preco_diaria_fds"]');
+  const elPrecoTotal = preForm.querySelector('[name="preco_total"]');
+  const inputCheckin = preForm.querySelector('[name="data_inicial"]');
+  const inputCheckout = preForm.querySelector('[name="data_final"]');
+
+  // 1) Preços do banco (NUMÉRICOS)
+  const data = await retornarPrecos();
+  const precoDiaria = Number(data?.[0]?.prediaria ?? 0);
+  const precoDiariaFds = Number(data?.[0]?.prediariafds ?? 0);
+
+  // 2) Exibe preços formatados
+  elPrecoDiaria.textContent = `R$ ${precoDiaria.toFixed(2).replace('.', ',')} diária`;
+  elPrecoDiariaFds.textContent = `R$ ${precoDiariaFds.toFixed(2).replace('.', ',')} fim de semana`;
+
+  // 3) Atualiza total no pré-form
+  const atualizarPrecoPreForm = () => {
+    const total = calcularPreco(inputCheckin.value, inputCheckout.value, precoDiaria, precoDiariaFds);
+    elPrecoTotal.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+  };
+  atualizarPrecoPreForm();
+  inputCheckin.addEventListener('change', atualizarPrecoPreForm);
+  inputCheckout.addEventListener('change', atualizarPrecoPreForm);
+
+  // 4) Abrir modal e sincronizar datas + total
+  preForm.querySelector('[name="reservar"]').addEventListener('click', (e) => {
+    e.preventDefault();
+    abrirModal('modal_fazer_reserva');
+
+    const formModal = document.getElementById('formFazerReserva');
+    const modalCheckin = formModal.querySelector('[name="data_inicial"]');
+    const modalCheckout = formModal.querySelector('[name="data_final"]');
+    const modalTotalEl = formModal.querySelector('[name="preco_total"]');
+
+    // Prefill com as datas do pré-form
+    modalCheckin.value = inputCheckin.value;
+    modalCheckout.value = inputCheckout.value;
+
+    const atualizarPrecoModal = () => {
+      const total = calcularPreco(modalCheckin.value, modalCheckout.value, precoDiaria, precoDiariaFds);
+      modalTotalEl.innerHTML = `<strong>Valor Total: </strong>R$ ${total.toFixed(2).replace('.', ',')}`;
+    };
+    atualizarPrecoModal();
+    modalCheckin.addEventListener('change', atualizarPrecoModal);
+    modalCheckout.addEventListener('change', atualizarPrecoModal);
+  });
+
+  // 5) Submit do modal (envia reserva)
+  document.getElementById('formFazerReserva').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const modalCheckin = this.querySelector('[name="data_inicial"]').value;
+    const modalCheckout = this.querySelector('[name="data_final"]').value;
+    const valorTotal = calcularPreco(modalCheckin, modalCheckout, precoDiaria, precoDiariaFds);
+
+    const dados = {
+      dataInicial: modalCheckin,   // mande no formato que seu PHP espera
+      dataFinal: modalCheckout,
+      valorTotal: valorTotal       // número
+    };
+
+    // Ajuste o endpoint/ação conforme seu backend
+    const resposta = await fetch('../../app/Models/ReservasModel.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ acao: 'cadastrar_reserva', dados })
+    });
+
+    const json = await resposta.json();
+
+    if (!json.erro) {
+      fecharModal('modal_fazer_reserva');
+      alert(json.mensagem || 'Reserva criada com sucesso!');
+    } else {
+      alert(json.mensagem || 'Erro ao salvar reserva.');
+    }
+  });
+}
+
 
 function listaReservas() {
     let lista = document.getElementById("lista_reservas");
