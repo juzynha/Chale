@@ -1,4 +1,3 @@
-
 <?php
 header('Content-Type: application/json');
 require_once __DIR__ . '/../../config/Database.php';
@@ -53,18 +52,74 @@ function bloquearDias($dados, $pdo) {
         return;
     }
 
-    try {
-        $sql = "INSERT INTO bloqueio_dia (blodinicial, blodfinal, blotipo)
-                VALUES (:dataInicial, :dataFinal, :tipo)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':dataInicial', $dataInicial);
-        $stmt->bindParam(':dataFinal', $dataFinal);
-        $stmt->bindParam(':tipo', $tipo);
-        $stmt->execute();
+    $dataInicialObj = DateTime::createFromFormat('Y-m-d', $dataInicial);
+    $dataFinalObj = DateTime::createFromFormat('Y-m-d', $dataFinal);
 
-        echo json_encode(['erro' => false, 'mensagem' => 'Dias bloqueados com sucesso!']);
+    if (!$dataInicialObj || !$dataFinalObj) {
+        echo json_encode(['erro' => true, 'mensagem' => 'Formato de data inválido.']);
+        return;
+    }
+
+    if ($dataFinalObj < $dataInicialObj) {
+        $dataFinalObj = clone $dataInicialObj;
+    }
+
+    $erros = [];
+    $sucesso = [];
+
+    try {
+        $pdo->beginTransaction();
+
+        while ($dataInicialObj <= $dataFinalObj) {
+            $dataAtual = $dataInicialObj->format('Y-m-d');
+
+            // Verifica se essa data já está bloqueada
+            $stmtCheck = $pdo->prepare("
+                SELECT COUNT(*) FROM bloqueio_dia 
+                WHERE blodinicial = :data AND blodfinal = :data
+            ");
+            $stmtCheck->execute([':data' => $dataAtual]);
+            $existe = $stmtCheck->fetchColumn();
+
+            if (!$existe) {
+                try {
+                    $stmtInsert = $pdo->prepare("
+                        INSERT INTO bloqueio_dia (blodinicial, blodfinal, blotipo)
+                        VALUES (:data, :data, :tipo)
+                    ");
+                    $stmtInsert->execute([
+                        ':data' => $dataAtual,
+                        ':tipo' => $tipo
+                    ]);
+                    $sucesso[] = $dataAtual;
+                } catch (PDOException $ex) {
+                    $erros[] = "Erro ao inserir {$dataAtual}: " . $ex->getMessage();
+                }
+            } else {
+                $erros[] = "Data já bloqueada: {$dataAtual}";
+            }
+
+            $dataInicialObj->modify('+1 day');
+        }
+
+        $pdo->commit();
+
+        $mensagem = '';
+        if (!empty($sucesso)) {
+            $mensagem .= "Dias bloqueados com sucesso: " . implode(', ', $sucesso) . ". ";
+        }
+        if (!empty($erros)) {
+            $mensagem .= "Erros: " . implode(' | ', $erros);
+        }
+
+        echo json_encode([
+            'erro' => false,
+            'mensagem' => $mensagem
+        ]);
+
     } catch (PDOException $ex) {
-        echo json_encode(['erro' => true, 'mensagem' => 'Erro no banco: ' . $ex->getMessage()]);
+        $pdo->rollBack();
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao inserir os dias: ' . $ex->getMessage()]);
     }
 }
 
@@ -94,3 +149,4 @@ function verificarData($dados, $pdo) {
         echo json_encode(['erro' => true, 'mensagem' => 'Erro no banco: ' . $ex->getMessage()]);
     }
 }
+
