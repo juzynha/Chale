@@ -8,6 +8,25 @@ import {
 
 import { fecharModal, scrollModalToTop } from '../../public/js/script.js';
 
+// Função para verificar se já existe bloqueio no período
+async function verificarBloqueioNaData(dataInicial, dataFinal) {
+    try {
+        const response = await fetch('../../app/Models/BloqueioModel.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                acao: 'verificar_data',  // ⚠️ ação corrigida
+                dados: { dataInicial, dataFinal } // ⚠️ dados dentro do objeto 'dados'
+            })
+        });
+        const resultado = await response.json();
+        return resultado.temBloqueio; // true ou false
+    } catch (e) {
+        console.error("Erro ao verificar bloqueios:", e);
+        return false;
+    }
+}
+
 document.getElementById('formBloquearDias').addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -46,23 +65,35 @@ document.getElementById('formBloquearDias').addEventListener('submit', async fun
     dataInicial = converterDataParaISO(dataInicial);
     dataFinal = converterDataParaISO(dataFinal);
 
+    // --- Verifica se já existe bloqueio ---
+    const existeBloqueio = await verificarBloqueioNaData(dataInicial, dataFinal);
+    if (existeBloqueio) {
+        const msg = "Não é possível bloquear dias que já estão bloqueados.";
+        if (error) {
+            error.textContent = msg;
+            error.style.display = 'block';
+        } else {
+            alert(msg);
+        }
+        scrollModalToTop?.('#modal_bloquear_dias .bloco-modal-geral');
+        return;
+    }
+
+    // --- Envia dados para o PHP ---
     const dados = {
         dataInicial,
         dataFinal,
         tipo: 'geral'
     };
-    
-    try {
-        console.log("Enviando dados para o PHP:", {
-    acao: 'bloquear_dias',
-    dados
-});
 
-const response = await fetch('../../app/Models/BloqueioModel.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ acao: 'bloquear_dias', dados })
-});
+    try {
+        console.log("Enviando dados para o PHP:", { acao: 'bloquear_dias', dados });
+
+        const response = await fetch('../../app/Models/BloqueioModel.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ acao: 'bloquear_dias', dados })
+        });
         const resultado = await response.json();
 
         if (!resultado.erro) {
