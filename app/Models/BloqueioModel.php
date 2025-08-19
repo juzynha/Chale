@@ -106,7 +106,7 @@ function bloquearDias($dados, $pdo) {
 
         $mensagem = '';
         if (!empty($sucesso)) {
-            $mensagem .= "Dias bloqueados com sucesso: " . implode(', ', $sucesso) . ". ";
+            $mensagem .= "Dias bloqueados com sucesso";
         }
         if (!empty($erros)) {
             $mensagem .= "Erros: " . implode(' | ', $erros);
