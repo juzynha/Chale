@@ -151,7 +151,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <div class="modal-body">
                 <form id="formFazerReserva" class="form-inputcomum">
-                    <p class="error" id="cadFotoGaleria_error"></p>
+                    <p class="error" id="cadReserva_error"></p>
                     <div class="infos-datas-fr">
                         <div class="date-container">
                             <div class="date-group">

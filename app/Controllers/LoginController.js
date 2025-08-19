@@ -51,7 +51,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
 const pagina = document.body.dataset.page;
 if (pagina === 'conta_admin') {
     //LOGOUT
-    document.getElementById("formLogout").addEventListener("submit", async function (e) {
+    document.getElementById("formLogout").querySelector('[name="sim"]').addEventListener("click", async function (e) {
         e.preventDefault();
 
         const resposta = await fetch('../../app/Models/LoginModel.php', {
