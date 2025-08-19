@@ -26,15 +26,15 @@ require_once __DIR__ . '/../layouts/header.php';
                 <p>Editar preços</p>
                 <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
             </div>
-            <div class="card-infos-fr">
+            <div class="card-infos-fr" id="preFormReserva">
                 <div class="infos-card-fr">
-                    <p><strong id="diaria_preco"></strong> diária</p>
-                    <p><strong id="diariafds_preco"></strong> fim de semana</p>
+                    <p><strong name="preco_diaria"></strong></p>
+                    <p><strong name="preco_diaria_fds"></strong></p>
                     <div class="date-container">
                         <div class="date-group">
                             <span class="date-label">Check-in</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input">
+                            <input type="date" class="date-input" name="data_inicial">
                         </div>
                         <div class="divider-vertical"></div>
                         <div class="date-group">
@@ -45,8 +45,8 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                 </div>
                 <div class="footer-card-fr">
-                    <p><strong>Total: </strong>R$300</p>
-                    <button class="btn" onclick="abrirModal('modal_fazer_reserva')">Reservar</button>
+                    <p><strong name="preco_total"></strong></p>
+                    <button name="reservar" class="btn">Reservar</button>
                 </div>
             </div>
         </div>
@@ -151,6 +151,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <div class="modal-body">
                 <form id="formFazerReserva" class="form-inputcomum">
+                    <p class="error" id="cadReserva_error"></p>
                     <div class="infos-datas-fr">
                         <div class="date-container">
                             <div class="date-group">
@@ -166,7 +167,7 @@ require_once __DIR__ . '/../layouts/header.php';
                             </div>
                         </div>
                     </div>
-                    <p class="valortotal-fr"><strong>Valor Total: </strong>R$400</p>
+                    <p class="valortotal-fr" name="preco_total"><strong>Valor Total: </strong></p>
                     <div class="modal-footer">
                     <button type="button" class="btn" onclick="fecharModal('modal_fazer_reserva'); abrirModal('metodo_de_pagamento')">Reservar</button>
 

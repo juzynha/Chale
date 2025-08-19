@@ -39,7 +39,7 @@ function cadastrarSessao($dados, $pdo) {
     if ($dados['referencia'] === 'Galeria de fotos'){
         $sql = "CALL cadastrar_sessao(:nome, 'fotos')";
     } else {
-        $sql = "CALL cadastrar_sessao(:nome, 'utilitarios')";
+        $sql = "CALL cadastrar_sessao(:nome, 'servicos')";
     }
 
     $stmt = $pdo->prepare($sql);

@@ -75,38 +75,40 @@ require_once __DIR__ . '/../layouts/header.php';
     </section>
 
     <!-- Modais -->
-    <div class="sombra-modal" id="modal_bloquear_dias">
-        <div class="bloco-modal-geral">
-            <div class="modal-header">
-                <h2>Bloquear dias</h2>
-                <button class="btn-fechar-modal">
-                    <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formBloquearDias">
-                    <div class="date-container">
-                        <div class="date-group">
-                            <span class="date-label">Início</span>
-                            <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input">
-                        </div>
-                        <div class="divider-vertical"></div>
-                        <div class="date-group">
-                            <span class="date-label">Fim</span>
-                            <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input">
-                        </div>
+   <div class="sombra-modal" id="modal_bloquear_dias">
+    <div class="bloco-modal-geral">
+        <div class="modal-header">
+            <h2>Bloquear dias</h2>
+            <button class="btn-fechar-modal">
+                <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="formBloquearDias">
+                <div class="date-container">
+                    <div class="date-group">
+                        <span class="date-label">Início</span>
+                        <div class="divider-horizontal"></div>
+                        <input type="date" class="date-input" name="data_inicial">
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn" id="bloquear">Bloquear</button>
+                    <div class="divider-vertical"></div>
+                    <div class="date-group">
+                        <span class="date-label">Fim</span>
+                        <div class="divider-horizontal"></div>
+                        <input type="date" class="date-input" name="data_final">
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn" id="bloquear">Bloquear</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
+<script src="/chale/public/js/script.js"></script>
+<script src="/chale/app/Controllers/ReservasController.js"></script>
 </body>
-
+ 
 <?php
 require_once __DIR__ . '/../modals/promocao.php';
 require_once __DIR__ . '/../layouts/footer.php';

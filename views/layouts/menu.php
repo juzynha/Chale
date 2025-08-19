@@ -11,12 +11,12 @@
             <li><a href="">Admin <img src="/chale/public/assets/icons/icon-engrenagem.svg" width="18px"></a></li>
         <?php
         }
-        ?>
+        ?> 
     </ul>
     <?php
         if (isset($_SESSION['usuario'])) {
     ?>
-        <button class="user"><img src="/chale/public/assets/icons/icon-user.svg" class="icon"></button>
+        <button class="user"><a href="/chale/views/pages/conta_admin.php"><img src="/chale/public/assets/icons/icon-user.svg" class="icon"></a></button>
     <?php
         } else {
     ?>

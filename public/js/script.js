@@ -150,7 +150,7 @@ export function scrollModalToTop(idModal) {
         });
     }
 }
-
+window.scrollModalToTop = scrollModalToTop;
 //toggle icon olho pra mostrar senha
 document.querySelectorAll('.toggleSenha').forEach(btn => {
     btn.addEventListener("click", () => {
@@ -285,3 +285,5 @@ function inputMaskDouble() {
 document.addEventListener("DOMContentLoaded", function () {
   inputMaks();
 });
+
+window.abrirModal = abrirModal;

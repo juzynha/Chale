@@ -6,9 +6,11 @@
 @import '../pages/conta_usuario.css';
 @import '../pages/o_chale.css';
 @import '../pages/faca_sua_reserva.css';
+@import '../layouts/footer.css';
 /*@import 'flatpickr.css';*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+@import '../pages/preco_promocoes.css';
 
 *{
   margin: 0;
