@@ -63,10 +63,10 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <hr>
             </div>
-            <div class="ferramenta" id="criar_sessao_servicos">
-                <p>Criar sessão</p>
-                <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
-            </div>
+        </div>
+        <div class="ferramenta" id="criar_sessao_servicos">
+            <p>Criar sessão</p>
+            <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
         </div>
     </div>
     <div class="galeria-container">

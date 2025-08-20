@@ -1,4 +1,5 @@
 import {validarCamposPreenchidos, validarString} from './Validacoes.js';
+import {listarServicos} from './FotServController.js';
 import {abrirModal, fecharModal} from '../../public/js/script.js';
 
 const pagina = document.body.dataset.page;
@@ -6,17 +7,40 @@ const pagina = document.body.dataset.page;
 if (pagina === 'o_chale') {
     //Listar sessões
     document.addEventListener('DOMContentLoaded', function () {
-        const servicos = document.getElementById('sessaoServicos');
-        const fotos = '';
+        let lista = document.getElementById('sessaoServicos');
         fetch(`../../app/Models/SessoesModel.php`, {
-            method: "POST",
-            headers: {"Content-Type": "application/json",},
-            body: JSON.stringify({ acao: "listar_sessoes" }),
-        })
-        .then((response) => response.json())
-        .then((data) => {
+                method: "POST",
+                headers: {"Content-Type": "application/json",},
+                body: JSON.stringify({ acao: "listar_sessoes_servicos" }),
+            }).then((response) => response.json()).then((data) => {
+                lista.innerHTML = "";
+                data.forEach((sessao) => {
+                    lista.innerHTML += `
+                    <div class="sessao">
+                        <h2 class="subtitulo verde-medio">${sessao.sesnome}</h2>
 
-        });
+                        <div class="sessao-cards">
+                            <div class="card-servico-add admin" onclick="abrirModal('modal_criar_servico')">
+                                <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
+                            </div>
+
+                            <!-- Container vazio que será preenchido dinamicamente -->
+                            <div class="lista-servicos" id="sessao-${sessao.sesid}"></div>
+                        </div>
+                        <div class="opcao-excluir-sessao">
+                            <div class="ferramenta">
+                                <p>Excluir sessão</p>
+                                <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+
+                    `;
+                    listarServicos(sessao.sesid);
+                });
+            
+            });   
     });
 
     //--Colocar o nome de referência da sessão no modal--
@@ -71,6 +95,7 @@ if (pagina === 'o_chale') {
         if (!json.erro) {
             fecharModal('modal_criar_sessao');
             alert(json.mensagem);
+            location.reload();
         } else {
             error.textContent= json.mensagem;
         }

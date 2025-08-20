@@ -54,6 +54,7 @@ if (pagina === 'o_chale') {
         if (!json.erro) {
             fecharModal('modal_criar_servico');
             alert(json.mensagem);
+            location.reload();
         } else {
             error.textContent= json.mensagem;
         }
@@ -101,10 +102,37 @@ if (pagina === 'o_chale') {
         if (!json.erro) {
             fecharModal('modal_add_foto_galeria');
             alert(json.mensagem);
+            location.reload();
         } else {
             error.textContent= json.mensagem;
         }
         
     });
+
 }
 
+export function listarServicos(sesId) {
+    fetch(`../../app/Models/FotServModel.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ acao: "listar_servicos", sesId }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        let container = document.getElementById("sessao-" + sesId);
+        container.innerHTML = ""; // limpa antes de preencher
+        data.forEach((servico) => {
+            container.innerHTML += `
+                <div class="card-servico">
+                    <p class="nome-servico">${servico.sernome}</p>
+                    <div class="imagem-servico">
+                        <img src="/chale/public/uploads/servicos/${servico.serfotcaminho}" class="img-card">
+                    </div>
+                    <div class="descricao-servico">
+                        <p>${servico.serdescricao}</p>
+                    </div>
+                </div>
+            `;
+        });
+    });
+}

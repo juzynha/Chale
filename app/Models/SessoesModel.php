@@ -12,8 +12,11 @@ if (!isset($input['acao'])) {
 }
 
 switch ($input['acao']){
-    case 'listar_sessoes':
-        listarSessoes($pdo);
+    case 'listar_sessoes_servicos':
+        listarSessoesServicos($pdo);
+        break;
+    case 'listar_sessoes_fotos':
+        listarSessoesFotos($pdo);
         break;
     case 'cadastrar_sessao':
         cadastrarSessao($input['dados'], $pdo);
@@ -22,8 +25,20 @@ switch ($input['acao']){
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
 }
 
-function listarSessoes($pdo) {
-    $sql = "SELECT * FROM sessoes ORDER BY sesid DESC";
+function listarSessoesFotos($pdo) {
+    $sql = "SELECT * FROM sessoes WHERE sesreferencia = 'fotos'";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute()){
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($data);
+    } else {
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
+    }
+}
+
+function listarSessoesServicos($pdo) {
+    $sql = "SELECT * FROM sessoes WHERE sesreferencia = 'servicos'";
     $stmt = $pdo->prepare($sql);
 
     if ($stmt->execute()){
