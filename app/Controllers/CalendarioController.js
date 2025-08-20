@@ -62,7 +62,11 @@ const renderCalendar = () => {
     daysTag.innerHTML = liTag;
 };
 
-renderCalendar();
+const pagina = document.body.dataset.page;
+
+if (pagina === 'reservas' || pagina === 'faca_sua_reserva') {
+    renderCalendar();
+}
 
 prevNextIcon.forEach(icon => { // pegando os ícones de anterior e próximo
     icon.addEventListener("click", () => { // adicionando evento de clique

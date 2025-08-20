@@ -1,12 +1,4 @@
-import {
-    validarCamposPreenchidos,
-    validarDataPassada,
-    validarDataFutura,
-    validarDistanciaData,
-    converterDataParaISO
-} from './Validacoes.js';
-
-import { fecharModal, scrollModalToTop } from '../../public/js/script.js';
+import {validarCamposPreenchidos, validarDataPassada, validarDistanciaData, converterDataParaISO, fecharModal, scrollModalToTop} from './Utils.js';
 
 // Função para verificar se já existe bloqueio no período
 async function verificarBloqueioNaData(dataInicial, dataFinal) {
@@ -30,14 +22,13 @@ async function verificarBloqueioNaData(dataInicial, dataFinal) {
 const pagina = document.body.dataset.page;
 
 if (pagina === 'reservas') {
+    //-------BLOQUEIO DE DIA (MODAL)-------
     document.getElementById('formBloquearDias').addEventListener('submit', async function (e) {
         e.preventDefault();
 
         const form = this;
-        const dataInicialInput = form.querySelector('[name="data_inicial"]');
-        const dataFinalInput = form.querySelector('[name="data_final"]');
-        let dataInicial = dataInicialInput?.value.trim();
-        let dataFinal = dataFinalInput?.value.trim();
+        let dataInicial = form.querySelector('[name="data_inicial"]').value;
+        let dataFinal = form.querySelector('[name="data_final"]').value;
         const error = document.getElementById('bloqueio_error');
         let mensagemErro = '';
 
@@ -47,8 +38,6 @@ if (pagina === 'reservas') {
             mensagemErro = errosPreenchimento[0];
         } else if (!validarDataPassada(dataInicial)) {
             mensagemErro = 'Você não pode usar uma data no passado';
-        } else if (!validarDataFutura(dataFinal)) {
-            mensagemErro = 'Você não pode usar uma data tão distante';
         } else if (!validarDistanciaData(dataInicial, dataFinal)) {
             mensagemErro = 'O período precisa ter pelo menos um dia de duração';
         }
@@ -83,34 +72,25 @@ if (pagina === 'reservas') {
         }
 
         // --- Envia dados para o PHP ---
-        const dados = {
-            dataInicial,
-            dataFinal,
-            tipo: 'manual'
-        };
+        const dados = {dataInicial, dataFinal, tipo: 'manual'};
 
-        try {
-            const response = await fetch('../../app/Models/BloqueioModel.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ acao: 'bloquear_dias', dados })
-            });
-            const resultado = await response.json();
+        const response = await fetch('../../app/Models/BloqueioModel.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ acao: 'bloquear_dias', dados })
+        });
+        const js = await response.json();
 
-            if (!resultado.erro) {
-                alert(resultado.mensagem);
-                fecharModal('modal_bloquear_dias');
+        if (!js.erro) {
+            alert(js.mensagem);
+            fecharModal('modal_bloquear_dias');
+        } else {
+            if (error) {
+                error.textContent = resultado.mensagem;
+                error.style.display = 'block';
             } else {
-                if (error) {
-                    error.textContent = resultado.mensagem;
-                    error.style.display = 'block';
-                } else {
-                    alert("Erro ao bloquear dias: " + resultado.mensagem);
-                }
+                alert("Erro ao bloquear dias: " + js.mensagem);
             }
-        } catch (e) {
-            alert("Erro de conexão com o servidor.");
-            console.error(e);
         }
     });
 }

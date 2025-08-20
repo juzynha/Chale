@@ -1,5 +1,4 @@
-import {validarCamposPreenchidos, validarString, validarImagem, validarTexto} from './Validacoes.js';
-import {abrirModal, fecharModal} from '../../public/js/script.js';
+import {validarCamposPreenchidos, validarString, validarImagem, validarTexto,abrirModal, fecharModal} from './Utils.js';
 
 const pagina = document.body.dataset.page;
 
@@ -16,12 +15,13 @@ if (pagina === 'o_chale') {
                 data.forEach((sessao) => {
                     lista.innerHTML += `
                     <div class="sessao">
-                        <h2 class="subtitulo verde-medio">${sessao.sesnome}</h2>
+                        <div class="titulo-sessao">
+                            <h2 class="subtitulo verde-medio">${sessao.sesnome}</h2>
+                            <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
+                        </div>
                         <div class="sessao-cards" id="sessao-${sessao.sesid}">
                             <!-- Card de adicionar serviço -->
-                            <div class="card-servico-add admin" 
-                                data-sessao-id="${sessao.sesid}" 
-                                onclick="abrirModal('modal_criar_servico')" >
+                            <div class="card-servico-add admin" data-sessao-id="${sessao.sesid}">
                                 <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
                             </div>
                         </div>
@@ -38,20 +38,19 @@ if (pagina === 'o_chale') {
                 });
 
                 // registrar cliques nos botões de adicionar
-                document.querySelectorAll('.card-servico-add').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        let sesId = this.dataset.sessaoId;
-                        // guardar no modal
+                lista.addEventListener('click', function(e) {
+                    if (e.target.closest('.card-servico-add')) {
+                        const btn = e.target.closest('.card-servico-add');
+                        const sesId = btn.dataset.sessaoId;
                         document.getElementById('formCriarServico').dataset.sessaoId = sesId;
-                    });
-                });
-
-                document.querySelectorAll('.card-foto-add').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        let sesId = this.dataset.sessaoId;
-                        // guardar no modal
+                        abrirModal('modal_criar_servico');
+                    }
+                    if (e.target.closest('.card-foto-add')) {
+                        const btn = e.target.closest('.card-foto-add');
+                        const sesId = btn.dataset.sessaoId;
                         document.getElementById('formAddFotoGaleria').dataset.sessaoId = sesId;
-                    });
+                        abrirModal('modal_add_foto_galeria');
+                    }
                 });
             });   
     });
@@ -124,7 +123,6 @@ if (pagina === 'o_chale') {
         const imagemServico = form.querySelector('[name="imagem_servico"]');
         const descricao = form.querySelector('[name="descricao"]').value.trim();
         const sesId = form.dataset.sessaoId; // pegando o id salvo no clique
-
         const error = document.getElementById('cadServicos_error');
         let mensagemErro = '';
 

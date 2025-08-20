@@ -1,5 +1,4 @@
-import {validarCamposPreenchidos, validarImagem} from './Validacoes.js';
-import {fecharModal} from '../../public/js/script.js';
+import {validarCamposPreenchidos, validarImagem, fecharModal} from './Utils.js';
 
 const pagina = document.body.dataset.page;
 

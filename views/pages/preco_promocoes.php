@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../layouts/header.php';
 ?>
 
-<body data-page="reservas">
+<body data-page="precos_promocoes">
     <header class="cabecalho">
         <?php
         require_once __DIR__ . '/../layouts/menu.php';

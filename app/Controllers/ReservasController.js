@@ -1,5 +1,4 @@
-import {converterDataParaBR,validarDataPassada,validarDataFutura,validarDistanciaData,converterDataParaISO} from './Validacoes.js';
-import {abrirModal, fecharModal} from '../../public/js/script.js';
+import {converterDataParaBR,validarDataPassada,validarDataFutura,validarDistanciaData,converterDataParaISO, abrirModal, fecharModal} from './Utils.js';
 
 const pagina = document.body.dataset.page;
 

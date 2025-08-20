@@ -1,19 +1,6 @@
-import {
-  validarCamposPreenchidos,
-  validarNomeProprio,
-  validarEmail,
-  validarTelefone,
-  validarSenha,
-  converterDataParaISO,
-} from "./Validacoes.js";
-import {
-  abrirModal,
-  fecharModal,
-  scrollModalToTop,
-} from "../../public/js/script.js";
+import {validarCamposPreenchidos, validarNomeProprio, validarEmail, validarTelefone, validarSenha, converterDataParaISO, abrirModal, fecharModal, scrollModalToTop,} from "./Utils.js";
 
 //-------CADASTRO DE USUÁRIO-------
-//let listenerValidacaoAtivado = false; // FLAG GLOBAL
 let codigoCriado = "";
 let dados = {};
 

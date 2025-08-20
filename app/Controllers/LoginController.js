@@ -1,5 +1,4 @@
-import {validarCamposPreenchidos} from './Validacoes.js';
-import { fecharModal} from "../../public/js/script.js";
+import {validarCamposPreenchidos, fecharModal} from './Utils.js';
 
 //LOGIN
 document.getElementById("formLogin").addEventListener("submit", async function (e) {

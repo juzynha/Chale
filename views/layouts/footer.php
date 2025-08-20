@@ -24,8 +24,8 @@
     </div>
 </footer>
 
-<script type="module" src="/chale/public/js/script.js"></script>
-<script src="/chale/app/Controllers/CalendarioController.js"></script>
+<script src="/chale/public/js/script.js"></script>
+<script type="module" src="/chale/app/Controllers/CalendarioController.js"></script>
 <script type="module" src="/chale/app/Controllers/LoginController.js"></script>
 <script type="module" src="/chale/app/Controllers/AdminController.js"></script>
 <script type="module" src="/chale/app/Controllers/PromocaoController.js"></script>
