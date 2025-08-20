@@ -11,58 +11,7 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="container">
         <h2 class="titulo verde-escuro">Serviços</h2>
         <div class="servicos" id="sessaoServicos">
-            <!--
-            <div class="sessao">
-                <h3 class="subtitulo verde-medio">Título da sessão</h3>
-                <div class="sessao-cards">
-                    <div class="card-servico-add" onclick="abrirModal('modal_criar_servico')">
-                        <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
-                    </div>
-                    <div class="card-servico">
-                        <p class="nome-servico">Nome do servico</p>
-                        <div class="imagem-servico">
-                            <img src="" alt="">
-                        </div>
-                        <div class="descricao-servico">
-                            <p>Texto descritivo do servico aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd
-                                basdh uawhd abjshdhawudh jakjhwduhasjnjwbdb nasda</p>
-                        </div>
-                    </div>
-                    <div class="card-servico">
-                        <p class="nome-servico">Nome do servico</p>
-                        <div class="imagem-servico">
-                            <img src="" alt="">
-                        </div>
-                        <div class="descricao-servico">
-                            <p>Texto descritivo do servico aaaaaaa aaaaaaaaaa asdasdhasd ahbsdhqywdbnxchadsy ash uahd
-                                basdh uawhd abjshdhawudh jakjhwduhasjnjwbdb nasda</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="opcao-excluir-sessao">
-                    <div class="ferramenta">
-                        <p>Excluir sessão</p>
-                        <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
-                    </div>
-                </div>
-                <hr>
-            </div>
-            -->
-            <div class="sessao">
-                <h2 class="subtitulo verde-medio">Título da sessão</h2>
-                <div class="sessao-cards">
-                    <div class="card-servico-add" onclick="abrirModal('modal_criar_servico')">
-                        <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
-                    </div>
-                </div>
-                <div class="opcao-excluir-sessao">
-                    <div class="ferramenta">
-                        <p>Excluir sessão</p>
-                        <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
-                    </div>
-                </div>
-                <hr>
-            </div>
+        <!-- Lista de sessões e serviços -->
         </div>
         <div class="ferramenta" id="criar_sessao_servicos">
             <p>Criar sessão</p>

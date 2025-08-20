@@ -38,7 +38,7 @@ switch ($input['acao']) {
 function cadastrarServico($dados, $arquivos, $pdo) {
     $nomeServico = $dados['nomeServico'] ?? '';
     $descricao = $dados['descricao'] ?? '';
-    $sesid = 9; // valor fixo por enquanto
+    $sesid = $dados['sesId']; 
 
     $imagem = $arquivos['imagemServico'];
     $nomeImagem = uniqid() . '-' . $imagem['name'];

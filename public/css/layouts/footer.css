@@ -1,4 +1,6 @@
 footer.foot {
+    position: absolute;
+    width: 100%;
     background-color: #3F5141 ; /* Verde do footer */
     color: white;
     padding: 20px 0;

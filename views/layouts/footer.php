@@ -32,9 +32,7 @@
 <script type="module" src="/chale/app/Controllers/ReservasController.js"></script>
 <script type="module" src="/chale/app/Controllers/SessoesController.js"></script>
 <script type="module" src="/chale/app/Controllers/UsuarioController.js"></script>
-<script type="module" src="/chale/app/Controllers/FotServController.js"></script>
 <script type="module" src="/chale/app/Controllers/CarrosselController.js"></script>
-<script type="module" src="/chale/app/Controllers/BloqueioController.js"></script>
 <script type="module" src="/chale/app/Controllers/BloqueioController.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </html>

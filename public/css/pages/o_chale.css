@@ -44,6 +44,7 @@
 
 .img-card{
     width: 100%;
+    object-fit: cover;
 }
 
 .nome-servico{
