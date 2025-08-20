@@ -104,7 +104,7 @@ if (pagina === 'faca_sua_reserva') {
   // 5) Submit do modal (envia reserva)
   document.getElementById('formFazerReserva').addEventListener('submit', async function (e) {
     e.preventDefault();
-
+    console.log('clicou');
     const modalCheckin = this.querySelector('[name="data_inicial"]').value;
     const modalCheckout = this.querySelector('[name="data_final"]').value;
     const valorTotal = calcularPreco(modalCheckin, modalCheckout, precoDiaria, precoDiariaFds);
@@ -223,7 +223,6 @@ function mostrarTudo() {
     let mostrar = document.getElementById('mostrar_lista');
     let container = document.getElementById('container_reservas');
 
-    // Calcula 150% da altura da tela
     let alturaLimite = window.innerHeight * 0.1;
 
     // Verifica se o conteúdo ultrapassa 150% da tela

@@ -99,72 +99,72 @@ require_once __DIR__ . '/../layouts/header.php';
         </section>
     </div>
 
-    <!-- Modais -->
-    <div class="sombra-modal" id="modal_cadastro_admin">
-        <div class="bloco-modal-usuario">
-            <div class="contorno-modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Criar conta de administrador</h2>
-                        <button class="btn-fechar-modal">
-                            <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="formCadastroAdmin">
-                            <div class="campos-form-inputwrapper">
-                                <p class="error" id="cadAdmin_error"></p>
+</body>
+
+<!-- Modais -->
+<div class="sombra-modal" id="modal_cadastro_admin">
+    <div class="bloco-modal-usuario">
+        <div class="contorno-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Criar conta de administrador</h2>
+                    <button class="btn-fechar-modal">
+                        <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCadastroAdmin">
+                        <div class="campos-form-inputwrapper">
+                            <p class="error" id="cadAdmin_error"></p>
+                            <div class="input-wrapper">
+                                <span>Nome:</span>
+                                <input type="text" name="nome">
+                            </div>
+                            <div class="input-wrapper">
+                                <span>E-mail:</span>
+                                <input type="email" name="email">
+                            </div>
+                            <p>A senha deve conter no mínimo 8 caracteres, pelo menos uma letra, um número e um
+                                símbolo</p>
+                            <div class="input-wrapper">
+                                <span>Senha:</span>
+                                <input type="password" name="senha">
+                                <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho toggleSenha">
+                            </div>
+                            <div class="last-input">
                                 <div class="input-wrapper">
-                                    <span>Nome:</span>
-                                    <input type="text" name="nome">
-                                </div>
-                                <div class="input-wrapper">
-                                    <span>E-mail:</span>
-                                    <input type="email" name="email">
-                                </div>
-                                <p>A senha deve conter no mínimo 8 caracteres, pelo menos uma letra, um número e um
-                                    símbolo</p>
-                                <div class="input-wrapper">
-                                    <span>Senha:</span>
-                                    <input type="password" name="senha">
+                                    <span>Confirmar senha:</span>
+                                    <input type="password" name="conf_senha">
                                     <img src="/chale/public/assets/icons/icon-olho.svg" class="icon-olho toggleSenha">
                                 </div>
-                                <div class="last-input">
-                                    <div class="input-wrapper">
-                                        <span>Confirmar senha:</span>
-                                        <input type="password" name="conf_senha">
-                                        <img src="/chale/public/assets/icons/icon-olho.svg"
-                                            class="icon-olho toggleSenha">
-                                    </div>
-                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn">Criar</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn">Criar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="sombra-modal" id="modal_nao_pode_excluir">
-        <div class="bloco-modal-geral">
-            <div class="modal-header">
-                <h2>Aviso</h2>
-                <button class="btn-fechar-modal">
-                    <img src="/chale/public/assets/icons/icon-close.svg" class="icon" alt="Fechar">
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Você não pode excluir sua conta pois é a única existente!</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" onclick="fecharModal('modal_nao_pode_excluir')">OK</button>
-            </div>
+<div class="sombra-modal" id="modal_nao_pode_excluir">
+    <div class="bloco-modal-geral">
+        <div class="modal-header">
+            <h2>Aviso</h2>
+            <button class="btn-fechar-modal">
+                <img src="/chale/public/assets/icons/icon-close.svg" class="icon" alt="Fechar">
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Você não pode excluir sua conta pois é a única existente!</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" onclick="fecharModal('modal_nao_pode_excluir')">OK</button>
         </div>
     </div>
-</body>
+</div>
 <?php
 require_once __DIR__ .'/../modals/sair_conta.php';
 require_once __DIR__ .'/../modals/digite_sua_senha.php';

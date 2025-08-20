@@ -225,3 +225,19 @@ function inputMaskDouble() {
 document.addEventListener("DOMContentLoaded", function () {
   inputMaks();
 });
+
+const pagina = document.body.dataset.page;
+
+function abrirContainer(idContainer) {
+    const container = document.getElementById(idContainer);
+    const seta = container.querySelector('[name="seta"]');
+    const content = container.querySelector('[name="content"]');
+
+    if (seta.src.endsWith("icon-seta-left(verde).svg")) {
+        seta.src = "/chale/public/assets/icons/icon-seta-baixo.svg";
+        content.style.display = 'flex';
+    } else {
+        seta.src = "/chale/public/assets/icons/icon-seta-left(verde).svg";
+        content.style.display = 'none';
+    }
+}

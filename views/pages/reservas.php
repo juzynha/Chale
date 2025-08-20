@@ -73,9 +73,10 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
         </div>
     </section>
+</body>
 
-    <!-- Modais -->
-   <div class="sombra-modal" id="modal_bloquear_dias">
+<!-- Modais -->
+<div class="sombra-modal" id="modal_bloquear_dias">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Bloquear dias</h2>
@@ -105,11 +106,8 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </div>
-<script src="/chale/public/js/script.js"></script>
-<script src="/chale/app/Controllers/ReservasController.js"></script>
-</body>
- 
+
 <?php
-require_once __DIR__ . '/../modals/promocao.php';
+require_once __DIR__ . '/../modals/CadAltPromocao.php';
 require_once __DIR__ . '/../layouts/footer.php';
 ?>

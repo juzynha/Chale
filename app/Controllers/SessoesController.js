@@ -107,7 +107,7 @@ if (pagina === 'o_chale') {
         if (!json.erro) {
             fecharModal('modal_criar_sessao');
             alert(json.mensagem);
-            location.reload();
+            location.href = window.location.pathname; 
         } else {
             error.textContent= json.mensagem;
         }
@@ -164,7 +164,7 @@ if (pagina === 'o_chale') {
         if (!json.erro) {
             fecharModal('modal_criar_servico');
             alert(json.mensagem);
-            location.reload();
+            location.href = window.location.pathname; 
         } else {
             error.textContent= json.mensagem;
         }

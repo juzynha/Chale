@@ -138,209 +138,167 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
         </div>
     </section>
-
-    <!-- Modais -->
-    <div class="sombra-modal" id="modal_fazer_reserva">
-        <div class="bloco-modal-geral"> 
-            <div class="modal-header">
-                <h2>Fazer reserva</h2>
-                <button class="btn-fechar-modal">
-                    <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
-                </button>
-                <p class="error"></p>
-            </div>
-            <div class="modal-body">
-                <form id="formFazerReserva" class="form-inputcomum">
-                    <p class="error" id="cadReserva_error"></p>
-                    <div class="infos-datas-fr">
-                        <div class="date-container">
-                            <div class="date-group">
-                                <span class="date-label">Check-in</span>
-                                <div class="divider-horizontal"></div>
-                                <input type="date" class="date-input" name="data_inicial">
-                            </div>
-                            <div class="divider-vertical"></div>
-                            <div class="date-group">
-                                <span class="date-label">Check-out</span>
-                                <div class="divider-horizontal"></div>
-                                <input type="date" class="date-input" name="data_final">
-                            </div>
-                        </div>
-                    </div>
-                    <p class="valortotal-fr" name="preco_total"><strong>Valor Total: </strong></p>
-                    <div class="modal-footer">
-                    <button type="button" class="btn" onclick="fecharModal('modal_fazer_reserva'); abrirModal('metodo_de_pagamento')">Reservar</button>
-
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="sombra-modal" id="modal_editar_carrossel">
-        <div class="bloco-modal-geral">
-            <div class="modal-header">
-                <h2>Editar carrossel</h2>
-                <button class="btn-fechar-modal">
-                    <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formEditarCarrossel" class="form-inputcomum">
-                    <div class="carrossel-itens">
-                        <div class="divider-horizontal"></div>
-                        <div class="item-carrossel">
-                            <div class="titulo-item-carrossel">
-                                <p>Canto Esquerdo</p>
-                            </div>
-                            <div class="foto-item-carrossel">
-                                <img src="/chale/public/assets/img1.jpeg" class="foto-carrossel">
-                                <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                            </div>
-                        </div>
-                        <div class="divider-horizontal"></div>
-                        <div class="item-carrossel">
-                            <div class="titulo-item-carrossel">
-                                <p>Meio Esquerdo</p>
-                            </div>
-                            <div class="foto-item-carrossel">
-                                <img src="/chale/public/assets/img2.jpeg" class="foto-carrossel">
-                                <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                            </div>
-                        </div>
-                        <div class="divider-horizontal"></div>
-                        <div class="item-carrossel">
-                            <div class="titulo-item-carrossel">
-                                <p>Centro</p>
-                            </div>
-                            <div class="foto-item-carrossel">
-                                <img src="/chale/public/assets/img3.jpeg" class="foto-carrossel">
-                                <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                            </div>
-                        </div>
-                        <div class="divider-horizontal"></div>
-                        <div class="item-carrossel">
-                            <div class="titulo-item-carrossel">
-                                <p>Meio Direito</p>
-                            </div>
-                            <div class="foto-item-carrossel">
-                                <img src="/chale/public/assets/img4.jpeg" class="foto-carrossel">
-                                <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                            </div>
-                        </div>
-                        <div class="divider-horizontal"></div>
-                        <div class="item-carrossel">
-                            <div class="titulo-item-carrossel">
-                                <p>Canto Direito</p>
-                            </div>
-                            <div class="foto-item-carrossel">
-                                <img src="/chale/public/assets/img5.jpeg" class="foto-carrossel">
-                                <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                            </div>
-                        </div>
-                        <div class="divider-horizontal"></div>
-                        <div class="item-carrossel">
-                            <div class="titulo-item-carrossel">
-                                <p>Posição 6</p>
-                            </div>
-                            <div class="foto-item-carrossel">
-                                <img src="/chale/public/assets/img2.jpeg" class="foto-carrossel">
-                                <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                            </div>
-                        </div>
-                        <div class="divider-horizontal"></div>
-                        <div class="item-carrossel">
-                            <div class="titulo-item-carrossel">
-                                <p>Posição 7</p>
-                            </div>
-                            <div class="foto-item-carrossel">
-                                <img src="/chale/public/assets/img4.jpeg" class="foto-carrossel">
-                                <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                            </div>
-                        </div>
-                        <div class="divider-horizontal"></div>
-                    </div>
-                    <div class="ferramenta-branco"
-                        onclick="fecharModal('modal_editar_carrossel'), abrirModal('modal_add_foto_carrossel')">
-                        <p>Adicionar foto</p>
-                        <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn">Salvar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="sombra-modal" id="modal_add_foto_carrossel">
-        <div class="bloco-modal-geral">
-            <div class="modal-header">
-                <h2>Adicionar Foto</h2>
-                <button class="btn-fechar-modal">
-                    <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="formAddFotoCarrossel">
-                    <p class="error" id="cadFotoCarrossel_error"></p>
-                    <div class="campos-form-inputpadrao">
-                        <div class="imagem-servico img-box">
-                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
-                            <input type="file" name="foto">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn">Adicionar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-  
-  <button class="open-btn" onclick="openModal()">Abrir Modal</button>
-  <div class="modal-overlay" id="metodo_de_pagamento">
-    <div class="modal">
-      <div class="payment-options">
-      <h2>Método de Pagamento</h2>
-        <div class="option">
-          <img src="/chale/public/assets/icons/icon-pix2.svg" class="icon">
-          <span>Pix</span>
-          <input type="radio" class="circle-btn">
-        </div>
-        <div class="option">
-          <img src="/chale/public/assets/icons/icon-credito.svg" class="icon">
-          <span>Débito</span>
-          <input type="radio" class="circle-btn">
-        </div>
-        <div class="option">
-        <img src="/chale/public/assets/icons/icon-credito.svg" class="icon">
-          <span>Crédito</span>
-          <input type="radio" class="circle-btn">
-        </div>
-        <div class="option">
-        <img src="/chale/public/assets/icons/icon-boleto.svg" class="icon">
-          <span>Boleto</span>
-          <input type="radio" class="circle-btn">
-        </div>
-      </div>
-      <div class="total">Valor total: R$400</div>
-      <div class="actions">
-        <a href="#">Pagar depois</a>
-        <button class="btn">Pagar</button>
-      </div>
-    </div>
-  </div>
-  <script>
-      function abrirModal(id) {
-        document.getElementById(id).style.display = "flex";
-      }
-      function fecharModal(id) {
-        document.getElementById(id).style.display = "none";
-      }
-    </script>
-
 </body>
+
+<!-- Modais -->
+<div class="sombra-modal" id="modal_fazer_reserva">
+    <div class="bloco-modal-geral">
+        <div class="modal-header">
+            <h2>Fazer reserva</h2>
+            <button class="btn-fechar-modal">
+                <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+            </button>
+            <p class="error"></p>
+        </div>
+        <div class="modal-body">
+            <form id="formFazerReserva" class="form-inputcomum">
+                <p class="error" id="cadReserva_error"></p>
+                <div class="infos-datas-fr">
+                    <div class="date-container">
+                        <div class="date-group">
+                            <span class="date-label">Check-in</span>
+                            <div class="divider-horizontal"></div>
+                            <input type="date" class="date-input" name="data_inicial">
+                        </div>
+                        <div class="divider-vertical"></div>
+                        <div class="date-group">
+                            <span class="date-label">Check-out</span>
+                            <div class="divider-horizontal"></div>
+                            <input type="date" class="date-input" name="data_final">
+                        </div>
+                    </div>
+                </div>
+                <p class="valortotal-fr" name="preco_total"><strong>Valor Total: </strong></p>
+                <div class="modal-footer">
+                    <button type="button" class="btn">Reservar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="sombra-modal" id="modal_editar_carrossel">
+    <div class="bloco-modal-geral">
+        <div class="modal-header">
+            <h2>Editar carrossel</h2>
+            <button class="btn-fechar-modal">
+                <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="formEditarCarrossel" class="form-inputcomum">
+                <div class="carrossel-itens">
+                    <div class="divider-horizontal"></div>
+                    <div class="item-carrossel">
+                        <div class="titulo-item-carrossel">
+                            <p>Canto Esquerdo</p>
+                        </div>
+                        <div class="foto-item-carrossel">
+                            <img src="/chale/public/assets/img1.jpeg" class="foto-carrossel">
+                            <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                        </div>
+                    </div>
+                    <div class="divider-horizontal"></div>
+                    <div class="item-carrossel">
+                        <div class="titulo-item-carrossel">
+                            <p>Meio Esquerdo</p>
+                        </div>
+                        <div class="foto-item-carrossel">
+                            <img src="/chale/public/assets/img2.jpeg" class="foto-carrossel">
+                            <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                        </div>
+                    </div>
+                    <div class="divider-horizontal"></div>
+                    <div class="item-carrossel">
+                        <div class="titulo-item-carrossel">
+                            <p>Centro</p>
+                        </div>
+                        <div class="foto-item-carrossel">
+                            <img src="/chale/public/assets/img3.jpeg" class="foto-carrossel">
+                            <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                        </div>
+                    </div>
+                    <div class="divider-horizontal"></div>
+                    <div class="item-carrossel">
+                        <div class="titulo-item-carrossel">
+                            <p>Meio Direito</p>
+                        </div>
+                        <div class="foto-item-carrossel">
+                            <img src="/chale/public/assets/img4.jpeg" class="foto-carrossel">
+                            <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                        </div>
+                    </div>
+                    <div class="divider-horizontal"></div>
+                    <div class="item-carrossel">
+                        <div class="titulo-item-carrossel">
+                            <p>Canto Direito</p>
+                        </div>
+                        <div class="foto-item-carrossel">
+                            <img src="/chale/public/assets/img5.jpeg" class="foto-carrossel">
+                            <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                        </div>
+                    </div>
+                    <div class="divider-horizontal"></div>
+                    <div class="item-carrossel">
+                        <div class="titulo-item-carrossel">
+                            <p>Posição 6</p>
+                        </div>
+                        <div class="foto-item-carrossel">
+                            <img src="/chale/public/assets/img2.jpeg" class="foto-carrossel">
+                            <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                        </div>
+                    </div>
+                    <div class="divider-horizontal"></div>
+                    <div class="item-carrossel">
+                        <div class="titulo-item-carrossel">
+                            <p>Posição 7</p>
+                        </div>
+                        <div class="foto-item-carrossel">
+                            <img src="/chale/public/assets/img4.jpeg" class="foto-carrossel">
+                            <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                        </div>
+                    </div>
+                    <div class="divider-horizontal"></div>
+                </div>
+                <div class="ferramenta-branco"
+                    onclick="fecharModal('modal_editar_carrossel'), abrirModal('modal_add_foto_carrossel')">
+                    <p>Adicionar foto</p>
+                    <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="sombra-modal" id="modal_add_foto_carrossel">
+    <div class="bloco-modal-geral">
+        <div class="modal-header">
+            <h2>Adicionar Foto</h2>
+            <button class="btn-fechar-modal">
+                <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="formAddFotoCarrossel">
+                <p class="error" id="cadFotoCarrossel_error"></p>
+                <div class="campos-form-inputpadrao">
+                    <div class="imagem-servico img-box">
+                        <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
+                        <input type="file" name="foto">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <?php
+require_once __DIR__ . '/../modals/pagamento.php';
 require_once __DIR__ . '/../layouts/footer.php';
 ?>
