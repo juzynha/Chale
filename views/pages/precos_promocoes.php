@@ -17,7 +17,7 @@ require_once __DIR__ . '/../layouts/header.php';
                     <p>Diária: R$ <strong name="preco_diaria"></strong></p>
                     <p>Diária fim de semana: R$ <strong name="preco_diaria_fds"></strong></p>
                 </div>
-                <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho">
+                <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho" onclick="abrirModal('modal_alterar_preco')">
             </div>
         </div>
     </section>
@@ -27,8 +27,8 @@ require_once __DIR__ . '/../layouts/header.php';
     <section class="container">
         <h2 class="subtitulo verde-escuro">Promoções</h2>   
         <div class="ferramenta" onclick="abrirModal('modal_cadalt_promocao')">
-            <img src="/chale/public/assets/icons/icon-adicionar.svg" class="add-promocao">
             <p>Criar Promoção</p>
+            <img src="/chale/public/assets/icons/icon-adicionar.svg" class="add-promocao">
         </div>
         <div class="card-promocoes">
             <h3 class="nome-promocao">Promoção de Natal</h3>
@@ -56,13 +56,64 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                 </div>
                 <div class="icones-promocoes">
-                    <div class="editar-promocao" onclick="abrirModal('modal_cadalt_promocao')"><img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho"></div>
-                    <img src="/chale/public/assets/icons/icon-lixeira.svg" class="lixeirinha">
+                    <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho">
+                    <img src="/chale/public/assets/icons/icon-lixeira.svg" class="lixeirinha" onclick="abrirModal('modal_excluir_promocao')">
                 </div>
             </div>
         </div>
     </section> 
 </body>
+
+<div class="sombra-modal" id="modal_excluir_promocao">
+    <div class="bloco-modal-geral">
+        <div class="modal-header">
+            <h2>Deseja excluir promoção? <span id="nome_referencia"></span></h2>
+            <button class="btn-fechar-modal">
+                <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="formExcluirPromocao">
+                <p class="error" id="excluirpromocao_error"></p>
+                <div class="input-padrao">
+                    <span>Nome da promoção:</span>
+                    <input type="text" name="nome_promocao">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn">Excluir</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="sombra-modal" id="modal_alterar_preco">
+    <div class="bloco-modal-geral">
+        <div class="modal-header">
+            <h2>Editar Preços <span id="nome_referencia"></span></h2>
+            <button class="btn-fechar-modal">
+                <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="formAlterarPreco">
+                <p class="error" id="altpreco_error"></p>
+                <div class="input-padrao">
+                    <span>Diária:</span>
+                    <input type="text" name="nome_diaria">
+                </div>
+                <div class="input-padrao">
+                    <span>Diária fim de semana:</span>
+                    <input type="text" name="nome_diariafds">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <?php
     require_once __DIR__ . '/../modals/CadAltPromocao.php';
