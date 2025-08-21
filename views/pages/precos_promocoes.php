@@ -25,7 +25,11 @@ require_once __DIR__ . '/../layouts/header.php';
 
     <!-- Promoções -->
     <section class="container">
-        <h2 class="subtitulo verde-escuro">Promoções</h2>
+        <h2 class="subtitulo verde-escuro">Promoções</h2>   
+        <div class="ferramenta" onclick="abrirModal('modal_cadalt_promocao')">
+            <img src="/chale/public/assets/icons/icon-adicionar.svg" class="add-promocao">
+            <p>Criar Promoção</p>
+        </div>
         <div class="card-promocoes">
             <h3 class="nome-promocao">Promoção de Natal</h3>
             <div class="promo-content">
@@ -52,12 +56,12 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                 </div>
                 <div class="icones-promocoes">
-                    <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho">
+                    <div class="editar-promocao" onclick="abrirModal('modal_cadalt_promocao')"><img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho"></div>
                     <img src="/chale/public/assets/icons/icon-lixeira.svg" class="lixeirinha">
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
 </body>
 
 <?php

@@ -179,6 +179,33 @@ function inputMaskDate() {
   });
 }
 
+function abrirCalendario(input) {
+  let calendario = document.querySelector(".calendario-box");
+
+  // Garante que só 1 calendário fique aberto
+  calendario.style.display = "block";
+
+  // Pega posição e tamanho do input
+  const rect = input.getBoundingClientRect();
+
+  // Posição padrão: abaixo do input
+  let top = rect.bottom + window.scrollY + 5;
+  let left = rect.left + window.scrollX;
+
+  // Verifica se há espaço suficiente abaixo
+  const spaceBelow = window.innerHeight - rect.bottom;
+  const calendarioHeight = calendario.offsetHeight || 250; // altura estimada
+  if (spaceBelow < calendarioHeight) {
+      // coloca acima do input
+      top = rect.top + window.scrollY - calendarioHeight - 5;
+  }
+
+  calendario.style.position = "absolute";
+  calendario.style.top = `${top}px`;
+  calendario.style.left = `${left}px`;
+  calendario.style.zIndex = 9999;
+}
+
 function inputMaskName() {
 // Máscara de nome (primeira letra de cada palavra maiúscula)
   document.querySelectorAll('[name="nome"]').forEach(function(input) {
@@ -226,8 +253,16 @@ document.addEventListener("DOMContentLoaded", function () {
   inputMaks();
 });
 
-const pagina = document.body.dataset.page;
+// Opcional: fechar clicando fora
+document.addEventListener("click", (e) => {
+  const calendario = document.querySelector(".calendario-box");
+  if (calendario && !calendario.contains(e.target) && !e.target.classList.contains("input-date")) {
+      calendario.style.display = "none";
+  }
+});
 
+
+//abrir a caixa que exibe as reservas à pagar ou em andamento na page conta de usuário
 function abrirContainer(idContainer) {
     const container = document.getElementById(idContainer);
     const seta = container.querySelector('[name="seta"]');

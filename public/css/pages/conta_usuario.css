@@ -221,3 +221,7 @@
   align-items: flex-end;
   gap: 0.5rem;
 }
+
+.hr-modal {
+  border: 1px solid var(--verde-acinzentado);
+}

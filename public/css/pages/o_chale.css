@@ -51,6 +51,21 @@
     cursor: pointer;
 }
 
+.card-servico-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-servico-header .ferramentas{
+    display: flex;
+    gap: 0.8rem;
+}
+
+.card-servico-header .ferramentas img{
+    width: 20px;
+    cursor: pointer;
+}
+
 .img-card{
     width: 100%;
     height: 100%;

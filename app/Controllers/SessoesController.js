@@ -236,7 +236,13 @@ if (pagina === 'o_chale') {
             data.forEach((servico) => {
                 container.innerHTML += `
                     <div class="card-servico">
-                        <p class="nome-servico">${servico.sernome}</p>
+                        <div class="card-servico-header">
+                            <p class="nome-servico">${servico.sernome}</p>
+                            <div class="ferramentas">
+                                <img src="/chale/public/assets/icons/icon-editar.svg">
+                                <img src="/chale/public/assets/icons/icon-lixeira.svg">
+                            </div>
+                        </div>
                         <div class="imagem-servico">
                             <img src="/chale/public/uploads/servicos/${servico.serfotcaminho}" class="img-card">
                         </div>

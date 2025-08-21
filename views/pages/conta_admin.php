@@ -165,6 +165,36 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </div>
+
+<div class="sombra-modal" id="modal_listar_admins">
+    <div class="bloco-modal-usuario">
+        <div class="contorno-modal">
+            <div class="modal-header">
+                <h2>Lista de Administradores</h2>
+                <button class="btn-fechar-modal">
+                    <img src="/chale/public/assets/icons/icon-close.svg" class="icon" alt="Fechar">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="nome-cliente">
+                    <div class="foto-cliente">
+                        <img src="/chale/public/uploads/perfil-usuario/foto.png" alt="foto-admin">
+                    </div>
+                    <p>Juliana Cardoso Araujo</p>
+                </div>
+                <hr class="hr-modal">
+                <div class="nome-cliente">
+                    <div class="foto-cliente">
+                        <img src="/chale/public/uploads/perfil-usuario/foto.png" alt="foto-admin">
+                    </div>
+                    <p>Lilith Ferraz Pocarli</p>
+                </div>
+                <hr class="hr-modal">
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 require_once __DIR__ .'/../modals/sair_conta.php';
 require_once __DIR__ .'/../modals/digite_sua_senha.php';
