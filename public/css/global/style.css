@@ -74,7 +74,7 @@ input::placeholder{
 }
 
 .placeholder::placeholder{
-  color: var(--branco);
+  color: var(--verde-azulado);
   opacity: 1;
 }
 

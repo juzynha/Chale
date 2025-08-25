@@ -229,7 +229,7 @@ function inputMaskName() {
 function inputMaskDouble() {
 //Máscara de inputs de valores (reais R$)
   document.querySelectorAll('.input-double').forEach(input => {
-    input.placeholder = '000,00';
+    input.placeholder = '00,00';
     input.classList.add('placeholder');
 
     input.addEventListener('input', function (e) {
