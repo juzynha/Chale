@@ -3,7 +3,7 @@ import {validarCamposPreenchidos, validarString, validarImagem, validarTexto,abr
 const pagina = document.body.dataset.page;
 
 if (pagina === 'o_chale') {
-    //-------LISTAGEM DE SESSÕES-------
+    //-------LISTAGEM DE SESSÕES SERVIÇOS-------
     document.addEventListener('DOMContentLoaded', function () {
         let lista = document.getElementById('sessaoServicos');
         fetch(`../../app/Models/SessoesModel.php`, {
@@ -35,6 +35,57 @@ if (pagina === 'o_chale') {
                     </div>
                     `;
                     listarServicos(sessao.sesid);
+                });
+
+                // registrar cliques nos botões de adicionar
+                lista.addEventListener('click', function(e) {
+                    if (e.target.closest('.card-servico-add')) {
+                        const btn = e.target.closest('.card-servico-add');
+                        const sesId = btn.dataset.sessaoId;
+                        document.getElementById('formCriarServico').dataset.sessaoId = sesId;
+                        abrirModal('modal_criar_servico');
+                    }
+                    if (e.target.closest('.card-foto-add')) {
+                        const btn = e.target.closest('.card-foto-add');
+                        const sesId = btn.dataset.sessaoId;
+                        document.getElementById('formAddFotoGaleria').dataset.sessaoId = sesId;
+                        abrirModal('modal_add_foto_galeria');
+                    }
+                });
+            });   
+    });
+
+    //-------LISTAGEM DE SESSÕES FOTOS-------
+    document.addEventListener('DOMContentLoaded', function () {
+        let lista = document.getElementById('sessaoFotos');
+        fetch(`../../app/Models/SessoesModel.php`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json",},
+                body: JSON.stringify({ acao: "listar_sessoes_fotos" }),
+            }).then((response) => response.json()).then((data) => {
+                lista.innerHTML = "";
+                data.forEach((sessao) => {
+                    lista.innerHTML += `
+                    <div class="sessao">
+                        <div class="titulo-sessao">
+                            <h2 class="subtitulo branco">${sessao.sesnome}</h2>
+                            <img src="/chale/public/assets/icons/icon-editar.svg" class="icon">
+                        </div>
+                        <div class="sessao-cards" id="sessao-${sessao.sesid}">
+                            <div class="card-foto-add admin" data-sessao-id="${sessao.sesid}">
+                                <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
+                            </div>
+                        </div>
+                        <div class="opcao-excluir-sessao">
+                            <div class="ferramenta-branco">
+                                <p>Excluir sessão</p>
+                                <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
+                            </div>
+                        </div>
+                        <hr class="hr-branco">
+                    </div>
+                    `;
+                    listarFotos(sessao.sesid);
                 });
 
                 // registrar cliques nos botões de adicionar
@@ -176,8 +227,7 @@ if (pagina === 'o_chale') {
 
         const form = this; 
         const foto = form.querySelector('[name="foto"]');
-        const sesId = form.dataset.sessaoId; // <<<<<<<<<< ID DA SESSÃO
-
+        const sesId = form.dataset.sessaoId; 
         const error = document.getElementById('cadFotoGaleria_error');
         let mensagemErro = '';
 
@@ -201,7 +251,7 @@ if (pagina === 'o_chale') {
         const formData = new FormData();
         formData.append('acao', 'cadastrar_foto');
         formData.append('foto', foto.files[0]);
-        formData.append('sesId', sesId); // <<<<<<<<<< ID DA SESSÃO
+        formData.append('sesId', sesId); 
 
         const resposta = await fetch('../../app/Models/FotServModel.php', {
             method: 'POST',
@@ -239,7 +289,6 @@ if (pagina === 'o_chale') {
                         <div class="card-servico-header">
                             <p class="nome-servico">${servico.sernome}</p>
                             <div class="ferramentas">
-                                <img src="/chale/public/assets/icons/icon-editar.svg">
                                 <img src="/chale/public/assets/icons/icon-lixeira.svg">
                             </div>
                         </div>
@@ -249,6 +298,31 @@ if (pagina === 'o_chale') {
                         <div class="descricao-servico">
                             <p>${servico.serdescricao}</p>
                         </div>
+                    </div>
+                `;
+            });
+        });
+    }
+
+    //-------LISTAR FOTOS-------
+    function listarFotos(sesId) {
+        fetch(`../../app/Models/FotServModel.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ acao: "listar_fotos", sesId }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            let container = document.getElementById("sessao-" + sesId);
+            // não limpar os botões de add
+            let botoesAdd = container.querySelectorAll('.card-servico-add, .card-foto-add');
+            container.innerHTML = "";
+            botoesAdd.forEach(btn => container.appendChild(btn));
+
+            data.forEach((foto) => {
+                container.innerHTML += `
+                    <div class="card-foto">
+                        <img src="/chale/public/uploads/galeria/${foto.fotcaminho}">
                     </div>
                 `;
             });

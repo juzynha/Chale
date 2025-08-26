@@ -23,7 +23,7 @@ switch ($input['acao']) {
         cadastrarServico($input, $_FILES, $pdo);
         break;
     case 'cadastrar_foto':
-        cadastrarFoto($_FILES, $pdo);
+        cadastrarFoto($input, $_FILES, $pdo);
         break;
     case 'listar_servicos':
         listarServicos($input['sesId'],$pdo);
@@ -63,8 +63,8 @@ function cadastrarServico($dados, $arquivos, $pdo) {
     }
 }
 
-function cadastrarFoto($arquivos, $pdo) {
-    $sesid = 9; // valor fixo por enquanto
+function cadastrarFoto($dados, $arquivos, $pdo) {
+    $sesid = $dados['sesId']; 
 
     $foto = $arquivos['foto'];
     $nomeImagem = uniqid() . '-' . $foto['name'];

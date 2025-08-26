@@ -154,3 +154,14 @@
     min-height: 300px;
     cursor: pointer;
 }
+
+.card-foto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--verde-azulado);
+    border-radius: 10px;
+    min-width: 300px;
+    min-height: 300px;
+    cursor: pointer;
+}
