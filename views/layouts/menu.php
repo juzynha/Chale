@@ -2,7 +2,7 @@
     <a href="/chale/index.php"><img src="/chale/public/assets/logo.svg" class="logo"></a>
     <ul>
         <li><a href="/chale/views/pages/o_chale.php">O Chalé</a></li>
-        <li><a href="">Sobre nós</a></li>
+         <li><a href="/chale/views/pages/sobre_nos.php">Sobre nós</a></li>
         <li><a href="/chale/views/pages/faca_sua_reserva.php">Faça sua Reserva</a></li>
         <?php
         session_start();
