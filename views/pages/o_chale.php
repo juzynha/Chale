@@ -22,49 +22,8 @@ require_once __DIR__ . '/../layouts/header.php';
         <img src="/chale/public/assets/elementos-graficos/onda-superior-sessao.svg" class="element-gal-fotos">
         <div class="galeria-de-fotos">
             <h2 class="titulo branco">Galeria de fotos</h2>
-            <div class="galeria-content">
-                <div class="sessao">
-                    <h3 class="subtitulo branco">Sessão 1</h3>
-                    <div class="sessao-cards">
-                        <div class="card-foto-add" onclick="abrirModal('modal_add_foto_galeria')">
-                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
-                        </div>
-                        <div class="item-foto">
-                            <img src="" alt="">
-                        </div>
-                        <div class="item-foto">
-                            <img src="" alt="">
-                        </div>
-                        <div class="item-foto">
-                            <img src="" alt="">
-                        </div>
-                    </div>
-                    <div class="opcao-excluir-sessao">
-                        <div class="ferramenta-branco" onclick="abrirModal('modal-excluir-sessao')">
-                            <p>Excluir sessão</p>
-                            <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
-                        </div>
-                    </div>
-                    <hr class="hr-branco">
-                </div>
-                <div class="sessao">
-                    <h3 class="subtitulo branco">Sessão 1</h3>
-                    <div class="sessao-cards">
-                        <div class="card-foto-add" onclick="abrirModal('modal_add_foto_galeria')">
-                            <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
-                        </div>
-                        <div class="item-foto">
-                            <img src="" alt="">
-                        </div>
-                    </div>
-                    <div class="opcao-excluir-sessao">
-                        <div class="ferramenta-branco">
-                            <p>Excluir sessão</p>
-                            <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
-                        </div>
-                    </div>
-                    <hr class="hr-branco">
-                </div>
+            <div class="galeria-content" id="sessaoFotos">
+                
                 <div class="ferramenta-branco" id="criar_sessao_fotos">
                     <p>Criar sessão</p>
                     <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
