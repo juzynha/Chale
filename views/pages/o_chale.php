@@ -40,7 +40,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         </div>
                     </div>
                     <div class="opcao-excluir-sessao">
-                        <div class="ferramenta-branco">
+                        <div class="ferramenta-branco" onclick="abrirModal('modal-excluir-sessao')">
                             <p>Excluir sessão</p>
                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
                         </div>
@@ -153,6 +153,26 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="sombra-modal" id="modal_excluir_sessao">
+    <div class="bloco-modal-geral">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Deseja mesmo excluir a sessão?</h2>
+                <button class="btn-fechar-modal">
+                    <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+                </button>
+            </div>
+            <hr>
+            <form id="formLogout">
+                <div class="botoes-excluir-sessao">
+                    <button class="btn" name="sim">Sim</button>
+                    <button class="btn" onclick="fecharModal('modal_logout')">Não</button>
                 </div>
             </form>
         </div>

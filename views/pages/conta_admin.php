@@ -64,7 +64,7 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                     <div class="itens-sessao-conta">
                         <div class="item-descricao">
-                            <div class="escrita-item-sessao">
+                            <div class="escrita-item-sessao" onclick="abrirModal('modal_listar_admins')">
                                 <p>Ver contas administradoras</p>
                                 <img src="/chale/public/assets/icons/icon-administradores.svg" class="icon">
                             </div>

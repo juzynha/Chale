@@ -26,7 +26,7 @@ if (pagina === 'o_chale') {
                             </div>
                         </div>
                         <div class="opcao-excluir-sessao">
-                            <div class="ferramenta">
+                            <div class="ferramenta" onclick="abrirModal('modal_excluir_sessao')">
                                 <p>Excluir sessão</p>
                                 <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
                             </div>

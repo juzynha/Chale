@@ -177,3 +177,15 @@
     color: var(--verde-escuro);
 }
 */
+
+.botoes-cancelar_reserva {
+    display: flex;
+    justify-content: right;
+    gap: 1rem;
+}
+
+.botoes-excluir-sessao {
+    display: flex;
+    justify-content: right;
+    gap: 1rem;
+}

@@ -118,7 +118,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <hr>
             <form id="formLogout">
-                <div class="botoes-cancelar_reserva">
+                <div class="botoes-cancelar-reserva">
                     <button class="btn" name="sim">Sim</button>
                     <button class="btn" onclick="fecharModal('modal_logout')">Não</button>
                 </div>
