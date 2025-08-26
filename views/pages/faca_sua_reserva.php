@@ -198,6 +198,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img1.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                            <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -208,6 +209,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img2.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -218,6 +220,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img3.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -228,6 +231,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img4.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -238,6 +242,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img5.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -248,6 +253,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img2.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -258,6 +264,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img4.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
+                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
