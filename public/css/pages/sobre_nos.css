@@ -1,0 +1,15 @@
+
+.linha {
+  width: 100%;
+  height: 100%;
+}
+
+.curva {
+  stroke: #2f4632;   /* cor da linha */
+  stroke-width: 2;
+  fill: none;
+}
+
+.bolinha {
+  fill: #2f4632;     /* cor das bolinhas */
+}
