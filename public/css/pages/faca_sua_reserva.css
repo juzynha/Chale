@@ -90,3 +90,112 @@
 .lista-infos-fr li img{
     width: 35px;
 }
+
+/*Para tablets e dispositivos menores */
+
+@media screen and (max-width: 768px){
+
+    .container-fr{
+
+    flex-direction: column;
+    padding: 1rem 2rem;
+    gap: 2rem;
+
+    }
+    
+   .container-bloco-reserva{
+
+    width: 100%; 
+
+}
+
+.card-infos-fr{
+
+width: 100%;
+max-width: 100%;
+box-sizing: border-box; /* isso aqui é muito foda, não sei oq faz mas na duvida usa isso*/
+
+}
+
+.elementos-fr{
+
+width: 100%;
+
+}
+
+.item-fr{ /*Icone do texto*/ 
+
+flex-direction: column;
+text-align: center;
+gap: 1rem;
+width: 100%;
+
+}
+
+.infos-fr{
+
+width: 100%; 
+
+}
+
+.option-editar-carrossel{
+
+padding: 1rem 2rem;
+
+}
+
+.item-fr p{
+
+font-size: 18px;
+
+}
+
+.lista-infos-fr{
+
+font-size: 18px; 
+
+}
+
+}
+
+/*Para telas bem pequenas*/
+
+@media screen and (max-width:480px) {
+    
+.container-fr{
+
+padding: 1rem;
+
+}
+
+.option-editar-carrossel{
+
+padding: 1rem;
+
+}
+
+.card-infos-fr{
+
+padding: 1rem;
+
+}
+
+.item-fr img{
+
+width: 100px; 
+
+}
+
+.infos-cards-fr{
+
+font-size: 16px; 
+
+}
+
+.footer-card-fr{
+
+font-size: 16px;
+
+}
+
+}

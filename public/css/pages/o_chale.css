@@ -1,3 +1,7 @@
+.container {
+    padding: 48px 20px !important; /* De 80px para 20px nas laterais */
+}
+
 .servicos{
     display: flex;
     flex-direction: column;
@@ -16,14 +20,18 @@
     overflow-x: auto;
     scrollbar-width: none;
     padding: 1rem;
+    align-items: stretch;
+    flex-wrap: nowrap;
 }
 
 .card-servico{
     background-color: var(--verde-medio);
     width: 300px;
+    min-width: 300px; 
     padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     border-radius: 10px;
     gap: 1rem;
     box-shadow: 10px 10px 0 var(--verde-escuro);
@@ -39,7 +47,10 @@
     box-shadow: 10px 10px 0 var(--verde-escuro);
     min-width: 300px;
     min-height: 400px;
+    width: 300px;
+    height: 400px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .nome-servico{
@@ -103,7 +114,7 @@
 }
 
 .galeria-de-fotos {
-    padding: 0 5rem;
+    padding: 0 2rem !important;
     background-color: var(--verde-medio);
     width: 100%;
     height: 100%;
@@ -123,4 +134,21 @@
     min-width: 300px;
     min-height: 300px;
     cursor: pointer;
+    flex-shrink: 0;
 }
+
+.sessao-cards > div:not(.card-servico-add):not(.card-foto-add) {
+    min-width: 300px;
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.sessao-cards > div:not(.card-servico-add):not(.card-foto-add) img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
