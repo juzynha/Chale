@@ -72,3 +72,9 @@
   gap: 1.3rem;
   justify-content: center;
 }
+
+#listaPromocoes{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}

@@ -1,4 +1,4 @@
-import {validarCamposPreenchidos, validarString, validarDataPassada, validarDataFutura, validarDistanciaData, converterDataParaISO, fecharModal, scrollModalToTop} from './Utils.js';
+import {validarCamposPreenchidos, validarString, validarDataPassada, validarDataFutura, validarDistanciaData, converterDataParaISO, fecharModal, scrollModalToTop, converterDataParaBR} from './Utils.js';
 
 const pagina = document.body.dataset.page;
 
@@ -87,3 +87,73 @@ if (pagina === 'reservas') {
     });
 }
 
+if (pagina === 'precos_promocoes') {
+    document.addEventListener('DOMContentLoaded', function () {
+        listarPromocoes(); 
+        retornarPrecos();
+    });
+
+    function listarPromocoes(){
+        let lista = document.getElementById('listaPromocoes');
+        fetch(`../../app/Models/PromocaoModel.php`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json",},
+            body: JSON.stringify({ acao: "listar_promocoes" }),
+        }).then((response) => response.json()).then((data) => {
+            lista.innerHTML = "";
+            data.forEach((promocao) => {
+                const precoDiaria = Number(promocao.pronpreco);
+                const precoDiariaFds = Number(promocao.pronprecofds);
+                const dataInicial = converterDataParaBR(promocao.prodataini);
+                const dataFinal = converterDataParaBR(promocao.prodatafim);
+                lista.innerHTML += `
+                <div class="card-promocoes">
+                    <h3 class="nome-promocao">${promocao.pronome}</h3>
+                    <div class="promo-content">
+                        <div class="bloco-promocoes-esquerdo">
+                            <div class="date-container">
+                                <div class="date-group">
+                                    <span class="date-label">Início</span>
+                                    <hr class="divider-horizontal">
+                                    </hr>
+                                    <input type="date" class="date-input" value="${promocao.prodataini}">
+                                </div>
+                                <hr class="divider-vertical">
+                                </hr>
+                                <div class="date-group">
+                                    <span class="date-label">Fim</span>
+                                    <hr class="divider-horizontal">
+                                    </hr>
+                                    <input type="date" class="date-input" value="${promocao.prodatafim}">
+                                </div>
+                            </div>
+                            <div class="promocoes-preco">
+                                <p>Diária: R$ <strong>${precoDiaria.toFixed(2).replace('.', ',')}</strong></p>
+                                <p>Diária fim de semana: R$ <strong>${precoDiariaFds.toFixed(2).replace('.', ',')}</strong></p>
+                            </div>
+                        </div>
+                        <div class="icones-promocoes">
+                            <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho">
+                            <img src="/chale/public/assets/icons/icon-lixeira.svg" class="lixeirinha" onclick="abrirModal('modal_excluir')">
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+        }); 
+    }
+
+    function retornarPrecos() {
+        fetch(`../../app/Models/PrecosModel.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ acao: "listar_precos" }),
+        }).then((response) => response.json()).then((data) =>{
+            const precos = data[0];
+            const precoDiaria = Number(data?.[0]?.prediaria ?? 0);
+            const precoDiariaFds = Number(data?.[0]?.prediariafds ?? 0);
+            document.getElementById('precoDiaria').textContent = precoDiaria.toFixed(2).replace('.', ',');
+            document.getElementById('precoDiariaFds').textContent = precoDiariaFds.toFixed(2).replace('.', ',');
+        });
+    }
+}
