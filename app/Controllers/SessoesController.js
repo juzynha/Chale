@@ -3,60 +3,14 @@ import {validarCamposPreenchidos, validarString, validarImagem, validarTexto,abr
 const pagina = document.body.dataset.page;
 
 if (pagina === 'o_chale') {
-    //-------LISTAGEM DE SESSÕES SERVIÇOS-------
+    
     document.addEventListener('DOMContentLoaded', function () {
-        let lista = document.getElementById('sessaoServicos');
-        fetch(`../../app/Models/SessoesModel.php`, {
-                method: "POST",
-                headers: {"Content-Type": "application/json",},
-                body: JSON.stringify({ acao: "listar_sessoes_servicos" }),
-            }).then((response) => response.json()).then((data) => {
-                lista.innerHTML = "";
-                data.forEach((sessao) => {
-                    lista.innerHTML += `
-                    <div class="sessao">
-                        <div class="titulo-sessao">
-                            <h2 class="subtitulo verde-medio">${sessao.sesnome}</h2>
-                            <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
-                        </div>
-                        <div class="sessao-cards" id="sessao-${sessao.sesid}">
-                            <!-- Card de adicionar serviço -->
-                            <div class="card-servico-add admin" data-sessao-id="${sessao.sesid}">
-                                <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
-                            </div>
-                        </div>
-                        <div class="opcao-excluir-sessao">
-                            <div class="ferramenta" onclick="abrirModal('modal_excluir_sessao')">
-                                <p>Excluir sessão</p>
-                                <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
-                            </div>
-                        </div>
-                        <hr>
-                    </div>
-                    `;
-                    listarServicos(sessao.sesid);
-                });
-
-                // registrar cliques nos botões de adicionar
-                lista.addEventListener('click', function(e) {
-                    if (e.target.closest('.card-servico-add')) {
-                        const btn = e.target.closest('.card-servico-add');
-                        const sesId = btn.dataset.sessaoId;
-                        document.getElementById('formCriarServico').dataset.sessaoId = sesId;
-                        abrirModal('modal_criar_servico');
-                    }
-                    if (e.target.closest('.card-foto-add')) {
-                        const btn = e.target.closest('.card-foto-add');
-                        const sesId = btn.dataset.sessaoId;
-                        document.getElementById('formAddFotoGaleria').dataset.sessaoId = sesId;
-                        abrirModal('modal_add_foto_galeria');
-                    }
-                });
-            });   
+        listarSessoesServicos();  
+        listarSessoesFotos();
     });
 
     //-------LISTAGEM DE SESSÕES FOTOS-------
-    document.addEventListener('DOMContentLoaded', function () {
+    function listarSessoesFotos(){
         let lista = document.getElementById('sessaoFotos');
         fetch(`../../app/Models/SessoesModel.php`, {
                 method: "POST",
@@ -76,7 +30,7 @@ if (pagina === 'o_chale') {
                                 <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
                             </div>
                         </div>
-                        <div class="opcao-excluir-sessao">
+                        <div class="opcao-excluir-sessao admin">
                             <div class="ferramenta-branco">
                                 <p>Excluir sessão</p>
                                 <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
@@ -104,7 +58,59 @@ if (pagina === 'o_chale') {
                     }
                 });
             });   
-    });
+    }
+
+    //-------LISTAGEM DE SESSÕES SERVIÇOS-------
+    function listarSessoesServicos (){
+        let lista = document.getElementById('sessaoServicos');
+        fetch(`../../app/Models/SessoesModel.php`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json",},
+                body: JSON.stringify({ acao: "listar_sessoes_servicos" }),
+            }).then((response) => response.json()).then((data) => {
+                lista.innerHTML = "";
+                data.forEach((sessao) => {
+                    lista.innerHTML += `
+                    <div class="sessao">
+                        <div class="titulo-sessao">
+                            <h2 class="subtitulo verde-medio">${sessao.sesnome}</h2>
+                            <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon admin">
+                        </div>
+                        <div class="sessao-cards" id="sessao-${sessao.sesid}">
+                            <!-- Card de adicionar serviço -->
+                            <div class="card-servico-add admin" data-sessao-id="${sessao.sesid}">
+                                <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
+                            </div>
+                        </div>
+                        <div class="opcao-excluir-sessao admin">
+                            <div class="ferramenta" onclick="abrirModal('modal_excluir_sessao')">
+                                <p>Excluir sessão</p>
+                                <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                    `;
+                    listarServicos(sessao.sesid);
+                });
+
+                // registrar cliques nos botões de adicionar
+                lista.addEventListener('click', function(e) {
+                    if (e.target.closest('.card-servico-add')) {
+                        const btn = e.target.closest('.card-servico-add');
+                        const sesId = btn.dataset.sessaoId;
+                        document.getElementById('formCriarServico').dataset.sessaoId = sesId;
+                        abrirModal('modal_criar_servico');
+                    }
+                    if (e.target.closest('.card-foto-add')) {
+                        const btn = e.target.closest('.card-foto-add');
+                        const sesId = btn.dataset.sessaoId;
+                        document.getElementById('formAddFotoGaleria').dataset.sessaoId = sesId;
+                        abrirModal('modal_add_foto_galeria');
+                    }
+                });
+            }); 
+    }
 
     //--Colocar o nome de referência da sessão no modal--
     document.getElementById('criar_sessao_fotos').addEventListener('click', function () {
@@ -288,7 +294,7 @@ if (pagina === 'o_chale') {
                     <div class="card-servico">
                         <div class="card-servico-header">
                             <p class="nome-servico">${servico.sernome}</p>
-                            <div class="ferramentas">
+                            <div class="ferramentas admin">
                                 <img src="/chale/public/assets/icons/icon-lixeira.svg">
                             </div>
                         </div>
@@ -322,7 +328,8 @@ if (pagina === 'o_chale') {
             data.forEach((foto) => {
                 container.innerHTML += `
                     <div class="card-foto">
-                        <img src="/chale/public/uploads/galeria/${foto.fotcaminho}">
+                        <img src="/chale/public/uploads/galeria/${foto.fotcaminho}" class="img-card">
+                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon admin">
                     </div>
                 `;
             });

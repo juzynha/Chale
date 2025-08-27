@@ -24,15 +24,18 @@
     display: flex;
     gap: 2rem;
     padding: 1rem;
+    align-items: stretch;
+    flex-wrap: nowrap;
 }
 
 .card-servico{
     background-color: var(--verde-medio);
-    min-width: 300px;
-    max-width: 300px;
+    width: 300px;
+    height: 400px;
     padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     border-radius: 10px;
     gap: 1rem;
     box-shadow: 10px 10px 0 var(--verde-escuro);
@@ -49,21 +52,7 @@
     min-width: 300px;
     min-height: 400px;
     cursor: pointer;
-}
-
-.card-servico-header{
-    display: flex;
-    justify-content: space-between;
-}
-
-.card-servico-header .ferramentas{
-    display: flex;
-    gap: 0.8rem;
-}
-
-.card-servico-header .ferramentas img{
-    width: 20px;
-    cursor: pointer;
+    flex-shrink: 0;
 }
 
 .img-card{
@@ -150,9 +139,10 @@
     align-items: center;
     background-color: var(--verde-azulado);
     border-radius: 10px;
-    min-width: 300px;
-    min-height: 300px;
+    width: 300px;
+    height: 300px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .card-foto{
@@ -161,7 +151,33 @@
     align-items: center;
     background-color: var(--verde-azulado);
     border-radius: 10px;
-    min-width: 300px;
-    min-height: 300px;
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card-foto .icon{
+    width: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.card-servico-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ferramentas {
+    display: flex;
+    gap: 1rem;
+
+}
+
+.ferramentas img {
+    width: 20px;
     cursor: pointer;
 }

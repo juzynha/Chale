@@ -18,6 +18,9 @@ switch ($input['acao']) {
     case 'cadastrar_promocao':
         cadastrarPromocao($input['dados'], $pdo);
         break;
+    case 'listar_promocoes':
+        listarPromocoes($pdo);
+        break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
 }
@@ -61,5 +64,17 @@ function cadastrarPromocao($dados, $pdo) {
         echo json_encode(['erro' => false, 'mensagem' => 'Promoção cadastrada com sucesso!']);
     } else {
         echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
+    }
+}
+
+function listarPromocoes($pdo) {
+    $sql = "SELECT * FROM promocoes";
+    $stmt = $pdo->prepare($sql);
+
+    if ($stmt->execute()){
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($data);
+    } else {
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro na comunicação com o banco']);
     }
 }

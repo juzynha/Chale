@@ -189,3 +189,123 @@
     justify-content: right;
     gap: 1rem;
 }
+
+/* Media Queries para Responsividade */
+
+@media screen and (max-width: 1200px) {
+
+.container-reservas{
+
+    padding: 2rem 3rem;
+
+}
+
+.container-calendario {
+
+    padding: 2rem;
+
+}
+
+.sessao-calendario {
+
+    width: 700px;
+
+}
+
+@media screen and (max-width: 900px) {
+
+    .container-reservas { 
+
+        padding: 1.5rem 2rem;
+
+    }
+
+    .sessao-calendario {
+
+        width: 100%;
+        max-width: 100%;
+
+    }
+
+    .element-planta-left
+    .element-planta-right {
+
+    display:none; 
+
+    }
+    
+}
+  
+/*Regras específicas pro calendario*/ 
+
+/*Header do Calendário (Mês e Setas)*/
+
+.calendario-box header {
+    display: flex; /*Transforma esse elemento em um container "pai" que é flexivel, sendo assim ele pode ordernar os seus "filhos" internos */
+    flex-direction: column; /* Empilha as setas e os icones verticalmente */ 
+    align-items: center; 
+    gap: 0.5rem; /* Espaço entre os elementos empilhados*/
+    padding: 0.5rem; /* Reduz o Padding Interno*/
+}
+
+/*2. Nome do Mês*/
+
+#current-Month {
+
+    font-size: 1.3rem;
+    text-align: center;
+    margin: 0.5rem 0;
+    font-weight: bold;
+    color: var (--branco);
+    
+}
+
+/*3. Setas de Navegação*/ 
+
+#prev, #next {
+
+    margin: 0.5rem 0; /*Espaço Acima e Abaixo das Seta*/
+    width: 30px;
+    height: 30px;
+    cursor: pointer; 
+    transition: transform 0.2 ease; /*Animação suave*/
+    filter: brightness(0) invert(1); /*Garante que as setas fiquem brancas*/
+
+}
+
+/*Efeito ao passar o mouse na tela*/
+
+#prev:hoover, #next:hoover {
+
+    transform: scale(1.1); /*Aumenta levemente*/
+    filter: brightness(0) invert(1) drop-shadow(0 0 2px var(--branco)) /*Brilho Suave*/
+
+
+}
+
+}
+
+@media screen and (max-width: 900px) {
+
+.container-reservas{
+
+    padding: 1.5rem 2rem; 
+
+}
+
+.element-planta-left, .element-planta-right{
+
+display: none; 
+
+}
+
+.acoes-calendario {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+
+}
