@@ -57,14 +57,14 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <div class="icones-promocoes">
                     <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho">
-                    <img src="/chale/public/assets/icons/icon-lixeira.svg" class="lixeirinha" onclick="abrirModal('modal_excluir_promocao')">
+                    <img src="/chale/public/assets/icons/icon-lixeira.svg" class="lixeirinha" onclick="abrirModal('modal_excluir')">
                 </div>
             </div>
         </div>
     </section> 
 </body>
 
-<div class="sombra-modal" id="modal_excluir_promocao">
+<!--<div class="sombra-modal" id="modal_excluir_promocao">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Deseja excluir promoção? <span id="nome_referencia"></span></h2>
@@ -85,7 +85,7 @@ require_once __DIR__ . '/../layouts/header.php';
             </form>
         </div>
     </div>
-</div>
+</div>-->
 
 
 <div class="sombra-modal" id="modal_alterar_preco">
@@ -116,6 +116,7 @@ require_once __DIR__ . '/../layouts/header.php';
 </div>
 
 <?php
+    require_once __DIR__ . '/../modals/excluir.php';
     require_once __DIR__ . '/../modals/CadAltPromocao.php';
     require_once __DIR__ . '/../layouts/footer.php';
 ?>
