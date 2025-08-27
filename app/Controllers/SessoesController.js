@@ -327,10 +327,8 @@ if (pagina === 'o_chale') {
 
             data.forEach((foto) => {
                 container.innerHTML += `
-                    <div class="item-foto">
-                        <div class="card-foto">
-                            <img src="/chale/public/uploads/galeria/${foto.fotcaminho}" class="img-card">
-                        </div>
+                    <div class="card-foto">
+                        <img src="/chale/public/uploads/galeria/${foto.fotcaminho}" class="img-card">
                         <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon admin">
                     </div>
                 `;

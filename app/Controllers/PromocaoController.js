@@ -93,6 +93,7 @@ if (pagina === 'precos_promocoes') {
         retornarPrecos();
     });
 
+    //-------LISTAGEM DE PROMOÇÕES-------
     function listarPromocoes(){
         let lista = document.getElementById('listaPromocoes');
         fetch(`../../app/Models/PromocaoModel.php`, {
@@ -104,7 +105,7 @@ if (pagina === 'precos_promocoes') {
             data.forEach((promocao) => {
                 const precoDiaria = Number(promocao.pronpreco);
                 const precoDiariaFds = Number(promocao.pronprecofds);
-                const dataInicial = converterDataParaBR(promocao.prodataini);
+                const dataInicial = converterDataParaBR(promocao.prodataini); //datas convertidas
                 const dataFinal = converterDataParaBR(promocao.prodatafim);
                 lista.innerHTML += `
                 <div class="card-promocoes">
@@ -142,14 +143,13 @@ if (pagina === 'precos_promocoes') {
             });
         }); 
     }
-
+    //-------LISTAGEM DE PREÇOS-------
     function retornarPrecos() {
         fetch(`../../app/Models/PrecosModel.php`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ acao: "listar_precos" }),
         }).then((response) => response.json()).then((data) =>{
-            const precos = data[0];
             const precoDiaria = Number(data?.[0]?.prediaria ?? 0);
             const precoDiariaFds = Number(data?.[0]?.prediariafds ?? 0);
             document.getElementById('precoDiaria').textContent = precoDiaria.toFixed(2).replace('.', ',');

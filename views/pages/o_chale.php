@@ -24,10 +24,10 @@ require_once __DIR__ . '/../layouts/header.php';
             <h2 class="titulo branco">Galeria de fotos</h2>
             <div class="galeria-content" id="sessaoFotos">
                 <!-- Lista de sessões e fotos -->
-                <div class="ferramenta-branco admin" id="criar_sessao_fotos">
-                    <p>Criar sessão</p>
-                    <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
-                </div>
+            </div>
+            <div class="ferramenta-branco admin" id="criar_sessao_fotos">
+                <p>Criar sessão</p>
+                <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
             </div>
         </div>
         <img src="/chale/public/assets/elementos-graficos/onda-inferior-sessao.svg" class="element-gal-fotos">
