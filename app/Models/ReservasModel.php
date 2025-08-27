@@ -35,29 +35,42 @@ function listarReservas($pdo) {
 
 }
 
-session_start();
-
 function cadastrarReservas($dados, $pdo) {
     try {
+        session_start();
+        $usuid = '';
+        $checkin = $dados['dataInicial'];
+        $checkout = $dados['dataFinal'];
+        $vltotal = $dados['valorTotal'];
         // pega o id do usuário logado da session
-        if (!isset($_SESSION['usuario_id'])) {
+        if (!isset($_SESSION['usuario'])) {
             echo json_encode(["erro" => true, "mensagem" => "Usuário não está logado."]);
-        }
-        $usuid = $_SESSION['usuario']['id'];
-
-        $sql = "CALL cadastrar_reserva(:checkin, :checkout, :usuid, :vtotal)";
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->bindParam(":checkin", $dados['checkin']);
-        $stmt->bindParam(":checkout", $dados['checkout']);
-        $stmt->bindParam(":usuid", $usuid, PDO::PARAM_INT);
-        $stmt->bindParam(":vtotal", $dados['vtotal']);
-
-        if ($stmt->execute()) {
-            echo json_encode(["erro" => false, "mensagem" => "Reserva cadastrada com sucesso!"]);
         } else {
-            echo json_encode(["erro" => true, "mensagem" => "Erro ao cadastrar reserva."]);
+            $usuid = $_SESSION['usuario']['id'];
+            $sql = "CALL cadastrar_reserva(:checkin, :checkout, :usuid, :vtotal)";
+            $stmt = $pdo->prepare($sql);
+
+            $stmt->bindParam(":checkin", $checkin);
+            $stmt->bindParam(":checkout", $checkout);
+            $stmt->bindParam(":usuid", $usuid, PDO::PARAM_INT);
+            $stmt->bindParam(":vtotal", $vltotal);
+
+            $tipo = 'reserva';
+            $sql = "INSERT INTO bloqueio_dia (blodinicial, blodfinal, blotipo)
+                        VALUES (:datainicial, :datafinal, :tipo)";
+            $stmt = $pdo->prepare($sql);
+
+            $stmt->bindParam(":datainicial", $checkin);
+            $stmt->bindParam(":datafinal", $checkout);
+            $stmt->bindParam(":tipo", $tipo);
+
+            if ($stmt->execute()) {
+                echo json_encode(["erro" => false, "mensagem" => "Reserva cadastrada com sucesso!"]);
+            } else {
+                echo json_encode(["erro" => true, "mensagem" => "Erro ao cadastrar reserva."]);
+            }
         }
+        
     } catch (PDOException $e) {
         echo json_encode(["erro" => true, "mensagem" => $e->getMessage()]);
     }

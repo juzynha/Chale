@@ -1,8 +1,4 @@
-<?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require __DIR__ . '/../../vendor/autoload.php'; // PHPMailer via Composer
+<?php // PHPMailer via Composer
 
 session_start();
 require_once __DIR__ . '/../../config/Database.php';
@@ -25,7 +21,7 @@ switch ($input['acao']) {
         cadastrarAdmin($input['dados'], $pdo);
         break;
     case 'enviar_codigo':
-        enviarCodigo($input['email']);
+        enviarCodigo();
         break;
     case 'cadastrar_usuario':
         cadastrarUsuario($input['dados'], $pdo);
@@ -68,10 +64,10 @@ function cadastrarAdmin($dados, $pdo) {
     }
 }
 
-function enviarCodigo($email) {
+function enviarCodigo() {
     $codigo = rand(100000, 999999);
 
-    // Enviar por e-mail
+    /*/ Enviar por e-mail
     $mail = new PHPMailer(true);
 
     try {
@@ -92,12 +88,14 @@ function enviarCodigo($email) {
         $mail->AltBody = "Seu código de verificação é: {$codigo}";
 
         $mail->send();
-
+        */
         echo json_encode(['status' => 'ok', 'codigo' => $codigo]);
+        /*
     } catch (Exception $e) {
         echo json_encode(['status' => 'erro', 'mensagem' => 'Falha ao enviar e-mail: ' . $mail->ErrorInfo]);
     }
     exit;
+    */
 }
 
 function cadastrarUsuario($dados, $pdo) {

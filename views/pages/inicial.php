@@ -36,6 +36,7 @@ require_once __DIR__ . '/../layouts/header.php';
     <div><img src="/chale/public/assets/elementos-graficos/chale-espuma.png" class="chale-espuma"></div>
     <div><img src="/chale/public/assets/elementos-graficos/patinhas.svg" class="patinhas"></div>
 </body>
+
 <?php
 require_once __DIR__ . '/../layouts/footer.php';
 ?>

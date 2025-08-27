@@ -1,5 +1,4 @@
-import {converterDataParaBR} from './Validacoes.js';
-import {abrirModal, fecharModal} from '../../public/js/script.js';
+import {converterDataParaBR,validarDataPassada,validarDataFutura,validarDistanciaData,converterDataParaISO, abrirModal, fecharModal} from './Utils.js';
 
 const pagina = document.body.dataset.page;
 
@@ -17,7 +16,7 @@ async function retornarPrecos() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ acao: "listar_precos" }),
   });
-  return await response.json(); // esperado: [{prediaria: "150", prediariafds: "180"}]
+  return await response.json();
 }
 
 function parseDateFlexible(str) {
@@ -105,17 +104,40 @@ if (pagina === 'faca_sua_reserva') {
   // 5) Submit do modal (envia reserva)
   document.getElementById('formFazerReserva').addEventListener('submit', async function (e) {
     e.preventDefault();
-
+    console.log('clicou');
     const modalCheckin = this.querySelector('[name="data_inicial"]').value;
     const modalCheckout = this.querySelector('[name="data_final"]').value;
     const valorTotal = calcularPreco(modalCheckin, modalCheckout, precoDiaria, precoDiariaFds);
 
-    const dados = {
-      dataInicial: modalCheckin,   // mande no formato que seu PHP espera
-      dataFinal: modalCheckout,
-      valorTotal: valorTotal       // número
-    };
+    const error = document.getElementById('cadReserva_error');
+    let mensagemErro = '';
 
+    //Validar se a data não está no passado
+    if (!validarDataPassada(modalCheckin)){
+      mensagemErro = 'Você não pode usar uma data no passado';
+    }
+    //Validar se a data não está mais distante que 10 anos
+    else if (!validarDataFutura(modalCheckout)){
+      mensagemErro = 'Você não pode usar uma data tão distante';
+    }
+    //Validar se a data final está pelo menos 1 dia a frente da data inicial
+    else if (!validarDistanciaData(modalCheckin, modalCheckout)){
+      mensagemErro = 'O período precisa ter uma duração de pelo menos um dia';
+    }
+    if (mensagemErro !== '') {
+      error.textContent = mensagemErro;
+      error.style.display = 'block';
+      scrollModalToTop('#modal_cadalt_promocao .bloco-modal-geral');
+      return;
+    }
+    let dataInicial = converterDataParaISO(modalCheckin);
+    let dataFinal = converterDataParaISO(modalCheckout);
+    const dados = {
+      dataInicial,   // mande no formato que seu PHP espera
+      dataFinal,
+      valorTotal       // número
+    };
+    console.log(dados);
     // Ajuste o endpoint/ação conforme seu backend
     const resposta = await fetch('../../app/Models/ReservasModel.php', {
       method: 'POST',
@@ -129,7 +151,7 @@ if (pagina === 'faca_sua_reserva') {
       fecharModal('modal_fazer_reserva');
       alert(json.mensagem || 'Reserva criada com sucesso!');
     } else {
-      alert(json.mensagem || 'Erro ao salvar reserva.');
+      alert(json.mensagem);
     }
   });
 }
@@ -187,7 +209,7 @@ function listaReservas() {
                         </div>
                     </div>
                     <div class="excluir-reserva">
-                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('excluir_reserva')">
+                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_exluir_reserva')">
                     </div>
                 </div>
                 `;
@@ -201,7 +223,6 @@ function mostrarTudo() {
     let mostrar = document.getElementById('mostrar_lista');
     let container = document.getElementById('container_reservas');
 
-    // Calcula 150% da altura da tela
     let alturaLimite = window.innerHeight * 0.1;
 
     // Verifica se o conteúdo ultrapassa 150% da tela

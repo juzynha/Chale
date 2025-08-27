@@ -1,5 +1,4 @@
-import {validarCamposPreenchidos, validarString, validarDataPassada, validarDataFutura, validarDistanciaData, converterDataParaISO} from './Validacoes.js';
-import {fecharModal, scrollModalToTop} from '../../public/js/script.js';
+import {validarCamposPreenchidos, validarString, validarDataPassada, validarDataFutura, validarDistanciaData, converterDataParaISO, fecharModal, scrollModalToTop} from './Utils.js';
 
 const pagina = document.body.dataset.page;
 

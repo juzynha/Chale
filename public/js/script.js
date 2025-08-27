@@ -1,53 +1,3 @@
-// Função para abrir o modal
-export function abrirModal(idModal) {
-    const modal = document.getElementById(idModal);
-    if (modal) {
-        modal.style.display = 'flex';
-        modal.querySelectorAll('.btn-fechar-modal').forEach(botao => {
-            botao.addEventListener('click', () => fecharModal(idModal));
-        });
-        inputMaskDate(); 
-    }
-}
-window.abrirModal = abrirModal;
-
-// Função para fechar o modal
-export function fecharModal(idModal) {
-    const modal = document.getElementById(idModal);
-    if (modal) {
-        modal.style.display = 'none';
-        let form = modal.querySelector('form');
-        if (form){
-            form.reset();
-        } 
-        const error = modal.querySelector('.error'); 
-        const imgBox = modal.querySelector('.img-box');
-        if (error) {
-            error.textContent = '';
-            error.style.display = 'none';
-        }
-        if (imgBox) {
-            // Remove imagem renderizada
-            const img = imgBox.querySelector('img');
-            if (img) img.remove();
-
-            // Reativa o input
-            const input = imgBox.querySelector('input[type="file"]');
-            if (input) input.style.pointerEvents = 'auto';
-
-            // Reinsere o ícone, se necessário
-            const existingIcon = imgBox.querySelector('.icon');
-            if (!existingIcon) {
-                const icon = document.createElement('img');
-                icon.classList.add('icon');
-                icon.src = '/chale/public/assets/icons/icon-adicionar(branco).svg';
-                imgBox.appendChild(icon);
-            }   
-        }
-    }
-}
-window.fecharModal = fecharModal;
-
 // Renderiza imagens carregadas de inputs (file)
 document.querySelectorAll('.img-box input[type="file"]').forEach(input => {
     input.addEventListener('change', function () {
@@ -141,16 +91,6 @@ document.querySelectorAll('.img-box input[type="file"]').forEach(input => {
     });
 });
 
-export function scrollModalToTop(idModal) {
-    const modal = document.querySelector(idModal);
-    if (modal) {
-        modal.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-}
-window.scrollModalToTop = scrollModalToTop;
 //toggle icon olho pra mostrar senha
 document.querySelectorAll('.toggleSenha').forEach(btn => {
     btn.addEventListener("click", () => {
@@ -239,6 +179,33 @@ function inputMaskDate() {
   });
 }
 
+function abrirCalendario(input) {
+  let calendario = document.querySelector(".calendario-box");
+
+  // Garante que só 1 calendário fique aberto
+  calendario.style.display = "block";
+
+  // Pega posição e tamanho do input
+  const rect = input.getBoundingClientRect();
+
+  // Posição padrão: abaixo do input
+  let top = rect.bottom + window.scrollY + 5;
+  let left = rect.left + window.scrollX;
+
+  // Verifica se há espaço suficiente abaixo
+  const spaceBelow = window.innerHeight - rect.bottom;
+  const calendarioHeight = calendario.offsetHeight || 250; // altura estimada
+  if (spaceBelow < calendarioHeight) {
+      // coloca acima do input
+      top = rect.top + window.scrollY - calendarioHeight - 5;
+  }
+
+  calendario.style.position = "absolute";
+  calendario.style.top = `${top}px`;
+  calendario.style.left = `${left}px`;
+  calendario.style.zIndex = 9999;
+}
+
 function inputMaskName() {
 // Máscara de nome (primeira letra de cada palavra maiúscula)
   document.querySelectorAll('[name="nome"]').forEach(function(input) {
@@ -262,7 +229,7 @@ function inputMaskName() {
 function inputMaskDouble() {
 //Máscara de inputs de valores (reais R$)
   document.querySelectorAll('.input-double').forEach(input => {
-    input.placeholder = '000,00';
+    input.placeholder = '00,00';
     input.classList.add('placeholder');
 
     input.addEventListener('input', function (e) {
@@ -286,4 +253,26 @@ document.addEventListener("DOMContentLoaded", function () {
   inputMaks();
 });
 
-window.abrirModal = abrirModal;
+// Opcional: fechar clicando fora
+document.addEventListener("click", (e) => {
+  const calendario = document.querySelector(".calendario-box");
+  if (calendario && !calendario.contains(e.target) && !e.target.classList.contains("input-date")) {
+      calendario.style.display = "none";
+  }
+});
+
+
+//abrir a caixa que exibe as reservas à pagar ou em andamento na page conta de usuário
+function abrirContainer(idContainer) {
+    const container = document.getElementById(idContainer);
+    const seta = container.querySelector('[name="seta"]');
+    const content = container.querySelector('[name="content"]');
+
+    if (seta.src.endsWith("icon-seta-left(verde).svg")) {
+        seta.src = "/chale/public/assets/icons/icon-seta-baixo.svg";
+        content.style.display = 'flex';
+    } else {
+        seta.src = "/chale/public/assets/icons/icon-seta-left(verde).svg";
+        content.style.display = 'none';
+    }
+}

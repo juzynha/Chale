@@ -26,6 +26,7 @@
     gap: 2rem;
     box-shadow: 10px 10px 0 var(--verde-escuro);
     color: var(--branco);
+    font-family: 'Glacial Indifference';
 }
 
 .infos-card-fr{

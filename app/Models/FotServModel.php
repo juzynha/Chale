@@ -6,6 +6,13 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $input = $_POST;
 
+if (empty($input)) {
+    $json = file_get_contents("php://input");
+    if (!empty($json)) {
+        $input = json_decode($json, true);
+    }
+}
+
 if (!isset($input['acao'])) {
     echo json_encode(['status' => 'erro', 'mensagem' => 'Ação não definida']);
     exit;
@@ -16,7 +23,13 @@ switch ($input['acao']) {
         cadastrarServico($input, $_FILES, $pdo);
         break;
     case 'cadastrar_foto':
-        cadastrarFoto($_FILES, $pdo);
+        cadastrarFoto($input, $_FILES, $pdo);
+        break;
+    case 'listar_servicos':
+        listarServicos($input['sesId'],$pdo);
+        break;
+    case 'listar_fotos':
+        listarFotos($pdo);
         break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
@@ -25,7 +38,7 @@ switch ($input['acao']) {
 function cadastrarServico($dados, $arquivos, $pdo) {
     $nomeServico = $dados['nomeServico'] ?? '';
     $descricao = $dados['descricao'] ?? '';
-    $sesid = 9; // valor fixo por enquanto
+    $sesid = $dados['sesId']; 
 
     $imagem = $arquivos['imagemServico'];
     $nomeImagem = uniqid() . '-' . $imagem['name'];
@@ -50,8 +63,8 @@ function cadastrarServico($dados, $arquivos, $pdo) {
     }
 }
 
-function cadastrarFoto($arquivos, $pdo) {
-    $sesid = 9; // valor fixo por enquanto
+function cadastrarFoto($dados, $arquivos, $pdo) {
+    $sesid = $dados['sesId']; 
 
     $foto = $arquivos['foto'];
     $nomeImagem = uniqid() . '-' . $foto['name'];
@@ -71,5 +84,18 @@ function cadastrarFoto($arquivos, $pdo) {
         echo json_encode(['erro' => false, 'mensagem' => 'Foto cadastrada com sucesso!']);
     } else {
         echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
+    }
+}
+
+function listarServicos($sesId, $pdo) {
+    $sql = "SELECT * FROM servicos WHERE sersesid = :sesid";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':sesid', $sesId);
+
+    if ($stmt->execute()){
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($data);
+    } else {
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro na comunicação com o banco']);
     }
 }

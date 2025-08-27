@@ -178,6 +178,18 @@
 }
 */
 
+.botoes-cancelar_reserva {
+    display: flex;
+    justify-content: right;
+    gap: 1rem;
+}
+
+.botoes-excluir-sessao {
+    display: flex;
+    justify-content: right;
+    gap: 1rem;
+}
+
 /* Media Queries para Responsividade */
 
 @media screen and (max-width: 1200px) {

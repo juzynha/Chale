@@ -35,9 +35,9 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <div class="calendario-box">
                     <header>
-                        <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon" id="prev">
-                        <span id="currentMonth">Abril</span>
-                        <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon" id="next">
+                        <img src="/chale/public/assets/icons/icon-seta-left(branco).svg" class="icon prev">
+                        <span class="currentMonth"></span>
+                        <img src="/chale/public/assets/icons/icon-seta-right(branco).svg" class="icon next">
                     </header>
                     <div class="calendario-content">
                         <hr class="divider-horizontal-cal">
@@ -57,7 +57,7 @@ require_once __DIR__ . '/../layouts/header.php';
                             <li>Sab</li>
                         </ul>
                         <hr class="divider-horizontal-cal">
-                        <ul id="days"></ul>
+                        <ul class="days"></ul>
                     </div>
                 </div>
                 <div class="acoes-calendario">
@@ -73,9 +73,10 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
         </div>
     </section>
+</body>
 
-    <!-- Modais -->
-   <div class="sombra-modal" id="modal_bloquear_dias">
+<!-- Modais -->
+<div class="sombra-modal" id="modal_bloquear_dias">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Bloquear dias</h2>
@@ -105,11 +106,28 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </div>
-<script src="/chale/public/js/script.js"></script>
-<script src="/chale/app/Controllers/ReservasController.js"></script>
-</body>
- 
+
+<div class="sombra-modal" id="modal_exluir_reserva">
+    <div class="bloco-modal-geral">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Deseja mesmo cancelar a reserva?</h2>
+                <button class="btn-fechar-modal">
+                    <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+                </button>
+            </div>
+            <hr>
+            <form id="formLogout">
+                <div class="botoes-cancelar-reserva">
+                    <button class="btn" name="sim">Sim</button>
+                    <button class="btn" onclick="fecharModal('modal_logout')">Não</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <?php
-require_once __DIR__ . '/../modals/promocao.php';
+require_once __DIR__ . '/../modals/CadAltPromocao.php';
 require_once __DIR__ . '/../layouts/footer.php';
 ?>

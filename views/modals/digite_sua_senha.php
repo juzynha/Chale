@@ -14,7 +14,7 @@
                     <input type="text" id="senha_editar_dados" name="senha_editar_dados">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn">Continuar</button>
+                    <button type="submit" class="btn" onclick="abrirModal('modal_cadalt_usuario')">Continuar</button>
                 </div>
             </form>
         </div>

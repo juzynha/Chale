@@ -10,6 +10,9 @@
 /*@import 'flatpickr.css';*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+@import '../pages/preco_promocoes.css';
+@import '../pages/sobre_nos.css';
+
 
 *{
   margin: 0;
@@ -73,11 +76,11 @@ input::placeholder{
 }
 
 .placeholder::placeholder{
-  color: var(--branco);
+  color: var(--verde-azulado);
   opacity: 1;
 }
 
-.icon{
+.icon {
   width: 20px;
   cursor: pointer;
 }
@@ -206,7 +209,6 @@ hr{
   font-family: 'Glacial Indifference';
   font-size: 18px;
   text-align: center;
-  width: 10rem;
 }
 
 .divider-vertical {

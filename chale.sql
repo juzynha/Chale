@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/08/2025 às 21:50
+-- Tempo de geração: 19/08/2025 às 18:53
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -30,6 +30,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_admin` (IN `nome` VARCHAR
     values (nome, email, senha, 'admin');
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_foto_carrossel` (IN `foto` VARCHAR(100), IN `posicao` INT)   BEGIN
+    INSERT INTO carrossel (carfotcaminho, carposicao)
+    VALUES (foto, posicao);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_foto_galeria` (IN `foto` VARCHAR(100), IN `sessao` INT)   BEGIN
     INSERT INTO fotos (fotcaminho, fotsesid)
     VALUES (foto, sessao);
@@ -38,6 +43,24 @@ END$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_promocao` (IN `nome` VARCHAR(100), IN `datainicio` DATE, IN `datafim` DATE, IN `preco` DOUBLE, IN `precofds` DOUBLE)   BEGIN
     INSERT INTO promocoes(pronome, prodataini, prodatafim, pronpreco, pronprecofds)
     VALUES (nome, datainicio, datafim, preco, precofds);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_reserva` (IN `checkin` DATE, IN `checkout` DATE, IN `usuid` INT, IN `vtotal` DOUBLE)   BEGIN
+    INSERT INTO reservas (
+        rescheckin,
+        rescheckout,
+        resusuid,
+        resvtotal,
+        resstatuspag,
+        resprazopag
+    ) VALUES (
+        checkin,
+        checkout,
+        usuid,
+        vtotal,
+        0,
+        DATE_ADD(NOW(), INTERVAL 30 MINUTE) 
+    );
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_servico` (IN `nome` VARCHAR(50), `foto` VARCHAR(60), `descricao` TEXT, `sessao` INT)   BEGIN
@@ -71,6 +94,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `editar_promocao` (IN `nome` VARCHAR
     UPDATE promocoes SET pronome = nome, prodataini = datainicio, prodatafim = datafim, pronpreco = preco, pronprecofds = precofds, proativo = ativo where proid = id;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `login` (IN `email` VARCHAR(100), IN `senha` VARCHAR(100))   BEGIN
+    SELECT * FROM usuarios
+    WHERE usuemail = email AND ususenha = senha;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `reservas_em_andamento` (IN `id` INT)   BEGIN
     select * from reservas WHERE resstatuspag = 0 AND resusuid = id;
 END$$
@@ -91,6 +119,15 @@ CREATE TABLE `bloqueio_dia` (
   `bloqresid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `bloqueio_dia`
+--
+
+INSERT INTO `bloqueio_dia` (`bloid`, `blodinicial`, `blodfinal`, `blotipo`, `bloqresid`) VALUES
+(1, '2025-08-15', '2025-08-16', '', NULL),
+(2, '2025-08-15', '2025-08-26', '', NULL),
+(3, '2025-08-15', '2025-08-16', '', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +139,19 @@ CREATE TABLE `carrossel` (
   `carfotcaminho` varchar(100) DEFAULT NULL,
   `carposicao` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `carrossel`
+--
+
+INSERT INTO `carrossel` (`carid`, `carfotcaminho`, `carposicao`) VALUES
+(1, 'foto1.jpeg', 1),
+(2, 'foto.jpeg', 2),
+(3, 'foto.png', 3),
+(4, '6895182eb0925-1334870.png', 4),
+(5, '689518772b3aa-1343093.png', 5),
+(6, '68951b7dbe309-1123013.jpg', 6),
+(7, '68951b9979062-1334869.png', 7);
 
 -- --------------------------------------------------------
 
@@ -201,7 +251,7 @@ CREATE TABLE `precos` (
 --
 
 INSERT INTO `precos` (`preid`, `prediaria`, `prediariafds`) VALUES
-(1, 0, 0);
+(1, 150.5, 200);
 
 -- --------------------------------------------------------
 
@@ -260,7 +310,8 @@ INSERT INTO `reservas` (`resid`, `rescheckin`, `rescheckout`, `resusuid`, `resvt
 (9, '2025-07-18', '2025-07-19', 1, 600, 1, '2025-07-18 05:00:00'),
 (10, '2025-07-18', '2025-07-19', 1, 600, 1, '2025-07-18 05:00:00'),
 (11, '2025-07-18', '2025-07-19', 1, 600, 1, '2025-07-18 05:00:00'),
-(12, '2025-07-18', '2025-07-19', 1, 600, 1, '2025-07-18 05:00:00');
+(12, '2025-07-18', '2025-07-19', 1, 600, 1, '2025-07-18 05:00:00'),
+(13, NULL, NULL, NULL, NULL, 0, '2025-08-18 19:28:13');
 
 -- --------------------------------------------------------
 
@@ -332,7 +383,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`usuid`, `usunome`, `usutelefone`, `usuemail`, `usudatanasc`, `ususenha`, `usufotcaminho`, `usutipo`) VALUES
 (1, 'Juliana Cardoso Araujo', '(14)99646-7035', 'ju@gmail.com', '2008-03-31', '12345', 'foto.png', 'cliente'),
 (2, 'Gabriel Cardoso', '111929389', 'gabriel@gmail.com', '1999-11-04', '123', NULL, 'cliente'),
-(23, 'Juliana Cardoso Araujo', NULL, 'julianacaraujo3103@gmail.com', NULL, '9bcb90ee5bc9411bdc7d', NULL, 'admin');
+(28, 'Juliana Cardoso Araujo', NULL, 'julianacaraujo3103@gmail.com', NULL, '$2y$10$dgkHfT0xjEEtRAXqC8TUG.7Bbvf0y/rnu3RdNxT8/ewumx2CTh1lq', NULL, 'admin'),
+(34, 'Juliana Cardoso Araujo', '14996467035', 'julianacaraujo@gmail.com', '2007-03-31', '$2y$10$z2Mzj60XGOXgTto1ow7gCeIVMA3Uo/9s1lC9WKuxW1Woh3LqU1VWG', NULL, 'cliente');
 
 -- --------------------------------------------------------
 
@@ -441,13 +493,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `bloqueio_dia`
 --
 ALTER TABLE `bloqueio_dia`
-  MODIFY `bloid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bloid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `carrossel`
 --
 ALTER TABLE `carrossel`
-  MODIFY `carid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `carid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `fotos`
@@ -471,7 +523,7 @@ ALTER TABLE `promocoes`
 -- AUTO_INCREMENT de tabela `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `resid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `resid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `servicos`
@@ -489,7 +541,7 @@ ALTER TABLE `sessoes`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `usuid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Restrições para tabelas despejadas
