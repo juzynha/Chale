@@ -13,7 +13,7 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="servicos" id="sessaoServicos">
             <!-- Lista de sessões e serviços -->
         </div>
-        <div class="ferramenta" id="criar_sessao_servicos">
+        <div class="ferramenta admin" id="criar_sessao_servicos">
             <p>Criar sessão</p>
             <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
         </div>
@@ -23,8 +23,8 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="galeria-de-fotos">
             <h2 class="titulo branco">Galeria de fotos</h2>
             <div class="galeria-content" id="sessaoFotos">
-                
-                <div class="ferramenta-branco" id="criar_sessao_fotos">
+                <!-- Lista de sessões e fotos -->
+                <div class="ferramenta-branco admin" id="criar_sessao_fotos">
                     <p>Criar sessão</p>
                     <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
                 </div>
@@ -35,7 +35,7 @@ require_once __DIR__ . '/../layouts/header.php';
 </body>
 
 <!-- Modais -->
-<div class="sombra-modal" id="modal_criar_sessao">
+<div class="sombra-modal admin" id="modal_criar_sessao">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Criar sessão para: <span id="nome_referencia"></span></h2>
@@ -58,7 +58,7 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
 </div>
 
-<div class="sombra-modal" id="modal_criar_servico">
+<div class="sombra-modal admin" id="modal_criar_servico">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Criar serviço</h2>
@@ -93,7 +93,7 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
 </div>
 
-<div class="sombra-modal" id="modal_add_foto_galeria">
+<div class="sombra-modal admin" id="modal_add_foto_galeria">
     <div class="bloco-modal-geral">
         <div class="modal-header">
             <h2>Adicionar Foto</h2>
@@ -118,7 +118,7 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
 </div>
 
-<div class="sombra-modal" id="modal_excluir_sessao">
+<div class="sombra-modal admin" id="modal_excluir_sessao">
     <div class="bloco-modal-geral">
         <div class="modal-content">
             <div class="modal-header">

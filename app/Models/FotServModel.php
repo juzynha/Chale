@@ -29,7 +29,7 @@ switch ($input['acao']) {
         listarServicos($input['sesId'],$pdo);
         break;
     case 'listar_fotos':
-        listarFotos($pdo);
+        listarFotos($input['sesId'],$pdo);
         break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
@@ -89,6 +89,19 @@ function cadastrarFoto($dados, $arquivos, $pdo) {
 
 function listarServicos($sesId, $pdo) {
     $sql = "SELECT * FROM servicos WHERE sersesid = :sesid";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':sesid', $sesId);
+
+    if ($stmt->execute()){
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($data);
+    } else {
+        echo json_encode(['erro' => true, 'mensagem' => 'Erro na comunicação com o banco']);
+    }
+}
+
+function listarFotos($sesId, $pdo) {
+    $sql = "SELECT * FROM fotos WHERE fotsesid = :sesid";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':sesid', $sesId);
 

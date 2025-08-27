@@ -17,7 +17,7 @@ if (pagina === 'o_chale') {
                     <div class="sessao">
                         <div class="titulo-sessao">
                             <h2 class="subtitulo verde-medio">${sessao.sesnome}</h2>
-                            <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
+                            <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon admin">
                         </div>
                         <div class="sessao-cards" id="sessao-${sessao.sesid}">
                             <!-- Card de adicionar serviço -->
@@ -25,7 +25,7 @@ if (pagina === 'o_chale') {
                                 <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
                             </div>
                         </div>
-                        <div class="opcao-excluir-sessao">
+                        <div class="opcao-excluir-sessao admin">
                             <div class="ferramenta" onclick="abrirModal('modal_excluir_sessao')">
                                 <p>Excluir sessão</p>
                                 <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
@@ -76,7 +76,7 @@ if (pagina === 'o_chale') {
                                 <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
                             </div>
                         </div>
-                        <div class="opcao-excluir-sessao">
+                        <div class="opcao-excluir-sessao admin">
                             <div class="ferramenta-branco">
                                 <p>Excluir sessão</p>
                                 <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
@@ -288,7 +288,7 @@ if (pagina === 'o_chale') {
                     <div class="card-servico">
                         <div class="card-servico-header">
                             <p class="nome-servico">${servico.sernome}</p>
-                            <div class="ferramentas">
+                            <div class="ferramentas admin">
                                 <img src="/chale/public/assets/icons/icon-lixeira.svg">
                             </div>
                         </div>
@@ -321,8 +321,11 @@ if (pagina === 'o_chale') {
 
             data.forEach((foto) => {
                 container.innerHTML += `
-                    <div class="card-foto">
-                        <img src="/chale/public/uploads/galeria/${foto.fotcaminho}">
+                    <div class="item-foto">
+                        <div class="card-foto">
+                            <img src="/chale/public/uploads/galeria/${foto.fotcaminho}" class="img-card">
+                        </div>
+                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon admin">
                     </div>
                 `;
             });
