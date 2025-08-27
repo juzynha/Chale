@@ -1,4 +1,4 @@
-function criarCalendario(container) {
+document.querySelectorAll(".calendario-box").forEach(container => {
     const daysTag = container.querySelector(".days");
     const currentDate = container.querySelector(".currentMonth");
     const prevNextIcon = container.querySelectorAll("header img");
@@ -74,10 +74,6 @@ function criarCalendario(container) {
     });
 
     renderCalendar();
-}
-
-document.querySelectorAll(".calendario-box").forEach(container => {
-    criarCalendario(container);
 });
 
 /*
