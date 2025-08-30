@@ -17,7 +17,8 @@ require_once __DIR__ . '/../layouts/header.php';
                     <p>Diária: R$ <strong id="precoDiaria"></strong></p>
                     <p>Diária fim de semana: R$ <strong id="precoDiariaFds"></strong></p>
                 </div>
-                <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho" onclick="abrirModal('modal_alterar_preco')">
+                <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho"
+                    onclick="abrirModal('modal_alterar_preco')">
             </div>
         </div>
     </section>
@@ -25,15 +26,15 @@ require_once __DIR__ . '/../layouts/header.php';
 
     <!-- Promoções -->
     <section class="container">
-        <h2 class="subtitulo verde-escuro">Promoções</h2>   
-        <div class="ferramenta" onclick="abrirModal('modal_cadalt_promocao')">
+        <h2 class="subtitulo verde-escuro">Promoções</h2>
+        <div class="ferramenta" onclick="abrirModalCadastrarPromocao()">
             <p>Criar Promoção</p>
             <img src="/chale/public/assets/icons/icon-adicionar.svg" class="add-promocao">
         </div>
         <div id="listaPromocoes">
             <!-- Lista de promoções -->
         </div>
-    </section> 
+    </section>
 </body>
 
 <!--<div class="sombra-modal" id="modal_excluir_promocao">

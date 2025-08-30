@@ -61,7 +61,7 @@ require_once __DIR__ . '/../layouts/header.php';
                     </div>
                 </div>
                 <div class="acoes-calendario">
-                    <div class="ferramenta" onclick="abrirModal('modal_cadalt_promocao')">
+                    <div class="ferramenta" onclick="abrirModalCadastrarPromocao()">
                         <p>Criar promoção</p>
                         <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
                     </div>

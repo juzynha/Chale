@@ -1,13 +1,13 @@
 <div class="sombra-modal" id="modal_cadalt_promocao">
     <div class="bloco-modal-geral">
         <div class="modal-header">
-            <h2 id="tit_promo">Criar Promoção</h2>
+            <h2 name="titulo"></h2>
             <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCadastroPromocao">
+            <form id="formCadAltPromocao">
                 <p class="error" id="cadPromocao_error"></p>
                 <div class="campos-form-inputpadrao">
                     <div class="input-padrao">
@@ -17,13 +17,16 @@
                     <div class="date-container">
                         <div class="date-group">
                             <span class="date-label">Início</span>
-                            <hr class="divider-horizontal"></hr>
+                            <hr class="divider-horizontal">
+                            </hr>
                             <input type="date" class="date-input" name="data_inicial">
                         </div>
-                        <hr class="divider-vertical"></hr>
+                        <hr class="divider-vertical">
+                        </hr>
                         <div class="date-group">
                             <span class="date-label">Fim</span>
-                            <hr class="divider-horizontal"></hr>
+                            <hr class="divider-horizontal">
+                            </hr>
                             <input type="date" class="date-input" name="data_final">
                         </div>
                     </div>
