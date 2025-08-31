@@ -23,14 +23,14 @@ if (pagina === 'o_chale') {
                     <div class="sessao">
                         <div class="titulo-sessao">
                             <h2 class="subtitulo branco">${sessao.sesnome}</h2>
-                            <img src="/chale/public/assets/icons/icon-editar.svg" class="icon">
+                            <img src="/chale/public/assets/icons/icon-editar.svg" class="icon" onc>
                         </div>
                         <div class="sessao-cards" id="sessao-${sessao.sesid}">
                             <div class="card-foto-add admin" data-sessao-id="${sessao.sesid}">
                                 <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" width="50px">
                             </div>
                         </div>
-                        <div class="opcao-excluir-sessao admin">
+                        <div class="opcao-excluir-sessao admin" onclick="abrirModalExcluir('Sessão de Fotos')">
                             <div class="ferramenta-branco">
                                 <p>Excluir sessão</p>
                                 <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon">
@@ -83,7 +83,7 @@ if (pagina === 'o_chale') {
                             </div>
                         </div>
                         <div class="opcao-excluir-sessao admin">
-                            <div class="ferramenta" onclick="abrirModal('modal_excluir_sessao')">
+                            <div class="ferramenta" onclick="abrirModalExcluir('Sessão de Serviços')">
                                 <p>Excluir sessão</p>
                                 <img src="/chale/public/assets/icons/icon-lixeira(verde).svg" class="icon">
                             </div>
@@ -115,12 +115,12 @@ if (pagina === 'o_chale') {
     //--Colocar o nome de referência da sessão no modal--
     document.getElementById('criar_sessao_fotos').addEventListener('click', function () {
         const tag = document.getElementById('nome_referencia');
-        abrirModal('modal_criar_sessao');
+        abrirModal('modal_cadalt_sessao');
         tag.textContent = 'Galeria de fotos';
     });
     document.getElementById('criar_sessao_servicos').addEventListener('click', function () {
         const tag = document.getElementById('nome_referencia');
-        abrirModal('modal_criar_sessao');
+        abrirModal('modal_cadalt_sessao');
         tag.textContent = 'Serviços';
     });
 
@@ -295,7 +295,7 @@ if (pagina === 'o_chale') {
                         <div class="card-servico-header">
                             <p class="nome-servico">${servico.sernome}</p>
                             <div class="ferramentas admin">
-                                <img src="/chale/public/assets/icons/icon-lixeira.svg">
+                                <img src="/chale/public/assets/icons/icon-lixeira.svg" onclick="abrirModalExcluir('Serviço')">
                             </div>
                         </div>
                         <div class="imagem-servico">
@@ -329,10 +329,36 @@ if (pagina === 'o_chale') {
                 container.innerHTML += `
                     <div class="card-foto">
                         <img src="/chale/public/uploads/galeria/${foto.fotcaminho}" class="img-card">
-                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon admin">
+                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModalExcluir('Foto')">
                     </div>
                 `;
             });
         });
     }
+}
+
+
+window.abrirModalCadastrarSessao = function(sessao){
+    const modal = document.getElementById('modal_cadalt_sessao');
+    modal.querySelector('[name="titulo"]').textContent = 'Cadastrar Promoção';
+    const tag = document.getElementById('nome_referencia');
+    const form = document.getElementById('formCadAlt');
+    form.querySelector('.btn').textContent = 'Criar'; 
+    abrirModal('modal_cadalt_sessao');
+    cadastrarSessao();
+}
+
+window.abrirModalEditarSessao = function(id,nome){
+    const modal = document.getElementById('modal_cadalt_promocao');
+    modal.querySelector('[name="titulo"]').textContent = 'Editar Promoção';
+    const form = document.getElementById('formCadAltPromocao');
+    form.querySelector('.btn').textContent = 'Editar'; 
+    //Atribuindo valor aos campos
+    form.querySelector('[name="nome_promocao"]').value = nome;
+    form.querySelector('[name="data_inicial"]').value = converterDataParaBR(dataini);
+    form.querySelector('[name="data_final"]').value = converterDataParaBR(datafim);
+    form.querySelector('[name="valor_diaria"]').value = npreco;
+    form.querySelector('[name="valor_diariafds"]').value = nprecofds;
+    abrirModal('modal_cadalt_promocao');
+    editarPromocao(id);
 }

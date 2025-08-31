@@ -253,14 +253,14 @@ document.addEventListener("DOMContentLoaded", function () {
   inputMaks();
 });
 
-// Opcional: fechar clicando fora
+/*/ Opcional: fechar clicando fora
 document.addEventListener("click", (e) => {
   const calendario = document.querySelector(".calendario-box");
   if (calendario && !calendario.contains(e.target) && !e.target.classList.contains("input-date")) {
       calendario.style.display = "none";
   }
 });
-
+*/
 
 //abrir a caixa que exibe as reservas à pagar ou em andamento na page conta de usuário
 function abrirContainer(idContainer) {

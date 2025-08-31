@@ -17,8 +17,7 @@ require_once __DIR__ . '/../layouts/header.php';
                     <p>Diária: R$ <strong id="precoDiaria"></strong></p>
                     <p>Diária fim de semana: R$ <strong id="precoDiariaFds"></strong></p>
                 </div>
-                <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho"
-                    onclick="abrirModal('modal_alterar_preco')">
+                <img src="/chale/public/assets/icons/icon-editar.svg" class="lapzinho" id="editarPreco">
             </div>
         </div>
     </section>
@@ -71,14 +70,14 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
         <div class="modal-body">
             <form id="formAlterarPreco">
-                <p class="error" id="altpreco_error"></p>
+                <p class="error" id="altPreco_error"></p>
                 <div class="input-padrao">
                     <span>Diária:</span>
-                    <input type="text" name="nome_diaria">
+                    <input type="text" name="valor_diaria">
                 </div>
                 <div class="input-padrao">
                     <span>Diária fim de semana:</span>
-                    <input type="text" name="nome_diariafds">
+                    <input type="text" name="valor_diariafds">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn">Salvar</button>
