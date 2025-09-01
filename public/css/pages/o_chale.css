@@ -182,3 +182,7 @@
     width: 20px;
     cursor: pointer;
 }
+
+.titulo-modal-sessao{
+    display: inline;
+}

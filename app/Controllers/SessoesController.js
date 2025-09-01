@@ -1,29 +1,37 @@
-import {validarCamposPreenchidos, validarString, validarImagem, validarTexto,abrirModal, fecharModal} from './Utils.js';
+import {
+    validarCamposPreenchidos,
+    validarString,
+    validarImagem,
+    validarTexto,
+    abrirModal,
+    fecharModal,
+} from './Utils.js';
 
 const pagina = document.body.dataset.page;
 
 if (pagina === 'o_chale') {
-    
     document.addEventListener('DOMContentLoaded', function () {
-        listarSessoesServicos();  
+        listarSessoesServicos();
         listarSessoesFotos();
     });
 
     //-------LISTAGEM DE SESSÕES FOTOS-------
-    function listarSessoesFotos(){
+    function listarSessoesFotos() {
         let lista = document.getElementById('sessaoFotos');
         fetch(`../../app/Models/SessoesModel.php`, {
-                method: "POST",
-                headers: {"Content-Type": "application/json",},
-                body: JSON.stringify({ acao: "listar_sessoes_fotos" }),
-            }).then((response) => response.json()).then((data) => {
-                lista.innerHTML = "";
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ acao: 'listar_sessoes_fotos' }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                lista.innerHTML = '';
                 data.forEach((sessao) => {
                     lista.innerHTML += `
                     <div class="sessao">
                         <div class="titulo-sessao">
                             <h2 class="subtitulo branco">${sessao.sesnome}</h2>
-                            <img src="/chale/public/assets/icons/icon-editar.svg" class="icon" onc>
+                            <img src="/chale/public/assets/icons/icon-editar.svg" class="icon" onclick="abrirModalEditarSessao(${sessao.sesid},'${sessao.sesnome}')">
                         </div>
                         <div class="sessao-cards" id="sessao-${sessao.sesid}">
                             <div class="card-foto-add admin" data-sessao-id="${sessao.sesid}">
@@ -43,7 +51,7 @@ if (pagina === 'o_chale') {
                 });
 
                 // registrar cliques nos botões de adicionar
-                lista.addEventListener('click', function(e) {
+                lista.addEventListener('click', function (e) {
                     if (e.target.closest('.card-servico-add')) {
                         const btn = e.target.closest('.card-servico-add');
                         const sesId = btn.dataset.sessaoId;
@@ -57,24 +65,26 @@ if (pagina === 'o_chale') {
                         abrirModal('modal_add_foto_galeria');
                     }
                 });
-            });   
+            });
     }
 
     //-------LISTAGEM DE SESSÕES SERVIÇOS-------
-    function listarSessoesServicos (){
+    function listarSessoesServicos() {
         let lista = document.getElementById('sessaoServicos');
         fetch(`../../app/Models/SessoesModel.php`, {
-                method: "POST",
-                headers: {"Content-Type": "application/json",},
-                body: JSON.stringify({ acao: "listar_sessoes_servicos" }),
-            }).then((response) => response.json()).then((data) => {
-                lista.innerHTML = "";
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ acao: 'listar_sessoes_servicos' }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                lista.innerHTML = '';
                 data.forEach((sessao) => {
                     lista.innerHTML += `
                     <div class="sessao">
                         <div class="titulo-sessao">
                             <h2 class="subtitulo verde-medio">${sessao.sesnome}</h2>
-                            <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon admin">
+                            <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon admin" onclick="abrirModalEditarSessao(${sessao.sesid},'${sessao.sesnome}')">
                         </div>
                         <div class="sessao-cards" id="sessao-${sessao.sesid}">
                             <!-- Card de adicionar serviço -->
@@ -95,7 +105,7 @@ if (pagina === 'o_chale') {
                 });
 
                 // registrar cliques nos botões de adicionar
-                lista.addEventListener('click', function(e) {
+                lista.addEventListener('click', function (e) {
                     if (e.target.closest('.card-servico-add')) {
                         const btn = e.target.closest('.card-servico-add');
                         const sesId = btn.dataset.sessaoId;
@@ -109,73 +119,14 @@ if (pagina === 'o_chale') {
                         abrirModal('modal_add_foto_galeria');
                     }
                 });
-            }); 
+            });
     }
-
-    //--Colocar o nome de referência da sessão no modal--
-    document.getElementById('criar_sessao_fotos').addEventListener('click', function () {
-        const tag = document.getElementById('nome_referencia');
-        abrirModal('modal_cadalt_sessao');
-        tag.textContent = 'Galeria de fotos';
-    });
-    document.getElementById('criar_sessao_servicos').addEventListener('click', function () {
-        const tag = document.getElementById('nome_referencia');
-        abrirModal('modal_cadalt_sessao');
-        tag.textContent = 'Serviços';
-    });
-
-    //-------CADASTRO DE SESSÃO-------
-    document.getElementById('formCriarSessao').addEventListener('submit', async function (e) {
-        e.preventDefault();
-        
-        const form = this; 
-        const nomeSessao = form.querySelector('[name="nome_sessao"]').value.trim();
-        let referencia = document.getElementById('nome_referencia').textContent;
-
-        const error = document.getElementById('cadSessao_error');
-        let mensagemErro = '';
-
-        //---Validações---
-        //Verificar campos preenchidos
-        const errosPreenchimento = validarCamposPreenchidos(['nome_sessao'], form);
-        if (errosPreenchimento.length > 0) {
-            mensagemErro = errosPreenchimento[0];
-        }
-        //Validar nome
-        else if (!validarString(nomeSessao)) {
-            mensagemErro = 'Nome inválido.';
-        }
-        // Se houve erro, mostra de forma centralizada
-        if (mensagemErro !== '') {
-            error.textContent = mensagemErro;
-            error.style.display = 'block';
-            return;
-        }
-
-        //---Passando das validações---
-        const dados = {nomeSessao, referencia};
-        const resposta = await fetch('../../app/Models/SessoesModel.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({acao: 'cadastrar_sessao', dados})
-        });
-        const json = await resposta.json();
-        //Limpa os campos após sucesso e mostra um alert com a mensagem de erro ou sucesso
-        if (!json.erro) {
-            fecharModal('modal_criar_sessao');
-            alert(json.mensagem);
-            location.href = window.location.pathname; 
-        } else {
-            error.textContent= json.mensagem;
-        }
-
-    });
 
     //-------CADASTRO DE SERVIÇO-------
     document.getElementById('formCriarServico').addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        const form = this; 
+        const form = this;
         const nomeServico = form.querySelector('[name="nome_servico"]').value.trim();
         const imagemServico = form.querySelector('[name="imagem_servico"]');
         const descricao = form.querySelector('[name="descricao"]').value.trim();
@@ -185,7 +136,10 @@ if (pagina === 'o_chale') {
 
         //---Validações local---
         const erroImagem = validarImagem(imagemServico);
-        const errosPreenchimento = validarCamposPreenchidos(['nome_servico', 'imagem_servico', 'descricao'], form);
+        const errosPreenchimento = validarCamposPreenchidos(
+            ['nome_servico', 'imagem_servico', 'descricao'],
+            form
+        );
         // Verificar campos preenchidos
         if (errosPreenchimento.length > 0) {
             mensagemErro = errosPreenchimento[0];
@@ -210,20 +164,20 @@ if (pagina === 'o_chale') {
         formData.append('nomeServico', nomeServico);
         formData.append('imagemServico', imagemServico.files[0]);
         formData.append('descricao', descricao);
-        formData.append('sesId', sesId); 
+        formData.append('sesId', sesId);
 
         const resposta = await fetch('../../app/Models/FotServModel.php', {
             method: 'POST',
-            body: formData
+            body: formData,
         });
         const json = await resposta.json();
-            
+
         if (!json.erro) {
             fecharModal('modal_criar_servico');
             alert(json.mensagem);
-            location.href = window.location.pathname; 
+            location.href = window.location.pathname;
         } else {
-            error.textContent= json.mensagem;
+            error.textContent = json.mensagem;
         }
     });
 
@@ -231,9 +185,9 @@ if (pagina === 'o_chale') {
     document.getElementById('formAddFotoGaleria').addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        const form = this; 
+        const form = this;
         const foto = form.querySelector('[name="foto"]');
-        const sesId = form.dataset.sessaoId; 
+        const sesId = form.dataset.sessaoId;
         const error = document.getElementById('cadFotoGaleria_error');
         let mensagemErro = '';
 
@@ -257,40 +211,40 @@ if (pagina === 'o_chale') {
         const formData = new FormData();
         formData.append('acao', 'cadastrar_foto');
         formData.append('foto', foto.files[0]);
-        formData.append('sesId', sesId); 
+        formData.append('sesId', sesId);
 
         const resposta = await fetch('../../app/Models/FotServModel.php', {
             method: 'POST',
-            body: formData
+            body: formData,
         });
         const json = await resposta.json();
-            
+
         if (!json.erro) {
             fecharModal('modal_add_foto_galeria');
             alert(json.mensagem);
             location.reload();
         } else {
-            error.textContent= json.mensagem;
+            error.textContent = json.mensagem;
         }
     });
 
     //-------LISTAR SERVIÇOS-------
     function listarServicos(sesId) {
         fetch(`../../app/Models/FotServModel.php`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ acao: "listar_servicos", sesId }),
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ acao: 'listar_servicos', sesId }),
         })
-        .then((response) => response.json())
-        .then((data) => {
-            let container = document.getElementById("sessao-" + sesId);
-            // não limpar os botões de add
-            let botoesAdd = container.querySelectorAll('.card-servico-add, .card-foto-add');
-            container.innerHTML = "";
-            botoesAdd.forEach(btn => container.appendChild(btn));
+            .then((response) => response.json())
+            .then((data) => {
+                let container = document.getElementById('sessao-' + sesId);
+                // não limpar os botões de add
+                let botoesAdd = container.querySelectorAll('.card-servico-add, .card-foto-add');
+                container.innerHTML = '';
+                botoesAdd.forEach((btn) => container.appendChild(btn));
 
-            data.forEach((servico) => {
-                container.innerHTML += `
+                data.forEach((servico) => {
+                    container.innerHTML += `
                     <div class="card-servico">
                         <div class="card-servico-header">
                             <p class="nome-servico">${servico.sernome}</p>
@@ -306,59 +260,152 @@ if (pagina === 'o_chale') {
                         </div>
                     </div>
                 `;
+                });
             });
-        });
     }
 
     //-------LISTAR FOTOS-------
     function listarFotos(sesId) {
         fetch(`../../app/Models/FotServModel.php`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ acao: "listar_fotos", sesId }),
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ acao: 'listar_fotos', sesId }),
         })
-        .then((response) => response.json())
-        .then((data) => {
-            let container = document.getElementById("sessao-" + sesId);
-            // não limpar os botões de add
-            let botoesAdd = container.querySelectorAll('.card-servico-add, .card-foto-add');
-            container.innerHTML = "";
-            botoesAdd.forEach(btn => container.appendChild(btn));
+            .then((response) => response.json())
+            .then((data) => {
+                let container = document.getElementById('sessao-' + sesId);
+                // não limpar os botões de add
+                let botoesAdd = container.querySelectorAll('.card-servico-add, .card-foto-add');
+                container.innerHTML = '';
+                botoesAdd.forEach((btn) => container.appendChild(btn));
 
-            data.forEach((foto) => {
-                container.innerHTML += `
+                data.forEach((foto) => {
+                    container.innerHTML += `
                     <div class="card-foto">
                         <img src="/chale/public/uploads/galeria/${foto.fotcaminho}" class="img-card">
                         <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModalExcluir('Foto')">
                     </div>
                 `;
+                });
             });
-        });
     }
 }
 
-
-window.abrirModalCadastrarSessao = function(sessao){
+window.abrirModalCriarSessao = function (sessao) {
     const modal = document.getElementById('modal_cadalt_sessao');
-    modal.querySelector('[name="titulo"]').textContent = 'Cadastrar Promoção';
-    const tag = document.getElementById('nome_referencia');
-    const form = document.getElementById('formCadAlt');
-    form.querySelector('.btn').textContent = 'Criar'; 
+    modal.querySelector('#titulo_texto').textContent = 'Criar Sessão para: ' + sessao;
+    modal.querySelector('#nome_referencia').textContent = sessao;
+
+    const form = document.getElementById('formCadAltSessao');
+    form.querySelector('.btn').textContent = 'Criar';
+
     abrirModal('modal_cadalt_sessao');
     cadastrarSessao();
+};
+
+window.abrirModalEditarSessao = function (id, nome) {
+    const modal = document.getElementById('modal_cadalt_sessao');
+    modal.querySelector('#titulo_texto').textContent = 'Editar Sessão';
+
+    const form = document.getElementById('formCadAltSessao');
+    form.querySelector('.btn').textContent = 'Editar';
+    form.querySelector('[name="nome_sessao"]').value = nome;
+
+    abrirModal('modal_cadalt_sessao');
+    editarSessao(id);
+};
+
+//-------CADASTRO DE SESSÃO-------
+function cadastrarSessao() {
+    document.getElementById('formCadAltSessao').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const form = this;
+        const nomeSessao = form.querySelector('[name="nome_sessao"]').value.trim();
+        let referencia = document.getElementById('nome_referencia').textContent;
+
+        const error = document.getElementById('cadAltSessao_error');
+        let mensagemErro = '';
+
+        //---Validações---
+        //Verificar campos preenchidos
+        const errosPreenchimento = validarCamposPreenchidos(['nome_sessao'], form);
+        if (errosPreenchimento.length > 0) {
+            mensagemErro = errosPreenchimento[0];
+        }
+        //Validar nome
+        else if (!validarString(nomeSessao)) {
+            mensagemErro = 'Nome inválido.';
+        }
+        // Se houve erro, mostra de forma centralizada
+        if (mensagemErro !== '') {
+            error.textContent = mensagemErro;
+            error.style.display = 'block';
+            return;
+        }
+
+        //---Passando das validações---
+        const dados = { nomeSessao, referencia };
+        const resposta = await fetch('../../app/Models/SessoesModel.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ acao: 'cadastrar_sessao', dados }),
+        });
+        const json = await resposta.json();
+        //Limpa os campos após sucesso e mostra um alert com a mensagem de erro ou sucesso
+        if (!json.erro) {
+            fecharModal('modal_criar_sessao');
+            alert(json.mensagem);
+            location.href = window.location.pathname;
+        } else {
+            error.textContent = json.mensagem;
+        }
+    });
 }
 
-window.abrirModalEditarSessao = function(id,nome){
-    const modal = document.getElementById('modal_cadalt_promocao');
-    modal.querySelector('[name="titulo"]').textContent = 'Editar Promoção';
-    const form = document.getElementById('formCadAltPromocao');
-    form.querySelector('.btn').textContent = 'Editar'; 
-    //Atribuindo valor aos campos
-    form.querySelector('[name="nome_promocao"]').value = nome;
-    form.querySelector('[name="data_inicial"]').value = converterDataParaBR(dataini);
-    form.querySelector('[name="data_final"]').value = converterDataParaBR(datafim);
-    form.querySelector('[name="valor_diaria"]').value = npreco;
-    form.querySelector('[name="valor_diariafds"]').value = nprecofds;
-    abrirModal('modal_cadalt_promocao');
-    editarPromocao(id);
+//-------EDIÇÃO DE SESSÃO-------
+function editarSessao(id) {
+    document.getElementById('formCadAltSessao').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const form = this;
+        const nomeSessao = form.querySelector('[name="nome_sessao"]').value.trim();
+
+        const error = document.getElementById('cadAltSessao_error');
+        let mensagemErro = '';
+
+        //---Validações---
+        //Verificar campos preenchidos
+        const errosPreenchimento = validarCamposPreenchidos(['nome_sessao'], form);
+        if (errosPreenchimento.length > 0) {
+            mensagemErro = errosPreenchimento[0];
+        }
+        //Validar nome
+        else if (!validarString(nomeSessao)) {
+            mensagemErro = 'Nome inválido.';
+        }
+        // Se houve erro, mostra de forma centralizada
+        if (mensagemErro !== '') {
+            error.textContent = mensagemErro;
+            error.style.display = 'block';
+            return;
+        }
+
+        //---Passando das validações---
+        const dados = { id, nomeSessao };
+        const resposta = await fetch('../../app/Models/SessoesModel.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ acao: 'editar_sessao', dados }),
+        });
+        const json = await resposta.json();
+        //Limpa os campos após sucesso e mostra um alert com a mensagem de erro ou sucesso
+        if (!json.erro) {
+            fecharModal('modal_criar_sessao');
+            alert(json.mensagem);
+            location.href = window.location.pathname;
+        } else {
+            error.textContent = json.mensagem;
+        }
+    });
 }

@@ -8,7 +8,7 @@
         </div>
         <div class="modal-body">
             <form id="formCadAltPromocao">
-                <p class="error" id="cadPromocao_error"></p>
+                <p class="error" id="cadAltPromocao_error"></p>
                 <div class="campos-form-inputpadrao">
                     <div class="input-padrao">
                         <span>Nome da promoção:</span>
