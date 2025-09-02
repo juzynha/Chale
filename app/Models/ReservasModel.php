@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../config/Database.php';
-
+session_start();
 $pdo = Database::conectar();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -14,6 +14,9 @@ if (!isset($input['acao'])) {
 switch ($input['acao']) {
     case 'listar_reservas':
         listarReservas($pdo);
+        break;
+    case 'listar_reservas_npagas':
+        listarReservasNPagas($pdo);
         break;
     case 'cadastrar_reserva':
         cadastrarReservas($input['dados'],$pdo);
@@ -33,6 +36,27 @@ function listarReservas($pdo) {
         echo json_encode(['erro' => true, 'mensagem' => 'Erro ao comunicar com o banco']);
     }
 
+}
+
+function listarReservasNPagas($pdo) {
+    if (isset($_SESSION['usuario']) && ($_SESSION['usuario']['tipo'] === 'cliente')) {
+        $usuario = $_SESSION['usuario'];
+        $id = $usuario['id'];
+        $sql = "SELECT * FROM lista_reservas WHERE resusuid = :id AND resstatuspag = 0;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+
+        if ($stmt->execute()) {
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($data);
+            exit;
+        } else {
+            echo json_encode(['erro' => true, 'mensagem' => 'Erro ao comunicar com o banco']);
+        }
+    } else {
+        echo json_encode(['erro' => true, 'mensagem' => 'Usuario nao logado']);
+    }
 }
 
 function cadastrarReservas($dados, $pdo) {

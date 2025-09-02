@@ -150,14 +150,14 @@
 }
 
 /* Seção de Reservas a Pagar */
-.sessao-reservas-a-pagar {
+.sessao-lista-reservas {
   display: none;
   flex-direction: column;
   gap: 1rem;
   color: var(--verde-medio);
 }
 
-.reservas-a-pagar {
+.lista-reservas {
   display: flex;
   gap: 1rem;
   width: 100%;

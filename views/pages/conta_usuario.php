@@ -32,49 +32,10 @@ require_once __DIR__ . '/../layouts/header.php';
                             <p>À pagar</p>
                             <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resAPagar')">
                         </div>
-                        <div class="sessao-reservas-a-pagar" name="content">
+                        <div class="sessao-lista-reservas" name="content">
                             <p>Você pode editar sua reserva enquanto ela não tiver sido paga!</p>
-                            <div class="reservas-a-pagar">
-                                <div class="reserva-a-pagar">
-                                    <div class="date-container">
-                                        <div class="date-group">
-                                            <span class="date-label">Check-in</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                        <div class="divider-vertical"></div>
-                                        <div class="date-group">
-                                            <span class="date-label">Check-out</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                    </div>
-                                    <p><strong>Valor total:</strong> R$400</p>
-                                    <div class="botao-de-pagar">
-                                        <button type="submit" class="btn"
-                                            onclick="abrirModal('modal_pagamento')">Pagar</button>
-                                    </div>
-                                </div>
-                                <div class="reserva-a-pagar">
-                                    <div class="date-container">
-                                        <div class="date-group">
-                                            <span class="date-label">CHECK-IN</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                        <div class="divider-vertical"></div>
-                                        <div class="date-group">
-                                            <span class="date-label">CHECK-OUT</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                    </div>
-                                    <p><strong>Valor total:</strong> R$400</p>
-                                    <div class="botao-de-pagar">
-                                        <button type="submit" class="btn"
-                                            onclick="abrirModal('modal_pagamento')">Pagar</button>
-                                    </div>
-                                </div>
+                            <div class="lista-reservas" id="reservas_nao_pagas">
+                                
                             </div>
                         </div>
                     </div>
@@ -83,8 +44,8 @@ require_once __DIR__ . '/../layouts/header.php';
                             <p>Em andamento</p>
                             <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resEmAnd')">
                         </div>
-                        <div class="sessao-reservas-a-pagar" name="content">
-                            <div class="reservas-a-pagar">
+                        <div class="sessao-lista-reservas" name="content">
+                            <div class="lista-reservas">
                                 <div class="reserva-a-pagar">
                                     <div class="date-container">
                                         <div class="date-group">

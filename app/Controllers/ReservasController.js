@@ -156,6 +156,11 @@ if (pagina === 'faca_sua_reserva') {
   });
 }
 
+if (pagina === 'conta_usuario') {
+  document.addEventListener('DOMContentLoaded', function(){
+    listaReservasNPagas();
+  });
+}
 
 function listaReservas() {
     let lista = document.getElementById("lista_reservas");
@@ -212,6 +217,43 @@ function listaReservas() {
                         <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
                     </div>
                 </div>
+                `;
+        });
+    
+    });
+}
+
+function listaReservasNPagas() {
+    let lista = document.getElementById("reservas_nao_pagas");
+    fetch(`../../app/Models/ReservasModel.php`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json",},
+        body: JSON.stringify({ acao: "listar_reservas_npagas" }),
+    }).then((response) => response.json()).then((data) => {
+        lista.innerHTML = "";
+        data.forEach((reserva) => {
+            const checkin = converterDataParaBR(reserva.rescheckin);
+            const checkout = converterDataParaBR(reserva.rescheckout);
+            lista.innerHTML += `
+              <div class="reserva-a-pagar">
+                <div class="date-container">
+                    <div class="date-group">
+                        <span class="date-label">Check-in</span>
+                        <div class="divider-horizontal"></div>
+                        <input type="date" class="date-input" value="${checkin}" readonly>
+                    </div>
+                    <div class="divider-vertical"></div>
+                    <div class="date-group">
+                        <span class="date-label">Check-out</span>
+                        <div class="divider-horizontal"></div>
+                        <input type="date" class="date-input" value="${checkout}" readonly>
+                    </div>
+                </div>
+                <p><strong>Valor total:</strong>${reserva.resvtotal}</p>
+                <div class="botao-de-pagar">
+                    <button type="submit" class="btn" onclick="abrirModal('modal_pagamento')">Pagar</button>
+                </div>
+            </div>   
                 `;
         });
     
