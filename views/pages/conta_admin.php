@@ -56,7 +56,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 <div class="titulo-sessao-conta">
                     <div class="itens-sessao-conta">
                         <div class="item-descricao">
-                            <div class="escrita-item-sessao" onclick="abrirModal('modal_cadastro_admin')">
+                            <div class="escrita-item-sessao" onclick="abrirModalCadastrarAdmin()">
                                 <p>Criar outra conta administradora</p>
                                 <img src="/chale/public/assets/icons/icon-adicionar(verde-escuro).svg" class="icon">
                             </div>
@@ -102,20 +102,20 @@ require_once __DIR__ . '/../layouts/header.php';
 </body>
 
 <!-- Modais -->
-<div class="sombra-modal" id="modal_cadastro_admin">
+<div class="sombra-modal" id="modal_cadalt_admin">
     <div class="bloco-modal-usuario">
         <div class="contorno-modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Criar conta de administrador</h2>
+                    <h2 name="titulo"></h2>
                     <button class="btn-fechar-modal">
                         <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="formCadastroAdmin">
+                    <form id="formCadAltAdmin">
                         <div class="campos-form-inputwrapper">
-                            <p class="error" id="cadAdmin_error"></p>
+                            <p class="error" id="cadAltAdmin_error"></p>
                             <div class="input-wrapper">
                                 <span>Nome:</span>
                                 <input type="text" name="nome">
