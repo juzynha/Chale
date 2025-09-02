@@ -46,7 +46,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <div class="footer-card-fr">
                     <p><strong name="preco_total"></strong></p>
-                    <button name="reservar" class="btn">Reservar</button>
+                    <button name="reservar" class="btn"  onclick="abrirModal('modal_fazer_reserva')">Reservar</button>
                 </div>
             </div>
         </div>
@@ -172,7 +172,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <p class="valortotal-fr" name="preco_total"><strong>Valor Total: </strong></p>
                 <div class="modal-footer">
-                    <button type="button" class="btn">Reservar</button>
+                    <button type="button" class="btn" onclick="fecharModal('modal_fazer_reserva'), abrirModal('modal_pagamento')">Reservar</button>
                 </div>
             </form>
         </div>
@@ -198,7 +198,6 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img1.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                            <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -209,7 +208,6 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img2.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -220,18 +218,16 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img3.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
                     <div class="item-carrossel">
-                        <div class="titulo-item-carrossel" >
+                        <div class="titulo-item-carrossel">
                             <p>Meio Direito</p>
                         </div>
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img4.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -242,7 +238,6 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img5.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -253,7 +248,6 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img2.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -264,7 +258,6 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="foto-item-carrossel">
                             <img src="/chale/public/assets/img4.jpeg" class="foto-carrossel">
                             <img src="/chale/public/assets/icons/icon-selecionar.svg" class="icon">
-                             <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
                         </div>
                     </div>
                     <div class="divider-horizontal"></div>
@@ -308,7 +301,6 @@ require_once __DIR__ . '/../layouts/header.php';
 </div>
 
 <?php
-require_once __DIR__ . '/../modals/excluir.php';
 require_once __DIR__ . '/../modals/pagamento.php';
 require_once __DIR__ . '/../layouts/footer.php';
 ?>

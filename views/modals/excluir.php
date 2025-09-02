@@ -2,7 +2,7 @@
     <div class="bloco-modal-geral">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 name="titulo"></h2>
+                <h2>Deseja mesmo excluir?</h2>
                 <button class="btn-fechar-modal">
                     <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                 </button>
