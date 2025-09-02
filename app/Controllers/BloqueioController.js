@@ -95,3 +95,51 @@ if (pagina === 'reservas') {
     });
 }
 
+// ----- CLIQUE NO CALENDÁRIO PARA BLOQUEAR AUTOMATICAMENTE -----
+// Variável global para armazenar a data selecionada no calendário
+let dataSelecionadaDoCalendario = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Ao clicar em um dia do calendário
+    const dias = document.querySelectorAll('.dia-calendario');
+
+    dias.forEach(dia => {
+        dia.addEventListener('click', function () {
+            const data = this.dataset.date;
+            if (!data) return;
+
+            dataSelecionadaDoCalendario = data; // Armazena a data selecionada
+
+            abrirModal('modal_promocao/bloqueio'); // Abre o modal correto
+        });
+    });
+
+    // 2. Ao clicar no botão "Bloquear Dia" dentro do modal
+    const btnBloquear = document.getElementById('bloque_dia');
+
+    if (btnBloquear) {
+        btnBloquear.addEventListener('click', () => {
+            if (!dataSelecionadaDoCalendario) {
+                alert("Nenhuma data foi selecionada.");
+                return;
+            }
+
+            const form = document.getElementById('formBloquearDias');
+            if (!form) {
+                alert("Formulário de bloqueio não encontrado.");
+                return;
+            }
+
+            // Preenche o formulário invisível com a data selecionada
+            const inputDataInicial = form.querySelector('[name="data_inicial"]');
+            const inputDataFinal = form.querySelector('[name="data_final"]');
+
+            inputDataInicial.value = dataSelecionadaDoCalendario;
+            inputDataFinal.value = dataSelecionadaDoCalendario;
+
+            // Dispara o submit com todas as validações existentes
+            form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+        });
+    }
+});
+

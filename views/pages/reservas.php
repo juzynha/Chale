@@ -57,7 +57,7 @@ require_once __DIR__ . '/../layouts/header.php';
                             <li>Sab</li>
                         </ul>
                         <hr class="divider-horizontal-cal">
-                        <ul class="days"></ul>
+                        <ul class="days" onclick="abrirModal('modal_promocao/bloqueio')"></ul>
                     </div>
                 </div>
                 <div class="acoes-calendario">
@@ -107,6 +107,23 @@ require_once __DIR__ . '/../layouts/header.php';
     </div>
 </div>
 
+<div class="sombra-modal" id="modal_promocao/bloqueio">
+    <div class="bloco-modal-geral">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="bloque_dia">Bloquear Dia</h2>
+                <hr>
+                 <h2>Criar Promoção</h2>
+                <button class="btn-fechar-modal">
+                    <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
+                </button>
+               
+            </div>
+            <hr>
+        
+        </div>
+    </div>
+</div>
 
 <?php
 require_once __DIR__ . '/../modals/CadAltPromocao.php';
