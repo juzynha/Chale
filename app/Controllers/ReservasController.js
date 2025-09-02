@@ -214,7 +214,7 @@ function listaReservas() {
                         </div>
                     </div>
                     <div class="excluir-reserva">
-                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
+                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_cancelar')">
                     </div>
                 </div>
                 `;

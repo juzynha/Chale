@@ -5,6 +5,7 @@ import {
     validarTexto,
     abrirModal,
     fecharModal,
+    abrirModalExcluir
 } from './Utils.js';
 
 const pagina = document.body.dataset.page;
