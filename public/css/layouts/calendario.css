@@ -95,3 +95,18 @@
     border-radius: 8px;
     z-index: -1;
 }
+
+/* Responsividade - Tablets, 768px */
+
+@media screen and (width: 768px) {
+
+.calendario-box{
+
+margin: 0 1rem;
+box-shadow: 5px 5px 0 rgba(42,50,43), -5px -5px 0 rgba(124,154,120);
+
+}
+
+
+}
+
