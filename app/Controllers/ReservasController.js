@@ -235,29 +235,37 @@ function listaReservasNPagas() {
         data.forEach((reserva) => {
             const checkin = converterDataParaBR(reserva.rescheckin);
             const checkout = converterDataParaBR(reserva.rescheckout);
+            const valor = Number(reserva.resvtotal);
             lista.innerHTML += `
-              <div class="reserva-a-pagar">
+              <div class="card-reservaUser">
                 <div class="date-container">
                     <div class="date-group">
                         <span class="date-label">Check-in</span>
                         <div class="divider-horizontal"></div>
-                        <input type="date" class="date-input" value="${checkin}" readonly>
+                        <input type="text" class="date-input" value="${checkin}" readonly>
                     </div>
                     <div class="divider-vertical"></div>
                     <div class="date-group">
                         <span class="date-label">Check-out</span>
                         <div class="divider-horizontal"></div>
-                        <input type="date" class="date-input" value="${checkout}" readonly>
+                        <input type="text" class="date-input" value="${checkout}" readonly>
                     </div>
                 </div>
-                <p><strong>Valor total:</strong>${reserva.resvtotal}</p>
-                <div class="botao-de-pagar">
-                    <button type="submit" class="btn" onclick="abrirModal('modal_pagamento')">Pagar</button>
+                <p class="valor"><strong>Valor total:</strong>R$${valor.toFixed(2).replace('.', ',')}</p>
+                <div class="card-reservaUser-footer">
+                  <p class="textinho" onclick="abrirModalEditarReserva()">Editar período <img src="/chale/public/assets/icons/icon-editar.svg" class="icon"></p>
+                  <button type="submit" class="btn" onclick="abrirModal('modal_pagamento')">Pagar</button>
                 </div>
-            </div>   
+              </div>   
                 `;
         });
-    
+        if (data.length > 0) {
+          const numero = document.getElementById('numeroReservasNPagas');
+          numero.style.display= 'block';
+          numero.textContent = data.length; // mostra a quantidade de reservas
+        } else {
+          document.getElementById('numeroReservasNPagas').style.display = "none";
+        }
     });
 }
 

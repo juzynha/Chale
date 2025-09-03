@@ -30,23 +30,30 @@ require_once __DIR__ . '/../layouts/header.php';
                     <div class="itens-sessao-conta" id="resAPagar">
                         <div class="item-descricao">
                             <p>À pagar</p>
-                            <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resAPagar')">
+                            <div class="descer-container-reservas">
+                                <p id="numeroReservasNPagas"></p>
+                                <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resAPagar')">
+                            </div>
                         </div>
                         <div class="sessao-lista-reservas" name="content">
                             <p>Você pode editar sua reserva enquanto ela não tiver sido paga!</p>
                             <div class="lista-reservas" id="reservas_nao_pagas">
-                                
+                                <!-- Lista de reservas não pagas do usuario -->
                             </div>
                         </div>
                     </div>
                     <div class="itens-sessao-conta" id="resEmAnd">
                         <div class="item-descricao">
                             <p>Em andamento</p>
-                            <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resEmAnd')">
+                            <div class="descer-container-reservas">
+                                <p id="numeroReservasPagas"></p>
+                                <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resEmAnd')">
+                            </div>
+                            
                         </div>
                         <div class="sessao-lista-reservas" name="content">
                             <div class="lista-reservas">
-                                <div class="reserva-a-pagar">
+                                <div class="card-reservaUser1">
                                     <div class="date-container">
                                         <div class="date-group">
                                             <span class="date-label">Check-in</span>

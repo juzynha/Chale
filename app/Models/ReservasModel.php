@@ -42,7 +42,7 @@ function listarReservasNPagas($pdo) {
     if (isset($_SESSION['usuario']) && ($_SESSION['usuario']['tipo'] === 'cliente')) {
         $usuario = $_SESSION['usuario'];
         $id = $usuario['id'];
-        $sql = "SELECT * FROM lista_reservas WHERE resusuid = :id AND resstatuspag = 0;";
+        $sql = "SELECT * FROM reservas WHERE resusuid = :id AND resstatuspag = 0;";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
