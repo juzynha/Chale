@@ -104,7 +104,7 @@ if (pagina === 'faca_sua_reserva') {
   // 5) Submit do modal (envia reserva)
   document.getElementById('formFazerReserva').addEventListener('submit', async function (e) {
     e.preventDefault();
-    console.log('clicou');
+    
     const modalCheckin = this.querySelector('[name="data_inicial"]').value;
     const modalCheckout = this.querySelector('[name="data_final"]').value;
     const valorTotal = calcularPreco(modalCheckin, modalCheckout, precoDiaria, precoDiariaFds);
@@ -137,7 +137,7 @@ if (pagina === 'faca_sua_reserva') {
       dataFinal,
       valorTotal       // número
     };
-    console.log(dados);
+
     // Ajuste o endpoint/ação conforme seu backend
     const resposta = await fetch('../../app/Models/ReservasModel.php', {
       method: 'POST',
@@ -150,6 +150,7 @@ if (pagina === 'faca_sua_reserva') {
     if (!json.erro) {
       fecharModal('modal_fazer_reserva');
       alert(json.mensagem || 'Reserva criada com sucesso!');
+      abrirModal('modal_pagamento')
     } else {
       alert(json.mensagem);
     }

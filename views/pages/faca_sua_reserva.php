@@ -46,7 +46,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <div class="footer-card-fr">
                     <p><strong name="preco_total"></strong></p>
-                    <button name="reservar" class="btn"  onclick="abrirModal('modal_fazer_reserva')">Reservar</button>
+                    <button name="reservar" class="btn">Reservar</button>
                 </div>
             </div>
         </div>
@@ -150,12 +150,11 @@ require_once __DIR__ . '/../layouts/header.php';
             <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
-            <p class="error"></p>
         </div>
         <div class="modal-body">
             <form id="formFazerReserva" class="form-inputcomum">
                 <p class="error" id="cadReserva_error"></p>
-                <div class="infos-datas-fr">
+                <div class="contorno-modal-branco">
                     <div class="date-container">
                         <div class="date-group">
                             <span class="date-label">Check-in</span>
@@ -172,7 +171,7 @@ require_once __DIR__ . '/../layouts/header.php';
                 </div>
                 <p class="valortotal-fr" name="preco_total"><strong>Valor Total: </strong></p>
                 <div class="modal-footer">
-                    <button type="button" class="btn" onclick="fecharModal('modal_fazer_reserva'), abrirModal('modal_pagamento')">Reservar</button>
+                    <button type="submit" class="btn">Reservar</button>
                 </div>
             </form>
         </div>
