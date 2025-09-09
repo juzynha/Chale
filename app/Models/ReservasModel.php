@@ -42,7 +42,7 @@ function listarReservasNPagas($pdo) {
     if (isset($_SESSION['usuario']) && ($_SESSION['usuario']['tipo'] === 'cliente')) {
         $usuario = $_SESSION['usuario'];
         $id = $usuario['id'];
-        $sql = "SELECT * FROM lista_reservas WHERE resusuid = :id AND resstatuspag = 0;";
+        $sql = "SELECT * FROM reservas WHERE resusuid = :id AND resstatuspag = 0;";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 
@@ -61,40 +61,49 @@ function listarReservasNPagas($pdo) {
 
 function cadastrarReservas($dados, $pdo) {
     try {
-        session_start();
-        $usuid = '';
-        $checkin = $dados['dataInicial'];
-        $checkout = $dados['dataFinal'];
-        $vltotal = $dados['valorTotal'];
-        // pega o id do usuário logado da session
         if (!isset($_SESSION['usuario'])) {
-            echo json_encode(["erro" => true, "mensagem" => "Usuário não está logado."]);
-        } else {
-            $usuid = $_SESSION['usuario']['id'];
-            $sql = "CALL cadastrar_reserva(:checkin, :checkout, :usuid, :vtotal)";
-            $stmt = $pdo->prepare($sql);
-
-            $stmt->bindParam(":checkin", $checkin);
-            $stmt->bindParam(":checkout", $checkout);
-            $stmt->bindParam(":usuid", $usuid, PDO::PARAM_INT);
-            $stmt->bindParam(":vtotal", $vltotal);
-
-            $tipo = 'reserva';
-            $sql = "INSERT INTO bloqueio_dia (blodinicial, blodfinal, blotipo)
-                        VALUES (:datainicial, :datafinal, :tipo)";
-            $stmt = $pdo->prepare($sql);
-
-            $stmt->bindParam(":datainicial", $checkin);
-            $stmt->bindParam(":datafinal", $checkout);
-            $stmt->bindParam(":tipo", $tipo);
-
-            if ($stmt->execute()) {
-                echo json_encode(["erro" => false, "mensagem" => "Reserva cadastrada com sucesso!"]);
-            } else {
-                echo json_encode(["erro" => true, "mensagem" => "Erro ao cadastrar reserva."]);
-            }
+            echo json_encode([
+                "erro" => true,
+                "mensagem" => "Você precisa estar logado para fazer uma reserva"
+            ]);
+            return;
         }
-        
+
+        $usuid    = $_SESSION['usuario']['id'];
+        $checkin  = $dados['dataInicial'];
+        $checkout = $dados['dataFinal'];
+        $vltotal  = $dados['valorTotal'];
+
+        // 1️⃣ Executa a procedure
+        $sql1 = "CALL cadastrar_reserva(:checkin, :checkout, :usuid, :vtotal)";
+        $stmt1 = $pdo->prepare($sql1);
+        $stmt1->bindParam(":checkin", $checkin);
+        $stmt1->bindParam(":checkout", $checkout);
+        $stmt1->bindParam(":usuid", $usuid, PDO::PARAM_INT);
+        $stmt1->bindParam(":vtotal", $vltotal);
+        $stmt1->execute();
+
+        // 2️⃣ Insere bloqueio_dia
+        $tipo = 'reserva';
+        $sql2 = "INSERT INTO bloqueio_dia (blodinicial, blodfinal, blotipo)
+                 VALUES (:datainicial, :datafinal, :tipo)";
+        $stmt2 = $pdo->prepare($sql2);
+        $stmt2->bindParam(":datainicial", $checkin);
+        $stmt2->bindParam(":datafinal", $checkout);
+        $stmt2->bindParam(":tipo", $tipo);
+
+        if ($stmt2->execute()) {
+            echo json_encode([
+                "erro" => false,
+                "mensagem" => "Reserva cadastrada com sucesso!"
+            ]);
+        } else {
+            echo json_encode([
+                "erro" => true,
+                "mensagem" => "Erro ao cadastrar reserva (bloqueio)."
+            ]);
+        }
+
     } catch (PDOException $e) {
         echo json_encode(["erro" => true, "mensagem" => $e->getMessage()]);
     }

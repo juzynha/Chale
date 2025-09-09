@@ -104,7 +104,7 @@ if (pagina === 'faca_sua_reserva') {
   // 5) Submit do modal (envia reserva)
   document.getElementById('formFazerReserva').addEventListener('submit', async function (e) {
     e.preventDefault();
-    console.log('clicou');
+    
     const modalCheckin = this.querySelector('[name="data_inicial"]').value;
     const modalCheckout = this.querySelector('[name="data_final"]').value;
     const valorTotal = calcularPreco(modalCheckin, modalCheckout, precoDiaria, precoDiariaFds);
@@ -137,7 +137,7 @@ if (pagina === 'faca_sua_reserva') {
       dataFinal,
       valorTotal       // número
     };
-    console.log(dados);
+
     // Ajuste o endpoint/ação conforme seu backend
     const resposta = await fetch('../../app/Models/ReservasModel.php', {
       method: 'POST',
@@ -150,6 +150,7 @@ if (pagina === 'faca_sua_reserva') {
     if (!json.erro) {
       fecharModal('modal_fazer_reserva');
       alert(json.mensagem || 'Reserva criada com sucesso!');
+      abrirModal('modal_pagamento')
     } else {
       alert(json.mensagem);
     }
@@ -214,7 +215,7 @@ function listaReservas() {
                         </div>
                     </div>
                     <div class="excluir-reserva">
-                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_excluir')">
+                        <img src="/chale/public/assets/icons/icon-lixeira.svg" class="icon" onclick="abrirModal('modal_cancelar')">
                     </div>
                 </div>
                 `;
@@ -234,29 +235,37 @@ function listaReservasNPagas() {
         data.forEach((reserva) => {
             const checkin = converterDataParaBR(reserva.rescheckin);
             const checkout = converterDataParaBR(reserva.rescheckout);
+            const valor = Number(reserva.resvtotal);
             lista.innerHTML += `
-              <div class="reserva-a-pagar">
+              <div class="card-reservaUser">
                 <div class="date-container">
                     <div class="date-group">
                         <span class="date-label">Check-in</span>
                         <div class="divider-horizontal"></div>
-                        <input type="date" class="date-input" value="${checkin}" readonly>
+                        <input type="text" class="date-input" value="${checkin}" readonly>
                     </div>
                     <div class="divider-vertical"></div>
                     <div class="date-group">
                         <span class="date-label">Check-out</span>
                         <div class="divider-horizontal"></div>
-                        <input type="date" class="date-input" value="${checkout}" readonly>
+                        <input type="text" class="date-input" value="${checkout}" readonly>
                     </div>
                 </div>
-                <p><strong>Valor total:</strong>${reserva.resvtotal}</p>
-                <div class="botao-de-pagar">
-                    <button type="submit" class="btn" onclick="abrirModal('modal_pagamento')">Pagar</button>
+                <p class="valor"><strong>Valor total:</strong>R$${valor.toFixed(2).replace('.', ',')}</p>
+                <div class="card-reservaUser-footer">
+                  <p class="textinho" onclick="abrirModalEditarReserva()">Editar período <img src="/chale/public/assets/icons/icon-editar.svg" class="icon"></p>
+                  <button type="submit" class="btn" onclick="abrirModal('modal_pagamento')">Pagar</button>
                 </div>
-            </div>   
+              </div>   
                 `;
         });
-    
+        if (data.length > 0) {
+          const numero = document.getElementById('numeroReservasNPagas');
+          numero.style.display= 'block';
+          numero.textContent = data.length; // mostra a quantidade de reservas
+        } else {
+          document.getElementById('numeroReservasNPagas').style.display = "none";
+        }
     });
 }
 

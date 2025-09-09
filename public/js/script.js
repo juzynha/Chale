@@ -113,70 +113,98 @@ function inputMaks() {
 }
 
 function inputMaskDate() {
-// Máscara de data dd/mm/yyyy
-  document.querySelectorAll('input[type="date"], .input-date').forEach(function(input) {
+  // --- Função que inicializa UM input (com proteção para não duplicar) ---
+  function initInputDate(input) {
+    if (!input || input.dataset.maskDateInit === '1') return;
+    input.dataset.maskDateInit = '1';
+
+    // Transforma em texto e adiciona classes/placeholder
     input.type = 'text';
+    input.classList.add('input-date', 'placeholder');
     input.placeholder = '  /  /    ';
-    input.classList.add('placeholder');
-    
-    if (!input.classList.contains('input-date')) {
-      input.classList.add('input-date');
-    }
-    //preenche o input com o dia atual
+
+    // Preenche valor inicial se vazio
     if (!input.value) {
       const hoje = new Date();
-      // Se o name for "data_final", soma 1 dia
       if (input.name === 'data_final') {
         hoje.setDate(hoje.getDate() + 1);
       }
       const ano = hoje.getFullYear();
       const mes = String(hoje.getMonth() + 1).padStart(2, '0');
       const dia = String(hoje.getDate()).padStart(2, '0');
-      input.value = `${dia}/${mes}/${ano}`; 
+      input.value = `${dia}/${mes}/${ano}`;
     }
 
-      input.addEventListener('input', function (e) {
-      let v = e.target.value.replace(/\D/g, ""); // remove não dígitos
+    // Handler da máscara para este input
+    input.addEventListener('input', handleDateMask);
+  }
 
-      // Limita ao máximo 8 dígitos (ddmmYYYY)
-      if (v.length > 8) v = v.slice(0, 8);
+  // --- Máscara (dd/mm/aaaa) ---
+  function handleDateMask(e) {
+    const input = e.target;
 
-      let day = v.slice(0, 2);
-      let month = v.slice(2, 4);
-      let year = v.slice(4, 8);
+    let v = input.value.replace(/\D/g, "");
+    if (v.length > 8) v = v.slice(0, 8);
 
-      // Validação de dia
-      if (day.length === 2) {
-        let d = parseInt(day, 10);
-        if (d < 1) d = 1; // não permite 00
-        if (d > 31) d = 31;
-        day = d.toString().padStart(2, '0');
-      }
+    let day = v.slice(0, 2);
+    let month = v.slice(2, 4);
+    let year = v.slice(4, 8);
 
-      // Validação de mês
-      if (month.length === 2) {
-        let m = parseInt(month, 10);
-        if (m < 1) m = 1; // não permite 00
-        if (m > 12) m = 12;
-        month = m.toString().padStart(2, '0');
-      }
-      
-      // Validação de ano
-      if (year.length === 4) {
-        let y = parseInt(year, 10);
-        if (y < 1) {
-          y = new Date().getFullYear(); // substitui 0000 pelo ano atual
-        }
-        year = y.toString().padStart(4, '0');
-      }
+    if (day.length === 2) {
+      let d = parseInt(day, 10);
+      if (d < 1) d = 1;
+      if (d > 31) d = 31;
+      day = d.toString().padStart(2, '0');
+    }
 
-      let formatted = day;
-      if (month.length) formatted += '/' + month;
-      if (year.length) formatted += '/' + year;
+    if (month.length === 2) {
+      let m = parseInt(month, 10);
+      if (m < 1) m = 1;
+      if (m > 12) m = 12;
+      month = m.toString().padStart(2, '0');
+    }
 
-      e.target.value = formatted;
-    });
+    if (year.length === 4) {
+      let y = parseInt(year, 10);
+      if (y < 1) y = new Date().getFullYear();
+      year = y.toString().padStart(4, '0');
+    }
+
+    let formatted = day;
+    if (month.length) formatted += '/' + month;
+    if (year.length) formatted += '/' + year;
+
+    input.value = formatted;
+  }
+
+  // --- Inicializa os inputs já existentes ---
+  document.querySelectorAll('input[type="date"], input.input-date')
+    .forEach(initInputDate);
+
+  // --- Se focar um input novo que ainda não foi inicializado, inicializa na hora ---
+  document.addEventListener('focusin', (e) => {
+    if (e.target.matches('input[type="date"], input.input-date')) {
+      initInputDate(e.target);
+    }
   });
+
+  // --- Observa o DOM para inputs adicionados dinamicamente ---
+  const mo = new MutationObserver((mutations) => {
+    for (const m of mutations) {
+      m.addedNodes.forEach((node) => {
+        if (node.nodeType !== 1) return; // só ELEMENT_NODE
+        // Se o próprio node é um input de data
+        if (node.matches?.('input[type="date"], input.input-date')) {
+          initInputDate(node);
+        }
+        // Ou se trouxe inputs dentro dele
+        node.querySelectorAll?.('input[type="date"], input.input-date')
+          .forEach(initInputDate);
+      });
+    }
+  });
+
+  mo.observe(document.body, { childList: true, subtree: true });
 }
 
 function abrirCalendario(input) {
