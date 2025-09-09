@@ -186,3 +186,24 @@
 .titulo-modal-sessao{
     display: inline;
 }
+
+@media (max-width: 1024px) {
+    
+    .sessao-cards {
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: visible;
+    }
+    
+    .galeria-de-fotos {
+        padding: 0 2rem;
+    }
+    
+    .galeria-content {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+}
