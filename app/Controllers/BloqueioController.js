@@ -73,7 +73,6 @@ if (pagina === 'reservas') {
 
         // --- Envia dados para o PHP ---
         const dados = {dataInicial, dataFinal, tipo: 'manual'};
-
         const response = await fetch('../../app/Models/BloqueioModel.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -101,7 +100,7 @@ let dataSelecionadaDoCalendario = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Ao clicar em um dia do calendário
-    const dias = document.querySelectorAll('.dia-calendario');
+    const dias = document.querySelectorAll('.date');
 
     dias.forEach(dia => {
         dia.addEventListener('click', function () {
@@ -141,5 +140,6 @@ document.addEventListener('DOMContentLoaded', () => {
             form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
         });
     }
+    
 });
 

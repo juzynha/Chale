@@ -74,6 +74,8 @@ document.querySelectorAll(".calendario-box").forEach(container => {
     });
 
     renderCalendar();
+
+    
 });
 
 /*
