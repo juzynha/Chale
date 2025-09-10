@@ -21,7 +21,7 @@ switch ($input['acao']) {
         cadastrarAdmin($input['dados'], $pdo);
         break;
     case 'enviar_codigo':
-        enviarCodigo();
+        enviarCodigo($input['email']);
         break;
     case 'cadastrar_usuario':
         cadastrarUsuario($input['dados'], $pdo);
@@ -64,39 +64,6 @@ function cadastrarAdmin($dados, $pdo) {
     }
 }
 
-function enviarCodigo() {
-    $codigo = rand(100000, 999999);
-
-    /*/ Enviar por e-mail
-    $mail = new PHPMailer(true);
-
-    try {
-        $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';
-        $mail->SMTPAuth   = true;
-        $mail->Username   = 'chalelavieenrose@gmail.com'; // seu Gmail
-        $mail->Password   = '000'; // senha de aplicativo
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port       = 587;
-
-        $mail->setFrom('chalelavieenrose@gmail.com', 'Chalé');
-        $mail->addAddress($email);
-
-        $mail->isHTML(true);
-        $mail->Subject = 'Código de verificação';
-        $mail->Body    = "Seu código de verificação é: <b>{$codigo}</b>";
-        $mail->AltBody = "Seu código de verificação é: {$codigo}";
-
-        $mail->send();
-        */
-        echo json_encode(['status' => 'ok', 'codigo' => $codigo]);
-        /*
-    } catch (Exception $e) {
-        echo json_encode(['status' => 'erro', 'mensagem' => 'Falha ao enviar e-mail: ' . $mail->ErrorInfo]);
-    }
-    exit;
-    */
-}
 
 function cadastrarUsuario($dados, $pdo) {
     $nome = $dados['nome'];
@@ -119,3 +86,39 @@ function cadastrarUsuario($dados, $pdo) {
         echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
     }
 }
+
+function enviarCodigo($email) {
+    $codigo = rand(100000, 999999);
+
+    // Dados que vamos enviar para o Node
+    $postData = json_encode([
+        'email' => $email,
+        'codigo' => $codigo
+    ]);
+
+    // Inicializa cURL
+    $ch = curl_init("http://localhost:3000/enviar-codigo"); // URL do seu Node.js
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
+    // Executa a requisição
+    $response = curl_exec($ch);
+
+    // Verifica erro de cURL
+    if ($response === false) {
+        echo json_encode([
+            'status' => 'erro',
+            'mensagem' => 'Falha na comunicação com o servidor de e-mail'
+        ]);
+        curl_close($ch);
+        return;
+    }
+
+    curl_close($ch);
+
+    // Retorna o que o Node.js enviou
+    echo $response;
+}
+

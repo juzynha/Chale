@@ -1,25 +1,37 @@
+const express = require("express");
 const nodemailer = require("nodemailer");
+const app = express();
+
+app.use(express.json());
 
 const transport = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
-  secure: true, // precisa ser true na porta 465
+  secure: true,
   auth: {
     user: "lilith.pocarli@gmail.com",
-    pass: "vmgalbmbtxqaoydz", // senha de app
+    pass: "vmgalbmbtxqaoydz",
   },
 });
 
-transport.sendMail({
-  from: 'Lya <lilith.pocarli@gmail.com>',
-  to: "wpocarli@gmail.com",
-  subject: "Enviando email com nodemailer",
-  html: "<h1>Olá</h1><p>Esse email foi enviado com sucesso</p>",
-  text: "Enviando email",
-})
-.then(info => {
-  console.log("Email enviado com sucesso:", info.messageId);
-})
-.catch(err => {
-  console.error("Erro ao enviar email:", err);
+app.post("/enviar-codigo", async (req, res) => {
+  const { email, codigo } = req.body;
+
+  try {
+    const info = await transport.sendMail({
+      from: 'Lya <lilith.pocarli@gmail.com>',
+      to: email,
+      subject: "Código de verificação",
+      html: `<p>Seu código de verificação é: <b>${codigo}</b></p>`,
+      text: `Seu código de verificação é: ${codigo}`,
+    });
+
+    res.json({ status: "ok", messageId: info.messageId });
+  } catch (err) {
+    res.json({ status: "erro", mensagem: err.message });
+  }
+});
+
+app.listen(3001, () => {
+  console.log("Servidor de email rodando na porta 3001");
 });

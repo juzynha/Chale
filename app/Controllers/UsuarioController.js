@@ -78,13 +78,14 @@ document.getElementById("formCadAltUsuario").addEventListener("submit", async fu
     const resposta = await fetch("app/Models/UsuarioModel.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ acao: "enviar_codigo" }),
+      body: JSON.stringify({ acao: "enviar_codigo" , email }),
     });
 
     const json = await resposta.json();
     codigoCriado = json.codigo;
     console.log("Código gerado:", codigoCriado);
 });
+
 
 document.getElementById("formValidacaoEmail").addEventListener("submit", async function (e) {
     e.preventDefault();
