@@ -329,7 +329,7 @@ function cadastrarUsuario() {
         const resposta = await fetch('app/Models/UsuarioModel.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ acao: 'enviar_codigo' }),
+            body: JSON.stringify({ acao: 'enviar_codigo' , email }),
         });
 
         const json = await resposta.json();
