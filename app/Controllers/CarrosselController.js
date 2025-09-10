@@ -49,4 +49,19 @@ if (pagina === 'faca_sua_reserva') {
         }
         
     });
+    //-------LISTAGEM DE FOTO-------
+    document.addEventListener('DOMContentLoaded', async function () {
+        const resposta = await fetch('../../app/Models/CarrosselModel.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: JSON.stringify({ acao: "listar_reservas" })
+        });
+    
+        const json = await resposta.json();
+        if (!json.erro) {
+            montarCarrossel(json.fotos);
+        } else {
+            console.error(json.mensagem);
+        }
+    });
 }
