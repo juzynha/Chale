@@ -19,6 +19,9 @@ switch ($input['acao']) {
     case 'logout':
         logout();
         break;
+    case 'verificar_senha':
+        verificarSenha($input['senhaDigitada']);
+        break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
 }
@@ -73,6 +76,43 @@ function logout() {
     session_destroy();
 
     echo json_encode(['erro' => false, 'mensagem' => 'Logout realizado com sucesso']);
+}
+
+function verificarSenha($senhaDigitada) {
+    if (!isset($_SESSION['usuario'])) {
+        echo json_encode(['erro' => 'true', 'mensagem' => 'Usuário não logado']);
+        exit;
+    }
+
+    $usuario = $_SESSION['usuario'];
+
+    // Verificar senha
+    if (!password_verify($senhaDigitada, $usuario['senha'])) {
+        echo json_encode(['erro' => 'true', 'mensagem' => 'Senha incorreta']);
+        exit;
+    }
+
+    // Se for admin, retorna campos básicos
+    else {
+        if ($usuario['tipo'] === 'admin') {
+            $dadosRetorno = [
+                'id' => $usuario['id'],
+                'nome' => $usuario['nome'],
+                'email' => $usuario['email'],
+                'tipo' => 'admin'
+            ];
+        } else { // usuário comum
+            $dadosRetorno = [
+                'id' => $usuario['id'],
+                'nome' => $usuario['nome'],
+                'email' => $usuario['email'],
+                'telefone' => $usuario['telefone'] ?? '',
+                'datanasc' => $usuario['datanasc'] ?? '',
+                'tipo' => 'usuario'
+            ];
+        }
+    }
+    echo json_encode(['status' => 'sucesso', 'dados' => $dadosRetorno]);
 }
 
 ?>

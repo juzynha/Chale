@@ -13,7 +13,7 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="servicos" id="sessaoServicos">
             <!-- Lista de sessões e serviços -->
         </div>
-        <div class="ferramenta admin" id="criar_sessao_servicos">
+        <div class="ferramenta admin" onclick="abrirModalCriarSessao('Serviços')">
             <p>Criar sessão</p>
             <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
         </div>
@@ -25,7 +25,7 @@ require_once __DIR__ . '/../layouts/header.php';
             <div class="galeria-content" id="sessaoFotos">
                 <!-- Lista de sessões e fotos -->
             </div>
-            <div class="ferramenta-branco admin" id="criar_sessao_fotos">
+            <div class="ferramenta-branco admin" onclick="abrirModalCriarSessao('Fotos')">
                 <p>Criar sessão</p>
                 <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
             </div>
@@ -35,17 +35,20 @@ require_once __DIR__ . '/../layouts/header.php';
 </body>
 
 <!-- Modais -->
-<div class="sombra-modal admin" id="modal_criar_sessao">
+<div class="sombra-modal admin" id="modal_cadalt_sessao">
     <div class="bloco-modal-geral">
         <div class="modal-header">
-            <h2>Criar sessão para: <span id="nome_referencia"></span></h2>
+            <h2 class="titulo-modal-sessao" name="titulo">
+                <span id="titulo_texto"></span>
+                <span id="nome_referencia" style="display:none;"></span>
+            </h2>
             <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" width="20px">
             </button>
         </div>
         <div class="modal-body">
-            <form id="formCriarSessao">
-                <p class="error" id="cadSessao_error"></p>
+            <form id="formCadAltSessao">
+                <p class="error" id="cadAltSessao_error"></p>
                 <div class="input-padrao">
                     <span>Nome da sessão:</span>
                     <input type="text" name="nome_sessao">
@@ -139,5 +142,6 @@ require_once __DIR__ . '/../layouts/header.php';
 </div>
 
 <?php
+require_once __DIR__ . '/../modals/excluir.php';
 require_once __DIR__ . '/../layouts/footer.php';
 ?>

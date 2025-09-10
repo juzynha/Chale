@@ -9,10 +9,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h2 id="cad_usu">Já possui uma conta? Fazer <p class="link" onclick="fecharModal('modal_cadalt_usuario'), abrirModal('modal_login')">login</p></h2>
+                    <h2 name="titulo">Já possui uma conta? Fazer <p class="link"
+                            onclick="fecharModal('modal_cadalt_usuario'), abrirModal('modal_login')">login</p>
+                    </h2>
                     <form id="formCadAltUsuario">
                         <div class="campos-form-inputwrapper">
-                            <p class="error" id="cadUsuario_error"></p>
+                            <p class="error" id="cadAltUsuario_error"></p>
                             <div class="input-wrapper">
                                 <span>Nome:</span>
                                 <input type="text" name="nome">
@@ -29,7 +31,8 @@
                                 <span>Data de nascimento:</span>
                                 <input type="date" name="data_nasc">
                             </div>
-                            <p>A senha deve conter no mínimo 8 caracteres, pelo menos uma letra, um número e um símbolo</p>
+                            <p>A senha deve conter no mínimo 8 caracteres, pelo menos uma letra, um número e um símbolo
+                            </p>
                             <div class="input-wrapper">
                                 <span>Senha:</span>
                                 <input type="password" name="senha">

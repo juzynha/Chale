@@ -30,62 +30,30 @@ require_once __DIR__ . '/../layouts/header.php';
                     <div class="itens-sessao-conta" id="resAPagar">
                         <div class="item-descricao">
                             <p>À pagar</p>
-                            <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resAPagar')">
+                            <div class="descer-container-reservas">
+                                <p id="numeroReservasNPagas"></p>
+                                <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resAPagar')">
+                            </div>
                         </div>
-                        <div class="sessao-reservas-a-pagar" name="content">
+                        <div class="sessao-lista-reservas" name="content">
                             <p>Você pode editar sua reserva enquanto ela não tiver sido paga!</p>
-                            <div class="reservas-a-pagar">
-                                <div class="reserva-a-pagar">
-                                    <div class="date-container">
-                                        <div class="date-group">
-                                            <span class="date-label">Check-in</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                        <div class="divider-vertical"></div>
-                                        <div class="date-group">
-                                            <span class="date-label">Check-out</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                    </div>
-                                    <p><strong>Valor total:</strong> R$400</p>
-                                    <div class="botao-de-pagar">
-                                        <button type="submit" class="btn"
-                                            onclick="abrirModal('modal_pagamento')">Pagar</button>
-                                    </div>
-                                </div>
-                                <div class="reserva-a-pagar">
-                                    <div class="date-container">
-                                        <div class="date-group">
-                                            <span class="date-label">CHECK-IN</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                        <div class="divider-vertical"></div>
-                                        <div class="date-group">
-                                            <span class="date-label">CHECK-OUT</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                    </div>
-                                    <p><strong>Valor total:</strong> R$400</p>
-                                    <div class="botao-de-pagar">
-                                        <button type="submit" class="btn"
-                                            onclick="abrirModal('modal_pagamento')">Pagar</button>
-                                    </div>
-                                </div>
+                            <div class="lista-reservas" id="reservas_nao_pagas">
+                                <!-- Lista de reservas não pagas do usuario -->
                             </div>
                         </div>
                     </div>
                     <div class="itens-sessao-conta" id="resEmAnd">
                         <div class="item-descricao">
                             <p>Em andamento</p>
-                            <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resEmAnd')">
+                            <div class="descer-container-reservas">
+                                <p id="numeroReservasPagas"></p>
+                                <img src="/chale/public/assets/icons/icon-seta-left(verde).svg" class="icon" name="seta" onclick="abrirContainer('resEmAnd')">
+                            </div>
+                            
                         </div>
-                        <div class="sessao-reservas-a-pagar" name="content">
-                            <div class="reservas-a-pagar">
-                                <div class="reserva-a-pagar">
+                        <div class="sessao-lista-reservas" name="content">
+                            <div class="lista-reservas">
+                                <div class="card-reservaUser1">
                                     <div class="date-container">
                                         <div class="date-group">
                                             <span class="date-label">Check-in</span>

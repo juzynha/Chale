@@ -5,16 +5,16 @@
             <button class="btn-fechar-modal">
                 <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
             </button>
-            <p class="error"></p>
         </div>
         <div class="modal-body">
             <form id="formDigiteSuaSenha">
+                <p class="error" id="digiteSenha_error"></p>
                 <div class="input-padrao">
                     <label for="conf_email">Senha:</label>
-                    <input type="text" id="senha_editar_dados" name="senha_editar_dados">
+                    <input type="text" name="senha_editar_dados">
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn" onclick="abrirModal('modal_cadalt_usuario')">Continuar</button>
+                    <button type="submit" class="btn">Continuar</button>
                 </div>
             </form>
         </div>

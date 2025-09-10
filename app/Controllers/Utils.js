@@ -169,6 +169,13 @@ export function abrirModal(idModal) {
 }
 window.abrirModal = abrirModal;
 
+export function abrirModalExcluir(item){
+    const modal = document.getElementById('modal_excluir');
+    modal.querySelector('[name="titulo"]').textContent = 'Deseja excluir ' + item + '?';
+    abrirModal('modal_excluir');
+}
+window.abrirModalExcluir = abrirModalExcluir;
+
 // Função para fechar o modal
 export function fecharModal(idModal) {
     const modal = document.getElementById(idModal);

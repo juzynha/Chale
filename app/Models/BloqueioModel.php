@@ -6,7 +6,8 @@ $pdo = Database::conectar();
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $input = json_decode(file_get_contents("php://input"), true);
-
+$acao = $input['acao'] ?? null;
+$dados = $input['dados'] ?? null;
 if (!isset($input['acao'])) {
     echo json_encode(['status' => 'erro', 'mensagem' => 'Ação não definida']);
     exit;
@@ -21,7 +22,7 @@ switch ($acao) {
             echo json_encode(['erro' => true, 'mensagem' => 'Dados não enviados.']);
             exit;
         }
-        bloquearDias($dados, $pdo);
+        bloquearDias($input['dados'], $pdo);
         break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);

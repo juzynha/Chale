@@ -9,7 +9,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h2>Não possui uma conta? <p class="link" onclick="fecharModal('modal_login'), abrirModal('modal_cadalt_usuario')">Cadastre-se</p> agora</h2>
+                    <h2>Não possui uma conta? <p class="link"
+                            onclick="fecharModal('modal_login'), abrirModalCadastrarUsuario()">
+                            Cadastre-se</p> agora</h2>
                     <form id="formLogin" class="form-inputwrapper">
                         <div class="campos-form-inputwrapper">
                             <p class="error" id="login_error"></p>

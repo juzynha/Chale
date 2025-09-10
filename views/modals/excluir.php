@@ -2,17 +2,19 @@
     <div class="bloco-modal-geral">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Deseja mesmo excluir?</h2>
+                <h2 name="titulo"></h2>
                 <button class="btn-fechar-modal">
                     <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
                 </button>
             </div>
             <hr>
-            <form id="formexcluir">
-                <div class="botao-excluir">
-                    <button class="btn" name="excluir">Excluir</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <form id="formExcluir">
+                    <div class="modal-footer">
+                        <button class="btn" name="excluir">Excluir</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

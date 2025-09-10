@@ -52,10 +52,7 @@ function cadastrarAdmin($dados, $pdo) {
     $stmt->bindParam(':senha', $senha); 
 
     if ($stmt->execute()) {
-        echo json_encode([
-            'erro' => false,
-            'mensagem' => 'Usuário cadastrado com sucesso!'
-        ]);
+        echo json_encode(['erro' => false, 'mensagem' => 'Usuário cadastrado com sucesso!']);
     } else {
         echo json_encode([
             'erro' => true,
