@@ -304,3 +304,9 @@
     background: var(--branco);
     border-radius: 50%;
 }
+
+.botoes-cancelar{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
