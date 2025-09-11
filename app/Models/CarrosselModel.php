@@ -60,5 +60,5 @@ function listarCarrossel($pdo) {
     $stmt->execute();
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo json_encode($data);
+    echo json_encode(['erro' => false, 'fotos' => $data]);;
 }

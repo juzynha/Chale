@@ -11,8 +11,30 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="container">
         <h1 class="titulo verde-escuro">Faça sua reserva no chalé La Vie En Rose!</h1>
     </div>
-    <section class="carrossel-container">
-        <div class="carrossel"></div>
+    <section>
+        <div class="carrossel-container">
+            <div class="button-carrossel" id="prevBtn_carrossel"><img src="/chale/public/assets/icons/icon-seta-left.svg"></div>
+            <div class="carrossel" id="carrossel-box">
+                <!--
+                <div class="carrossel-item small-left">
+                    <img src="/chale/public/assets/img1.jpeg">
+                </div>
+                <div class="carrossel-item mid-left">
+                    <img src="/chale/public/assets/img2.jpeg">
+                </div>
+                <div class="carrossel-item center">
+                    <img src="/chale/public/assets/img3.jpeg">
+                </div>
+                <div class="carrossel-item mid-right">
+                    <img src="/chale/public/assets/img4.jpeg">
+                </div>
+                <div class="carrossel-item small-right">
+                    <img src="/chale/public/assets/img5.jpeg">
+                </div>
+                -->
+            </div>
+            <div class="button-carrossel" id="nextBtn_carrossel"><img src="/chale/public/assets/icons/icon-seta-right.svg"></div>
+        </div>
         <div class="option-editar-carrossel">
             <div class="ferramenta" onclick="abrirModal('modal_editar_carrossel')">
                 <p>Editar carrossel</p>
@@ -133,7 +155,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         </ul>
                         <hr class="divider-horizontal-cal">
                         <ul class="days"></ul>
-                     </div>
+                    </div>
                 </div>
             </div>
         </div>

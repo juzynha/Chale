@@ -48,7 +48,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
 });
 
 const pagina = document.body.dataset.page;
-if (pagina === 'conta_admin') {
+if (pagina === 'conta_admin'||pagina === 'conta_usuario') {
     //LOGOUT
     document.getElementById("formLogout").querySelector('[name="sim"]').addEventListener("click", async function (e) {
         e.preventDefault();
@@ -71,3 +71,7 @@ if (pagina === 'conta_admin') {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+
+});
