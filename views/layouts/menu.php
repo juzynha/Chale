@@ -1,16 +1,12 @@
 <nav>
     <a href="/chale/index.php"><img src="/chale/public/assets/logo.svg" class="logo"></a>
 
-<div class="hamburguer" id="hamburguer">
-
-<span></span>
-<span></span>
-<span></span>
-
-</div>
-
+    <div for="menu-toggle" class="hamburguer">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
     <ul>
-
         <li><a href="/chale/views/pages/o_chale.php">O Chalé</a></li>
         <li><a href="/chale/views/pages/sobre_nos.php">Sobre nós</a></li>
         <li><a href="/chale/views/pages/faca_sua_reserva.php">Faça sua Reserva</a></li>
@@ -36,7 +32,10 @@
     <?php
     }
     ?>
+
 </nav>
+
+<div class="nav roll">
 
 <?php
 require_once __DIR__ .'/../modals/login.php';

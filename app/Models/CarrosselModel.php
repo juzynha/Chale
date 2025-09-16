@@ -15,6 +15,9 @@ switch ($input['acao']) {
     case 'cadastrar_foto':
         cadastrarFoto($_FILES, $pdo);
         break;
+    case 'listar_carrossel':
+        listarCarrossel($pdo);
+        break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
 }
@@ -49,4 +52,13 @@ function cadastrarFoto($arquivos, $pdo) {
         echo json_encode(['erro' => true, 'mensagem' => 'Erro ao salvar no banco']);
     }
 
+}
+
+function listarCarrossel($pdo) {
+    $sql = "SELECT * FROM carrossel ORDER BY carposicao ASC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    echo json_encode(['erro' => false, 'fotos' => $data]);;
 }

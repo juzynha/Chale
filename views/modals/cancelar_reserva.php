@@ -8,12 +8,14 @@
                 </button>
             </div>
             <hr>
-            <form id="formCancelar">
-                <div class="botoes-cancelar">
-                    <button class="btn" name="sim">Sim</button>
-                    <button class="btn" onclick="fecharModal('modal_cancelar')">Não</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <form id="formCancelar">
+                    <div class="botoes-cancelar">
+                        <button class="btn" onclick="fecharModal('modal_cancelar')">Não</button>
+                        <button class="btn">Sim</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

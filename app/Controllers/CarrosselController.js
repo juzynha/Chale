@@ -44,9 +44,79 @@ if (pagina === 'faca_sua_reserva') {
         if (!json.erro) {
             fecharModal('modal_add_foto_carrossel');
             alert(json.mensagem);
+            location.href = window.location.pathname;
         } else {
             error.textContent= json.mensagem;
         }
         
     });
+    //-------LISTAGEM DE FOTO-------
+    document.addEventListener('DOMContentLoaded', async function () {
+        const resposta = await fetch('../../app/Models/CarrosselModel.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'acao=listar_carrossel'
+        });
+    
+        const json = await resposta.json();
+        if (!json.erro) {
+            montarCarrossel(json.fotos);
+        } else {
+            console.error(json.mensagem);
+        }
+    });
 }
+
+function montarCarrossel(fotos) {
+    const container = document.getElementById('carrossel-box');
+    container.innerHTML = '';
+
+    fotos.forEach((foto, index) => {
+        const div = document.createElement('div');
+        div.classList.add('carrossel-item');
+        div.dataset.index = index;
+
+        const img = document.createElement('img');
+        img.src = `/chale/public/uploads/carrossel/${foto.carfotcaminho}`;
+
+        div.appendChild(img);
+        container.appendChild(div);
+    });
+
+    atualizarCarrossel(0);
+}
+
+let posicaoAtual = 0;
+
+function atualizarCarrossel(index) {
+    const items = document.querySelectorAll('.carrossel-item');
+    const total = items.length;
+
+    items.forEach((item, i) => {
+        item.className = 'carrossel-item'; // reset classes
+
+        if (i === index) {
+            item.classList.add('center');
+        } else if (i === (index - 1 + total) % total) {
+            item.classList.add('mid-left');
+        } else if (i === (index - 2 + total) % total) {
+            item.classList.add('small-left');
+        } else if (i === (index + 1) % total) {
+            item.classList.add('mid-right');
+        } else if (i === (index + 2) % total) {
+            item.classList.add('small-right');
+        } else {
+            item.classList.add('oculto'); // imagens extras ficam escondidas
+        }
+    });
+
+    posicaoAtual = index;
+}
+
+document.getElementById('prevBtn_carrossel').addEventListener('click', () => {
+    atualizarCarrossel((posicaoAtual - 1 + document.querySelectorAll('.carrossel-item').length) % document.querySelectorAll('.carrossel-item').length);
+});
+
+document.getElementById('nextBtn_carrossel').addEventListener('click', () => {
+    atualizarCarrossel((posicaoAtual + 1) % document.querySelectorAll('.carrossel-item').length);
+});
