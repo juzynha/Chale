@@ -126,12 +126,15 @@
     background-color: var(--verde-medio);
     width: 100%;
     height: 100%;
+    margin-top: -7px;
+    margin-bottom: -2px;
 }
 
 .galeria-content{
     display: flex;
     flex-direction: column;
 }
+
 
 .card-foto-add{
     display: flex;
