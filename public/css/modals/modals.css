@@ -45,6 +45,22 @@
     flex-direction: column;  
 }
 
+.bloco-modal-especifico {
+    background-color: var(--verde-medio);
+    color: var(--branco);
+    max-width: 70%;
+    max-height: 50%;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: -10px -10px 0 var(--verde),
+    10px 10px 0 var(--verde-escuro);
+    overflow-y: auto;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;  
+    align-self: center;
+}
+
 /*Contorno interno decorativo*/  
 .contorno-modal {
     display: flex; 
