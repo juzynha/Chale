@@ -223,3 +223,40 @@ export function scrollModalToTop(idModal) {
     }
 }
 window.scrollModalToTop = scrollModalToTop;
+
+export function abrirPopUp(triggerElement, popUpId) {
+    const popup = document.getElementById(popUpId);
+    if (!popup) {
+      console.error(`PopUp com id "${popUpId}" não encontrado`);
+      return;
+    }
+  
+    // Se já está visível → fecha
+    if (popup.classList.contains("visivel")) {
+      popup.classList.remove("visivel");
+      return;
+    }
+  
+    // Fecha outros popups abertos (caso queira só 1 ativo por vez)
+    document.querySelectorAll(".popup.visivel").forEach(p => p.classList.remove("visivel"));
+  
+    // Mostra o popup
+    popup.classList.add("visivel");
+  
+    // Posiciona ao lado do trigger
+    const rect = triggerElement.getBoundingClientRect();
+    popup.style.position = "absolute";
+    popup.style.top = rect.bottom + window.scrollY + "px";
+    popup.style.left = rect.left + window.scrollX + "px";
+  
+    // Fecha ao clicar fora
+    const fechar = (e) => {
+      if (!popup.contains(e.target) && e.target !== triggerElement) {
+        popup.classList.remove("visivel");
+        document.removeEventListener("click", fechar);
+      }
+    };
+    setTimeout(() => document.addEventListener("click", fechar), 0);
+  }
+  
+window.abrirPopUp = abrirPopUp;

@@ -22,6 +22,12 @@ switch ($input['acao']) {
     case 'verificar_senha':
         verificarSenha($input['senhaDigitada']);
         break;
+    case 'verificar_login':
+        verificarLogin();
+        break;
+    case 'verificar_usuario':
+        verificarUsuario();
+        break;
     default:
         echo json_encode(['status' => 'erro', 'mensagem' => 'Ação inválida']);
 }
@@ -115,4 +121,25 @@ function verificarSenha($senhaDigitada) {
     echo json_encode(['status' => 'sucesso', 'dados' => $dadosRetorno]);
 }
 
+function verificarLogin(){
+    if (isset($_SESSION['usuario'])) {
+        echo json_encode([ "logado" => true, "tipo" => $_SESSION['usuario']['tipo'] ]);
+    } else {
+        echo json_encode([ "logado" => false ]);
+    }
+}
+
+function verificarUsuario(){
+    if (isset($_SESSION['usuario'])) {
+        if ($_SESSION['usuario']['tipo'] === 'admin'){            
+            echo json_encode([ "usuario" => [
+                "nome"  => $_SESSION['usuario']['nome'],
+                "email" => $_SESSION['usuario']['email'],
+                "foto"  => $_SESSION['usuario']['foto']
+            ] ]);
+        }
+    } else {
+        echo json_encode([ "logado" => false ]);
+    }
+}   
 ?>

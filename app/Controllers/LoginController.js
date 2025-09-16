@@ -1,4 +1,4 @@
-import {validarCamposPreenchidos, fecharModal} from './Utils.js';
+import {validarCamposPreenchidos, fecharModal, abrirPopUp} from './Utils.js';
 
 //LOGIN
 document.getElementById("formLogin").addEventListener("submit", async function (e) {
@@ -29,7 +29,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
 
     //---Passando das validações---
     const dados = { email, senha };
-    const resposta = await fetch("../../app/Models/LoginModel.php", {
+    const resposta = await fetch("/chale/app/Models/LoginModel.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ acao: "login", dados }),
@@ -72,6 +72,79 @@ if (pagina === 'conta_admin'||pagina === 'conta_usuario') {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function(){
+if (pagina === 'conta_admin'){
+  const json = await verificarLogin();
+  if (json.logado && json.tipo == "admin"){
+    const resposta = await fetch("/chale/app/Models/LoginModel.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ acao: "verificar_usuario" }),
+    });
+    const json = await resposta.json();
 
-});
+    const containerConta = document.getElementById('containerContaAdmin');
+    const fotoPerfil = containerConta.querySelector('[name="foto_perfil"]');
+    const infosConta = containerConta.querySelector('[name="infos_conta"]');
+
+    const fotoImg = document.createElement("img");
+    fotoImg.src = "/chale/public/uploads/" + json.usuario.foto;
+    fotoPerfil.appendChild(fotoImg);
+  }
+}
+
+async function verificarLogin(){
+  const resposta = await fetch("/chale/app/Models/LoginModel.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ acao: "verificar_login" }),
+  });
+  const json = await resposta.json();
+  return json;
+}
+
+document.addEventListener('DOMContentLoaded', async function(){
+    const json = await verificarLogin();
+    const nav = document.getElementById("nav_menu");
+    const listaMenu = document.getElementById("lista_menu");
+
+    // Remove qualquer botão antigo (se tiver no HTML fixo)
+    const oldButton = nav.querySelector("button");
+    if (oldButton) oldButton.remove();
+
+    if (json.logado) {
+      // Criar botão do usuário
+      const userBtn = document.createElement("button");
+      userBtn.classList.add("user");
+
+      const link = document.createElement("a");
+      const img = document.createElement("img");
+      img.src = "/chale/public/assets/icons/icon-user.svg";
+      img.classList.add("icon");
+
+      // Define destino do link conforme tipo de usuário
+      if (json.tipo === "admin") {
+        link.href = "/chale/views/pages/conta_admin.php";
+
+        // Adiciona link admin no menu
+        const liAdmin = document.createElement("li");
+        liAdmin.innerHTML = `<a> Admin <img src="/chale/public/assets/icons/icon-engrenagem.svg" width="18px"></a>`;
+        listaMenu.appendChild(liAdmin);
+
+      } else if (json.tipo === "cliente") {
+        link.href = "/chale/views/pages/conta_usuario.php";
+      }
+
+      link.appendChild(img);
+      userBtn.appendChild(link);
+      nav.appendChild(userBtn);
+
+    } else {
+      // Se não logado → botão entrar
+      const entrarBtn = document.createElement("button");
+      entrarBtn.classList.add("entrar");
+      entrarBtn.setAttribute("onclick", "abrirModal('modal_login')");
+      entrarBtn.textContent = "Entrar";
+      nav.appendChild(entrarBtn);
+    }
+
+}); 
