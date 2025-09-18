@@ -37,7 +37,7 @@ require_once __DIR__ . '/../layouts/header.php';
     <div><img src="/chale/public/assets/elementos-graficos/patinhas.svg" class="patinhas"></div>
     <div class="container">
         <div class="bloco-modal-especifico">
-            <a href="https://maps.app.goo.gl/MyydiX3oBhpjAV4K8"><img src="/chale/public/assets/elementos-graficos/maps.png" alt="" ></a>
+            <a href="https://maps.app.goo.gl/MyydiX3oBhpjAV4K8"><img src="/chale/public/assets/elementos-graficos/maps.png" alt="" class="mapinha"></a>
         </div>
     </div>
 </body>

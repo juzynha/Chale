@@ -113,6 +113,15 @@
   margin-top: 10%;
 }
 
+.mapinha {
+    max-height: 90%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    align-self: center;
+}
+
 .textinho2 {
     position: absolute;
     font-weight: 400;
