@@ -1,5 +1,4 @@
 .calendario-box{
-    display: block;
     background-color: var(--verde-medio);
     border-radius: 10px;
     box-shadow: 10px 10px 0 rgba(42,50,43),
@@ -34,12 +33,12 @@
     display: flex;
     text-align: center;
     color: var(--branco);
+    width: 100%; 
 }
 
 .calendario-content .weeks li{
     align-self: center;
-    width: calc(100% / 7 - 2px);
-    aspect-ratio: 1 / 0.5; 
+    width: 80px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,20 +48,22 @@
 
 .calendario-content .days-line{
     display: flex;
-    width: 100%;
 }
 
 .calendario-content .day{
     display: flex;
-    padding: 0.5rem 1rem;
-    width: calc(100% / 7 - 2px);
-    aspect-ratio: 1 / 0.8; 
+    align-items: center;
+    justify-content: center;
+    /* width: calc(100% / 7 - 2px); */
+    width: 80px;
+    height: 80px; 
 }
 
 .calendario-content .day li{
     display: flex;
-    width: 100%;
-    height: 100%;
+    width: 55px;
+    height: 55px; 
+    padding: 3px; 
     justify-content: center;
     align-items: center;
     cursor: pointer;
@@ -96,17 +97,49 @@
     z-index: -1;
 }
 
-/* Responsividade - Tablets, 768px */
+@media screen and (max-width:590px){
 
-@media screen and (width: 768px) {
+.calendario-content .weeks li{
+   width: 60px; 
+   font-size: 18px; 
+}
 
-.calendario-box{
+.calendario-content .day{
+    width: 60px;
+    height: 60px; 
+}
 
-margin: 0 1rem;
-box-shadow: 5px 5px 0 rgba(42,50,43), -5px -5px 0 rgba(124,154,120);
+.calendario-content .day li{
+    width: 45px;
+    height: 45px; 
+    padding: 1.5px; 
+    font-size: 18px;
+}
+
+}
+
+@media screen and (max-width:460px){
+
+.calendario-content .weeks li{
+   width: 47px; 
+}
+
+.calendario-content .day{
+    width: 47px;
+    height: 47px; 
+}
+
+.calendario-content .day li{
+    width: 35px;
+    height: 35px; 
+}
+
+.day li.active::before {
+    width: 35px;
+    height: 35px;
+}
 
 }
 
 
-}
 

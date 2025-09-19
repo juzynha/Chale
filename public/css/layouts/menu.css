@@ -1,4 +1,7 @@
-nav{
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/glacial-indifference-2');
+
+nav {
     position: relative;
     display: flex;
     width: 100%;
@@ -8,13 +11,12 @@ nav{
     z-index: 2;
 }
 
-nav ul{
+.menu-nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 2rem;
-    
 }
 
 nav ul li a {
@@ -35,7 +37,7 @@ nav ul li a::after {
     position: absolute;
     bottom: -2px;
     left: 0;
-    transform: scaleX(0); 
+    transform: scaleX(0);
     transition: transform 0.2s ease-in-out;
 }
 
@@ -44,7 +46,7 @@ nav ul li a:hover::after {
 }
 
 .logo {
-    width: 9rem;
+    width: 7rem;
 }
 
 .user {
@@ -58,7 +60,7 @@ nav ul li a:hover::after {
     padding: 10px;
 }
 
-.entrar{
+.entrar {
     font-size: 22px;
     padding: 8px 15px;
     border: 2px solid var(--branco);
@@ -67,7 +69,7 @@ nav ul li a:hover::after {
     transition: ease-in-out 0.2s;
 }
 
-.entrar:hover{
+.entrar:hover {
     font-size: 22px;
     padding: 8px 15px;
     border-radius: 50px;
@@ -76,11 +78,11 @@ nav ul li a:hover::after {
 }
 
 
-#menu-toggle{
+#menu-toggle {
     display: none;
 }
 
-.hamburguer{
+.hamburguer {
     display: none;
     flex-direction: column;
     justify-content: space-around;
@@ -89,60 +91,84 @@ nav ul li a:hover::after {
     background: transparent;
     border: none;
     padding: 0;
-    z-index: 10; 
+    z-index: 10;
 
 }
 
-.hamburguer span{
-display: block;
-height: 3px; 
-width: 100%;
-background: white;
-border-radius: 3px;
-transition: 0.3s;  
-}
-
-@media screen and (max-width: 425px){
-
-.hamburguer{
-    display: flex;
-    position: relative;
-    z-index: 100;
-}
-
-.nav ul{
-    position: fixed;
-    top: 0;
-    left: -100%;
-    right: 100%;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: center;
+.hamburguer span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: rgb(255, 255, 255);
+    border-radius: 3px;
     transition: 0.3s;
 }
 
-#menu-toggle:checked ~ ul{
-left: 0;
-}
-
-#menu-toggle:checked + .hamburguer span:nth-child(1) {
-    transform: rotate(45deg) translateY(8px);
-}
-#menu-toggle:checked + .hamburguer span:nth-child(2) {
-    opacity: 0;
-}
-#menu-toggle:checked + .hamburguer span:nth-child(3) {
-    transform: rotate(-45deg) translateY(-8px);
-}
+.barra{
+    width: 100%;
+    border: 1px solid black;
+    display: none;
 
 }
 
-@media (max-width: 999px){
-    nav ul{
+@media (max-width: 999px) {
+
+    nav {
+        justify-content: center;
+    }
+
+    .hamburguer {
+        position: absolute;
+        right: 20px;
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .entrar {
         display: none;
     }
-    .hamburguer{
+
+    .menu-nav {
+        display: none;
+        position: fixed;
+        top: 78px; 
+        right: 0;
+        left: auto;
+        width: 300px;
+        height: auto; 
+        flex-direction: column;
+        background-color: rgba(124, 154, 120, 1);
+        transform: translateX(0%); 
+        align-items: center;
+        border-radius: 3px;
+        border: 2px solid black;
+        justify-content: space-around;
+        align-items: center;
+        gap: 0;   
+        z-index: 2000; 
+      }
+
+    .menu-nav a{
+        display: flex;
+        width: 100%;  
+        box-sizing: border-box;
+        font-size: 28px;
+        font-family: "Glacial Indifference"; 
+        height: 100%; 
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu-nav li{
+        height: 120px; 
+        display: flex; 
+        align-items: center;
+        width: 100%;
+    }
+
+    .barra{
         display: flex;
     }
-}
 
+    }

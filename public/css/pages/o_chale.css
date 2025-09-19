@@ -161,7 +161,7 @@
 .card-foto .icon{
     width: 20px;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1;
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -175,7 +175,6 @@
 .ferramentas {
     display: flex;
     gap: 1rem;
-
 }
 
 .ferramentas img {
@@ -200,7 +199,6 @@
     }
     
     .galeria-content {
-        flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
         gap: 1rem;

@@ -73,4 +73,11 @@ footer.foot {
         flex-direction: column;
         gap: 10px;
     }
+
+}
+
+@media (max-width: 1024px) {
+    .foot{
+        max-width: 100%; 
+    }
 }
