@@ -9,15 +9,12 @@ require_once __DIR__ . '/../layouts/header.php';
     ?>
     </header>
     <div class="container-conta">
-        <section class="perfil">
-            <div class="admin-fotoperfil">
-                <img src="/chale/public/assets/icons/icon-user.svg" alt="avatar do adimin" width="100px">
+        <section class="perfil" id="containerContaUsuario">
+            <div class="admin-fotoperfil" name="foto_perfil">
+                <!-- Foto do usuário -->
             </div>
-            <ul class="admin-infos">
-                <li class="nome-usuario">Nome: Nome do usuario</li>
-                <li>Email: usua@gmail.com</li>
-                <li>Telefone: (99)99999-9999</li>
-                <li>Data de nascimento: 13/12/1989</li>
+            <ul class="admin-infos" name="infos_conta">
+                <!-- Infos do usuário (nome,email,telefone,data de nascimento) -->
             </ul>
         </section>
         <section class="conteudo-conta">
@@ -53,22 +50,7 @@ require_once __DIR__ . '/../layouts/header.php';
                         </div>
                         <div class="sessao-lista-reservas" name="content">
                             <div class="lista-reservas">
-                                <div class="card-reservaUser1">
-                                    <div class="date-container">
-                                        <div class="date-group">
-                                            <span class="date-label">Check-in</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                        <div class="divider-vertical"></div>
-                                        <div class="date-group">
-                                            <span class="date-label">Check-out</span>
-                                            <div class="divider-horizontal"></div>
-                                            <input type="date" class="date-input">
-                                        </div>
-                                    </div>
-                                    <p><strong>Valor total:</strong> R$400</p>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

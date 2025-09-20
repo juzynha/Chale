@@ -8,25 +8,12 @@
   box-sizing: border-box;
 }
 
-@media (min-width: 768px) {
-  .container-conta {
-    padding: 3rem 5rem;
-  }
-}
-
 /* Seção do Perfil */
 .perfil {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-}
-
-@media (min-width: 768px) {
-  .perfil {
-    flex-direction: row;
-    align-items: flex-start;
-  }
 }
 
 .admin-fotoperfil {
@@ -39,11 +26,8 @@
   height: 120px;
 }
 
-@media (min-width: 768px) {
-  .admin-fotoperfil {
-    width: 150px;
-    height: 150px;
-  }
+.admin-fotoperfil img{
+  width: 60%;
 }
 
 .admin-infos {
@@ -55,23 +39,10 @@
   text-align: center;
 }
 
-@media (min-width: 768px) {
-  .admin-infos {
-    font-size: 1.5rem;
-    text-align: left;
-  }
-}
-
 .nome-usuario {
   color: var(--verde-escuro);
   font-size: 1.5rem;
   font-weight: bold;
-}
-
-@media (min-width: 768px) {
-  .nome-usuario {
-    font-size: 1.75rem;
-  }
 }
 
 /* Conteúdo da Conta */
@@ -101,13 +72,6 @@
   font-weight: 400;
 }
 
-@media (max-width: 1024px) {
-  .titulo-sessao-conta h2 {
-    margin-left: 1rem;
-    font-size: 2.125rem;
-  }
-}
-
 .itens-sessao-conta {
   display: flex;
   flex-direction: column;
@@ -134,12 +98,6 @@
 
 .item-descricao p {
   font-size: 1.1rem;
-}
-
-@media (min-width: 768px) {
-  .item-descricao p {
-    font-size: 1.375rem;
-  }
 }
 
 /* Seção de Reservas a Pagar */
@@ -190,13 +148,6 @@
   font-weight: 400;
 }
 
-@media (min-width: 768px) {
-  .aviso-cancelamento {
-    font-size: 1.25rem;
-    margin-top: 0.75rem;
-  }
-}
-
 /* Itens clicáveis */
 .escrita-item-sessao {
   cursor: pointer;
@@ -209,12 +160,6 @@
   color: var(--verde-escuro);
   font-size: 1.1rem;
   text-decoration: none;
-}
-
-@media (min-width: 768px) {
-  .escrita-item-sessao a {
-    font-size: 1.375rem;
-  }
 }
 
 .card-reservaUser-footer {
@@ -250,4 +195,49 @@
 .btn-pagar:hover{
   box-shadow: -3px -3px var(--verde-escuro),
   2px 2px var(--verde-azulado);
+}
+
+@media (min-width: 768px) {
+  .container-conta {
+    padding: 3rem 5rem;
+  }
+
+  .perfil {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .admin-fotoperfil {
+    width: 150px;
+    height: 150px;
+  }
+
+  .admin-infos {
+    font-size: 1.5rem;
+    text-align: left;
+  }
+
+  .nome-usuario {
+    font-size: 1.75rem;
+  }
+
+  .item-descricao p {
+    font-size: 1.375rem;
+  }
+
+  .aviso-cancelamento {
+    font-size: 1.25rem;
+    margin-top: 0.75rem;
+  }
+  
+  .escrita-item-sessao a {
+    font-size: 1.375rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .titulo-sessao-conta h2 {
+    margin-left: 1rem;
+    font-size: 2.125rem;
+  }
 }

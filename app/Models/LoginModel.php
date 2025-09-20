@@ -137,6 +137,14 @@ function verificarUsuario(){
                 "email" => $_SESSION['usuario']['email'],
                 "foto"  => $_SESSION['usuario']['foto']
             ] ]);
+        } else if ($_SESSION['usuario']['tipo'] === 'cliente') {
+            echo json_encode([ "usuario" => [
+                "nome"  => $_SESSION['usuario']['nome'],
+                "telefone"  => $_SESSION['usuario']['telefone'],
+                "email" => $_SESSION['usuario']['email'],
+                "datanasc"  => $_SESSION['usuario']['datanasc'],
+                "foto"  => $_SESSION['usuario']['foto']
+            ] ]);
         }
     } else {
         echo json_encode([ "logado" => false ]);

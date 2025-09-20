@@ -1,4 +1,4 @@
-import {validarCamposPreenchidos, fecharModal, abrirPopUp} from './Utils.js';
+import {validarCamposPreenchidos, fecharModal, abrirPopUp, converterDataParaBR} from './Utils.js';
 
 //LOGIN
 document.getElementById("formLogin").addEventListener("submit", async function (e) {
@@ -71,24 +71,60 @@ if (pagina === 'conta_admin'||pagina === 'conta_usuario') {
         }
     });
 }
-
+//retornando as informações do usuário logado (admin) na página do perfil
 if (pagina === 'conta_admin'){
-  const json = await verificarLogin();
-  if (json.logado && json.tipo == "admin"){
-    const resposta = await fetch("/chale/app/Models/LoginModel.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ acao: "verificar_usuario" }),
-    });
-    const json = await resposta.json();
-
+  const login = await verificarLogin();
+  if (login.logado && login.tipo == "admin"){
+    //recebe os dados do usuario logado admin
+    const user = await verificarUsuario();
+    
     const containerConta = document.getElementById('containerContaAdmin');
     const fotoPerfil = containerConta.querySelector('[name="foto_perfil"]');
     const infosConta = containerConta.querySelector('[name="infos_conta"]');
 
+    //mostrando a foto de perfil
     const fotoImg = document.createElement("img");
-    fotoImg.src = "/chale/public/uploads/" + json.usuario.foto;
+    if (!user.usuario.foto){
+      fotoImg.src = "/chale/public/assets/icons/icon-user.svg";
+    } else {
+      fotoImg.src = "/chale/public/uploads/" + user.usuario.foto;
+    }
     fotoPerfil.appendChild(fotoImg);
+  
+    //mostrando as infos (nome,email)
+    infosConta.innerHTML = `
+      <li class="nome-usuario">${user.usuario.nome}</li>
+      <li>E-mail: ${user.usuario.email}</li>`
+  }
+}
+
+//retornando as informações do usuário logado (admin) na página do perfil
+if (pagina === 'conta_usuario'){
+  const login = await verificarLogin();
+  if (login.logado && login.tipo == "cliente"){
+    //recebe os dados do usuario logado admin
+    const user = await verificarUsuario();
+
+    const containerConta = document.getElementById('containerContaUsuario');
+    const fotoPerfil = containerConta.querySelector('[name="foto_perfil"]');
+    const infosConta = containerConta.querySelector('[name="infos_conta"]');
+
+    //mostrando a foto de perfil
+    const fotoImg = document.createElement("img");
+    if (!user.usuario.foto){
+      fotoImg.src = "/chale/public/assets/icons/icon-user.svg";
+    } else {
+      fotoImg.src = "/chale/public/uploads/" + user.usuario.foto;
+    }
+    fotoPerfil.appendChild(fotoImg);
+  
+    //mostrando as infos (nome,email)
+    let dataNasc = converterDataParaBR(user.usuario.datanasc);
+    infosConta.innerHTML = `
+      <li class="nome-usuario">${user.usuario.nome}</li>
+      <li>Email: ${user.usuario.email}</li>
+      <li>Telefone: ${user.usuario.telefone}</li>
+      <li>Data de nascimento: ${dataNasc}</li>`; 
   }
 }
 
@@ -102,6 +138,17 @@ async function verificarLogin(){
   return json;
 }
 
+async function verificarUsuario(){
+  const resposta = await fetch("/chale/app/Models/LoginModel.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ acao: "verificar_usuario" }),
+  });
+  const json = await resposta.json();
+  return json;
+}
+
+//menu logado-deslogado
 document.addEventListener('DOMContentLoaded', async function(){
     const json = await verificarLogin();
     const nav = document.getElementById("nav_menu");
@@ -146,5 +193,4 @@ document.addEventListener('DOMContentLoaded', async function(){
       entrarBtn.textContent = "Entrar";
       nav.appendChild(entrarBtn);
     }
-
 }); 
