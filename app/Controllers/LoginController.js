@@ -97,7 +97,6 @@ if (pagina === 'conta_admin'){
       <li>E-mail: ${user.usuario.email}</li>`
   }
 }
-
 //retornando as informações do usuário logado (admin) na página do perfil
 if (pagina === 'conta_usuario'){
   const login = await verificarLogin();

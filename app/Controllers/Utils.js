@@ -257,6 +257,5 @@ export function abrirPopUp(triggerElement, popUpId) {
       }
     };
     setTimeout(() => document.addEventListener("click", fechar), 0);
-  }
-  
+}
 window.abrirPopUp = abrirPopUp;

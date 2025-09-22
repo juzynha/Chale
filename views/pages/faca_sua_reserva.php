@@ -15,23 +15,7 @@ require_once __DIR__ . '/../layouts/header.php';
         <div class="carrossel-container">
             <div class="button-carrossel" id="prevBtn_carrossel"><img src="/chale/public/assets/icons/icon-seta-left.svg"></div>
             <div class="carrossel" id="carrossel-box">
-                <!--
-                <div class="carrossel-item small-left">
-                    <img src="/chale/public/assets/img1.jpeg">
-                </div>
-                <div class="carrossel-item mid-left">
-                    <img src="/chale/public/assets/img2.jpeg">
-                </div>
-                <div class="carrossel-item center">
-                    <img src="/chale/public/assets/img3.jpeg">
-                </div>
-                <div class="carrossel-item mid-right">
-                    <img src="/chale/public/assets/img4.jpeg">
-                </div>
-                <div class="carrossel-item small-right">
-                    <img src="/chale/public/assets/img5.jpeg">
-                </div>
-                -->
+                <!--carrossel-->
             </div>
             <div class="button-carrossel" id="nextBtn_carrossel"><img src="/chale/public/assets/icons/icon-seta-right.svg"></div>
         </div>
@@ -56,13 +40,13 @@ require_once __DIR__ . '/../layouts/header.php';
                         <div class="date-group">
                             <span class="date-label">Check-in</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input" name="data_inicial">
+                            <input type="date" class="date-input" name="data_inicial" data-blocked="true">
                         </div>
                         <div class="divider-vertical"></div>
                         <div class="date-group">
                             <span class="date-label">Check-out</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input" name="data_final">
+                            <input type="date" class="date-input" name="data_final" data-blocked="true">
                         </div>
                     </div>
                 </div>

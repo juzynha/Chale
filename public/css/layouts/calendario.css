@@ -7,20 +7,6 @@
     font-family: 'Glacial Indifference';
 }
 
-.calendario-boxinho{
-    background: var(--verde-medio);
-    border-radius: 10px;
-    box-shadow: 10px 10px 0 rgba(42,50,43);
-    display: inline-block;
-    padding: 24px 32px 16px;
-    position: absolute;
-    top: -24px;
-    right: -32px;
-    width: 661px;
-    z-index: 1;
-    min-height: 460px;
-}
-
 .calendario-box header{
     padding: 1rem;
     display: flex;
@@ -88,19 +74,25 @@
     color: var(--branco);
 }
 
-.day li.inactive{
+.calendario-content .day li.inactive{
     color: var(--branco);
     box-shadow: none;
     background-color: var(--verde-medio);
 }
 
-.day li.active {
+.calendario-content .day li.blocked{
+    background-color: rgba(124, 154, 120, 0.3);
+    box-shadow: -5px -5px 0 rgba(42,50,43);
+    color: var(--verde-escuro);
+}
+
+.calendario-content .day li.active {
     position: relative;
     z-index: 1; 
     color: var(--verde-medio);
 }
 
-.day li.active::before {
+.calendario-content .day li.active::before {
     content: '';
     position: absolute;
     width: 50px;
@@ -113,14 +105,104 @@
 /* Responsividade - Tablets, 768px */
 
 @media screen and (width: 768px) {
-
-.calendario-box{
-
-margin: 0 1rem;
-box-shadow: 5px 5px 0 rgba(42,50,43), -5px -5px 0 rgba(124,154,120);
-
+    .calendario-box{
+        margin: 0 1rem;
+        box-shadow: 5px 5px 0 rgba(42,50,43), -5px -5px 0 rgba(124,154,120);
+    }
 }
 
-
+/* Mini calendário */
+.mini-calendario-box{
+    display: block;
+    background-color: var(--verde-medio);
+    border-radius: 10px;
+    box-shadow: 10px 10px 0 rgba(42,50,43),
+    -10px -10px 0 rgba(124,154,120);
+    font-family: 'Glacial Indifference';
+    min-width: 380px;
+    max-width: 90%;
 }
 
+.mini-calendario-box header{
+    padding: 1rem;
+    display: flex;
+    color: var(--branco);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mini-calendario-box header span{
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.mini-calendario-box img{
+    width: 15px;
+}
+
+.mini-calendario-content .weeks{
+    display: flex;
+    text-align: center;
+    color: var(--branco);
+}
+
+.mini-calendario-content .weeks li{
+    align-self: center;
+    width: calc(100% / 7 - 2px);
+    aspect-ratio: 1 / 0.5; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.mini-calendario-content .days-line{
+    display: flex;
+    width: 100%;
+}
+
+.mini-calendario-content .day{
+    display: flex;
+    padding: 0.2rem 0.5rem;
+    width: calc(100% / 7 - 2px);
+    aspect-ratio: 1 / 0.8; 
+}
+
+.mini-calendario-content .day li{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 7px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: var(--verde);
+    box-shadow: 3px 3px 0 rgba(42,50,43);
+    color: var(--branco);
+}
+
+.mini-calendario-content .day li.inactive{
+    background-color: rgba(124, 154, 120, 0.3);
+    box-shadow: -3px -3px 0 rgba(42,50,43);
+    color: var(--verde-escuro);
+    padding: 0.5rem;
+}
+
+.mini-calendario-content .day li.active {
+    position: relative;
+    z-index: 1; 
+    color: var(--verde-medio);
+}
+
+.mini-calendario-content .day li.active::before {
+    content: '';
+    position: absolute;
+    border: 2px solid var(--verde-medio);
+    border-radius: 8px;
+    z-index: -1;
+    padding: 0.8rem;
+}
