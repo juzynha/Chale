@@ -11,13 +11,10 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="container-conta">
         <section class="perfil" id="containerContaAdmin">
             <div class="admin-fotoperfil" name="foto_perfil">
-                <!-- <img src="/chale/public/assets/icons/icon-user.svg" alt="avatar do adimin" width="100px"> -->
+                <!-- Foto do usuário -->
             </div>
             <ul class="admin-infos" name="infos_conta">
-                <!--
-                <li class="nome-usuario"> Nome do admin</li>
-                <li>E-mail: admin@gmail.com</li>
-                -->
+                <!-- Infos do usuário (nome,email) -->
             </ul>
         </section>
         <section class="conteudo-conta">
