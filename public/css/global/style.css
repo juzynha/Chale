@@ -127,6 +127,18 @@ input::placeholder{
   background-color: var(--verde-medio);
 }
 
+@media screen and (max-width: 999px){
+  .cabecalho{
+    position: fixed;
+    z-index: 10; 
+    height: 80px; 
+  }
+
+  .titulo{
+    margin-top: 50px; 
+  }
+}
+
 .titulo{
   font-size: 38px;
 }
