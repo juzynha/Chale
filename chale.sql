@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 19/08/2025 às 18:53
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Sep 23, 2025 at 01:27 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,12 +18,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `chale`
+-- Database: `chale`
 --
 
 DELIMITER $$
 --
--- Procedimentos
+-- Procedures
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `cadastrar_admin` (IN `nome` VARCHAR(150), IN `email` VARCHAR(100), IN `senha` VARCHAR(255))   BEGIN
     INSERT INTO usuarios (usunome, usuemail, ususenha, usutipo)
@@ -108,128 +108,98 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `bloqueio_dia`
+-- Table structure for table `bloqueio_dia`
 --
 
 CREATE TABLE `bloqueio_dia` (
-  `bloid` int(11) NOT NULL,
+  `bloid` int NOT NULL,
   `blodinicial` date DEFAULT NULL,
   `blodfinal` date DEFAULT NULL,
-  `blotipo` enum('reserva','manual','airbnb') DEFAULT NULL,
-  `bloqresid` int(11) DEFAULT NULL
+  `blotipo` enum('reserva','manual','airbnb') COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `bloqresid` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `bloqueio_dia`
---
-
-INSERT INTO `bloqueio_dia` (`bloid`, `blodinicial`, `blodfinal`, `blotipo`, `bloqresid`) VALUES
-(1, '2025-08-15', '2025-08-16', '', NULL),
-(2, '2025-08-15', '2025-08-26', '', NULL),
-(3, '2025-08-15', '2025-08-16', '', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `carrossel`
+-- Table structure for table `carrossel`
 --
 
 CREATE TABLE `carrossel` (
-  `carid` int(11) NOT NULL,
-  `carfotcaminho` varchar(100) DEFAULT NULL,
-  `carposicao` int(11) NOT NULL
+  `carid` int NOT NULL,
+  `carfotcaminho` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `carposicao` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `carrossel`
---
-
-INSERT INTO `carrossel` (`carid`, `carfotcaminho`, `carposicao`) VALUES
-(1, 'foto1.jpeg', 1),
-(2, 'foto.jpeg', 2),
-(3, 'foto.png', 3),
-(4, '6895182eb0925-1334870.png', 4),
-(5, '689518772b3aa-1343093.png', 5),
-(6, '68951b7dbe309-1123013.jpg', 6),
-(7, '68951b9979062-1334869.png', 7);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `fotos`
+-- Table structure for table `fotos`
 --
 
 CREATE TABLE `fotos` (
-  `fotid` int(11) NOT NULL,
-  `fotcaminho` varchar(100) DEFAULT NULL,
-  `fotsesid` int(11) DEFAULT NULL
+  `fotid` int NOT NULL,
+  `fotcaminho` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fotsesid` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Despejando dados para a tabela `fotos`
---
-
-INSERT INTO `fotos` (`fotid`, `fotcaminho`, `fotsesid`) VALUES
-(1, '6894f407e6d83-1334869.png', 9),
-(2, '6894f4d3d44b5-1334869.png', 9);
-
 -- --------------------------------------------------------
 
 --
--- Estrutura stand-in para view `lista_precos`
--- (Veja abaixo para a visão atual)
+-- Stand-in structure for view `lista_precos`
+-- (See below for the actual view)
 --
 CREATE TABLE `lista_precos` (
-`preid` int(11)
-,`prediaria` double
+`prediaria` double
 ,`prediariafds` double
+,`preid` int
 );
 
 -- --------------------------------------------------------
 
 --
--- Estrutura stand-in para view `lista_promocoes`
--- (Veja abaixo para a visão atual)
+-- Stand-in structure for view `lista_promocoes`
+-- (See below for the actual view)
 --
 CREATE TABLE `lista_promocoes` (
-`proid` int(11)
-,`pronome` varchar(100)
-,`prodataini` date
+`proativo` tinyint(1)
 ,`prodatafim` date
+,`prodataini` date
+,`proid` int
+,`pronome` varchar(100)
 ,`pronpreco` double
 ,`pronprecofds` double
-,`proativo` tinyint(1)
 );
 
 -- --------------------------------------------------------
 
 --
--- Estrutura stand-in para view `lista_reservas`
--- (Veja abaixo para a visão atual)
+-- Stand-in structure for view `lista_reservas`
+-- (See below for the actual view)
 --
 CREATE TABLE `lista_reservas` (
-`resid` int(11)
-,`rescheckin` date
+`rescheckin` date
 ,`rescheckout` date
-,`resvtotal` double
+,`resid` int
 ,`resstatuspag` tinyint(1)
-,`usuid` int(11)
+,`resvtotal` double
+,`usudatanasc` date
+,`usuemail` varchar(100)
+,`usufotcaminho` varchar(100)
+,`usuid` int
+,`usuidade` bigint
 ,`usunome` varchar(150)
 ,`usutelefone` varchar(20)
-,`usuemail` varchar(100)
-,`usudatanasc` date
-,`usuidade` bigint(21)
-,`usufotcaminho` varchar(100)
 );
 
 -- --------------------------------------------------------
 
 --
--- Estrutura stand-in para view `lista_sessoes_servicos`
--- (Veja abaixo para a visão atual)
+-- Stand-in structure for view `lista_sessoes_servicos`
+-- (See below for the actual view)
 --
 CREATE TABLE `lista_sessoes_servicos` (
-`sesid` int(11)
+`sesid` int
 ,`sesnome` varchar(50)
 ,`sesreferencia` enum('fotos','servicos')
 );
@@ -237,17 +207,17 @@ CREATE TABLE `lista_sessoes_servicos` (
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `precos`
+-- Table structure for table `precos`
 --
 
 CREATE TABLE `precos` (
-  `preid` int(11) NOT NULL,
+  `preid` int NOT NULL,
   `prediaria` double DEFAULT NULL,
   `prediariafds` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `precos`
+-- Dumping data for table `precos`
 --
 
 INSERT INTO `precos` (`preid`, `prediaria`, `prediariafds`) VALUES
@@ -256,21 +226,21 @@ INSERT INTO `precos` (`preid`, `prediaria`, `prediariafds`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `promocoes`
+-- Table structure for table `promocoes`
 --
 
 CREATE TABLE `promocoes` (
-  `proid` int(11) NOT NULL,
-  `pronome` varchar(100) DEFAULT NULL,
+  `proid` int NOT NULL,
+  `pronome` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `prodataini` date DEFAULT NULL,
   `prodatafim` date DEFAULT NULL,
   `pronpreco` double DEFAULT NULL,
   `pronprecofds` double DEFAULT NULL,
-  `proativo` tinyint(1) DEFAULT 1
+  `proativo` tinyint(1) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `promocoes`
+-- Dumping data for table `promocoes`
 --
 
 INSERT INTO `promocoes` (`proid`, `pronome`, `prodataini`, `prodatafim`, `pronpreco`, `pronprecofds`, `proativo`) VALUES
@@ -281,21 +251,21 @@ INSERT INTO `promocoes` (`proid`, `pronome`, `prodataini`, `prodatafim`, `pronpr
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `reservas`
+-- Table structure for table `reservas`
 --
 
 CREATE TABLE `reservas` (
-  `resid` int(11) NOT NULL,
+  `resid` int NOT NULL,
   `rescheckin` date DEFAULT NULL,
   `rescheckout` date DEFAULT NULL,
-  `resusuid` int(11) DEFAULT NULL,
+  `resusuid` int DEFAULT NULL,
   `resvtotal` double DEFAULT NULL,
-  `resstatuspag` tinyint(1) DEFAULT 0,
+  `resstatuspag` tinyint(1) DEFAULT '0',
   `resprazopag` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `reservas`
+-- Dumping data for table `reservas`
 --
 
 INSERT INTO `reservas` (`resid`, `rescheckin`, `rescheckout`, `resusuid`, `resvtotal`, `resstatuspag`, `resprazopag`) VALUES
@@ -316,68 +286,48 @@ INSERT INTO `reservas` (`resid`, `rescheckin`, `rescheckout`, `resusuid`, `resvt
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `servicos`
+-- Table structure for table `servicos`
 --
 
 CREATE TABLE `servicos` (
-  `serid` int(11) NOT NULL,
-  `sernome` varchar(25) DEFAULT NULL,
-  `serfotcaminho` varchar(100) DEFAULT NULL,
-  `serdescricao` text DEFAULT NULL,
-  `sersesid` int(11) DEFAULT NULL
+  `serid` int NOT NULL,
+  `sernome` varchar(25) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `serfotcaminho` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `serdescricao` text COLLATE utf8mb4_general_ci,
+  `sersesid` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `servicos`
---
-
-INSERT INTO `servicos` (`serid`, `sernome`, `serfotcaminho`, `serdescricao`, `sersesid`) VALUES
-(2, 'Ar-condicionado', '6894e205d3de6-1334869.png', 'aaaaa', 9);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `sessoes`
+-- Table structure for table `sessoes`
 --
 
 CREATE TABLE `sessoes` (
-  `sesid` int(11) NOT NULL,
-  `sesnome` varchar(50) DEFAULT NULL,
-  `sesreferencia` enum('fotos','servicos') DEFAULT NULL
+  `sesid` int NOT NULL,
+  `sesnome` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `sesreferencia` enum('fotos','servicos') COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `sessoes`
---
-
-INSERT INTO `sessoes` (`sesid`, `sesnome`, `sesreferencia`) VALUES
-(9, 'Cozinha', 'fotos'),
-(11, 'Cozinha', 'fotos'),
-(12, 'Cozinha', ''),
-(13, 'Cozinha', ''),
-(14, 'Area de', 'fotos'),
-(15, 'Sessão', 'fotos'),
-(16, 'Sessão', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
-  `usuid` int(11) NOT NULL,
-  `usunome` varchar(150) DEFAULT NULL,
-  `usutelefone` varchar(20) DEFAULT NULL,
-  `usuemail` varchar(100) DEFAULT NULL,
+  `usuid` int NOT NULL,
+  `usunome` varchar(150) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `usutelefone` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `usuemail` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `usudatanasc` date DEFAULT NULL,
-  `ususenha` varchar(255) DEFAULT NULL,
-  `usufotcaminho` varchar(100) DEFAULT NULL,
-  `usutipo` enum('cliente','admin') DEFAULT 'cliente'
+  `ususenha` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `usufotcaminho` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `usutipo` enum('cliente','admin') COLLATE utf8mb4_general_ci DEFAULT 'cliente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`usuid`, `usunome`, `usutelefone`, `usuemail`, `usudatanasc`, `ususenha`, `usufotcaminho`, `usutipo`) VALUES
@@ -389,184 +339,184 @@ INSERT INTO `usuarios` (`usuid`, `usunome`, `usutelefone`, `usuemail`, `usudatan
 -- --------------------------------------------------------
 
 --
--- Estrutura para view `lista_precos`
+-- Structure for view `lista_precos`
 --
 DROP TABLE IF EXISTS `lista_precos`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_precos`  AS SELECT `precos`.`preid` AS `preid`, `precos`.`prediaria` AS `prediaria`, `precos`.`prediariafds` AS `prediariafds` FROM `precos` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_precos`  AS SELECT `precos`.`preid` AS `preid`, `precos`.`prediaria` AS `prediaria`, `precos`.`prediariafds` AS `prediariafds` FROM `precos``precos`  ;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para view `lista_promocoes`
+-- Structure for view `lista_promocoes`
 --
 DROP TABLE IF EXISTS `lista_promocoes`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_promocoes`  AS SELECT `promocoes`.`proid` AS `proid`, `promocoes`.`pronome` AS `pronome`, `promocoes`.`prodataini` AS `prodataini`, `promocoes`.`prodatafim` AS `prodatafim`, `promocoes`.`pronpreco` AS `pronpreco`, `promocoes`.`pronprecofds` AS `pronprecofds`, `promocoes`.`proativo` AS `proativo` FROM `promocoes` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_promocoes`  AS SELECT `promocoes`.`proid` AS `proid`, `promocoes`.`pronome` AS `pronome`, `promocoes`.`prodataini` AS `prodataini`, `promocoes`.`prodatafim` AS `prodatafim`, `promocoes`.`pronpreco` AS `pronpreco`, `promocoes`.`pronprecofds` AS `pronprecofds`, `promocoes`.`proativo` AS `proativo` FROM `promocoes``promocoes`  ;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para view `lista_reservas`
+-- Structure for view `lista_reservas`
 --
 DROP TABLE IF EXISTS `lista_reservas`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_reservas`  AS SELECT `r`.`resid` AS `resid`, `r`.`rescheckin` AS `rescheckin`, `r`.`rescheckout` AS `rescheckout`, `r`.`resvtotal` AS `resvtotal`, `r`.`resstatuspag` AS `resstatuspag`, `u`.`usuid` AS `usuid`, `u`.`usunome` AS `usunome`, `u`.`usutelefone` AS `usutelefone`, `u`.`usuemail` AS `usuemail`, `u`.`usudatanasc` AS `usudatanasc`, timestampdiff(YEAR,`u`.`usudatanasc`,curdate()) AS `usuidade`, `u`.`usufotcaminho` AS `usufotcaminho` FROM (`reservas` `r` join `usuarios` `u` on(`r`.`resusuid` = `u`.`usuid`)) WHERE `r`.`resstatuspag` = 1 ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_reservas`  AS SELECT `r`.`resid` AS `resid`, `r`.`rescheckin` AS `rescheckin`, `r`.`rescheckout` AS `rescheckout`, `r`.`resvtotal` AS `resvtotal`, `r`.`resstatuspag` AS `resstatuspag`, `u`.`usuid` AS `usuid`, `u`.`usunome` AS `usunome`, `u`.`usutelefone` AS `usutelefone`, `u`.`usuemail` AS `usuemail`, `u`.`usudatanasc` AS `usudatanasc`, timestampdiff(YEAR,`u`.`usudatanasc`,curdate()) AS `usuidade`, `u`.`usufotcaminho` AS `usufotcaminho` FROM (`reservas` `r` join `usuarios` `u` on((`r`.`resusuid` = `u`.`usuid`))) WHERE (`r`.`resstatuspag` = 1)  ;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para view `lista_sessoes_servicos`
+-- Structure for view `lista_sessoes_servicos`
 --
 DROP TABLE IF EXISTS `lista_sessoes_servicos`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_sessoes_servicos`  AS SELECT `sessoes`.`sesid` AS `sesid`, `sessoes`.`sesnome` AS `sesnome`, `sessoes`.`sesreferencia` AS `sesreferencia` FROM `sessoes` WHERE `sessoes`.`sesreferencia` = 'servicos' ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `lista_sessoes_servicos`  AS SELECT `sessoes`.`sesid` AS `sesid`, `sessoes`.`sesnome` AS `sesnome`, `sessoes`.`sesreferencia` AS `sesreferencia` FROM `sessoes` WHERE (`sessoes`.`sesreferencia` = 'servicos')  ;
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `bloqueio_dia`
+-- Indexes for table `bloqueio_dia`
 --
 ALTER TABLE `bloqueio_dia`
   ADD PRIMARY KEY (`bloid`),
   ADD KEY `fk_bloqueio_reserva` (`bloqresid`);
 
 --
--- Índices de tabela `carrossel`
+-- Indexes for table `carrossel`
 --
 ALTER TABLE `carrossel`
   ADD PRIMARY KEY (`carid`),
   ADD UNIQUE KEY `carordem` (`carposicao`);
 
 --
--- Índices de tabela `fotos`
+-- Indexes for table `fotos`
 --
 ALTER TABLE `fotos`
   ADD PRIMARY KEY (`fotid`),
   ADD KEY `fk_fotos_sessoes` (`fotsesid`);
 
 --
--- Índices de tabela `precos`
+-- Indexes for table `precos`
 --
 ALTER TABLE `precos`
   ADD PRIMARY KEY (`preid`);
 
 --
--- Índices de tabela `promocoes`
+-- Indexes for table `promocoes`
 --
 ALTER TABLE `promocoes`
   ADD PRIMARY KEY (`proid`);
 
 --
--- Índices de tabela `reservas`
+-- Indexes for table `reservas`
 --
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`resid`),
   ADD KEY `fk_reservas_usuarios` (`resusuid`);
 
 --
--- Índices de tabela `servicos`
+-- Indexes for table `servicos`
 --
 ALTER TABLE `servicos`
   ADD PRIMARY KEY (`serid`),
   ADD KEY `fk_servicos_sessoes` (`sersesid`);
 
 --
--- Índices de tabela `sessoes`
+-- Indexes for table `sessoes`
 --
 ALTER TABLE `sessoes`
   ADD PRIMARY KEY (`sesid`);
 
 --
--- Índices de tabela `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`usuid`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `bloqueio_dia`
+-- AUTO_INCREMENT for table `bloqueio_dia`
 --
 ALTER TABLE `bloqueio_dia`
-  MODIFY `bloid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `bloid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `carrossel`
+-- AUTO_INCREMENT for table `carrossel`
 --
 ALTER TABLE `carrossel`
-  MODIFY `carid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `carid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de tabela `fotos`
+-- AUTO_INCREMENT for table `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `fotid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `fotid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `precos`
+-- AUTO_INCREMENT for table `precos`
 --
 ALTER TABLE `precos`
-  MODIFY `preid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `preid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de tabela `promocoes`
+-- AUTO_INCREMENT for table `promocoes`
 --
 ALTER TABLE `promocoes`
-  MODIFY `proid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `proid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de tabela `reservas`
+-- AUTO_INCREMENT for table `reservas`
 --
 ALTER TABLE `reservas`
-  MODIFY `resid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `resid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT de tabela `servicos`
+-- AUTO_INCREMENT for table `servicos`
 --
 ALTER TABLE `servicos`
-  MODIFY `serid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `serid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `sessoes`
+-- AUTO_INCREMENT for table `sessoes`
 --
 ALTER TABLE `sessoes`
-  MODIFY `sesid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `sesid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT de tabela `usuarios`
+-- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `usuid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- Restrições para tabelas despejadas
+-- Constraints for dumped tables
 --
 
 --
--- Restrições para tabelas `bloqueio_dia`
+-- Constraints for table `bloqueio_dia`
 --
 ALTER TABLE `bloqueio_dia`
   ADD CONSTRAINT `fk_bloqueio_reserva` FOREIGN KEY (`bloqresid`) REFERENCES `reservas` (`resid`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `fotos`
+-- Constraints for table `fotos`
 --
 ALTER TABLE `fotos`
   ADD CONSTRAINT `fk_fotos_sessoes` FOREIGN KEY (`fotsesid`) REFERENCES `sessoes` (`sesid`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `reservas`
+-- Constraints for table `reservas`
 --
 ALTER TABLE `reservas`
   ADD CONSTRAINT `fk_reservas_usuarios` FOREIGN KEY (`resusuid`) REFERENCES `usuarios` (`usuid`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Restrições para tabelas `servicos`
+-- Constraints for table `servicos`
 --
 ALTER TABLE `servicos`
   ADD CONSTRAINT `fk_servicos_sessoes` FOREIGN KEY (`sersesid`) REFERENCES `sessoes` (`sesid`) ON DELETE SET NULL ON UPDATE CASCADE;

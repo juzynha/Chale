@@ -8,26 +8,18 @@ require_once __DIR__ . '/../layouts/header.php';
     require_once __DIR__ . '/../layouts/menu.php';
     ?>
     </header>
-    <div class="container">
+    <div class="container" id="container_servicos">
         <h2 class="titulo verde-escuro">Serviços</h2>
         <div class="servicos" id="sessaoServicos">
             <!-- Lista de sessões e serviços -->
         </div>
-        <div class="ferramenta admin" onclick="abrirModalCriarSessao('Serviços')">
-            <p>Criar sessão</p>
-            <img src="/chale/public/assets/icons/icon-adicionar.svg" class="icon">
-        </div>
     </div>
     <div class="galeria-container">
         <img src="/chale/public/assets/elementos-graficos/onda-superior-sessao.svg" class="element-gal-fotos">
-        <div class="galeria-de-fotos">
+        <div class="galeria-de-fotos" id="container_fotos">
             <h2 class="titulo branco">Galeria de fotos</h2>
             <div class="galeria-content" id="sessaoFotos">
                 <!-- Lista de sessões e fotos -->
-            </div>
-            <div class="ferramenta-branco admin" onclick="abrirModalCriarSessao('Fotos')">
-                <p>Criar sessão</p>
-                <img src="/chale/public/assets/icons/icon-adicionar(branco).svg" class="icon">
             </div>
         </div>
         <img src="/chale/public/assets/elementos-graficos/onda-inferior-sessao.svg" class="element-gal-fotos">

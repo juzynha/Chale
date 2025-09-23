@@ -11,7 +11,7 @@ require_once __DIR__ . '/../layouts/header.php';
     <div class="container">
         <h1 class="titulo verde-escuro">Faça sua reserva no chalé La Vie En Rose!</h1>
     </div>
-    <section>
+    <section name="carrossel_container">
         <div class="carrossel-container">
             <div class="button-carrossel" id="prevBtn_carrossel"><img src="/chale/public/assets/icons/icon-seta-left.svg"></div>
             <div class="carrossel" id="carrossel-box">
@@ -19,19 +19,23 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <div class="button-carrossel" id="nextBtn_carrossel"><img src="/chale/public/assets/icons/icon-seta-right.svg"></div>
         </div>
+        <!--
         <div class="option-editar-carrossel">
             <div class="ferramenta" onclick="abrirModal('modal_editar_carrossel')">
                 <p>Editar carrossel</p>
                 <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
             </div>
         </div>
+        -->
     </section>
     <section class="container-fr">
-        <div class="container-bloco-reserva">
+        <div class="container-bloco-reserva" name="bloco_reserva">
+            <!--
             <div class="ferramenta">
                 <p>Editar preços</p>
                 <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
             </div>
+            -->
             <div class="card-infos-fr" id="preFormReserva">
                 <div class="infos-card-fr">
                     <p><strong name="preco_diaria"></strong></p>

@@ -259,3 +259,13 @@ export function abrirPopUp(triggerElement, popUpId) {
     setTimeout(() => document.addEventListener("click", fechar), 0);
 }
 window.abrirPopUp = abrirPopUp;
+
+export async function verificarLogin(){
+    const resposta = await fetch("/chale/app/Models/LoginModel.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ acao: "verificar_login" }),
+    });
+    const json = await resposta.json();
+    return json;
+}

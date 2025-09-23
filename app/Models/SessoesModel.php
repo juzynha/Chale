@@ -51,7 +51,7 @@ function listarSessoesServicos($pdo) {
 
 function cadastrarSessao($dados, $pdo) {
     $nome = $dados['nomeSessao'];
-    if ($dados['referencia'] === 'Galeria de fotos'){
+    if ($dados['referencia'] === 'Fotos'){
         $sql = "CALL cadastrar_sessao(:nome, 'fotos')";
     } else {
         $sql = "CALL cadastrar_sessao(:nome, 'servicos')";
