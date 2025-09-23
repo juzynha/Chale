@@ -1,4 +1,4 @@
-<nav>
+<nav id="nav_menu">
     <a href="/chale/index.php"><img src="/chale/public/assets/logo.svg" class="logo"></a>
 
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
