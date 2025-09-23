@@ -124,6 +124,24 @@ require_once __DIR__ . '/../layouts/header.php';
         </div>
     </div>
 </div>
+<script>
+let dataSelecionada = null;
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".calendario-box .days").forEach(daysContainer => {
+    daysContainer.addEventListener("click", (event) => {
+      const li = event.target.closest("li[data-date]");
+      if (li) {
+        dataSelecionada = li.getAttribute("data-date");
+        console.log("Data selecionada:", dataSelecionada);
+        // Agora dataSelecionada está disponível para outras funções
+        
+      }
+    });
+  });
+});
+</script>
+</body>
 
 <?php
 require_once __DIR__ . '/../modals/CadAltPromocao.php';
