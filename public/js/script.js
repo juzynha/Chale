@@ -110,8 +110,76 @@ function inputMaks() {
   inputMaskName();
   inputMaskDate();
   inputMaskDouble();
+}''
+
+function inputMaskDate() {
+// Máscara de data dd/mm/yyyy
+  document.querySelectorAll('input[type="date"], .input-date').forEach(function(input) {
+    input.type = 'text';
+    input.placeholder = '  /  /    ';
+    input.classList.add('placeholder');
+    
+    if (!input.classList.contains('input-date')) {
+      input.classList.add('input-date');
+    }
+    //preenche o input com o dia atual
+    if (!input.value) {
+      const hoje = new Date();
+      // Se o name for "data_final", soma 1 dia
+      if (input.name === 'data_final') {
+        hoje.setDate(hoje.getDate() + 1);
+      }
+      const ano = hoje.getFullYear();
+      const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+      const dia = String(hoje.getDate()).padStart(2, '0');
+      input.value = `${dia}/${mes}/${ano}`; 
+    }
+
+      input.addEventListener('input', function (e) {
+      let v = e.target.value.replace(/\D/g, ""); // remove não dígitos
+
+      // Limita ao máximo 8 dígitos (ddmmYYYY)
+      if (v.length > 8) v = v.slice(0, 8);
+
+      let day = v.slice(0, 2);
+      let month = v.slice(2, 4);
+      let year = v.slice(4, 8);
+
+      // Validação de dia
+      if (day.length === 2) {
+        let d = parseInt(day, 10);
+        if (d < 1) d = 1; // não permite 00
+        if (d > 31) d = 31;
+        day = d.toString().padStart(2, '0');
+      }
+
+      // Validação de mês
+      if (month.length === 2) {
+        let m = parseInt(month, 10);
+        if (m < 1) m = 1; // não permite 00
+        if (m > 12) m = 12;
+        month = m.toString().padStart(2, '0');
+      }
+      
+      // Validação de ano
+      if (year.length === 4) {
+        let y = parseInt(year, 10);
+        if (y < 1) {
+          y = new Date().getFullYear(); // substitui 0000 pelo ano atual
+        }
+        year = y.toString().padStart(4, '0');
+      }
+
+      let formatted = day;
+      if (month.length) formatted += '/' + month;
+      if (year.length) formatted += '/' + year;
+
+      e.target.value = formatted;
+    });
+  });
 }
 
+/*
 function inputMaskDate() {
   // --- Função que inicializa UM input (com proteção para não duplicar) ---
   function initInputDate(input) {
@@ -206,6 +274,7 @@ function inputMaskDate() {
 
   mo.observe(document.body, { childList: true, subtree: true });
 }
+*/
 
 function abrirCalendario(input) {
   let calendario = document.querySelector(".calendario-box");

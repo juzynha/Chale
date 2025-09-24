@@ -27,7 +27,7 @@ require_once __DIR__ . '/../layouts/header.php';
                     <div class="itens-sessao-conta">
                         <div class="item-descricao">
                             <div class="escrita-item-sessao">
-                                <a href="">Consultar preços e promoções</a>
+                                <a href="/chale/views/pages/precos_promocoes.php">Consultar preços e promoções</a>
                             </div>
                         </div>
                     </div>

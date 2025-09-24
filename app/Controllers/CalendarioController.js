@@ -145,20 +145,9 @@ function showMiniCalendar(input) {
     const scrollY = window.scrollY;
     const scrollX = window.scrollX;
 
-    // checar espaço disponível (pra cima ou pra baixo)
-    const spaceBelow = window.innerHeight - rect.bottom;
-
-    // altura estimada do calendário
-    const calendarHeight = 280; // pode ajustar conforme o CSS
     const margin = 10; // espaço entre o input e o calendário
+    calendarDiv.style.top = `${rect.bottom + scrollY + margin}px`;
 
-    if (spaceBelow > calendarHeight) {
-        // abre abaixo do input
-        calendarDiv.style.top = `${rect.bottom + scrollY + margin}px`;
-    } else {
-        // abre acima do input, sem cobrir
-        calendarDiv.style.top = `${rect.top + scrollY - calendarHeight - margin}px`;
-    }
 
     calendarDiv.style.left = `${rect.left + scrollX}px`;
     calendarDiv.style.position = "absolute";

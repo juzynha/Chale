@@ -81,9 +81,9 @@ if (pagina === 'faca_sua_reserva') {
   // 4) Abrir modal e sincronizar datas + total
   preForm.querySelector('[name="reservar"]').addEventListener('click', (e) => {
     e.preventDefault();
-    abrirModal('modal_fazer_reserva');
+    abrirModalCadastrarReserva();
 
-    const formModal = document.getElementById('formFazerReserva');
+    const formModal = document.getElementById('formCadAltReserva');
     const modalCheckin = formModal.querySelector('[name="data_inicial"]');
     const modalCheckout = formModal.querySelector('[name="data_final"]');
     const modalTotalEl = formModal.querySelector('[name="preco_total"]');
@@ -102,59 +102,7 @@ if (pagina === 'faca_sua_reserva') {
   });
 
   // 5) Submit do modal (envia reserva)
-  document.getElementById('formFazerReserva').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    
-    const modalCheckin = this.querySelector('[name="data_inicial"]').value;
-    const modalCheckout = this.querySelector('[name="data_final"]').value;
-    const valorTotal = calcularPreco(modalCheckin, modalCheckout, precoDiaria, precoDiariaFds);
-
-    const error = document.getElementById('cadReserva_error');
-    let mensagemErro = '';
-
-    //Validar se a data não está no passado
-    if (!validarDataPassada(modalCheckin)){
-      mensagemErro = 'Você não pode usar uma data no passado';
-    }
-    //Validar se a data não está mais distante que 10 anos
-    else if (!validarDataFutura(modalCheckout)){
-      mensagemErro = 'Você não pode usar uma data tão distante';
-    }
-    //Validar se a data final está pelo menos 1 dia a frente da data inicial
-    else if (!validarDistanciaData(modalCheckin, modalCheckout)){
-      mensagemErro = 'O período precisa ter uma duração de pelo menos um dia';
-    }
-    if (mensagemErro !== '') {
-      error.textContent = mensagemErro;
-      error.style.display = 'block';
-      scrollModalToTop('#modal_cadalt_promocao .bloco-modal-geral');
-      return;
-    }
-    let dataInicial = converterDataParaISO(modalCheckin);
-    let dataFinal = converterDataParaISO(modalCheckout);
-    const dados = {
-      dataInicial,   // mande no formato que seu PHP espera
-      dataFinal,
-      valorTotal       // número
-    };
-
-    // Ajuste o endpoint/ação conforme seu backend
-    const resposta = await fetch('../../app/Models/ReservasModel.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ acao: 'cadastrar_reserva', dados })
-    });
-
-    const json = await resposta.json();
-
-    if (!json.erro) {
-      fecharModal('modal_fazer_reserva');
-      alert(json.mensagem || 'Reserva criada com sucesso!');
-      abrirModal('modal_pagamento')
-    } else {
-      alert(json.mensagem);
-    }
-  });
+  
 }
 
 if (pagina === 'conta_usuario') {
@@ -301,3 +249,94 @@ function mostrarTudo() {
         mostrar.style.display = "none"; // esconde o botão
     }
 }
+
+window.abrirModalCadastrarReserva = function () {
+  const modal = document.getElementById('modal_cadalt_reserva');
+  modal.querySelector('[name="titulo"]').textContent = 'Fazer reserva';
+  const form = document.getElementById('formCadAltReserva');
+  form.querySelector('.btn').textContent = 'Criar';
+  abrirModal('modal_cadalt_reserva');
+  cadastrarReserva();
+} 
+
+async function cadastrarReserva() {
+  document.getElementById('formCadAltReserva').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const precos = await retornarPrecos();
+    const precoDiaria = Number(precos?.[0]?.prediaria ?? 0);
+    const precoDiariaFds = Number(precos?.[0]?.prediariafds ?? 0);
+
+    const modalCheckin = this.querySelector('[name="data_inicial"]').value;
+    const modalCheckout = this.querySelector('[name="data_final"]').value;
+    const valorTotal = calcularPreco(modalCheckin, modalCheckout, precoDiaria, precoDiariaFds);
+
+    const error = document.getElementById('cadReserva_error');
+    let mensagemErro = '';
+
+    const diffDias = validarDistanciaData(modalCheckin, modalCheckout);
+
+    if (diffDias < 1) {
+      mensagemErro = 'O período precisa ter uma duração de pelo menos 1 dia';
+    } else if (diffDias > 31) {
+      mensagemErro = 'O período não pode ultrapassar 31 dias';
+    }
+    //Validar se a data não está no passado
+    else if (!validarDataPassada(modalCheckin)){
+      mensagemErro = 'Você não pode usar uma data no passado';
+    }
+    //Validar se a data não está mais distante que 10 anos
+    else if (!validarDataFutura(modalCheckout)){
+      mensagemErro = 'Você não pode usar uma data tão distante';
+    }
+    //Validar se a data final está pelo menos 1 dia a frente da data inicial
+    else if (!validarDistanciaData(modalCheckin, modalCheckout)){
+      mensagemErro = 'O período precisa ter uma duração de pelo menos um dia';
+    }
+    if (mensagemErro !== '') {
+      error.textContent = mensagemErro;
+      error.style.display = 'block';
+      scrollModalToTop('#modal_cadalt_promocao .bloco-modal-geral');
+      return;
+    }
+    let dataInicial = converterDataParaISO(modalCheckin);
+    let dataFinal = converterDataParaISO(modalCheckout);
+    const dados = {
+      dataInicial, // mande no formato que seu PHP espera
+      dataFinal,
+      valorTotal // número
+    };
+
+    // Ajuste o endpoint/ação conforme seu backend
+    const resposta = await fetch('../../app/Models/ReservasModel.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ acao: 'cadastrar_reserva', dados })
+    });
+
+    const json = await resposta.json();
+
+    if (!json.erro) {
+      fecharModal('modal_cadalt_reserva');
+      alert(json.mensagem || 'Reserva criada com sucesso!');
+      abrirModal('modal_pagamento')
+    } else {
+      alert(json.mensagem);
+    }
+  });
+}
+
+window.abrirModalEditarPromocao = function (id, dataini, datafim) {
+    const modal = document.getElementById('modal_cadalt_reserva');
+    modal.querySelector('[name="titulo"]').textContent = 'Editar Reserva';
+    const form = document.getElementById('formCadAltPromocao');
+    form.querySelector('.btn').textContent = 'Editar';
+    //Atribuindo valor aos campos
+    form.querySelector('[name="nome_promocao"]').value = nome;
+    form.querySelector('[name="data_inicial"]').value = converterDataParaBR(dataini);
+    form.querySelector('[name="data_final"]').value = converterDataParaBR(datafim);
+    form.querySelector('[name="valor_diaria"]').value = npreco;
+    form.querySelector('[name="valor_diariafds"]').value = nprecofds;
+    abrirModal('modal_cadalt_promocao');
+    editarPromocao(id);
+};

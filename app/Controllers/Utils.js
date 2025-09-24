@@ -126,20 +126,21 @@ export function validarDistanciaData(dataInicialStr, dataFinalStr) {
     // Converte dd/mm/yyyy para Date
     const [diaI, mesI, anoI] = dataInicialStr.split('/').map(Number);
     const [diaF, mesF, anoF] = dataFinalStr.split('/').map(Number);
-
+  
     const dataInicial = new Date(anoI, mesI - 1, diaI);
     const dataFinal = new Date(anoF, mesF - 1, diaF);
-
+  
     // Zera as horas para evitar inconsistências de horário
     dataInicial.setHours(0, 0, 0, 0);
     dataFinal.setHours(0, 0, 0, 0);
-
+  
     // Calcula a diferença em milissegundos e converte para dias
     const diffEmDias = (dataFinal - dataInicial) / (1000 * 60 * 60 * 24);
-
-    return diffEmDias >= 1;
+  
+    // Retorna o número de dias em vez de só true/false
+    return diffEmDias;
 }
-
+  
 export function converterDataParaISO(data) {
     const partes = data.split('/');
     if (partes.length === 3) {

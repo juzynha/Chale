@@ -34,7 +34,7 @@ if (pagina === 'precos_promocoes') {
                                     <span class="date-label">Início</span>
                                     <hr class="divider-horizontal">
                                     </hr>
-                                    <input type="date" class="date-input" value="${promocao.prodataini}">
+                                    <p class="date-input">${dataInicial}</p>
                                 </div>
                                 <hr class="divider-vertical">
                                 </hr>
@@ -42,7 +42,7 @@ if (pagina === 'precos_promocoes') {
                                     <span class="date-label">Fim</span>
                                     <hr class="divider-horizontal">
                                     </hr>
-                                    <input type="date" class="date-input" value="${promocao.prodatafim}">
+                                    <p class="date-input">${dataInicial}</p>
                                 </div>
                             </div>
                             <div class="promocoes-preco">

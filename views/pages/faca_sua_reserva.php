@@ -19,23 +19,9 @@ require_once __DIR__ . '/../layouts/header.php';
             </div>
             <div class="button-carrossel" id="nextBtn_carrossel"><img src="/chale/public/assets/icons/icon-seta-right.svg"></div>
         </div>
-        <!--
-        <div class="option-editar-carrossel">
-            <div class="ferramenta" onclick="abrirModal('modal_editar_carrossel')">
-                <p>Editar carrossel</p>
-                <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
-            </div>
-        </div>
-        -->
     </section>
     <section class="container-fr">
         <div class="container-bloco-reserva" name="bloco_reserva">
-            <!--
-            <div class="ferramenta">
-                <p>Editar preços</p>
-                <img src="/chale/public/assets/icons/icon-editar(verde).svg" class="icon">
-            </div>
-            -->
             <div class="card-infos-fr" id="preFormReserva">
                 <div class="infos-card-fr">
                     <p><strong name="preco_diaria"></strong></p>
@@ -153,41 +139,6 @@ require_once __DIR__ . '/../layouts/header.php';
 </body>
 
 <!-- Modais -->
-<div class="sombra-modal" id="modal_fazer_reserva">
-    <div class="bloco-modal-geral">
-        <div class="modal-header">
-            <h2>Fazer reserva</h2>
-            <button class="btn-fechar-modal">
-                <img src="/chale/public/assets/icons/icon-close.svg" class="icon">
-            </button>
-        </div>
-        <div class="modal-body">
-            <form id="formFazerReserva" class="form-inputcomum">
-                <p class="error" id="cadReserva_error"></p>
-                <div class="contorno-modal-branco">
-                    <div class="date-container">
-                        <div class="date-group">
-                            <span class="date-label">Check-in</span>
-                            <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input" name="data_inicial">
-                        </div>
-                        <div class="divider-vertical"></div>
-                        <div class="date-group">
-                            <span class="date-label">Check-out</span>
-                            <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input" name="data_final">
-                        </div>
-                    </div>
-                </div>
-                <p class="valortotal-fr" name="preco_total"><strong>Valor Total: </strong></p>
-                <div class="modal-footer">
-                    <button type="submit" class="btn">Reservar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 <div class="sombra-modal" id="modal_editar_carrossel">
     <div class="bloco-modal-geral">
         <div class="modal-header">
@@ -311,5 +262,6 @@ require_once __DIR__ . '/../layouts/header.php';
 
 <?php
 require_once __DIR__ . '/../modals/pagamento.php';
+require_once __DIR__ . '/../modals/CadAltReserva.php';
 require_once __DIR__ . '/../layouts/footer.php';
 ?>

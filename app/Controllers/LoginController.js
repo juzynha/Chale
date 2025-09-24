@@ -232,7 +232,8 @@ if (pagina === 'faca_sua_reserva'){
     `;
     containerCarrossel.appendChild(criarEditarCarrossel);
     //ferramenta de criar sessão de fotos
-    const criarEditarPrecos = document.createElement("div"); 
+    const criarEditarPrecos = document.createElement("a"); 
+    criarEditarPrecos.href = "/chale/views/pages/precos_promocoes.php";
     criarEditarPrecos.classList.add("ferramenta");
     criarEditarPrecos.onclick = () => abrirModalCriarSessao('Fotos');
     criarEditarPrecos.innerHTML = `
