@@ -49,7 +49,7 @@ require_once __DIR__ . '/../layouts/header.php';
                             
                         </div>
                         <div class="sessao-lista-reservas" name="content">
-                            <div class="lista-reservas">
+                            <div class="lista-reservas" id="reservas_pagas">
                                 
                             </div>
                         </div>
@@ -97,6 +97,7 @@ require_once __DIR__ . '/../layouts/header.php';
 
 <?php
 require_once __DIR__ . '/../modals/pagamento.php';
+require_once __DIR__ . '/../modals/CadAltReserva.php';
 require_once __DIR__ . '/../modals/digite_sua_senha.php';
 require_once __DIR__ . '/../modals/excluir_conta.php';
 require_once __DIR__ . '/../modals/sair_conta.php';

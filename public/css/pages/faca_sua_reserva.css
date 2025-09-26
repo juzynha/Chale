@@ -112,7 +112,7 @@
     position: absolute;
     cursor: pointer;
     width: 3%;
-    z-index: 1;
+    z-index: 1000;
   }
   
   .button-carrossel img{

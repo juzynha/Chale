@@ -108,6 +108,7 @@ if (pagina === 'faca_sua_reserva') {
 if (pagina === 'conta_usuario') {
   document.addEventListener('DOMContentLoaded', function(){
     listaReservasNPagas();
+    listaReservasPagas();
   });
 }
 
@@ -173,6 +174,7 @@ function listaReservas() {
 }
 
 function listaReservasNPagas() {
+    const numero = document.getElementById('numeroReservasNPagas');
     let lista = document.getElementById("reservas_nao_pagas");
     fetch(`../../app/Models/ReservasModel.php`, {
         method: "POST",
@@ -185,6 +187,7 @@ function listaReservasNPagas() {
             const checkout = converterDataParaBR(reserva.rescheckout);
             const valor = Number(reserva.resvtotal);
             lista.innerHTML += `
+            <div class="bloco-reserva">
               <div class="card-reservaUser">
                 <div class="date-container">
                     <div class="date-group">
@@ -201,18 +204,64 @@ function listaReservasNPagas() {
                 </div>
                 <p class="valor"><strong>Valor total:</strong>R$${valor.toFixed(2).replace('.', ',')}</p>
                 <div class="card-reservaUser-footer">
-                  <p class="textinho" onclick="abrirModalEditarReserva()">Editar período <img src="/chale/public/assets/icons/icon-editar.svg" class="icon"></p>
+                  <p class="textinho" onclick="abrirModalEditarReserva(${reserva.resid},'${reserva.rescheckin}','${reserva.rescheckout}',${valor})">Editar período <img src="/chale/public/assets/icons/icon-editar.svg" class="icon"></p>
                   <button type="submit" class="btn" onclick="abrirModal('modal_pagamento')">Pagar</button>
                 </div>
-              </div>   
+              </div>  
+              <div class="cancelar-reserva">
+                <p class="textinho verde-medio">Cancelar reserva</p>
+              </div>
+            </div> 
                 `;
         });
         if (data.length > 0) {
-          const numero = document.getElementById('numeroReservasNPagas');
           numero.style.display= 'block';
           numero.textContent = data.length; // mostra a quantidade de reservas
         } else {
-          document.getElementById('numeroReservasNPagas').style.display = "none";
+          numero.style.display = "none";
+        }
+    });
+}
+
+function listaReservasPagas() {
+  const numero = document.getElementById('numeroReservasPagas');
+    let lista = document.getElementById("reservas_pagas");
+    fetch(`../../app/Models/ReservasModel.php`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json",},
+        body: JSON.stringify({ acao: "listar_reservas_pagas" }),
+    }).then((response) => response.json()).then((data) => {
+        lista.innerHTML = "";
+        data.forEach((reserva) => {
+            const checkin = converterDataParaBR(reserva.rescheckin);
+            const checkout = converterDataParaBR(reserva.rescheckout);
+            const valor = Number(reserva.resvtotal);
+            lista.innerHTML += `
+            <div class="bloco-reserva">
+              <div class="card-reservaUser">
+                <div class="date-container">
+                    <div class="date-group">
+                        <span class="date-label">Check-in</span>
+                        <div class="divider-horizontal"></div>
+                        <input type="text" class="date-input" value="${checkin}" readonly>
+                    </div>
+                    <div class="divider-vertical"></div>
+                    <div class="date-group">
+                        <span class="date-label">Check-out</span>
+                        <div class="divider-horizontal"></div>
+                        <input type="text" class="date-input" value="${checkout}" readonly>
+                    </div>
+                </div>
+                <p class="valor"><strong>Valor total:</strong>R$${valor.toFixed(2).replace('.', ',')}</p>
+              </div>  
+            </div> 
+                `;
+        });
+        if (data.length > 0) {
+          numero.style.display= 'block';
+          numero.textContent = data.length; // mostra a quantidade de reservas
+        } else {
+          numero.style.display = "none";
         }
     });
 }
@@ -299,6 +348,110 @@ async function cadastrarReserva() {
       scrollModalToTop('#modal_cadalt_promocao .bloco-modal-geral');
       return;
     }
+
+    let dataInicial = converterDataParaISO(modalCheckin);
+    let dataFinal = converterDataParaISO(modalCheckout);
+
+    const response = await fetch('../../app/Models/BloqueioModel.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+          acao: 'verificar_data', 
+          dados: { dataInicial, dataFinal } 
+      })
+    });
+    const existeBloqueio = await response.json();
+    if (existeBloqueio) {
+        const msg = "Não é possível fazer reserva pois o período selecionado está bloqueado";
+        if (error) {
+            error.textContent = msg;
+            error.style.display = 'block';
+        } else {
+            alert(msg);
+        }
+        scrollModalToTop?.('#modal_bloquear_dias .bloco-modal-geral');
+        return;
+    }
+    
+    const dados = {
+      dataInicial, // mande no formato que seu PHP espera
+      dataFinal,
+      valorTotal // número
+    };
+
+    // Ajuste o endpoint/ação conforme seu backend
+    const resposta = await fetch('../../app/Models/ReservasModel.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ acao: 'cadastrar_reserva', dados })
+    });
+
+    const json = await resposta.json();
+
+    if (!json.erro) {
+      fecharModal('modal_cadalt_reserva');
+      alert(json.mensagem || 'Reserva criada com sucesso!');
+      abrirModal('modal_pagamento');
+    } else {
+      alert(json.mensagem);
+    }
+  });
+}
+
+window.abrirModalEditarReserva = function (id, checkin, checkout, valor) {
+    const modal = document.getElementById('modal_cadalt_reserva');
+    modal.querySelector('[name="titulo"]').textContent = 'Editar Reserva';
+    const form = document.getElementById('formCadAltReserva');
+    form.querySelector('.btn').textContent = 'Editar';
+    //Atribuindo valor aos campos
+    form.querySelector('[name="data_inicial"]').value = converterDataParaBR(checkin);
+    form.querySelector('[name="data_final"]').value = converterDataParaBR(checkout);
+    form.querySelector('[name="preco_total"]').innerHTML = `
+    <strong>Valor Total: </strong> ${valor.toFixed(2).replace('.', ',')}`;
+    abrirModal('modal_cadalt_reserva');
+    editarReserva(id);
+};
+
+async function editarReserva(id) {
+  document.getElementById('formCadAltReserva').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const precos = await retornarPrecos();
+    const precoDiaria = Number(precos?.[0]?.prediaria ?? 0);
+    const precoDiariaFds = Number(precos?.[0]?.prediariafds ?? 0);
+
+    const modalCheckin = this.querySelector('[name="data_inicial"]').value;
+    const modalCheckout = this.querySelector('[name="data_final"]').value;
+    const valorTotal = calcularPreco(modalCheckin, modalCheckout, precoDiaria, precoDiariaFds);
+
+    const error = document.getElementById('cadReserva_error');
+    let mensagemErro = '';
+
+    const diffDias = validarDistanciaData(modalCheckin, modalCheckout);
+
+    if (diffDias < 1) {
+      mensagemErro = 'O período precisa ter uma duração de pelo menos 1 dia';
+    } else if (diffDias > 31) {
+      mensagemErro = 'O período não pode ultrapassar 31 dias';
+    }
+    //Validar se a data não está no passado
+    else if (!validarDataPassada(modalCheckin)){
+      mensagemErro = 'Você não pode usar uma data no passado';
+    }
+    //Validar se a data não está mais distante que 10 anos
+    else if (!validarDataFutura(modalCheckout)){
+      mensagemErro = 'Você não pode usar uma data tão distante';
+    }
+    //Validar se a data final está pelo menos 1 dia a frente da data inicial
+    else if (!validarDistanciaData(modalCheckin, modalCheckout)){
+      mensagemErro = 'O período precisa ter uma duração de pelo menos um dia';
+    }
+    if (mensagemErro !== '') {
+      error.textContent = mensagemErro;
+      error.style.display = 'block';
+      scrollModalToTop('#modal_cadalt_promocao .bloco-modal-geral');
+      return;
+    }
     let dataInicial = converterDataParaISO(modalCheckin);
     let dataFinal = converterDataParaISO(modalCheckout);
     const dados = {
@@ -325,18 +478,3 @@ async function cadastrarReserva() {
     }
   });
 }
-
-window.abrirModalEditarPromocao = function (id, dataini, datafim) {
-    const modal = document.getElementById('modal_cadalt_reserva');
-    modal.querySelector('[name="titulo"]').textContent = 'Editar Reserva';
-    const form = document.getElementById('formCadAltPromocao');
-    form.querySelector('.btn').textContent = 'Editar';
-    //Atribuindo valor aos campos
-    form.querySelector('[name="nome_promocao"]').value = nome;
-    form.querySelector('[name="data_inicial"]').value = converterDataParaBR(dataini);
-    form.querySelector('[name="data_final"]').value = converterDataParaBR(datafim);
-    form.querySelector('[name="valor_diaria"]').value = npreco;
-    form.querySelector('[name="valor_diariafds"]').value = nprecofds;
-    abrirModal('modal_cadalt_promocao');
-    editarPromocao(id);
-};

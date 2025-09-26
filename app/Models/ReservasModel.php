@@ -17,6 +17,8 @@ switch ($input['acao']) {
         break;
     case 'listar_reservas_npagas':
         listarReservasNPagas($pdo);
+    case 'listar_reservas_pagas':
+        listarReservasPagas($pdo);
         break;
     case 'cadastrar_reserva':
         cadastrarReservas($input['dados'],$pdo);
@@ -43,6 +45,27 @@ function listarReservasNPagas($pdo) {
         $usuario = $_SESSION['usuario'];
         $id = $usuario['id'];
         $sql = "SELECT * FROM reservas WHERE resusuid = :id AND resstatuspag = 0;";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+
+        if ($stmt->execute()) {
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode($data);
+            exit;
+        } else {
+            echo json_encode(['erro' => true, 'mensagem' => 'Erro ao comunicar com o banco']);
+        }
+    } else {
+        echo json_encode(['erro' => true, 'mensagem' => 'Usuario nao logado']);
+    }
+}
+
+function listarReservasPagas($pdo) {
+    if (isset($_SESSION['usuario']) && ($_SESSION['usuario']['tipo'] === 'cliente')) {
+        $usuario = $_SESSION['usuario'];
+        $id = $usuario['id'];
+        $sql = "SELECT * FROM reservas WHERE resusuid = :id AND resstatuspag = 1;";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
 

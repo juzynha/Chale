@@ -275,6 +275,7 @@ async function cadastrarPromocao() {
         if (!json.erro) {
             fecharModal('modal_cadalt_promocao');
             alert(json.mensagem);
+            location.href = window.location.pathname;
         } else {
             error.textContent = json.mensagem;
         }

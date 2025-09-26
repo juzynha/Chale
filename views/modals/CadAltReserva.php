@@ -14,13 +14,13 @@
                         <div class="date-group">
                             <span class="date-label">Check-in</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input" name="data_inicial">
+                            <input type="date" class="date-input" name="data_inicial" data-blocked="true" readonly>
                         </div>
                         <div class="divider-vertical"></div>
                         <div class="date-group">
                             <span class="date-label">Check-out</span>
                             <div class="divider-horizontal"></div>
-                            <input type="date" class="date-input" name="data_final">
+                            <input type="date" class="date-input" name="data_final" data-blocked="true" readonly>
                         </div>
                     </div>
                 </div>

@@ -83,6 +83,7 @@ if (pagina === 'reservas') {
         if (!js.erro) {
             alert(js.mensagem);
             fecharModal('modal_bloquear_dias');
+            location.href = window.location.pathname;
         } else {
             if (error) {
                 error.textContent = resultado.mensagem;

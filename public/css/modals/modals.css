@@ -160,7 +160,7 @@
   
 .textinho{
     text-decoration: underline;
-    text-decoration-color: var(--branco);
+    text-decoration-color: inherit;
     cursor: pointer;
     display: flex;
     gap: 0.5rem;

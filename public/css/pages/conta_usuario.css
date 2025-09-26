@@ -197,6 +197,12 @@
   2px 2px var(--verde-azulado);
 }
 
+.bloco-reserva{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 @media (min-width: 768px) {
   .container-conta {
     padding: 3rem 5rem;
